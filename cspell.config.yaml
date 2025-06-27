@@ -1,0 +1,25 @@
+version: "0.2"
+ignorePaths:
+  - lib/core/mocks/mock_pokemon.json
+language: en,es
+dictionaryDefinitions: []
+dictionaries: []
+words:
+  - cupertino
+  - flutter_lints
+  - JSOB
+  - nullable
+  - Pkmn
+  - Pokeball
+  - pokedex
+  - Pokedex
+  - Pokédex
+  - pokemon
+  - Pokemones
+  - Pokémones
+  - Pokemons
+  - uuid
+ignoreWords: []
+import: []
+enabledFileTypes:
+  json: false
