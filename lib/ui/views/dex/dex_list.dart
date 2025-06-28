@@ -1,15 +1,18 @@
 part of com.pogo_check_list_ota_labs.app.views;
 
-class ShinyPokemonView extends StatefulWidget {
-  const ShinyPokemonView({super.key});
-  static const String route = '/pokemon/shiny-dex';
+class AllPokemonAvailableView extends StatefulWidget {
+  const AllPokemonAvailableView({super.key});
+  static const String route = '/pokemon/all-available';
 
   @override
-  State<ShinyPokemonView> createState() => _ShinyPokemonViewState();
+  State<AllPokemonAvailableView> createState() =>
+      _AllPokemonAvailableViewState();
 }
 
-class _ShinyPokemonViewState extends State<ShinyPokemonView> {
+class _AllPokemonAvailableViewState extends State<AllPokemonAvailableView> {
   bool displayOnlyMissingPokemon = false;
+  final ScrollController _scrollController = ScrollController();
+  bool isInTheEndOfTheList = false;
 
   @override
   void initState() {
@@ -18,40 +21,45 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
 
   @override
   void dispose() {
+    _scrollController.dispose();
     super.dispose();
   }
+
+  void _scrollToEnd() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: const Duration(seconds: 1),
+      curve: Curves.easeInOut,
+    );
+    isInTheEndOfTheList = true;
+    setState(() {});
+  }
+
+  void _scrollToTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(seconds: 1),
+      curve: Curves.easeInOut,
+    );
+    isInTheEndOfTheList = false;
+    setState(() {});
+  }
+
+  final WidgetStateProperty<Icon?> thumbIcon =
+      WidgetStateProperty.resolveWith<Icon?>((Set<WidgetState> states) {
+        if (states.contains(WidgetState.selected)) {
+          return const Icon(Icons.catching_pokemon);
+        }
+        return const Icon(Icons.catching_pokemon);
+      });
 
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.transparent,
       systemOverlayStyle: SystemUiOverlayStyle.light,
-      toolbarHeight: 60,
-      title: Stack(
-        children: <Widget>[
-          SafeArea(
-            child: Image.asset(
-              'assets/BG_Header.png',
-              width: MediaQuery.of(context).size.width,
-              fit: BoxFit.fitWidth,
-            ),
-          ),
-          Positioned(
-            top: 30,
-            left: MediaQuery.of(context).size.width / 7,
-            child: const Center(
-              child: Text(
-                'Shiny Pokédex',
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+      toolbarHeight: 82,
+      title: const HeaderFromImage(title: 'Pokédex'),
       elevation: 0,
     ),
     backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
@@ -73,10 +81,9 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
           List<PokemonModel> sortedPokemon =
               provider.allPokemon.where((PokemonModel pokemon) {
                 if (displayOnlyMissingPokemon) {
-                  return pokemon.shinyAvailable &&
-                      !pokemon.alreadyCatchShinyVersion;
+                  return pokemon.available && !pokemon.alreadyCatch;
                 } else {
-                  return pokemon.shinyAvailable;
+                  return pokemon.available;
                 }
               }).toList();
           return Column(
@@ -87,24 +94,26 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
                   builder:
                       (BuildContext context) => Column(
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 4,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                const Text(
-                                  'Mis Pokemones ✨',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.start,
+                          SizedBox(
+                            width: 250,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 4,
+                              ),
+                              child: Container(
+                                padding: const EdgeInsets.only(
+                                  left: 12,
+                                  top: 8,
+                                  bottom: 8,
+                                  right: 12,
                                 ),
-                                Column(
+                                decoration: BoxDecoration(
+                                  color: Colors.black12,
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Text(
                                       displayOnlyMissingPokemon
@@ -117,8 +126,12 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
                                                 : Colors.black,
                                       ),
                                     ),
-                                    IconButton(
-                                      onPressed: () async {
+                                    const SizedBox(width: 16),
+                                    Switch(
+                                      value: displayOnlyMissingPokemon,
+                                      thumbIcon: thumbIcon,
+                                      activeColor: Colors.indigo,
+                                      onChanged: (_) async {
                                         setState(() {
                                           displayOnlyMissingPokemon =
                                               !displayOnlyMissingPokemon;
@@ -130,22 +143,15 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
                                             );
                                         await firebaseProvider.getPokemonData();
                                       },
-                                      icon: Icon(
-                                        Icons.catching_pokemon_rounded,
-                                        color:
-                                            displayOnlyMissingPokemon
-                                                ? Colors.white
-                                                : Colors.black,
-                                      ),
-                                      iconSize: 27,
                                     ),
                                   ],
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                           Expanded(
                             child: ListView.builder(
+                              controller: _scrollController,
                               shrinkWrap: true,
                               itemCount: sortedPokemon.length,
                               itemBuilder:
@@ -153,7 +159,6 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
                                       PokemonListItem(
                                         selectPokemon: sortedPokemon[index],
                                         index: index + 1,
-                                        isShiny: true,
                                         displayOnlyMissingPokemon:
                                             displayOnlyMissingPokemon,
                                       ),
@@ -167,6 +172,13 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
           );
         }
       },
+    ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
+      backgroundColor: Colors.indigo,
+      child: Icon(
+        isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
+      ),
     ),
   );
 }

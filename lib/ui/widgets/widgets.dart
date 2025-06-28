@@ -9,5 +9,6 @@ import '../../core/utils/utils.dart';
 import '../navigator.dart';
 
 part 'empty_state.dart';
+part 'header_dex.dart';
 part 'home_menu_item.dart';
 part 'pokemon_list_item.dart';

@@ -9,6 +9,6 @@ import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
 import '../widgets/widgets.dart';
 
-part 'dex/list.dart';
+part 'dex/dex_list.dart';
 part 'home/home.dart';
-part 'shiny_dex/list.dart';
+part 'shiny_dex/shiny_dex_list.dart';

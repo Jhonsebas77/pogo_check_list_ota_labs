@@ -11,6 +11,7 @@ import 'core/utils/constants.dart';
 import 'firebase_options.dart';
 import 'ui/theme.dart';
 import 'ui/views/views.dart';
+import 'ui/widgets/widgets.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,32 +71,24 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) => Stack(
-    children: <Widget>[
-      SafeArea(
-        child: Image.asset(
-          'assets/BG_Home.png',
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          fit: BoxFit.fill,
-        ),
-      ),
-      Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          elevation: 0,
-        ),
+  Widget build(BuildContext context) => SafeArea(
+    child: Scaffold(
+      appBar: AppBar(
         backgroundColor: Colors.transparent,
-        body: const HomePoGoView(),
-        bottomNavigationBar: const Padding(
-          padding: EdgeInsets.all(8),
-          child: SelectableText(
-            'By Ota_Labs V.1.0.0+2',
-            textAlign: TextAlign.center,
-          ),
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        elevation: 0,
+        title: const HeaderFromImage(),
+        toolbarHeight: 82,
+      ),
+      backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+      body: const HomePoGoView(),
+      bottomNavigationBar: const Padding(
+        padding: EdgeInsets.all(8),
+        child: SelectableText(
+          'By Ota_Labs V.1.0.0+2',
+          textAlign: TextAlign.center,
         ),
       ),
-    ],
+    ),
   );
 }
