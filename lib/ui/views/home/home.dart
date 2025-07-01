@@ -18,11 +18,7 @@ class HomePoGoView extends StatelessWidget {
             Widget? child,
           ) {
             if (provider.isLoading) {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-              );
+              return const LoadingWidget();
             } else if (provider.allPokemon.isEmpty) {
               return const EmptyState();
             } else {
@@ -57,86 +53,49 @@ class HomePoGoView extends StatelessWidget {
                                     pokemon.alreadyCatchShinyVersion,
                               )
                               .toList();
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      List<PokemonModel> _allGigantamaxPokemon =
+                          provider.allGigantamaxPokemon
+                              .where(
+                                (PokemonModel pokemon) => pokemon.available,
+                              )
+                              .toList();
+                      List<PokemonModel> _catchGigantamaxPokemon =
+                          provider.allGigantamaxPokemon
+                              .where(
+                                (PokemonModel pokemon) => pokemon.alreadyCatch,
+                              )
+                              .toList();
+                      return Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
                         children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.only(
-                              left: 12,
-                              top: 8,
-                              bottom: 8,
-                              right: 12,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.black12,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: SizedBox(
-                              height: 100,
-                              width: 100,
-                              child: CircularPercentIndicator(
-                                radius: 28,
-                                lineWidth: 6,
-                                percent:
-                                    _catchPokemon.length.toDouble() /
-                                    _allPokemon.length.toDouble(),
-                                backgroundColor: Colors.black45,
-                                progressColor: Colors.white,
-                                circularStrokeCap: CircularStrokeCap.square,
-                                center: const Icon(
-                                  Icons.catching_pokemon,
-                                  color: Colors.white,
-                                ),
-                                footer: Text(
-                                  '''${(_catchPokemon.length.toDouble() / _allPokemon.length.toDouble() * 100).floor()}%''',
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ),
+                          HomeCircularWidget(
+                            allItemLength: _allPokemon.length.toDouble(),
+                            counterItemLength: _catchPokemon.length.toDouble(),
+                            centerWidget: const Icon(
+                              Icons.catching_pokemon,
+                              color: Colors.white,
                             ),
                           ),
-                          const SizedBox(width: 16),
-                          Container(
-                            padding: const EdgeInsets.only(
-                              left: 12,
-                              top: 8,
-                              bottom: 8,
-                              right: 12,
+                          HomeCircularWidget(
+                            allItemLength: _allShinyPokemon.length.toDouble(),
+                            counterItemLength:
+                                _catchShinyPokemon.length.toDouble(),
+                            centerWidget: const Text(
+                              '✨',
+                              textAlign: TextAlign.start,
                             ),
-                            decoration: BoxDecoration(
-                              color: Colors.black12,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: SizedBox(
-                              height: 100,
-                              width: 100,
-                              child: CircularPercentIndicator(
-                                radius: 28,
-                                lineWidth: 6,
-                                percent:
-                                    _catchShinyPokemon.length.toDouble() /
-                                    _allShinyPokemon.length.toDouble(),
-                                backgroundColor: Colors.black45,
-                                progressColor: Colors.white,
-                                circularStrokeCap: CircularStrokeCap.square,
-                                center: const Text(
-                                  '✨',
-                                  textAlign: TextAlign.start,
-                                ),
-                                footer: Text(
-                                  '''${(_catchShinyPokemon.length.toDouble() / _allShinyPokemon.length.toDouble() * 100).floor()}%''',
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ),
+                          ),
+                          HomeCircularWidget(
+                            allItemLength:
+                                _allGigantamaxPokemon.length.toDouble(),
+                            counterItemLength:
+                                _catchGigantamaxPokemon.length.toDouble(),
+                            centerWidget: Image.asset(
+                              'assets/Gigamax.png',
+                              height: 30,
+                              width: 30,
+                              fit: BoxFit.fill,
                             ),
                           ),
                         ],
@@ -158,6 +117,11 @@ class HomePoGoView extends StatelessWidget {
         image: 'assets/Icon_Pokedex.png',
         label: 'Shiny Pokédex',
         viewToNavigate: ShinyPokemonView(),
+      ),
+      const HomeMenuItem(
+        image: 'assets/Icon_Gigantamax.png',
+        label: 'Gigantamax',
+        viewToNavigate: GigantamaxPokemonView(),
       ),
     ],
   );

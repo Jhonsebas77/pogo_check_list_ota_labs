@@ -31,7 +31,7 @@ class HomeMenuItem extends StatelessWidget {
             Text(
               label,
               style: const TextStyle(
-                fontSize: 36,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),

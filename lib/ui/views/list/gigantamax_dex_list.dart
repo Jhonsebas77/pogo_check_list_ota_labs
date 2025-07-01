@@ -1,14 +1,14 @@
 part of com.pogo_check_list_ota_labs.app.views;
 
-class ShinyPokemonView extends StatefulWidget {
-  const ShinyPokemonView({super.key});
-  static const String route = '/pokemon/shiny-dex';
+class GigantamaxPokemonView extends StatefulWidget {
+  const GigantamaxPokemonView({super.key});
+  static const String route = '/pokemon/gigantamax-dex';
 
   @override
-  State<ShinyPokemonView> createState() => _ShinyPokemonViewState();
+  State<GigantamaxPokemonView> createState() => _GigantamaxPokemonViewState();
 }
 
-class _ShinyPokemonViewState extends State<ShinyPokemonView> {
+class _GigantamaxPokemonViewState extends State<GigantamaxPokemonView> {
   bool displayOnlyMissingPokemon = false;
   final ScrollController _scrollController = ScrollController();
   bool isInTheEndOfTheList = false;
@@ -44,21 +44,13 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
     setState(() {});
   }
 
-  final WidgetStateProperty<Icon?> thumbIcon =
-      WidgetStateProperty.resolveWith<Icon?>((Set<WidgetState> states) {
-        if (states.contains(WidgetState.selected)) {
-          return const Icon(Icons.catching_pokemon);
-        }
-        return const Icon(Icons.catching_pokemon);
-      });
-
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.transparent,
       systemOverlayStyle: SystemUiOverlayStyle.light,
       toolbarHeight: 82,
-      title: const HeaderFromImage(title: 'Shiny'),
+      title: const HeaderFromImage(title: 'Gigantamax'),
       elevation: 0,
     ),
     backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
@@ -69,23 +61,21 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
         Widget? child,
       ) {
         if (provider.isLoading) {
-          return Center(
-            child: CircularProgressIndicator(
-              color: Theme.of(context).colorScheme.onPrimary,
-            ),
-          );
-        } else if (provider.allPokemon.isEmpty) {
+          return const LoadingWidget();
+        } else if (provider.allGigantamaxPokemon.isEmpty) {
           return const EmptyState();
         } else {
           List<PokemonModel> sortedPokemon =
-              provider.allPokemon.where((PokemonModel pokemon) {
-                if (displayOnlyMissingPokemon) {
-                  return pokemon.shinyAvailable &&
-                      !pokemon.alreadyCatchShinyVersion;
-                } else {
-                  return pokemon.shinyAvailable;
-                }
-              }).toList();
+              provider.allGigantamaxPokemon.where((PokemonModel pokemon) {
+                  if (displayOnlyMissingPokemon) {
+                    return !pokemon.alreadyCatch;
+                  } else {
+                    return pokemon.id != 0;
+                  }
+                }).toList()
+                ..sort(
+                  (PokemonModel a, PokemonModel b) => a.id.compareTo(b.id),
+                );
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -141,7 +131,9 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
                                               context,
                                               listen: false,
                                             );
-                                        await firebaseProvider.getPokemonData();
+                                        await firebaseProvider.getPokemonData(
+                                          context,
+                                        );
                                       },
                                     ),
                                   ],
@@ -149,21 +141,10 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: ListView.builder(
-                              controller: _scrollController,
-                              shrinkWrap: true,
-                              itemCount: sortedPokemon.length,
-                              itemBuilder:
-                                  (BuildContext context, int index) =>
-                                      PokemonListItem(
-                                        selectPokemon: sortedPokemon[index],
-                                        index: index + 1,
-                                        isShiny: true,
-                                        displayOnlyMissingPokemon:
-                                            displayOnlyMissingPokemon,
-                                      ),
-                            ),
+                          PokemonList(
+                            scrollController: _scrollController,
+                            sortedPokemon: sortedPokemon,
+                            isGigantamax: true,
                           ),
                         ],
                       ),

@@ -4,15 +4,15 @@ class PokemonListItem extends StatefulWidget {
   const PokemonListItem({
     required this.selectPokemon,
     required this.index,
-    required this.displayOnlyMissingPokemon,
     this.isShiny = false,
+    this.isGigantamax = false,
     super.key,
   });
 
   final PokemonModel selectPokemon;
   final int index;
   final bool? isShiny;
-  final bool displayOnlyMissingPokemon;
+  final bool? isGigantamax;
 
   @override
   State<PokemonListItem> createState() => _PokemonListItemState();
@@ -21,24 +21,6 @@ class PokemonListItem extends StatefulWidget {
 class _PokemonListItemState extends State<PokemonListItem> {
   bool? _alreadyCatch;
   bool? _alreadyCatchShinyVersion;
-
-  void _showErrorSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.redAccent,
-        behavior: SnackBarBehavior.floating,
-        action: SnackBarAction(
-          label: 'DISMISS',
-          textColor: Colors.white,
-          onPressed: () {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          },
-        ),
-      ),
-    );
-  }
 
   @override
   void initState() {
@@ -63,7 +45,7 @@ class _PokemonListItemState extends State<PokemonListItem> {
     Color colorPokeball = isAlreadyCaught ? Colors.black : Colors.white;
     return GestureDetector(
       onTap:
-          !widget.displayOnlyMissingPokemon
+          widget.selectPokemon.available
               ? () async {
                 if (widget.index == widget.selectPokemon.id) {
                   setState(() {
@@ -92,12 +74,22 @@ class _PokemonListItemState extends State<PokemonListItem> {
                     shinyAvailable: widget.selectPokemon.shinyAvailable,
                     tradable: widget.selectPokemon.tradable,
                   );
-                  await firebaseProvider.updatePokemon(widget.index, _pokemon);
+                  await firebaseProvider.updatePokemon(
+                    context,
+                    widget.index,
+                    _pokemon,
+                  );
+                  if (context.mounted) {
+                    showSuccessSnackBar(
+                      context,
+                      '''[Registro actualizado]\n${paddingDexNumber(dexNumber: widget.selectPokemon.id)} ${widget.selectPokemon.name}''',
+                    );
+                  }
                   firebaseProvider.isLoading = false;
                 } else {
-                  _showErrorSnackBar(
+                  showErrorSnackBar(
                     context,
-                    '''[Error when updatePokemon] -> ${widget.index} != ${widget.selectPokemon.id}''',
+                    '''[Error actualizando el registro] -> ${widget.index} != ${widget.selectPokemon.id}''',
                   );
                 }
               }
@@ -128,7 +120,14 @@ class _PokemonListItemState extends State<PokemonListItem> {
                         width: 50,
                         fit: BoxFit.fill,
                       ),
-                      if (widget.isShiny ?? false)
+                      if (widget.isGigantamax ?? false)
+                        Image.asset(
+                          'assets/pokedex_gigantamax/${widget.selectPokemon.id}.png',
+                          height: 50,
+                          width: 50,
+                          fit: BoxFit.fill,
+                        )
+                      else if (widget.isShiny ?? false)
                         if (widget.selectPokemon.shinyAvailable == false)
                           Image.asset(
                             'assets/pokedex_sprites_shiny/0.png',
@@ -207,10 +206,12 @@ class _PokemonListItemState extends State<PokemonListItem> {
                       width: 50,
                       fit: BoxFit.fill,
                     )
+                  else if (widget.selectPokemon.available)
+                    Icon(Icons.catching_pokemon, color: colorPokeball, size: 50)
                   else
-                    Icon(
+                    const Icon(
                       Icons.catching_pokemon,
-                      color: colorPokeball,
+                      color: Colors.blueGrey,
                       size: 50,
                     ),
                 ],

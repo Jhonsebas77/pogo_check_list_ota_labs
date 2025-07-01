@@ -60,7 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
         context,
         listen: false,
       )..initializeFirebase();
-      await firebaseProvider.getPokemonData();
+      await firebaseProvider.getPokemonData(context);
+      await firebaseProvider.getPokemonGigantamaxData(context);
     });
     super.initState();
   }
@@ -85,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: const Padding(
         padding: EdgeInsets.all(8),
         child: SelectableText(
-          'By Ota_Labs V.1.0.0+2',
+          'By Ota_Labs V.1.0.0+3',
           textAlign: TextAlign.center,
         ),
       ),

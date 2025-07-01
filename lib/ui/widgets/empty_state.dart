@@ -4,25 +4,35 @@ class EmptyState extends StatelessWidget {
   const EmptyState({super.key});
 
   @override
-  Widget build(BuildContext context) => const Padding(
-    padding: EdgeInsets.all(8),
-    child: Card(
+  Widget build(BuildContext context) => Center(
+    child: SizedBox(
+      height: 300,
       child: Padding(
-        padding: EdgeInsets.all(8),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(Icons.error_outline_rounded),
-            SizedBox(width: 8),
-            Center(
-              child: Text(
-                '''Nada por aquí''',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
+        padding: const EdgeInsets.all(8),
+        child: Card(
+          color: Colors.black54,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  'assets/empty_state.png',
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.fill,
+                ),
+                const Center(
+                  child: Text(
+                    'Lo sentimos, aun no tenemos registros',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     ),

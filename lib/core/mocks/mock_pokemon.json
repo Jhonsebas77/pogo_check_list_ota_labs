@@ -1,4 +1,285 @@
 {
+    "gigantamax": {
+        "0": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 0,
+            "name": "---",
+            "shiny_available": false,
+            "tradable": false
+        },
+        "3": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 3,
+            "name": "Venusaur",
+            "shiny_available": true,
+            "tradable": true
+        },
+        "6": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 6,
+            "name": "Charizard",
+            "shiny_available": true,
+            "tradable": true
+        },
+        "9": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 9,
+            "name": "Blastoise",
+            "shiny_available": true,
+            "tradable": true
+        },
+        "12": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 12,
+            "name": "Butterfree",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "25": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 25,
+            "name": "Pikachu",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "52": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 52,
+            "name": "Meowth",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "68": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 68,
+            "name": "Machamp",
+            "shiny_available": true,
+            "tradable": true
+        },
+        "94": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 94,
+            "name": "Gengar",
+            "shiny_available": true,
+            "tradable": true
+        },
+        "99": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 99,
+            "name": "Kingler",
+            "shiny_available": true,
+            "tradable": true
+        },
+        "131": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 131,
+            "name": "Lapras",
+            "shiny_available": true,
+            "tradable": true
+        },
+        "133": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 133,
+            "name": "Eevee",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "143": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 143,
+            "name": "Snorlax",
+            "shiny_available": true,
+            "tradable": true
+        },
+        "569": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 569,
+            "name": "Garbodor",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "809": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 809,
+            "name": "Melmetal",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "812": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 812,
+            "name": "Rillaboom",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "815": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 815,
+            "name": "Cinderace",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "823": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 823,
+            "name": "Corviknight",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "826": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 826,
+            "name": "Orbeetle",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "834": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 834,
+            "name": "Drednaw",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "841": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 841,
+            "name": "Flapple",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "842": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 842,
+            "name": "Appletun",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "844": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 844,
+            "name": "Sandaconda",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "849": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 849,
+            "name": "Toxtricity",
+            "shiny_available": true,
+            "tradable": true
+        },
+        "851": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 851,
+            "name": "Centiskorch",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "858": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 858,
+            "name": "Hatterene",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "861": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 861,
+            "name": "Grimmsnarl",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "869": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 869,
+            "name": "Alcremie",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "879": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 879,
+            "name": "Copperajah",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "884": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": false,
+            "id": 884,
+            "name": "Duraludon",
+            "shiny_available": false,
+            "tradable": true
+        },
+        "892": {
+            "already_catch": false,
+            "already_catch_shiny_version": false,
+            "available": true,
+            "id": 892,
+            "name": "Urshifu",
+            "shiny_available": false,
+            "tradable": true
+        }
+    },
     "pokemon": {
         "0": {
             "already_catch": false,

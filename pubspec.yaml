@@ -26,5 +26,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/pokedex_sprites/
+    - assets/pokedex_gigantamax/
     - assets/pokedex_sprites_shiny/
+    - assets/pokedex_sprites/

@@ -10,14 +10,19 @@ ThemeData lightTheme = ThemeData(
   useMaterial3: true,
 );
 
-ThemeData // Define the dark theme based on the same seed color
-darkTheme = ThemeData(
-  // Generate the color scheme from the seed color for dark mode
+ThemeData darkTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
-    seedColor: Colors.green, // Same pastel green seed
-    brightness: Brightness.dark, // Tells it to generate DARK colors
+    seedColor: Colors.green,
+    brightness: Brightness.dark,
   ),
   textTheme: const TextTheme(bodyLarge: TextStyle(color: Colors.black)),
-  // Ensure Material 3 is enabled
   useMaterial3: true,
 );
+
+final WidgetStateProperty<Icon?> thumbIcon =
+    WidgetStateProperty.resolveWith<Icon?>((Set<WidgetState> states) {
+      if (states.contains(WidgetState.selected)) {
+        return const Icon(Icons.catching_pokemon);
+      }
+      return const Icon(Icons.catching_pokemon);
+    });
