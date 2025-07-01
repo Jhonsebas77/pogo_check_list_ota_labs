@@ -128,4 +128,25 @@ class FirebaseProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  Future<void> updateGigantamaxPokemon(
+    BuildContext context,
+    int customId,
+    PokemonModel _pokemonModel,
+  ) async {
+    try {
+      DatabaseReference ref = FirebaseDatabase.instance.ref(
+        '$firebasePokemonGigantamaxPath/$customId',
+      );
+      await ref.update(_pokemonModel.toJSON());
+    } catch (e) {
+      if (context.mounted) {
+        showErrorSnackBar(
+          context,
+          'Error during updatePokemon: $customId | $e',
+        );
+      }
+    }
+    notifyListeners();
+  }
 }

@@ -9,6 +9,21 @@ class HomePoGoView extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
+      const HomeMenuItem(
+        image: 'assets/Icon_Pokedex.png',
+        label: 'Pokédex',
+        viewToNavigate: AllPokemonAvailableView(),
+      ),
+      const HomeMenuItem(
+        image: 'assets/Icon_Pokedex.png',
+        label: 'Shiny Pokédex',
+        viewToNavigate: ShinyPokemonView(),
+      ),
+      const HomeMenuItem(
+        image: 'assets/Icon_Gigantamax.png',
+        label: 'Gigantamax',
+        viewToNavigate: GigantamaxPokemonView(),
+      ),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Consumer<FirebaseProvider>(
@@ -107,21 +122,6 @@ class HomePoGoView extends StatelessWidget {
             }
           },
         ),
-      ),
-      const HomeMenuItem(
-        image: 'assets/Icon_Pokedex.png',
-        label: 'Pokédex',
-        viewToNavigate: AllPokemonAvailableView(),
-      ),
-      const HomeMenuItem(
-        image: 'assets/Icon_Pokedex.png',
-        label: 'Shiny Pokédex',
-        viewToNavigate: ShinyPokemonView(),
-      ),
-      const HomeMenuItem(
-        image: 'assets/Icon_Gigantamax.png',
-        label: 'Gigantamax',
-        viewToNavigate: GigantamaxPokemonView(),
       ),
     ],
   );

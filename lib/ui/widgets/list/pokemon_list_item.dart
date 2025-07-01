@@ -74,11 +74,19 @@ class _PokemonListItemState extends State<PokemonListItem> {
                     shinyAvailable: widget.selectPokemon.shinyAvailable,
                     tradable: widget.selectPokemon.tradable,
                   );
-                  await firebaseProvider.updatePokemon(
-                    context,
-                    widget.index,
-                    _pokemon,
-                  );
+                  if (widget.isGigantamax ?? false) {
+                    await firebaseProvider.updateGigantamaxPokemon(
+                      context,
+                      widget.index,
+                      _pokemon,
+                    );
+                  } else {
+                    await firebaseProvider.updatePokemon(
+                      context,
+                      widget.index,
+                      _pokemon,
+                    );
+                  }
                   if (context.mounted) {
                     showSuccessSnackBar(
                       context,

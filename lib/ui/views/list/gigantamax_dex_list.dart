@@ -131,9 +131,8 @@ class _GigantamaxPokemonViewState extends State<GigantamaxPokemonView> {
                                               context,
                                               listen: false,
                                             );
-                                        await firebaseProvider.getPokemonData(
-                                          context,
-                                        );
+                                        await firebaseProvider
+                                            .getPokemonGigantamaxData(context);
                                       },
                                     ),
                                   ],
