@@ -12,6 +12,7 @@ import '../navigator.dart';
 part 'empty_state.dart';
 part 'header_dex.dart';
 part 'home/circular_widget.dart';
+part 'home/dashboard_overview.dart';
 part 'home/home_menu_item.dart';
 part 'list/list_view_builder.dart';
 part 'list/pokemon_list_item.dart';

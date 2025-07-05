@@ -5,19 +5,24 @@ class HomeMenuItem extends StatelessWidget {
     required this.label,
     required this.image,
     required this.viewToNavigate,
+    this.isAvailable = true,
     super.key,
   });
   final String label;
   final String image;
   final Widget viewToNavigate;
+  final bool? isAvailable;
 
   @override
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     child: GestureDetector(
-      onTap: () {
-        CustomNavigator().push(context, viewToNavigate);
-      },
+      onTap:
+          (isAvailable ?? false)
+              ? () {
+                CustomNavigator().push(context, viewToNavigate);
+              }
+              : null,
       child: Container(
         padding: const EdgeInsets.only(left: 12, top: 8, bottom: 8, right: 12),
         decoration: BoxDecoration(
@@ -30,10 +35,10 @@ class HomeMenuItem extends StatelessWidget {
             const SizedBox(width: 16),
             Text(
               label,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: (isAvailable ?? false) ? Colors.white : Colors.grey,
               ),
             ),
           ],

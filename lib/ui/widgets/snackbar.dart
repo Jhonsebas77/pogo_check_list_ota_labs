@@ -4,16 +4,9 @@ void showErrorSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).hideCurrentSnackBar();
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      content: Text(message),
+      content: Center(child: Text(message, textAlign: TextAlign.center)),
       backgroundColor: Colors.redAccent,
-      behavior: SnackBarBehavior.floating,
-      action: SnackBarAction(
-        label: 'DISMISS',
-        textColor: Colors.white,
-        onPressed: () {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-        },
-      ),
+      behavior: SnackBarBehavior.fixed,
     ),
   );
 }
@@ -22,16 +15,9 @@ void showSuccessSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).hideCurrentSnackBar();
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      content: Text(message),
+      content: Center(child: Text(message, textAlign: TextAlign.center)),
       backgroundColor: Colors.green,
-      behavior: SnackBarBehavior.floating,
-      action: SnackBarAction(
-        label: 'Entendido',
-        textColor: Colors.white,
-        onPressed: () {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-        },
-      ),
+      behavior: SnackBarBehavior.fixed,
     ),
   );
 }

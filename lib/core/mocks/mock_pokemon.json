@@ -1,16 +1,7 @@
 {
     "gigantamax": {
-        "0": {
-            "already_catch": false,
-            "already_catch_shiny_version": false,
-            "available": false,
-            "id": 0,
-            "name": "---",
-            "shiny_available": false,
-            "tradable": false
-        },
         "3": {
-            "already_catch": false,
+            "already_catch": true,
             "already_catch_shiny_version": false,
             "available": true,
             "id": 3,
@@ -19,7 +10,7 @@
             "tradable": true
         },
         "6": {
-            "already_catch": false,
+            "already_catch": true,
             "already_catch_shiny_version": false,
             "available": true,
             "id": 6,
@@ -28,7 +19,7 @@
             "tradable": true
         },
         "9": {
-            "already_catch": false,
+            "already_catch": true,
             "already_catch_shiny_version": false,
             "available": true,
             "id": 9,
@@ -82,7 +73,7 @@
             "tradable": true
         },
         "99": {
-            "already_catch": false,
+            "already_catch": true,
             "already_catch_shiny_version": false,
             "available": true,
             "id": 99,
@@ -91,7 +82,7 @@
             "tradable": true
         },
         "131": {
-            "already_catch": false,
+            "already_catch": true,
             "already_catch_shiny_version": false,
             "available": true,
             "id": 131,
@@ -183,7 +174,7 @@
         "841": {
             "already_catch": false,
             "already_catch_shiny_version": false,
-            "available": true,
+            "available": false,
             "id": 841,
             "name": "Flapple",
             "shiny_available": false,
@@ -192,7 +183,7 @@
         "842": {
             "already_catch": false,
             "already_catch_shiny_version": false,
-            "available": true,
+            "available": false,
             "id": 842,
             "name": "Appletun",
             "shiny_available": false,
@@ -219,7 +210,7 @@
         "851": {
             "already_catch": false,
             "already_catch_shiny_version": false,
-            "available": true,
+            "available": false,
             "id": 851,
             "name": "Centiskorch",
             "shiny_available": false,
@@ -228,7 +219,7 @@
         "858": {
             "already_catch": false,
             "already_catch_shiny_version": false,
-            "available": true,
+            "available": false,
             "id": 858,
             "name": "Hatterene",
             "shiny_available": false,
@@ -273,7 +264,7 @@
         "892": {
             "already_catch": false,
             "already_catch_shiny_version": false,
-            "available": true,
+            "available": false,
             "id": 892,
             "name": "Urshifu",
             "shiny_available": false,
@@ -291,8 +282,8 @@
             "tradable": false
         },
         "1": {
-            "already_catch": false,
-            "already_catch_shiny_version": false,
+            "already_catch": true,
+            "already_catch_shiny_version": true,
             "available": true,
             "id": 1,
             "name": "Bulbasaur",
@@ -300,8 +291,8 @@
             "tradable": true
         },
         "2": {
-            "already_catch": false,
-            "already_catch_shiny_version": false,
+            "already_catch": true,
+            "already_catch_shiny_version": true,
             "available": true,
             "id": 2,
             "name": "Ivysaur",
@@ -309,8 +300,8 @@
             "tradable": true
         },
         "3": {
-            "already_catch": false,
-            "already_catch_shiny_version": false,
+            "already_catch": true,
+            "already_catch_shiny_version": true,
             "available": true,
             "id": 3,
             "name": "Venusaur",
@@ -318,8 +309,8 @@
             "tradable": true
         },
         "4": {
-            "already_catch": false,
-            "already_catch_shiny_version": false,
+            "already_catch": true,
+            "already_catch_shiny_version": true,
             "available": true,
             "id": 4,
             "name": "Charmander",
@@ -327,8 +318,8 @@
             "tradable": true
         },
         "5": {
-            "already_catch": false,
-            "already_catch_shiny_version": false,
+            "already_catch": true,
+            "already_catch_shiny_version": true,
             "available": true,
             "id": 5,
             "name": "Charmeleon",
@@ -336,8 +327,8 @@
             "tradable": true
         },
         "6": {
-            "already_catch": false,
-            "already_catch_shiny_version": false,
+            "already_catch": true,
+            "already_catch_shiny_version": true,
             "available": true,
             "id": 6,
             "name": "Charizard",
@@ -345,8 +336,8 @@
             "tradable": true
         },
         "7": {
-            "already_catch": false,
-            "already_catch_shiny_version": false,
+            "already_catch": true,
+            "already_catch_shiny_version": true,
             "available": true,
             "id": 7,
             "name": "Squirtle",

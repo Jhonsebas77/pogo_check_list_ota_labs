@@ -21,7 +21,9 @@ words:
   - Pokemones
   - Pokémones
   - Pokemons
+  - Unown
   - uuid
+  - Vivillon
 ignoreWords: []
 import: []
 enabledFileTypes:

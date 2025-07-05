@@ -83,11 +83,24 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
       body: const HomePoGoView(),
-      bottomNavigationBar: const Padding(
-        padding: EdgeInsets.all(8),
-        child: SelectableText(
-          'By Ota_Labs V.1.0.0+3',
-          textAlign: TextAlign.center,
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Container(
+          width: 200,
+          padding: const EdgeInsets.only(
+            left: 12,
+            top: 8,
+            bottom: 8,
+            right: 12,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.black12,
+            borderRadius: BorderRadius.circular(50),
+          ),
+          child: const SelectableText(
+            'By Ota_Labs V.1.0.0+4',
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     ),
