@@ -84,62 +84,6 @@ class _GigantamaxPokemonViewState extends State<GigantamaxPokemonView> {
                   builder:
                       (BuildContext context) => Column(
                         children: <Widget>[
-                          SizedBox(
-                            width: 250,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 4,
-                              ),
-                              child: Container(
-                                padding: const EdgeInsets.only(
-                                  left: 12,
-                                  top: 8,
-                                  bottom: 8,
-                                  right: 12,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.black12,
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      displayOnlyMissingPokemon
-                                          ? 'Sin capturar'
-                                          : 'Capturados',
-                                      style: TextStyle(
-                                        color:
-                                            displayOnlyMissingPokemon
-                                                ? Colors.white
-                                                : Colors.black,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Switch(
-                                      value: displayOnlyMissingPokemon,
-                                      thumbIcon: thumbIcon,
-                                      activeColor: Colors.indigo,
-                                      onChanged: (_) async {
-                                        setState(() {
-                                          displayOnlyMissingPokemon =
-                                              !displayOnlyMissingPokemon;
-                                        });
-                                        FirebaseProvider firebaseProvider =
-                                            Provider.of<FirebaseProvider>(
-                                              context,
-                                              listen: false,
-                                            );
-                                        await firebaseProvider
-                                            .getPokemonGigantamaxData(context);
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
                           PokemonList(
                             scrollController: _scrollController,
                             sortedPokemon: sortedPokemon,
