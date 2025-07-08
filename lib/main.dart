@@ -61,7 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
         listen: false,
       )..initializeFirebase();
       await firebaseProvider.getPokemonData(context);
-      await firebaseProvider.getPokemonGigantamaxData(context);
+      if (mounted) await firebaseProvider.getPokemonGigantamaxData(context);
+      if (mounted) await firebaseProvider.getTrainerData(context);
     });
     super.initState();
   }

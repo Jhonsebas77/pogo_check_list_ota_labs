@@ -9,6 +9,7 @@ class HomePoGoView extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
+      const TrainerInformation(),
       SingleChildScrollView(
         controller: ScrollController(),
         child: const Column(
@@ -28,28 +29,27 @@ class HomePoGoView extends StatelessWidget {
               label: 'Gigantamax',
               viewToNavigate: GigantamaxPokemonView(),
             ),
-            HomeMenuItem(
-              image: 'assets/pokedex_sprites/201.png',
-              label: 'Unown',
-              viewToNavigate: AllPokemonAvailableView(),
-              isAvailable: false,
-            ),
-            HomeMenuItem(
-              image: 'assets/pokedex_sprites/666.png',
-              label: 'Vivillon',
-              viewToNavigate: AllPokemonAvailableView(),
-              isAvailable: false,
-            ),
-            HomeMenuItem(
-              image: 'assets/Icon_Pokedex.png',
-              label: 'Mega evolutions',
-              viewToNavigate: AllPokemonAvailableView(),
-              isAvailable: false,
-            ),
+            // HomeMenuItem(
+            //   image: 'assets/pokedex_sprites/201.png',
+            //   label: 'Unown',
+            //   viewToNavigate: AllPokemonAvailableView(),
+            //   isAvailable: false,
+            // ),
+            // HomeMenuItem(
+            //   image: 'assets/pokedex_sprites/666.png',
+            //   label: 'Vivillon',
+            //   viewToNavigate: AllPokemonAvailableView(),
+            //   isAvailable: false,
+            // ),
+            // HomeMenuItem(
+            //   image: 'assets/Icon_Pokedex.png',
+            //   label: 'Mega evolutions',
+            //   viewToNavigate: AllPokemonAvailableView(),
+            //   isAvailable: false,
+            // ),
           ],
         ),
       ),
-
       const DashboardOverview(),
     ],
   );

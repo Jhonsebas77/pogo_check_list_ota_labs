@@ -3,8 +3,9 @@ part of com.pogo_check_list_ota_labs.app.providers;
 class FirebaseProvider extends ChangeNotifier {
   final DatabaseReference _firebaseRef = FirebaseDatabase.instance.ref();
   bool isLoading = false;
-  List<PokemonModel> allPokemon = <PokemonModel>[];
   List<PokemonModel> allGigantamaxPokemon = <PokemonModel>[];
+  List<PokemonModel> allPokemon = <PokemonModel>[];
+  TrainerModel? trainerInformation;
 
   void initializeFirebase() {
     FirebaseApp firebaseApp = Firebase.app();
@@ -30,6 +31,48 @@ class FirebaseProvider extends ChangeNotifier {
             PokemonModel _pokemonModel = PokemonModel.fromJSON(_mapPokemon);
             allPokemon.add(_pokemonModel);
           });
+        } catch (e) {
+          if (context.mounted) {
+            showErrorSnackBar(
+              context,
+              'Error during data conversion to Map<String, dynamic>: $e',
+            );
+          }
+        }
+      } else {
+        if (context.mounted) {
+          showErrorSnackBar(
+            context,
+            '''Snapshot value is not a Map. Actual type: ${snapshot.value.runtimeType}''',
+          );
+        }
+      }
+    } else {
+      if (context.mounted) {
+        showErrorSnackBar(
+          context,
+          'No data available at this path, or snapshot.value is null.',
+        );
+      }
+    }
+    isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> getTrainerData(BuildContext context) async {
+    isLoading = true;
+    notifyListeners();
+    DataSnapshot snapshot = await _firebaseRef.child(firebaseTrainerPath).get();
+    if (snapshot.exists && snapshot.value != null) {
+      if (snapshot.value is Map) {
+        try {
+          String data2 = json.encode(snapshot.value);
+          if (json.decode(data2) is Map) {
+            Map<dynamic, dynamic>? dataMap =
+                json.decode(data2) as Map<dynamic, dynamic>;
+            TrainerModel _pokemonModel = TrainerModel.fromJSON(dataMap);
+            trainerInformation = _pokemonModel;
+          }
         } catch (e) {
           if (context.mounted) {
             showErrorSnackBar(
