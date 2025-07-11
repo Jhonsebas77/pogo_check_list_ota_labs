@@ -44,9 +44,7 @@ class DashboardOverview extends StatelessWidget {
                           )
                           .toList();
                   List<PokemonModel> _allGigantamaxPokemon =
-                      provider.allGigantamaxPokemon
-                          .where((PokemonModel pokemon) => pokemon.available)
-                          .toList();
+                      provider.allGigantamaxPokemon;
                   List<PokemonModel> _catchGigantamaxPokemon =
                       provider.allGigantamaxPokemon
                           .where((PokemonModel pokemon) => pokemon.alreadyCatch)
@@ -76,7 +74,7 @@ class DashboardOverview extends StatelessWidget {
                         counterItemLength:
                             _catchGigantamaxPokemon.length.toDouble(),
                         centerWidget: Image.asset(
-                          'assets/Gigamax.png',
+                          'assets/gigamax.png',
                           height: 30,
                           width: 30,
                           fit: BoxFit.fill,

@@ -15,17 +15,17 @@ class HomePoGoView extends StatelessWidget {
         child: const Column(
           children: <HomeMenuItem>[
             HomeMenuItem(
-              image: 'assets/Icon_Pokedex.png',
+              image: 'assets/icon_pokedex.png',
               label: 'Pokédex',
               viewToNavigate: AllPokemonAvailableView(),
             ),
             HomeMenuItem(
-              image: 'assets/Icon_Pokedex.png',
+              image: 'assets/icon_pokedex.png',
               label: 'Shiny Pokédex',
               viewToNavigate: ShinyPokemonView(),
             ),
             HomeMenuItem(
-              image: 'assets/Icon_Gigantamax.png',
+              image: 'assets/icon_gigantamax.png',
               label: 'Gigantamax',
               viewToNavigate: GigantamaxPokemonView(),
             ),
@@ -42,7 +42,7 @@ class HomePoGoView extends StatelessWidget {
             //   isAvailable: false,
             // ),
             // HomeMenuItem(
-            //   image: 'assets/Icon_Pokedex.png',
+            //   image: 'assets/icon_pokedex.png',
             //   label: 'Mega evolutions',
             //   viewToNavigate: AllPokemonAvailableView(),
             //   isAvailable: false,

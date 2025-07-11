@@ -6115,7 +6115,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 648,
       "name": "Meloetta",
@@ -6335,7 +6335,7 @@
       "available": true,
       "id": 672,
       "name": "Skiddo",
-      "shiny_available": false,
+      "shiny_available": true,
       "tradable": true
     },
     {
@@ -6344,7 +6344,7 @@
       "available": true,
       "id": 673,
       "name": "Gogoat",
-      "shiny_available": false,
+      "shiny_available": true,
       "tradable": true
     },
     {
@@ -8086,7 +8086,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 867,
       "name": "Runerigus",
@@ -9282,7 +9282,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 1000,
@@ -9519,7 +9519,7 @@
   "trainer": {
     "level": "46",
     "nick_name": "Jhonsebas77",
-    "team": "Mystic",
-    "trainer_id": "1234455"
+    "team": "mystic",
+    "trainer_id": "016618932768"
   }
 }

@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
+            VALUE "CompanyName", "com.ota_labs" "\0"
             VALUE "FileDescription", "pogo_check_list_ota_labs" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "pogo_check_list_ota_labs" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 com.ota_labs. All rights reserved." "\0"
             VALUE "OriginalFilename", "pogo_check_list_ota_labs.exe" "\0"
             VALUE "ProductName", "pogo_check_list_ota_labs" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

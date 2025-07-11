@@ -123,7 +123,7 @@ class _PokemonListItemState extends State<PokemonListItem> {
                   Stack(
                     children: <Widget>[
                       Image.asset(
-                        'assets/BG_Holder_Pkmn_B.png',
+                        'assets/bg_holder_pokemon.png',
                         height: 50,
                         width: 50,
                         fit: BoxFit.fill,

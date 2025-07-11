@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
             borderRadius: BorderRadius.circular(50),
           ),
           child: const SelectableText(
-            'By Ota_Labs V.1.0.0+4',
+            'By Ota_Labs V.1.0.0+5',
             textAlign: TextAlign.center,
           ),
         ),

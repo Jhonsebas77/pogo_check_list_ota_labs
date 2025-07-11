@@ -1,4 +1,4 @@
-package com.example.pogo_check_list_ota_labs
+package com.ota_labs.pogo_check_list
 
 import io.flutter.embedding.android.FlutterActivity
 
