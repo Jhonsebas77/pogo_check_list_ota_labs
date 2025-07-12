@@ -19,4 +19,5 @@ part 'home/trainer_information.dart';
 part 'list/list_view_builder.dart';
 part 'list/pokemon_list_item.dart';
 part 'loading.dart';
+part 'settings/version.dart';
 part 'snackbar.dart';

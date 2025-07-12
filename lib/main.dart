@@ -73,35 +73,35 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-    child: Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        elevation: 0,
-        title: const HeaderFromImage(),
-        toolbarHeight: 82,
-      ),
-      backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
-      body: const HomePoGoView(),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Container(
-          width: 200,
-          padding: const EdgeInsets.only(
-            left: 12,
-            top: 8,
-            bottom: 8,
-            right: 12,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.black12,
-            borderRadius: BorderRadius.circular(50),
-          ),
-          child: const SelectableText(
-            'By Ota_Labs V.1.0.0+5',
-            textAlign: TextAlign.center,
-          ),
+  Widget build(BuildContext context) => DefaultTabController(
+    length: 3,
+    child: SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          elevation: 0,
+          title: const HeaderFromImage(),
+          toolbarHeight: 82,
+        ),
+        backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+        body: const TabBarView(
+          children: <Widget>[HomePoGoView(), PokedexView(), SettingsView()],
+        ),
+        bottomNavigationBar: const TabBar(
+          indicatorColor: Colors.white,
+          labelColor: Colors.white,
+          tabs: <Widget>[
+            Tab(icon: Icon(Icons.home, color: Colors.white), text: 'Inicio'),
+            Tab(
+              icon: Icon(Icons.catching_pokemon, color: Colors.white),
+              text: 'Pokedex',
+            ),
+            Tab(
+              icon: Icon(Icons.settings, color: Colors.white),
+              text: 'Ajustes',
+            ),
+          ],
         ),
       ),
     ),

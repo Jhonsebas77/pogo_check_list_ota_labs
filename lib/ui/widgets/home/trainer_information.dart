@@ -71,12 +71,19 @@ class TrainerInformation extends StatelessWidget {
                             ),
                             const SizedBox(width: 24),
                             GestureDetector(
-                              onTap:
-                                  () => Clipboard.setData(
-                                    ClipboardData(
-                                      text: _trainerInfo?.trainerId ?? '',
-                                    ),
+                              onTap: () {
+                                Clipboard.setData(
+                                  ClipboardData(
+                                    text: _trainerInfo?.trainerId ?? '',
                                   ),
+                                );
+                                if (context.mounted) {
+                                  showSuccessSnackBar(
+                                    context,
+                                    '''[Trainer ID copiado]\n${_trainerInfo?.trainerId ?? ''}''',
+                                  );
+                                }
+                              },
                               child: Chip(
                                 label: const Text('Copiar ID'),
                                 avatar: const Icon(Icons.copy),
