@@ -50,7 +50,7 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
       backgroundColor: Colors.transparent,
       systemOverlayStyle: SystemUiOverlayStyle.light,
       toolbarHeight: 82,
-      title: const HeaderFromImage(title: 'Shiny'),
+      title: const HeaderFromImage(),
       elevation: 0,
     ),
     backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
@@ -79,73 +79,99 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
             children: <Widget>[
               Expanded(
                 child: Builder(
-                  builder:
-                      (BuildContext context) => Column(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 250,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 4,
+                  builder: (BuildContext context) {
+                    List<PokemonModel> _allPokemon =
+                        provider.allPokemon
+                            .where(
+                              (PokemonModel pokemon) => pokemon.shinyAvailable,
+                            )
+                            .toList();
+                    List<PokemonModel> _catchPokemon =
+                        provider.allPokemon
+                            .where(
+                              (PokemonModel pokemon) =>
+                                  pokemon.alreadyCatchShinyVersion,
+                            )
+                            .toList();
+                    return Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 4,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  const Text(
+                                    'Shiny Pokédex',
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${_catchPokemon.length}/${_allPokemon.length} (${(_catchPokemon.length / _allPokemon.length * 100).toStringAsFixed(2)}%)',
+                                  ),
+                                ],
                               ),
-                              child: Container(
-                                padding: const EdgeInsets.only(
-                                  left: 12,
-                                  top: 8,
-                                  bottom: 8,
-                                  right: 12,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 4,
                                 ),
-                                decoration: BoxDecoration(
-                                  color: Colors.black12,
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      displayOnlyMissingPokemon
-                                          ? 'Sin capturar'
-                                          : 'Capturados',
-                                      style: TextStyle(
-                                        color:
-                                            displayOnlyMissingPokemon
-                                                ? Colors.white
-                                                : Colors.black,
+                                child: Container(
+                                  padding: const EdgeInsets.only(
+                                    left: 12,
+                                    top: 8,
+                                    bottom: 8,
+                                    right: 12,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.black12,
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Switch(
+                                        value: displayOnlyMissingPokemon,
+                                        thumbIcon: thumbIcon,
+                                        activeColor: Colors.indigo,
+                                        onChanged: (_) async {
+                                          setState(() {
+                                            displayOnlyMissingPokemon =
+                                                !displayOnlyMissingPokemon;
+                                          });
+                                          FirebaseProvider firebaseProvider =
+                                              Provider.of<FirebaseProvider>(
+                                                context,
+                                                listen: false,
+                                              );
+                                          await firebaseProvider.getPokemonData(
+                                            context,
+                                          );
+                                        },
                                       ),
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Switch(
-                                      value: displayOnlyMissingPokemon,
-                                      thumbIcon: thumbIcon,
-                                      activeColor: Colors.indigo,
-                                      onChanged: (_) async {
-                                        setState(() {
-                                          displayOnlyMissingPokemon =
-                                              !displayOnlyMissingPokemon;
-                                        });
-                                        FirebaseProvider firebaseProvider =
-                                            Provider.of<FirebaseProvider>(
-                                              context,
-                                              listen: false,
-                                            );
-                                        await firebaseProvider.getPokemonData(
-                                          context,
-                                        );
-                                      },
-                                    ),
-                                  ],
+                                      const SizedBox(width: 16),
+                                      const Icon(Icons.filter_list_rounded),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
+                            ],
                           ),
-                          PokemonList(
-                            scrollController: _scrollController,
-                            sortedPokemon: sortedPokemon,
-                            isShiny: true,
-                          ),
-                        ],
-                      ),
+                        ),
+                        PokemonList(
+                          scrollController: _scrollController,
+                          sortedPokemon: sortedPokemon,
+                          isShiny: true,
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ),
             ],

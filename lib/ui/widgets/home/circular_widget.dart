@@ -31,7 +31,7 @@ class HomeCircularWidget extends StatelessWidget {
         circularStrokeCap: CircularStrokeCap.square,
         center: centerWidget,
         footer: Text(
-          '''${(counterItemLength / allItemLength * 100).floor()}%''',
+          '''${(counterItemLength / allItemLength * 100).toStringAsFixed(2)}%''',
           style: const TextStyle(
             fontSize: 20,
             color: Colors.white,
