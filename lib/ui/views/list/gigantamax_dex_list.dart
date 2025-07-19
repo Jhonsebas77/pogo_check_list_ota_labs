@@ -24,26 +24,6 @@ class _GigantamaxPokemonViewState extends State<GigantamaxPokemonView> {
     super.dispose();
   }
 
-  void _scrollToEnd() {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      duration: const Duration(seconds: 2),
-      curve: Curves.easeInOut,
-    );
-    isInTheEndOfTheList = true;
-    setState(() {});
-  }
-
-  void _scrollToTop() {
-    _scrollController.animateTo(
-      0,
-      duration: const Duration(seconds: 2),
-      curve: Curves.easeInOut,
-    );
-    isInTheEndOfTheList = false;
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
@@ -76,34 +56,19 @@ class _GigantamaxPokemonViewState extends State<GigantamaxPokemonView> {
                 ..sort(
                   (PokemonModel a, PokemonModel b) => a.id.compareTo(b.id),
                 );
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Expanded(
-                child: Builder(
-                  builder:
-                      (BuildContext context) => Column(
-                        children: <Widget>[
-                          PokemonList(
-                            scrollController: _scrollController,
-                            sortedPokemon: sortedPokemon,
-                            isGigantamax: true,
-                          ),
-                        ],
-                      ),
-                ),
+          return GridView.count(
+            crossAxisCount: 3,
+            children: List<PokemonListGigantamaxItem>.generate(
+              sortedPokemon.length,
+              (int index) => PokemonListGigantamaxItem(
+                index: index,
+                selectPokemon: sortedPokemon[index],
+                isGigantamax: true,
               ),
-            ],
+            ),
           );
         }
       },
-    ),
-    floatingActionButton: FloatingActionButton(
-      onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
-      backgroundColor: Colors.indigo,
-      child: Icon(
-        isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
-      ),
     ),
   );
 }
