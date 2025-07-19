@@ -1,112 +1,52 @@
 part of com.pogo_check_list_ota_labs.app.providers;
 
 class FirebaseProvider extends ChangeNotifier {
-  final DatabaseReference _firebaseRef = FirebaseDatabase.instance.ref();
-  bool isLoading = false;
-  List<PokemonModel> allGigantamaxPokemon = <PokemonModel>[];
-  List<PokemonModel> allPokemon = <PokemonModel>[];
-  TrainerModel? trainerInformation;
-
   void initializeFirebase() {
     FirebaseApp firebaseApp = Firebase.app();
     FirebaseDatabase.instanceFor(app: firebaseApp, databaseURL: databaseURL);
   }
+}
 
-  Future<void> getPokemonData(BuildContext context) async {
-    isLoading = true;
-    notifyListeners();
-    DataSnapshot snapshot = await _firebaseRef.child(firebasePokemonPath).get();
-    allPokemon = <PokemonModel>[];
-    if (snapshot.exists && snapshot.value != null) {
-      if (snapshot.value is List) {
-        try {
-          List<dynamic>.from(
-            // ignore: cast_nullable_to_non_nullable
-            snapshot.value as List<dynamic>,
-          ).forEach((dynamic pokemon) {
-            Map<String, dynamic> _mapPokemon = Map<String, dynamic>.from(
-              // ignore: cast_nullable_to_non_nullable, always_specify_types
-              pokemon as Map,
-            );
-            PokemonModel _pokemonModel = PokemonModel.fromJSON(_mapPokemon);
-            allPokemon.add(_pokemonModel);
-          });
-        } catch (e) {
-          if (context.mounted) {
-            showErrorSnackBar(
-              context,
-              'Error during data conversion to Map<String, dynamic>: $e',
-            );
-          }
-        }
-      } else {
-        if (context.mounted) {
-          showErrorSnackBar(
-            context,
-            '''Snapshot value is not a Map. Actual type: ${snapshot.value.runtimeType}''',
-          );
-        }
-      }
-    } else {
-      if (context.mounted) {
-        showErrorSnackBar(
-          context,
-          'No data available at this path, or snapshot.value is null.',
-        );
-      }
-    }
-    isLoading = false;
-    notifyListeners();
-  }
+final Provider<FirebaseProvider> firebaseServiceProvider =
+    Provider<FirebaseProvider>(
+      (ProviderRef<FirebaseProvider> ref) => FirebaseProvider(),
+    );
 
-  Future<void> getTrainerData(BuildContext context) async {
-    isLoading = true;
-    notifyListeners();
-    DataSnapshot snapshot = await _firebaseRef.child(firebaseTrainerPath).get();
-    if (snapshot.exists && snapshot.value != null) {
-      if (snapshot.value is Map) {
-        try {
-          String data2 = json.encode(snapshot.value);
-          if (json.decode(data2) is Map) {
-            Map<dynamic, dynamic>? dataMap =
-                json.decode(data2) as Map<dynamic, dynamic>;
-            TrainerModel _pokemonModel = TrainerModel.fromJSON(dataMap);
-            trainerInformation = _pokemonModel;
-          }
-        } catch (e) {
-          if (context.mounted) {
-            showErrorSnackBar(
-              context,
-              'Error during data conversion to Map<String, dynamic>: $e',
-            );
-          }
-        }
-      } else {
-        if (context.mounted) {
-          showErrorSnackBar(
-            context,
-            '''Snapshot value is not a Map. Actual type: ${snapshot.value.runtimeType}''',
-          );
-        }
-      }
-    } else {
-      if (context.mounted) {
-        showErrorSnackBar(
-          context,
-          'No data available at this path, or snapshot.value is null.',
-        );
-      }
-    }
-    isLoading = false;
-    notifyListeners();
-  }
+class PokemonFirebaseState {
+  const PokemonFirebaseState({
+    this.allPokemon = const <PokemonModel>[],
+    this.allGigantamaxPokemon = const <PokemonModel>[],
+    this.trainerInformation,
+  });
+  final List<PokemonModel> allPokemon;
+  final List<PokemonModel> allGigantamaxPokemon;
+  final TrainerModel? trainerInformation;
 
-  Future<void> getPokemonGigantamaxData(BuildContext context) async {
-    isLoading = true;
-    notifyListeners();
+  PokemonFirebaseState copyWith({
+    List<PokemonModel>? allPokemon,
+    List<PokemonModel>? allGigantamaxPokemon,
+    TrainerModel? trainerInformation,
+  }) => PokemonFirebaseState(
+    allPokemon: allPokemon ?? this.allPokemon,
+    allGigantamaxPokemon: allGigantamaxPokemon ?? this.allGigantamaxPokemon,
+    trainerInformation: trainerInformation ?? this.trainerInformation,
+  );
+}
+
+final AsyncNotifierProvider<FirebasePokemon, PokemonFirebaseState>
+firebasePokemonProvider =
+    AsyncNotifierProvider<FirebasePokemon, PokemonFirebaseState>(
+      FirebasePokemon.new,
+    );
+
+class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
+  final DatabaseReference _firebaseRef = FirebaseDatabase.instance.ref();
+
+  Future<List<PokemonModel>> _fetchGigamaxPokemonList() async {
     DataSnapshot snapshot =
         await _firebaseRef.child(firebasePokemonGigantamaxPath).get();
-    allGigantamaxPokemon = <PokemonModel>[];
+    List<PokemonModel> allGigantamaxPokemon = <PokemonModel>[];
+
     if (snapshot.exists && snapshot.value != null) {
       if (snapshot.value is Map) {
         try {
@@ -123,73 +63,77 @@ class FirebaseProvider extends ChangeNotifier {
               allGigantamaxPokemon.add(_pokemonModel);
             }
           });
+          return allGigantamaxPokemon;
         } catch (e) {
-          if (context.mounted) {
-            showErrorSnackBar(
-              context,
-              'Error during data conversion to Map<String, dynamic>: $e',
-            );
-          }
+          throw Exception('Could not fetch Pokémon data.');
         }
       } else {
-        if (context.mounted) {
-          showErrorSnackBar(
-            context,
-            '''Snapshot value is not a Map. Actual type: ${snapshot.value.runtimeType}''',
-          );
-        }
+        throw Exception('Could not fetch Pokémon data.');
       }
     } else {
-      if (context.mounted) {
-        showErrorSnackBar(
-          context,
-          'No data available at this path, or snapshot.value is null.',
-        );
-      }
+      throw Exception('Could not fetch Pokémon data.');
     }
-    isLoading = false;
-    notifyListeners();
   }
 
-  Future<void> updatePokemon(
-    BuildContext context,
-    int customId,
-    PokemonModel _pokemonModel,
-  ) async {
-    try {
-      DatabaseReference ref = FirebaseDatabase.instance.ref(
-        '$firebasePokemonPath/$customId',
-      );
-      await ref.update(_pokemonModel.toJSON());
-    } catch (e) {
-      if (context.mounted) {
-        showErrorSnackBar(
-          context,
-          'Error during updatePokemon: $customId | $e',
+  Future<List<PokemonModel>> _fetchPokemonList() async {
+    DataSnapshot snapshot = await _firebaseRef.child(firebasePokemonPath).get();
+    List<PokemonModel> allPokemon = <PokemonModel>[];
+
+    if (snapshot.exists && snapshot.value != null && snapshot.value is List) {
+      List pokemonList = List<dynamic>.from(snapshot.value! as List<dynamic>);
+      for (final pokemon in pokemonList) {
+        Map<String, dynamic> mapPokemon = Map<String, dynamic>.from(
+          pokemon as Map,
         );
+        allPokemon.add(PokemonModel.fromJSON(mapPokemon));
       }
+      return allPokemon;
+    } else {
+      throw Exception('Could not fetch Pokémon data.');
     }
-    notifyListeners();
   }
 
-  Future<void> updateGigantamaxPokemon(
-    BuildContext context,
-    int customId,
-    PokemonModel _pokemonModel,
-  ) async {
-    try {
-      DatabaseReference ref = FirebaseDatabase.instance.ref(
-        '$firebasePokemonGigantamaxPath/$customId',
+  Future<TrainerModel?> _fetchTrainerData() async {
+    DataSnapshot snapshot = await _firebaseRef.child(firebaseTrainerPath).get();
+    if (snapshot.exists && snapshot.value != null && snapshot.value is Map) {
+      Map<String, dynamic> dataMap = Map<String, dynamic>.from(
+        snapshot.value! as Map,
       );
-      await ref.update(_pokemonModel.toJSON());
-    } catch (e) {
-      if (context.mounted) {
-        showErrorSnackBar(
-          context,
-          'Error during updatePokemon: $customId | $e',
-        );
-      }
+      return TrainerModel.fromJSON(dataMap);
     }
-    notifyListeners();
+    return null;
+  }
+
+  @override
+  Future<PokemonFirebaseState> build() async {
+    List<Object?> results = await Future.wait(<Future<Object?>>[
+      _fetchPokemonList(),
+      _fetchGigamaxPokemonList(),
+      _fetchTrainerData(),
+    ]);
+    List<PokemonModel> pokemonList = results[0]! as List<PokemonModel>;
+    List<PokemonModel> gigantamaxPokemonList =
+        results[1]! as List<PokemonModel>;
+    TrainerModel? trainerInfo = results[2] as TrainerModel?;
+    return PokemonFirebaseState(
+      allGigantamaxPokemon: gigantamaxPokemonList,
+      allPokemon: pokemonList,
+      trainerInformation: trainerInfo,
+    );
+  }
+
+  /// A public method the UI can call to refresh the data.
+  Future<void> refreshData() async {
+    // This automatically sets the provider's state to loading.
+    state = const AsyncValue.loading();
+    try {
+      // Re-run the logic from the build method to get fresh data.
+      PokemonFirebaseState newState = await build();
+      // If successful, update the state with the new data.
+      state = AsyncValue.data(newState);
+    } catch (e, s) {
+      // If an error occurs, update the state with the error.
+      state = AsyncValue.error(e, s);
+    }
   }
 }

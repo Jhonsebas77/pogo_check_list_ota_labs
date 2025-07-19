@@ -1,15 +1,16 @@
 part of com.pogo_check_list_ota_labs.app.views;
 
-class AllPokemonAvailableView extends StatefulWidget {
+class AllPokemonAvailableView extends ConsumerStatefulWidget {
   const AllPokemonAvailableView({super.key});
   static const String route = '/pokemon/all-available';
 
   @override
-  State<AllPokemonAvailableView> createState() =>
+  ConsumerState<AllPokemonAvailableView> createState() =>
       _AllPokemonAvailableViewState();
 }
 
-class _AllPokemonAvailableViewState extends State<AllPokemonAvailableView> {
+class _AllPokemonAvailableViewState
+    extends ConsumerState<AllPokemonAvailableView> {
   bool displayOnlyMissingPokemon = false;
   final ScrollController _scrollController = ScrollController();
   bool isInTheEndOfTheList = false;
@@ -46,141 +47,87 @@ class _AllPokemonAvailableViewState extends State<AllPokemonAvailableView> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      backgroundColor: Colors.transparent,
-      systemOverlayStyle: SystemUiOverlayStyle.light,
-      toolbarHeight: 82,
-      title: const HeaderFromImage(),
-      elevation: 0,
-    ),
-    backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
-    body: Consumer<FirebaseProvider>(
-      builder: (
-        BuildContext context,
-        FirebaseProvider provider,
-        Widget? child,
-      ) {
-        if (provider.isLoading) {
-          return const LoadingWidget();
-        } else if (provider.allPokemon.isEmpty) {
-          return const EmptyState();
-        } else {
+  Widget build(BuildContext context) {
+    AsyncValue<PokemonFirebaseState> firebasePokemonState = ref.watch(
+      firebasePokemonProvider,
+    );
+    ref.listen(firebasePokemonProvider, (
+      AsyncValue<PokemonFirebaseState>? previous,
+      AsyncValue<PokemonFirebaseState> next,
+    ) {
+      if (next is AsyncError) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: ${next.error}')));
+      }
+    });
+    Widget _buildSmallCircle(Color color) => Container(
+      width: 22,
+      height: 22,
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+    );
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        toolbarHeight: 82,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: const Color(0xFF5A79C8),
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: 4),
+            ),
+          ),
+        ),
+        actions: <Widget>[
+          _buildSmallCircle(const Color(0xFFA02C2D)),
+          const SizedBox(width: 8),
+          _buildSmallCircle(const Color(0xFFDDC35B)),
+          const SizedBox(width: 8),
+          _buildSmallCircle(const Color(0xFF78B47C)),
+        ],
+      ),
+      backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+      body: firebasePokemonState.when(
+        data: (PokemonFirebaseState state) {
+          if (state.allPokemon.isEmpty) {
+            return const Center(child: Text('No Pokémon found.'));
+          }
           List<PokemonModel> sortedPokemon =
-              provider.allPokemon.where((PokemonModel pokemon) {
+              state.allPokemon.where((PokemonModel pokemon) {
                 if (displayOnlyMissingPokemon) {
                   return pokemon.available && !pokemon.alreadyCatch;
                 } else {
                   return pokemon.available;
                 }
               }).toList();
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Expanded(
-                child: Builder(
-                  builder: (BuildContext context) {
-                    List<PokemonModel> _allPokemon =
-                        provider.allPokemon
-                            .where((PokemonModel pokemon) => pokemon.available)
-                            .toList();
-                    List<PokemonModel> _catchPokemon =
-                        provider.allPokemon
-                            .where(
-                              (PokemonModel pokemon) => pokemon.alreadyCatch,
-                            )
-                            .toList();
-                    return Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 4,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  const Text(
-                                    'Pokédex',
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Text(
-                                    '${_catchPokemon.length}/${_allPokemon.length} (${(_catchPokemon.length / _allPokemon.length * 100).toStringAsFixed(2)}%)',
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 4,
-                                ),
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                    left: 12,
-                                    top: 8,
-                                    bottom: 8,
-                                    right: 12,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black12,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Switch(
-                                        value: displayOnlyMissingPokemon,
-                                        thumbIcon: thumbIcon,
-                                        activeColor: Colors.indigo,
-                                        onChanged: (_) async {
-                                          setState(() {
-                                            displayOnlyMissingPokemon =
-                                                !displayOnlyMissingPokemon;
-                                          });
-                                          FirebaseProvider firebaseProvider =
-                                              Provider.of<FirebaseProvider>(
-                                                context,
-                                                listen: false,
-                                              );
-                                          await firebaseProvider.getPokemonData(
-                                            context,
-                                          );
-                                        },
-                                      ),
-                                      const SizedBox(width: 16),
-                                      const Icon(Icons.filter_list_rounded),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        PokemonList(
-                          scrollController: _scrollController,
-                          sortedPokemon: sortedPokemon,
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ),
-            ],
+          return ListView.builder(
+            controller: _scrollController,
+            shrinkWrap: true,
+            itemCount: sortedPokemon.length,
+            itemBuilder: (BuildContext context, int index) {
+              PokemonModel pokemon = sortedPokemon[index];
+              return PokemonListItem(index: pokemon.id, selectPokemon: pokemon);
+            },
           );
-        }
-      },
-    ),
-    floatingActionButton: FloatingActionButton(
-      onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
-      backgroundColor: Colors.indigo,
-      child: Icon(
-        isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
+        },
+        error:
+            (Object error, StackTrace stackTrace) =>
+                Center(child: Text('Error: $error')),
+        loading: () => const Center(child: CircularProgressIndicator()),
       ),
-    ),
-  );
+      floatingActionButton: FloatingActionButton(
+        onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
+        backgroundColor: Colors.indigo,
+        child: Icon(
+          isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
+        ),
+      ),
+    );
+  }
 }

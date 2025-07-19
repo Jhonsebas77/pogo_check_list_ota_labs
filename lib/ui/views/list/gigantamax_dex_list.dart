@@ -34,41 +34,5 @@ class _GigantamaxPokemonViewState extends State<GigantamaxPokemonView> {
       elevation: 0,
     ),
     backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
-    body: Consumer<FirebaseProvider>(
-      builder: (
-        BuildContext context,
-        FirebaseProvider provider,
-        Widget? child,
-      ) {
-        if (provider.isLoading) {
-          return const LoadingWidget();
-        } else if (provider.allGigantamaxPokemon.isEmpty) {
-          return const EmptyState();
-        } else {
-          List<PokemonModel> sortedPokemon =
-              provider.allGigantamaxPokemon.where((PokemonModel pokemon) {
-                  if (displayOnlyMissingPokemon) {
-                    return !pokemon.alreadyCatch;
-                  } else {
-                    return pokemon.id != 0;
-                  }
-                }).toList()
-                ..sort(
-                  (PokemonModel a, PokemonModel b) => a.id.compareTo(b.id),
-                );
-          return GridView.count(
-            crossAxisCount: 3,
-            children: List<PokemonListGigantamaxItem>.generate(
-              sortedPokemon.length,
-              (int index) => PokemonListGigantamaxItem(
-                index: index,
-                selectPokemon: sortedPokemon[index],
-                isGigantamax: true,
-              ),
-            ),
-          );
-        }
-      },
-    ),
   );
 }

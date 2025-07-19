@@ -2,22 +2,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:nested/nested.dart';
-import 'package:provider/provider.dart';
 
-import 'core/providers/providers.dart';
 import 'core/utils/constants.dart';
 import 'firebase_options.dart';
 import 'ui/theme.dart';
 import 'ui/views/views.dart';
-import 'ui/widgets/widgets.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await initializeDateFormatting();
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
   ]);
@@ -27,19 +24,12 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => MultiProvider(
-    providers: <SingleChildWidget>[
-      ChangeNotifierProvider<FirebaseProvider>(
-        create: (_) => FirebaseProvider(),
-      ),
-    ],
-    child: MaterialApp(
-      title: 'Pogo Checks',
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.system,
-      home: const MyHomePage(title: 'Pogo Checks'),
-    ),
+  Widget build(BuildContext context) => MaterialApp(
+    title: 'Pogo Checks',
+    theme: lightTheme,
+    darkTheme: darkTheme,
+    themeMode: ThemeMode.system,
+    home: const MyHomePage(title: 'Pogo Checks'),
   );
 }
 
@@ -53,25 +43,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      FirebaseProvider firebaseProvider = Provider.of<FirebaseProvider>(
-        context,
-        listen: false,
-      )..initializeFirebase();
-      await firebaseProvider.getPokemonData(context);
-      if (mounted) await firebaseProvider.getPokemonGigantamaxData(context);
-      if (mounted) await firebaseProvider.getTrainerData(context);
-    });
-    super.initState();
-  }
-
   void initializeFirebase() {
     FirebaseApp firebaseApp = Firebase.app();
     FirebaseDatabase.instanceFor(app: firebaseApp, databaseURL: databaseURL);
   }
-
+    Widget _buildSmallCircle(Color color) => Container(
+      width: 22,
+      height: 22,
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+    );
   @override
   Widget build(BuildContext context) => DefaultTabController(
     length: 3,
@@ -81,8 +61,26 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Colors.transparent,
           systemOverlayStyle: SystemUiOverlayStyle.light,
           elevation: 0,
-          title: const HeaderFromImage(),
           toolbarHeight: 82,
+                 leading: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: const Color(0xFF5A79C8),
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: 4),
+            ),
+          ),
+        ),
+        actions: <Widget>[
+          _buildSmallCircle(const Color(0xFFA02C2D)),
+          const SizedBox(width: 8),
+          _buildSmallCircle(const Color(0xFFDDC35B)),
+          const SizedBox(width: 8),
+          _buildSmallCircle(const Color(0xFF78B47C)),
+        ],
         ),
         backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
         body: const TabBarView(
