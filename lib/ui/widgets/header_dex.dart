@@ -46,10 +46,4 @@ class HeaderFromImage extends StatelessWidget {
       ),
     ],
   );
-
-  Widget _buildSmallCircle(Color color) => Container(
-    width: 22,
-    height: 22,
-    decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-  );
 }

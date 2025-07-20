@@ -45,20 +45,23 @@ class _ShinyPokemonViewState extends State<ShinyPokemonView> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      backgroundColor: Colors.transparent,
-      systemOverlayStyle: SystemUiOverlayStyle.light,
-      toolbarHeight: 82,
-      title: const HeaderFromImage(),
-      elevation: 0,
-    ),
-    backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
-    floatingActionButton: FloatingActionButton(
-      onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
-      backgroundColor: Colors.indigo,
-      child: Icon(
-        isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
+  Widget build(BuildContext context) => SafeArea(
+    child: Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        toolbarHeight: 82,
+        leading: const DexHeaderLeading(),
+        actions: const DexHeaderActions().getActions(),
+        elevation: 0,
+      ),
+      backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+      floatingActionButton: FloatingActionButton(
+        onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
+        backgroundColor: Colors.indigo,
+        child: Icon(
+          isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
+        ),
       ),
     ),
   );

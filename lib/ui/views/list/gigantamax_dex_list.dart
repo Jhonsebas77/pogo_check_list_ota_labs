@@ -25,14 +25,18 @@ class _GigantamaxPokemonViewState extends State<GigantamaxPokemonView> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      backgroundColor: Colors.transparent,
-      systemOverlayStyle: SystemUiOverlayStyle.light,
-      toolbarHeight: 82,
-      title: const HeaderFromImage(title: 'Gigantamax'),
-      elevation: 0,
+  Widget build(BuildContext context) => SafeArea(
+    child: Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        toolbarHeight: 82,
+        leading: const DexHeaderLeading(),
+        actions: const DexHeaderActions().getActions(),
+        title: const HeaderFromImage(title: 'Gigantamax'),
+        elevation: 0,
+      ),
+      backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
     ),
-    backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
   );
 }

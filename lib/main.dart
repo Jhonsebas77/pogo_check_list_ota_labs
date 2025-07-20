@@ -9,6 +9,7 @@ import 'core/utils/constants.dart';
 import 'firebase_options.dart';
 import 'ui/theme.dart';
 import 'ui/views/views.dart';
+import 'ui/widgets/widgets.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,11 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     FirebaseApp firebaseApp = Firebase.app();
     FirebaseDatabase.instanceFor(app: firebaseApp, databaseURL: databaseURL);
   }
-    Widget _buildSmallCircle(Color color) => Container(
-      width: 22,
-      height: 22,
-      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-    );
+
   @override
   Widget build(BuildContext context) => DefaultTabController(
     length: 3,
@@ -62,25 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
           systemOverlayStyle: SystemUiOverlayStyle.light,
           elevation: 0,
           toolbarHeight: 82,
-                 leading: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              color: const Color(0xFF5A79C8),
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.white, width: 4),
-            ),
-          ),
-        ),
-        actions: <Widget>[
-          _buildSmallCircle(const Color(0xFFA02C2D)),
-          const SizedBox(width: 8),
-          _buildSmallCircle(const Color(0xFFDDC35B)),
-          const SizedBox(width: 8),
-          _buildSmallCircle(const Color(0xFF78B47C)),
-        ],
+          leading: const DexHeaderLeading(),
+          actions: const DexHeaderActions().getActions(),
         ),
         backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
         body: const TabBarView(

@@ -61,71 +61,55 @@ class _AllPokemonAvailableViewState
         ).showSnackBar(SnackBar(content: Text('Error: ${next.error}')));
       }
     });
-    Widget _buildSmallCircle(Color color) => Container(
-      width: 22,
-      height: 22,
-      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-    );
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        toolbarHeight: 82,
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              color: const Color(0xFF5A79C8),
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.white, width: 4),
-            ),
-          ),
+
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          toolbarHeight: 82,
+          elevation: 0,
+          leading: const DexHeaderLeading(),
+          actions: const DexHeaderActions().getActions(),
         ),
-        actions: <Widget>[
-          _buildSmallCircle(const Color(0xFFA02C2D)),
-          const SizedBox(width: 8),
-          _buildSmallCircle(const Color(0xFFDDC35B)),
-          const SizedBox(width: 8),
-          _buildSmallCircle(const Color(0xFF78B47C)),
-        ],
-      ),
-      backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
-      body: firebasePokemonState.when(
-        data: (PokemonFirebaseState state) {
-          if (state.allPokemon.isEmpty) {
-            return const Center(child: Text('No Pokémon found.'));
-          }
-          List<PokemonModel> sortedPokemon =
-              state.allPokemon.where((PokemonModel pokemon) {
-                if (displayOnlyMissingPokemon) {
-                  return pokemon.available && !pokemon.alreadyCatch;
-                } else {
-                  return pokemon.available;
-                }
-              }).toList();
-          return ListView.builder(
-            controller: _scrollController,
-            shrinkWrap: true,
-            itemCount: sortedPokemon.length,
-            itemBuilder: (BuildContext context, int index) {
-              PokemonModel pokemon = sortedPokemon[index];
-              return PokemonListItem(index: pokemon.id, selectPokemon: pokemon);
-            },
-          );
-        },
-        error:
-            (Object error, StackTrace stackTrace) =>
-                Center(child: Text('Error: $error')),
-        loading: () => const Center(child: CircularProgressIndicator()),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
-        backgroundColor: Colors.indigo,
-        child: Icon(
-          isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
+        backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+        body: firebasePokemonState.when(
+          data: (PokemonFirebaseState state) {
+            if (state.allPokemon.isEmpty) {
+              return const Center(child: Text('No Pokémon found.'));
+            }
+            List<PokemonModel> sortedPokemon =
+                state.allPokemon.where((PokemonModel pokemon) {
+                  if (displayOnlyMissingPokemon) {
+                    return pokemon.available && !pokemon.alreadyCatch;
+                  } else {
+                    return pokemon.available;
+                  }
+                }).toList();
+            return ListView.builder(
+              controller: _scrollController,
+              shrinkWrap: true,
+              itemCount: sortedPokemon.length,
+              itemBuilder: (BuildContext context, int index) {
+                PokemonModel pokemon = sortedPokemon[index];
+                return PokemonListItem(
+                  index: pokemon.id,
+                  selectPokemon: pokemon,
+                );
+              },
+            );
+          },
+          error:
+              (Object error, StackTrace stackTrace) =>
+                  Center(child: Text('Error: $error')),
+          loading: () => const Center(child: CircularProgressIndicator()),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
+          backgroundColor: Colors.indigo,
+          child: Icon(
+            isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
+          ),
         ),
       ),
     );

@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
-import '../navigator.dart';
 import '../widgets/widgets.dart';
 
 part 'details/details.dart';
