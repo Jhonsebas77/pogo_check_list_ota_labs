@@ -49,7 +49,7 @@ class DashboardOverview extends ConsumerWidget {
         error:
             (Object error, StackTrace stackTrace) =>
                 Center(child: Text('Error: $error')),
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: DashboardOverviewShimmer.new,
       ),
     );
   }

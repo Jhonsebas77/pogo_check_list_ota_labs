@@ -90,8 +90,9 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                                 (Object error, StackTrace stackTrace) =>
                                     Center(child: Text('Error: $error')),
                             loading:
-                                () => const Center(
-                                  child: CircularProgressIndicator(),
+                                () => const SimpleTextShimmer(
+                                  widthShimmer: 100,
+                                  heightShimmer: 10,
                                 ),
                           ),
                         ],
@@ -170,7 +171,7 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
           error:
               (Object error, StackTrace stackTrace) =>
                   Center(child: Text('Error: $error')),
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: PokemonListShimmer.new,
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,

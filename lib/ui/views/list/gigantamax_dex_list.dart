@@ -81,7 +81,13 @@ class _GigantamaxPokemonViewState extends ConsumerState<GigantamaxPokemonView> {
           error:
               (Object error, StackTrace stackTrace) =>
                   Center(child: Text('Error: $error')),
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: PokemonGigantamaxListShimmer.new,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            await ref.read(firebasePokemonProvider.notifier).refreshData();
+          },
+          child: const Icon(Icons.update),
         ),
       ),
     );
