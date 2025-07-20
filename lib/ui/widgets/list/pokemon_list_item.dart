@@ -1,38 +1,34 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
 
-class PokemonListItem extends ConsumerStatefulWidget {
+class PokemonListItem extends ConsumerWidget {
   const PokemonListItem({
     required this.selectPokemon,
     required this.index,
     this.isShiny = false,
+    this.isAlreadyCaught = false,
     this.isGigantamax = false,
     super.key,
   });
 
+  final bool isGigantamax;
   final PokemonModel selectPokemon;
   final int index;
-  final bool? isShiny;
-  final bool? isGigantamax;
+  final bool isShiny;
+  final bool isAlreadyCaught;
+
+  // bool isAlreadyCaught =
+  //       (isShiny ?? false)
+  //           ? (_alreadyCatchShinyVersion ?? false)
+  //           : (_alreadyCatch ?? false);
+  //   Color colorPokeball = isAlreadyCaught ? Colors.black : Colors.white;
 
   @override
-  ConsumerState<PokemonListItem> createState() => _PokemonListItemState();
-}
-
-class _PokemonListItemState extends ConsumerState<PokemonListItem> {
-  bool? _alreadyCatch;
-  bool? _alreadyCatchShinyVersion;
-
-  @override
-  Widget build(BuildContext context) {
-    bool isAlreadyCaught =
-        (widget.isShiny ?? false)
-            ? (_alreadyCatchShinyVersion ?? false)
-            : (_alreadyCatch ?? false);
+  Widget build(BuildContext context, WidgetRef ref) {
     Color colorPokeball = isAlreadyCaught ? Colors.black : Colors.white;
 
     return GestureDetector(
       onTap: () {
-        CustomNavigator().push(context, DetailsScreen(pokemonId: widget.index));
+        CustomNavigator().push(context, DetailsScreen(pokemonId: index));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -62,15 +58,15 @@ class _PokemonListItemState extends ConsumerState<PokemonListItem> {
                           width: 50,
                           fit: BoxFit.fill,
                         ),
-                        if (widget.isGigantamax ?? false)
+                        if (isGigantamax)
                           Image.asset(
-                            'assets/pokedex_gigantamax/${widget.selectPokemon.id}.png',
+                            'assets/pokedex_gigantamax/${selectPokemon.id}.png',
                             height: 50,
                             width: 50,
                             fit: BoxFit.fill,
                           )
-                        else if (widget.isShiny ?? false)
-                          if (widget.selectPokemon.shinyAvailable == false)
+                        else if (isShiny)
+                          if (selectPokemon.shinyAvailable == false)
                             Image.asset(
                               'assets/pokedex_sprites_shiny/0.png',
                               height: 50,
@@ -79,13 +75,13 @@ class _PokemonListItemState extends ConsumerState<PokemonListItem> {
                             )
                           else
                             Image.asset(
-                              'assets/pokedex_sprites_shiny/${widget.selectPokemon.id}.png',
+                              'assets/pokedex_sprites_shiny/${selectPokemon.id}.png',
                               height: 50,
                               width: 50,
                               fit: BoxFit.fill,
                             )
-                        else if (!(widget.isShiny ?? false))
-                          if (widget.selectPokemon.available == false)
+                        else if (!isShiny)
+                          if (selectPokemon.available == false)
                             Image.asset(
                               'assets/pokedex_sprites_shiny/0.png',
                               height: 50,
@@ -94,9 +90,9 @@ class _PokemonListItemState extends ConsumerState<PokemonListItem> {
                             )
                           else
                             Hero(
-                              tag: widget.selectPokemon.id,
+                              tag: selectPokemon.id,
                               child: Image.asset(
-                                'assets/pokedex_sprites/${widget.selectPokemon.id}.png',
+                                'assets/pokedex_sprites/${selectPokemon.id}.png',
                                 height: 50,
                                 width: 50,
                                 fit: BoxFit.fill,
@@ -109,7 +105,7 @@ class _PokemonListItemState extends ConsumerState<PokemonListItem> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          paddingDexNumber(dexNumber: widget.selectPokemon.id),
+                          paddingDexNumber(dexNumber: selectPokemon.id),
                           style: const TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.bold,
@@ -117,7 +113,7 @@ class _PokemonListItemState extends ConsumerState<PokemonListItem> {
                           ),
                         ),
                         Text(
-                          widget.selectPokemon.name,
+                          selectPokemon.name,
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -130,56 +126,73 @@ class _PokemonListItemState extends ConsumerState<PokemonListItem> {
                 ),
                 GestureDetector(
                   onTap:
-                      widget.selectPokemon.available
+                      selectPokemon.available
                           ? () async {
-                            if (widget.index == widget.selectPokemon.id) {
-                              setState(() {
-                                if (widget.isShiny ?? false) {
-                                  _alreadyCatchShinyVersion =
-                                      !(_alreadyCatchShinyVersion ?? false);
-                                } else {
-                                  _alreadyCatch = !(_alreadyCatch ?? false);
-                                }
-                              });
-
+                            if (index == selectPokemon.id) {
+                              PokemonModel _pokemon = PokemonModel(
+                                alreadyCatch:
+                                    isShiny
+                                        ? selectPokemon.alreadyCatch
+                                        : !selectPokemon.alreadyCatch,
+                                alreadyCatchShinyVersion:
+                                    isShiny
+                                        ? !selectPokemon
+                                            .alreadyCatchShinyVersion
+                                        : selectPokemon
+                                            .alreadyCatchShinyVersion,
+                                available: selectPokemon.available,
+                                id: selectPokemon.id,
+                                name: selectPokemon.name,
+                                shinyAvailable: selectPokemon.shinyAvailable,
+                                tradable: selectPokemon.tradable,
+                              );
+                              await ref
+                                  .read(firebasePokemonProvider.notifier)
+                                  .updatePokemon(
+                                    _pokemon.id,
+                                    _pokemon,
+                                    context,
+                                  );
                               if (context.mounted) {
                                 showSuccessSnackBar(
                                   context,
-                                  '''[Registro actualizado]\n${paddingDexNumber(dexNumber: widget.selectPokemon.id)} ${widget.selectPokemon.name}''',
+                                  '''[Registro actualizado]\n${paddingDexNumber(dexNumber: selectPokemon.id)} ${selectPokemon.name}''',
                                 );
                               }
                             } else {
                               showErrorSnackBar(
                                 context,
-                                '''[Error actualizando el registro] -> ${widget.index} != ${widget.selectPokemon.id}''',
+                                '''[Error actualizando el registro] -> $index != ${selectPokemon.id}''',
                               );
                             }
                           }
                           : null,
                   child: Row(
                     children: <Widget>[
-                      if (!widget.selectPokemon.tradable)
+                      if (!selectPokemon.tradable)
                         Image.asset(
                           'assets/transfer_blocked.png',
                           height: 50,
                           width: 50,
                           fit: BoxFit.fill,
                         ),
-                      if (!widget.selectPokemon.shinyAvailable)
+                      if (!selectPokemon.shinyAvailable)
                         Image.asset(
                           'assets/shiny_blocked.png',
                           height: 50,
                           width: 50,
                           fit: BoxFit.fill,
                         ),
-                      if (isAlreadyCaught)
+                      if (isShiny
+                          ? selectPokemon.alreadyCatchShinyVersion
+                          : selectPokemon.alreadyCatch)
                         Image.asset(
                           'assets/catch_pokemon.png',
                           height: 50,
                           width: 50,
                           fit: BoxFit.fill,
                         )
-                      else if (widget.selectPokemon.available)
+                      else if (selectPokemon.available)
                         Icon(
                           Icons.catching_pokemon,
                           color: colorPokeball,

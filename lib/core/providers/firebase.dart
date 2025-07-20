@@ -136,4 +136,39 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       state = AsyncValue.error(e, s);
     }
   }
+
+  Future<void> updatePokemon(
+    int pokemonIndex,
+    PokemonModel updatedPokemon,
+    BuildContext context,
+  ) async {
+    AsyncValue<PokemonFirebaseState> previousState = state;
+    try {
+      DatabaseReference ref = _firebaseRef.child(
+        '$firebasePokemonPath/$pokemonIndex',
+      );
+      await ref.update(updatedPokemon.toJSON());
+      PokemonFirebaseState? currentState = state.valueOrNull;
+      if (currentState != null) {
+        List<PokemonModel> newPokemonList = List<PokemonModel>.from(
+          currentState.allPokemon,
+        );
+        newPokemonList[pokemonIndex] = updatedPokemon;
+        PokemonFirebaseState newState = currentState.copyWith(
+          allPokemon: newPokemonList,
+        );
+        state = AsyncValue.data(newState);
+      }
+    } catch (e, s) {
+      state = previousState;
+      state = AsyncValue.error(e, s);
+      if (context.mounted) {
+        showErrorSnackBar(
+          context,
+          'Error during updatePokemon: $pokemonIndex | $e',
+        );
+      }
+      rethrow;
+    }
+  }
 }

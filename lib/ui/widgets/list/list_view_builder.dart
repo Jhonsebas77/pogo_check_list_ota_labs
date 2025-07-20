@@ -24,8 +24,8 @@ class PokemonList extends StatelessWidget {
           (BuildContext context, int index) => PokemonListItem(
             selectPokemon: sortedPokemon[index],
             index: sortedPokemon[index].id,
-            isShiny: isShiny,
-            isGigantamax: isGigantamax,
+            isShiny: isShiny!,
+            isGigantamax: isGigantamax!,
           ),
     ),
   );

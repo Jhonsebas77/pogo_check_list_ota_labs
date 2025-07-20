@@ -76,7 +76,7 @@ class _AllPokemonAvailableViewState
         body: firebasePokemonState.when(
           data: (PokemonFirebaseState state) {
             if (state.allPokemon.isEmpty) {
-              return const Center(child: Text('No Pokémon found.'));
+              return const EmptyState();
             }
             List<PokemonModel> sortedPokemon =
                 state.allPokemon.where((PokemonModel pokemon) {
