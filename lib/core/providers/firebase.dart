@@ -31,6 +31,38 @@ class PokemonFirebaseState {
     allGigantamaxPokemon: allGigantamaxPokemon ?? this.allGigantamaxPokemon,
     trainerInformation: trainerInformation ?? this.trainerInformation,
   );
+
+  int getTotalPokemonLength() =>
+      allPokemon
+          .where((PokemonModel pokemon) => pokemon.available)
+          .toList()
+          .length;
+
+  int getShinyAvailablePokemonLength() =>
+      allPokemon
+          .where((PokemonModel pokemon) => pokemon.shinyAvailable)
+          .toList()
+          .length;
+
+  int getAlreadyCatchPokemonShinyLength() =>
+      allPokemon
+          .where((PokemonModel pokemon) => pokemon.alreadyCatchShinyVersion)
+          .toList()
+          .length;
+
+  int getAlreadyCatchPokemonLength() =>
+      allPokemon
+          .where((PokemonModel pokemon) => pokemon.alreadyCatch)
+          .toList()
+          .length;
+
+  int getAllGigantamaxPokemonLength() => allGigantamaxPokemon.length;
+
+  int getAlreadyCatchGigantamaxPokemonLength() =>
+      allGigantamaxPokemon
+          .where((PokemonModel pokemon) => pokemon.alreadyCatch)
+          .toList()
+          .length;
 }
 
 final AsyncNotifierProvider<FirebasePokemon, PokemonFirebaseState>
