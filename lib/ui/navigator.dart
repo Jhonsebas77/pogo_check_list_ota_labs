@@ -12,7 +12,7 @@ class CustomNavigator {
     );
   }
 
-  void pop(BuildContext context, Widget view) {
+  void pop(BuildContext context) {
     if (Navigator.canPop(context)) {
       Navigator.pop(context);
     } else {

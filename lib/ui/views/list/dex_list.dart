@@ -1,15 +1,16 @@
 part of com.pogo_check_list_ota_labs.app.views;
 
-class AllPokemonAvailableView extends StatefulWidget {
+class AllPokemonAvailableView extends ConsumerStatefulWidget {
   const AllPokemonAvailableView({super.key});
   static const String route = '/pokemon/all-available';
 
   @override
-  State<AllPokemonAvailableView> createState() =>
+  ConsumerState<AllPokemonAvailableView> createState() =>
       _AllPokemonAvailableViewState();
 }
 
-class _AllPokemonAvailableViewState extends State<AllPokemonAvailableView> {
+class _AllPokemonAvailableViewState
+    extends ConsumerState<AllPokemonAvailableView> {
   bool displayOnlyMissingPokemon = false;
   final ScrollController _scrollController = ScrollController();
   bool isInTheEndOfTheList = false;
@@ -46,141 +47,151 @@ class _AllPokemonAvailableViewState extends State<AllPokemonAvailableView> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      backgroundColor: Colors.transparent,
-      systemOverlayStyle: SystemUiOverlayStyle.light,
-      toolbarHeight: 82,
-      title: const HeaderFromImage(),
-      elevation: 0,
-    ),
-    backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
-    body: Consumer<FirebaseProvider>(
-      builder: (
-        BuildContext context,
-        FirebaseProvider provider,
-        Widget? child,
-      ) {
-        if (provider.isLoading) {
-          return const LoadingWidget();
-        } else if (provider.allPokemon.isEmpty) {
-          return const EmptyState();
-        } else {
-          List<PokemonModel> sortedPokemon =
-              provider.allPokemon.where((PokemonModel pokemon) {
-                if (displayOnlyMissingPokemon) {
-                  return pokemon.available && !pokemon.alreadyCatch;
-                } else {
-                  return pokemon.available;
-                }
-              }).toList();
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Expanded(
-                child: Builder(
-                  builder: (BuildContext context) {
-                    List<PokemonModel> _allPokemon =
-                        provider.allPokemon
-                            .where((PokemonModel pokemon) => pokemon.available)
-                            .toList();
-                    List<PokemonModel> _catchPokemon =
-                        provider.allPokemon
-                            .where(
-                              (PokemonModel pokemon) => pokemon.alreadyCatch,
-                            )
-                            .toList();
-                    return Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 4,
+  Widget build(BuildContext context) {
+    AsyncValue<PokemonFirebaseState> firebasePokemonState = ref.watch(
+      firebasePokemonProvider,
+    );
+    ref.listen(firebasePokemonProvider, (
+      AsyncValue<PokemonFirebaseState>? previous,
+      AsyncValue<PokemonFirebaseState> next,
+    ) {
+      if (next is AsyncError) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: ${next.error}')));
+      }
+    });
+
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          toolbarHeight: 82,
+          elevation: 0,
+          leading: const DexHeaderLeading(),
+          actions: const DexHeaderActions().getActions(),
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(50),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 4,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          const Text(
+                            'Pokédex',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          firebasePokemonState.when(
+                            data:
+                                (PokemonFirebaseState state) => Text(
+                                  '${state.getAlreadyCatchPokemonLength()}/${state.getTotalPokemonLength()} (${(state.getAlreadyCatchPokemonLength() / state.getTotalPokemonLength() * 100).toStringAsFixed(2)}%)',
+                                ),
+                            error:
+                                (Object error, StackTrace stackTrace) =>
+                                    Center(child: Text('Error: $error')),
+                            loading:
+                                () => const SimpleTextShimmer(
+                                  widthShimmer: 100,
+                                  heightShimmer: 10,
+                                ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Container(
+                          padding: const EdgeInsets.only(
+                            left: 12,
+                            top: 8,
+                            bottom: 8,
+                            right: 12,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.black12,
+                            borderRadius: BorderRadius.circular(50),
                           ),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  const Text(
-                                    'Pokédex',
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Text(
-                                    '${_catchPokemon.length}/${_allPokemon.length} (${(_catchPokemon.length / _allPokemon.length * 100).toStringAsFixed(2)}%)',
-                                  ),
-                                ],
+                              Switch(
+                                value: displayOnlyMissingPokemon,
+                                thumbIcon: thumbIcon,
+                                activeColor: Colors.indigo,
+                                onChanged: (_) async {
+                                  setState(() {
+                                    displayOnlyMissingPokemon =
+                                        !displayOnlyMissingPokemon;
+                                  });
+                                  await ref
+                                      .read(firebasePokemonProvider.notifier)
+                                      .refreshData();
+                                },
                               ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 4,
-                                ),
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                    left: 12,
-                                    top: 8,
-                                    bottom: 8,
-                                    right: 12,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black12,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Switch(
-                                        value: displayOnlyMissingPokemon,
-                                        thumbIcon: thumbIcon,
-                                        activeColor: Colors.indigo,
-                                        onChanged: (_) async {
-                                          setState(() {
-                                            displayOnlyMissingPokemon =
-                                                !displayOnlyMissingPokemon;
-                                          });
-                                          FirebaseProvider firebaseProvider =
-                                              Provider.of<FirebaseProvider>(
-                                                context,
-                                                listen: false,
-                                              );
-                                          await firebaseProvider.getPokemonData(
-                                            context,
-                                          );
-                                        },
-                                      ),
-                                      const SizedBox(width: 16),
-                                      const Icon(Icons.filter_list_rounded),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              const SizedBox(width: 16),
+                              const Icon(Icons.filter_list_rounded),
                             ],
                           ),
                         ),
-                        PokemonList(
-                          scrollController: _scrollController,
-                          sortedPokemon: sortedPokemon,
-                        ),
-                      ],
-                    );
-                  },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          );
-        }
-      },
-    ),
-    floatingActionButton: FloatingActionButton(
-      onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
-      backgroundColor: Colors.indigo,
-      child: Icon(
-        isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
+              ],
+            ),
+          ),
+        ),
+        backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+        body: firebasePokemonState.when(
+          data: (PokemonFirebaseState state) {
+            if (state.allPokemon.isEmpty) {
+              return const EmptyState();
+            }
+            List<PokemonModel> sortedPokemon =
+                state.allPokemon.where((PokemonModel pokemon) {
+                  if (displayOnlyMissingPokemon) {
+                    return pokemon.available && !pokemon.alreadyCatch;
+                  } else {
+                    return pokemon.available;
+                  }
+                }).toList();
+            return ListView.builder(
+              controller: _scrollController,
+              shrinkWrap: true,
+              itemCount: sortedPokemon.length,
+              itemBuilder: (BuildContext context, int index) {
+                PokemonModel pokemon = sortedPokemon[index];
+                return PokemonListItem(
+                  index: pokemon.id,
+                  selectPokemon: pokemon,
+                );
+              },
+            );
+          },
+          error:
+              (Object error, StackTrace stackTrace) =>
+                  Center(child: Text('Error: $error')),
+          loading: PokemonListShimmer.new,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
+          backgroundColor: Colors.indigo,
+          child: Icon(
+            isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
+          ),
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

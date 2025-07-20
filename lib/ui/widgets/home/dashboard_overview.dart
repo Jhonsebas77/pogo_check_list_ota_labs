@@ -1,93 +1,56 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
 
-class DashboardOverview extends StatelessWidget {
+class DashboardOverview extends ConsumerWidget {
   const DashboardOverview({super.key});
 
   @override
-  Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    child: Consumer<FirebaseProvider>(
-      builder: (
-        BuildContext context,
-        FirebaseProvider provider,
-        Widget? child,
-      ) {
-        if (provider.isLoading) {
-          return const LoadingWidget();
-        } else if (provider.allPokemon.isEmpty) {
-          return const EmptyState();
-        } else {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Builder(
-                builder: (BuildContext context) {
-                  List<PokemonModel> _allPokemon =
-                      provider.allPokemon
-                          .where((PokemonModel pokemon) => pokemon.available)
-                          .toList();
-                  List<PokemonModel> _allShinyPokemon =
-                      provider.allPokemon
-                          .where(
-                            (PokemonModel pokemon) => pokemon.shinyAvailable,
-                          )
-                          .toList();
-                  List<PokemonModel> _catchPokemon =
-                      provider.allPokemon
-                          .where((PokemonModel pokemon) => pokemon.alreadyCatch)
-                          .toList();
-                  List<PokemonModel> _catchShinyPokemon =
-                      provider.allPokemon
-                          .where(
-                            (PokemonModel pokemon) =>
-                                pokemon.alreadyCatchShinyVersion,
-                          )
-                          .toList();
-                  List<PokemonModel> _allGigantamaxPokemon =
-                      provider.allGigantamaxPokemon;
-                  List<PokemonModel> _catchGigantamaxPokemon =
-                      provider.allGigantamaxPokemon
-                          .where((PokemonModel pokemon) => pokemon.alreadyCatch)
-                          .toList();
-                  return Wrap(
-                    spacing: 12,
-                    runSpacing: 12,
-                    children: <Widget>[
-                      HomeCircularWidget(
-                        allItemLength: _allPokemon.length.toDouble(),
-                        counterItemLength: _catchPokemon.length.toDouble(),
-                        centerWidget: const Icon(
-                          Icons.catching_pokemon,
-                          color: Colors.white,
-                        ),
-                      ),
-                      HomeCircularWidget(
-                        allItemLength: _allShinyPokemon.length.toDouble(),
-                        counterItemLength: _catchShinyPokemon.length.toDouble(),
-                        centerWidget: const Text(
-                          '✨',
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                      HomeCircularWidget(
-                        allItemLength: _allGigantamaxPokemon.length.toDouble(),
-                        counterItemLength:
-                            _catchGigantamaxPokemon.length.toDouble(),
-                        centerWidget: Image.asset(
-                          'assets/gigamax.png',
-                          height: 30,
-                          width: 30,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ],
-          );
-        }
-      },
-    ),
-  );
+  Widget build(BuildContext context, WidgetRef ref) {
+    AsyncValue<PokemonFirebaseState> firebasePokemonState = ref.watch(
+      firebasePokemonProvider,
+    );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: firebasePokemonState.when(
+        data:
+            (PokemonFirebaseState state) => Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              children: <Widget>[
+                HomeCircularWidget(
+                  allItemLength: state.getTotalPokemonLength().toDouble(),
+                  counterItemLength:
+                      state.getAlreadyCatchPokemonLength().toDouble(),
+                  centerWidget: const Icon(
+                    Icons.catching_pokemon,
+                    color: Colors.white,
+                  ),
+                ),
+                HomeCircularWidget(
+                  allItemLength:
+                      state.getShinyAvailablePokemonLength().toDouble(),
+                  counterItemLength:
+                      state.getAlreadyCatchPokemonShinyLength().toDouble(),
+                  centerWidget: const Text('✨', textAlign: TextAlign.start),
+                ),
+                HomeCircularWidget(
+                  allItemLength:
+                      state.getAllGigantamaxPokemonLength().toDouble(),
+                  counterItemLength:
+                      state.getAlreadyCatchGigantamaxPokemonLength().toDouble(),
+                  centerWidget: Image.asset(
+                    'assets/gigamax.png',
+                    height: 30,
+                    width: 30,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+        error:
+            (Object error, StackTrace stackTrace) =>
+                Center(child: Text('Error: $error')),
+        loading: DashboardOverviewShimmer.new,
+      ),
+    );
+  }
 }
