@@ -69,16 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
         bottomNavigationBar: const TabBar(
           indicatorColor: Colors.white,
           labelColor: Colors.white,
+          labelStyle: TextStyle(color: Colors.white, fontSize: 18),
           tabs: <Widget>[
-            Tab(icon: Icon(Icons.home, color: Colors.white), text: 'Inicio'),
-            Tab(
-              icon: Icon(Icons.catching_pokemon, color: Colors.white),
-              text: 'Pokedex',
-            ),
-            Tab(
-              icon: Icon(Icons.settings, color: Colors.white),
-              text: 'Ajustes',
-            ),
+            Tab(icon: Icon(Icons.home), text: 'Inicio'),
+            Tab(icon: Icon(Icons.catching_pokemon), text: 'Pokedex'),
+            Tab(icon: Icon(Icons.settings), text: 'Ajustes'),
           ],
         ),
       ),

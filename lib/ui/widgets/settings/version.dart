@@ -13,7 +13,7 @@ class VersionWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       child: const SelectableText(
-        'By Ota_Labs V.1.0.0+8',
+        'By Ota_Labs V.1.0.0+9',
         textAlign: TextAlign.center,
       ),
     ),
