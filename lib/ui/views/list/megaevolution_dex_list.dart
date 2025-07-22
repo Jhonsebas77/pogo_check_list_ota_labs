@@ -74,7 +74,6 @@ class _MegaEvolutionPokemonState
                 (int index) => PokemonListMegaEvolutionItem(
                   index: index,
                   selectPokemon: sortedPokemon[index],
-                  isGigantamax: true,
                 ),
               ),
             );

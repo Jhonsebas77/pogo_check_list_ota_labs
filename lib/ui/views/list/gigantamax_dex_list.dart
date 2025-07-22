@@ -73,7 +73,6 @@ class _GigantamaxPokemonViewState extends ConsumerState<GigantamaxPokemonView> {
                 (int index) => PokemonListGigantamaxItem(
                   index: index,
                   selectPokemon: sortedPokemon[index],
-                  isGigantamax: true,
                 ),
               ),
             );

@@ -79,15 +79,27 @@ class PokemonListItem extends ConsumerWidget {
                             fit: BoxFit.fill,
                           )
                       else if (!isShiny)
-                        Hero(
-                          tag: selectPokemon.id,
-                          child: Image.asset(
-                            'assets/pokedex_sprites/${selectPokemon.id}.png',
-                            height: 50,
-                            width: 50,
-                            fit: BoxFit.fill,
+                        if (selectPokemon.available == false)
+                          Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Image.asset(
+                              'assets/pokedex_sprites/${selectPokemon.id}.png',
+                              height: 50,
+                              width: 50,
+                              fit: BoxFit.fill,
+                            ),
+                          )
+                        else
+                          Hero(
+                            tag: selectPokemon.id,
+                            child: Image.asset(
+                              'assets/pokedex_sprites/${selectPokemon.id}.png',
+                              height: 50,
+                              width: 50,
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                        ),
                     ],
                   ),
                   const SizedBox(width: 16),

@@ -5,14 +5,12 @@ class PokemonListGigantamaxItem extends StatefulWidget {
     required this.selectPokemon,
     required this.index,
     this.isShiny = false,
-    this.isGigantamax = false,
     super.key,
   });
 
   final PokemonModel selectPokemon;
   final int index;
   final bool? isShiny;
-  final bool? isGigantamax;
 
   @override
   State<PokemonListGigantamaxItem> createState() =>
@@ -41,43 +39,25 @@ class _PokemonListGigantamaxItemState extends State<PokemonListGigantamaxItem> {
                 width: 80,
                 fit: BoxFit.fill,
               ),
-              if (widget.isGigantamax ?? false)
+              if (widget.selectPokemon.available)
                 Image.asset(
                   'assets/pokedex_gigantamax/${widget.selectPokemon.id}.png',
                   height: 80,
                   width: 80,
                   fit: BoxFit.fill,
                 )
-              else if (widget.isShiny ?? false)
-                if (widget.selectPokemon.shinyAvailable == false)
-                  Image.asset(
-                    'assets/pokedex_sprites_shiny/0.png',
-                    height: 80,
-                    width: 80,
-                    fit: BoxFit.fill,
-                  )
-                else
-                  Image.asset(
-                    'assets/pokedex_sprites_shiny/${widget.selectPokemon.id}.png',
-                    height: 80,
-                    width: 80,
-                    fit: BoxFit.fill,
-                  )
-              else if (!(widget.isShiny ?? false))
-                if (widget.selectPokemon.available == false)
-                  Image.asset(
-                    'assets/pokedex_sprites_shiny/0.png',
-                    height: 80,
-                    width: 80,
-                    fit: BoxFit.fill,
-                  )
-                else
-                  Image.asset(
-                    'assets/pokedex_sprites/${widget.selectPokemon.id}.png',
+              else
+                Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  enabled: false,
+                  child: Image.asset(
+                    'assets/pokedex_gigantamax/${widget.selectPokemon.id}.png',
                     height: 80,
                     width: 80,
                     fit: BoxFit.fill,
                   ),
+                ),
             ],
           ),
           const SizedBox(width: 16),
