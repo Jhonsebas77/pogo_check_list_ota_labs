@@ -52,7 +52,7 @@ class _GigantamaxPokemonViewState extends ConsumerState<GigantamaxPokemonView> {
         backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
         body: firebasePokemonState.when(
           data: (PokemonFirebaseState state) {
-            if (state.allPokemon.isEmpty) {
+            if (state.allGigantamaxPokemon.isEmpty) {
               return const EmptyState();
             }
             List<PokemonModel> sortedPokemon =

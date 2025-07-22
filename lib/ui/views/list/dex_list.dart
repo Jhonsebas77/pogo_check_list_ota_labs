@@ -159,13 +159,14 @@ class _AllPokemonAvailableViewState
               return const EmptyState();
             }
             List<PokemonModel> sortedPokemon =
-                state.allPokemon.where((PokemonModel pokemon) {
-                  if (displayOnlyMissingPokemon) {
-                    return pokemon.available && !pokemon.alreadyCatch;
-                  } else {
-                    return pokemon.available;
-                  }
-                }).toList();
+                displayOnlyMissingPokemon
+                    ? state.allPokemon
+                        .where(
+                          (PokemonModel pokemon) =>
+                              pokemon.available && !pokemon.alreadyCatch,
+                        )
+                        .toList()
+                    : state.allPokemon;
             return ListView.builder(
               controller: _scrollController,
               shrinkWrap: true,

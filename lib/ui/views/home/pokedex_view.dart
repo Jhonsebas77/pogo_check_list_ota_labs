@@ -36,12 +36,11 @@ class PokedexView extends StatelessWidget {
             //   viewToNavigate: AllPokemonAvailableView(),
             //   isAvailable: false,
             // ),
-            // HomeMenuItem(
-            //   image: 'assets/icon_pokedex.png',
-            //   label: 'Mega evolutions',
-            //   viewToNavigate: AllPokemonAvailableView(),
-            //   isAvailable: false,
-            // ),
+            HomeMenuItem(
+              image: 'assets/icon_pokedex.png',
+              label: 'Mega evolutions',
+              viewToNavigate: MegaEvolutionPokemonView(),
+            ),
           ],
         ),
       ),

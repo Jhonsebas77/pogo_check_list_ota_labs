@@ -16,19 +16,24 @@ class PokemonFirebaseState {
   const PokemonFirebaseState({
     this.allPokemon = const <PokemonModel>[],
     this.allGigantamaxPokemon = const <PokemonModel>[],
+    this.allMegaEvolutionPokemon = const <PokemonModel>[],
     this.trainerInformation,
   });
   final List<PokemonModel> allPokemon;
   final List<PokemonModel> allGigantamaxPokemon;
+  final List<PokemonModel> allMegaEvolutionPokemon;
   final TrainerModel? trainerInformation;
 
   PokemonFirebaseState copyWith({
     List<PokemonModel>? allPokemon,
     List<PokemonModel>? allGigantamaxPokemon,
+    List<PokemonModel>? allMegaEvolutionPokemon,
     TrainerModel? trainerInformation,
   }) => PokemonFirebaseState(
     allPokemon: allPokemon ?? this.allPokemon,
     allGigantamaxPokemon: allGigantamaxPokemon ?? this.allGigantamaxPokemon,
+    allMegaEvolutionPokemon:
+        allMegaEvolutionPokemon ?? this.allMegaEvolutionPokemon,
     trainerInformation: trainerInformation ?? this.trainerInformation,
   );
 
@@ -107,6 +112,39 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     }
   }
 
+  Future<List<PokemonModel>> _fetchMegaEvolutionPokemonList() async {
+    DataSnapshot snapshot =
+        await _firebaseRef.child(firebasePokemonMegaEvolutionPath).get();
+    List<PokemonModel> allMegaEvolutionPokemon = <PokemonModel>[];
+
+    if (snapshot.exists && snapshot.value != null) {
+      if (snapshot.value is Map) {
+        try {
+          Map<String, dynamic>.from(
+            // ignore: cast_nullable_to_non_nullable, always_specify_types
+            snapshot.value as Map,
+          ).forEach((String id, dynamic pokemonGigantamax) {
+            if (pokemonGigantamax is Map) {
+              Map<String, dynamic> _pokemonGigantamax =
+                  Map<String, dynamic>.from(pokemonGigantamax);
+              PokemonModel _pokemonModel = PokemonModel.fromJSON(
+                _pokemonGigantamax,
+              );
+              allMegaEvolutionPokemon.add(_pokemonModel);
+            }
+          });
+          return allMegaEvolutionPokemon;
+        } catch (e) {
+          throw Exception('Could not fetch Pokémon data.');
+        }
+      } else {
+        throw Exception('Could not fetch Pokémon data.');
+      }
+    } else {
+      throw Exception('Could not fetch Pokémon data.');
+    }
+  }
+
   Future<List<PokemonModel>> _fetchPokemonList() async {
     DataSnapshot snapshot = await _firebaseRef.child(firebasePokemonPath).get();
     List<PokemonModel> allPokemon = <PokemonModel>[];
@@ -119,6 +157,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
         );
         allPokemon.add(PokemonModel.fromJSON(mapPokemon));
       }
+      allPokemon.removeAt(0);
       return allPokemon;
     } else {
       throw Exception('Could not fetch Pokémon data.');
@@ -141,16 +180,20 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     List<Object?> results = await Future.wait(<Future<Object?>>[
       _fetchPokemonList(),
       _fetchGigamaxPokemonList(),
+      _fetchMegaEvolutionPokemonList(),
       _fetchTrainerData(),
     ]);
     List<PokemonModel> pokemonList = results[0]! as List<PokemonModel>;
     List<PokemonModel> gigantamaxPokemonList =
         results[1]! as List<PokemonModel>;
-    TrainerModel? trainerInfo = results[2] as TrainerModel?;
+    List<PokemonModel> megaEvolutionPokemonList =
+        results[2]! as List<PokemonModel>;
+    TrainerModel? trainerInfo = results[3] as TrainerModel?;
     return PokemonFirebaseState(
       allGigantamaxPokemon: gigantamaxPokemonList,
       allPokemon: pokemonList,
       trainerInformation: trainerInfo,
+      allMegaEvolutionPokemon: megaEvolutionPokemonList,
     );
   }
 

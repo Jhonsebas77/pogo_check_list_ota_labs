@@ -34,7 +34,7 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
 
         body: pokemonAsyncValue.when(
           // State 1: The Future is loading
-          loading: () => const CircularProgressIndicator(),
+          loading: () => const Center(child: CircularProgressIndicator()),
 
           // State 2: The Future completed with an error
           error: (Object error, StackTrace stackTrace) => Text('Error: $error'),
@@ -44,6 +44,10 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
               (PokemonDetail pokemon) => Center(
                 child: Column(
                   children: <Widget>[
+                    Text(
+                      pokemon.name,
+                      style: const TextStyle(fontSize: 24, color: Colors.white),
+                    ),
                     Stack(
                       children: <Widget>[
                         Image.asset(
@@ -69,8 +73,6 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                         ),
                       ],
                     ),
-                    Text('Hola Mundo ${pokemon.name}'),
-
                     Wrap(
                       spacing: 8,
                       runSpacing: 4,

@@ -30,5 +30,6 @@ flutter:
   assets:
     - assets/
     - assets/pokedex_gigantamax/
+    - assets/pokedex_mega_evolutions/
     - assets/pokedex_sprites_shiny/
     - assets/pokedex_sprites/
