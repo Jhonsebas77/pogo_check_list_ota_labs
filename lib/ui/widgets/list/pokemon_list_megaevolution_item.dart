@@ -1,6 +1,6 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
 
-class PokemonListMegaEvolutionItem extends StatefulWidget {
+class PokemonListMegaEvolutionItem extends ConsumerWidget {
   const PokemonListMegaEvolutionItem({
     required this.selectPokemon,
     required this.index,
@@ -13,79 +13,132 @@ class PokemonListMegaEvolutionItem extends StatefulWidget {
   final bool? isShiny;
 
   @override
-  State<PokemonListMegaEvolutionItem> createState() =>
-      _PokemonListMegaEvolutionItemState();
-}
-
-class _PokemonListMegaEvolutionItemState
-    extends State<PokemonListMegaEvolutionItem> {
-  @override
-  Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-    child: Container(
-      padding: const EdgeInsets.only(left: 12, top: 8, bottom: 8, right: 12),
-      decoration: BoxDecoration(
-        color: Colors.black12,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Image.asset(
-                'assets/bg_holder_pokemon.png',
-                height: 80,
-                width: 80,
-                fit: BoxFit.fill,
-              ),
-              if (widget.selectPokemon.available)
-                Image.asset(
-                  'assets/pokedex_mega_evolutions/${widget.selectPokemon.id}.png',
-                  height: 80,
-                  width: 80,
-                  fit: BoxFit.fill,
-                )
-              else
-                Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
-                  enabled: false,
-                  child: Image.asset(
-                    'assets/pokedex_mega_evolutions/${widget.selectPokemon.id}.png',
-                    height: 80,
-                    width: 80,
-                    fit: BoxFit.fill,
-                  ),
+  Widget build(BuildContext context, WidgetRef ref) => GestureDetector(
+    onTap: () async {
+      PokemonModel _pokemon = PokemonModel(
+        alreadyCatch: !selectPokemon.alreadyCatch,
+        alreadyCatchShinyVersion: selectPokemon.alreadyCatchShinyVersion,
+        available: selectPokemon.available,
+        id: selectPokemon.id,
+        name: selectPokemon.name,
+        shinyAvailable: selectPokemon.shinyAvailable,
+        tradable: selectPokemon.tradable,
+      );
+      await ref
+          .read(firebasePokemonProvider.notifier)
+          .updateMegaEvolutionPokemon(index, _pokemon, context);
+      if (context.mounted) {
+        showSuccessSnackBar(
+          context,
+          '''[Registro actualizado]\n${paddingDexNumber(dexNumber: selectPokemon.id)} ${selectPokemon.name}''',
+        );
+      }
+    },
+    onLongPress: () {
+      CustomNavigator().push(
+        context,
+        DetailsScreen(pokemonId: selectPokemon.id),
+      );
+    },
+    child: Stack(
+      alignment: AlignmentDirectional.center,
+      children: <Widget>[
+        Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: Container(
+                padding: const EdgeInsets.only(
+                  left: 12,
+                  top: 8,
+                  bottom: 8,
+                  right: 12,
                 ),
-            ],
+                decoration: BoxDecoration(
+                  color:
+                      selectPokemon.alreadyCatch
+                          ? Colors.white12
+                          : Colors.black12,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const SizedBox(height: 4),
+                    Stack(
+                      children: <Widget>[
+                        Image.asset(
+                          'assets/bg_holder_pokemon.png',
+                          height: 80,
+                          width: 80,
+                          fit: BoxFit.fill,
+                        ),
+                        if (selectPokemon.available)
+                          Image.asset(
+                            'assets/pokedex_mega_evolutions/${selectPokemon.id}.png',
+                            height: 80,
+                            width: 80,
+                            fit: BoxFit.fill,
+                          )
+                        else
+                          Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            enabled: false,
+                            child: Image.asset(
+                              'assets/pokedex_mega_evolutions/${selectPokemon.id}.png',
+                              height: 80,
+                              width: 80,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 200,
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            selectPokemon.name,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          paddingDexNumber(dexNumber: selectPokemon.id),
+                          style: const TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        if (selectPokemon.alreadyCatch)
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Image.asset(
+              'assets/icon_mega.png',
+              height: 50,
+              width: 50,
+              fit: BoxFit.fill,
+            ),
           ),
-          const SizedBox(width: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                widget.selectPokemon.name,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              Text(
-                paddingDexNumber(dexNumber: widget.selectPokemon.id),
-                style: const TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-          // TODO(Sebastian): Add catch and shiny values
-        ],
-      ),
+      ],
     ),
   );
 }

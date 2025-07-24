@@ -24,6 +24,11 @@ class PokedexView extends StatelessWidget {
               label: 'Gigantamax',
               viewToNavigate: GigantamaxPokemonView(),
             ),
+            HomeMenuItem(
+              image: 'assets/icon_mega.png',
+              label: 'Mega evolutions',
+              viewToNavigate: MegaEvolutionPokemonView(),
+            ),
             // HomeMenuItem(
             //   image: 'assets/pokedex_sprites/201.png',
             //   label: 'Unown',
@@ -36,11 +41,6 @@ class PokedexView extends StatelessWidget {
             //   viewToNavigate: AllPokemonAvailableView(),
             //   isAvailable: false,
             // ),
-            HomeMenuItem(
-              image: 'assets/icon_pokedex.png',
-              label: 'Mega evolutions',
-              viewToNavigate: MegaEvolutionPokemonView(),
-            ),
           ],
         ),
       ),

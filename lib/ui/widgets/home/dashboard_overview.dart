@@ -44,6 +44,20 @@ class DashboardOverview extends ConsumerWidget {
                     fit: BoxFit.fill,
                   ),
                 ),
+                HomeCircularWidget(
+                  allItemLength:
+                      state.getAllMegaEvolutionsPokemonLength().toDouble(),
+                  counterItemLength:
+                      state
+                          .getAlreadyCatchMegaEvolutionsPokemonLength()
+                          .toDouble(),
+                  centerWidget: Image.asset(
+                    'assets/icon_mega.png',
+                    height: 30,
+                    width: 30,
+                    fit: BoxFit.fill,
+                  ),
+                ),
               ],
             ),
         error:

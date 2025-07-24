@@ -68,6 +68,18 @@ class PokemonFirebaseState {
           .where((PokemonModel pokemon) => pokemon.alreadyCatch)
           .toList()
           .length;
+
+  int getAllMegaEvolutionsPokemonLength() =>
+      allMegaEvolutionPokemon
+          .where((PokemonModel pokemon) => pokemon.available)
+          .toList()
+          .length;
+
+  int getAlreadyCatchMegaEvolutionsPokemonLength() =>
+      allMegaEvolutionPokemon
+          .where((PokemonModel pokemon) => pokemon.alreadyCatch)
+          .toList()
+          .length;
 }
 
 final AsyncNotifierProvider<FirebasePokemon, PokemonFirebaseState>
@@ -241,6 +253,41 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
         showErrorSnackBar(
           context,
           'Error during updatePokemon: $pokemonIndex | $e',
+        );
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> updateMegaEvolutionPokemon(
+    int pokemonIndex,
+    PokemonModel updatedPokemon,
+    BuildContext context,
+  ) async {
+    AsyncValue<PokemonFirebaseState> previousState = state;
+    try {
+      DatabaseReference ref = _firebaseRef.child(
+        '$firebasePokemonMegaEvolutionPath/${updatedPokemon.id}',
+      );
+      await ref.update(updatedPokemon.toJSON());
+      PokemonFirebaseState? currentState = state.valueOrNull;
+      if (currentState != null) {
+        List<PokemonModel> newPokemonList = List<PokemonModel>.from(
+          currentState.allMegaEvolutionPokemon,
+        )..sort((PokemonModel a, PokemonModel b) => a.id.compareTo(b.id));
+        newPokemonList[pokemonIndex] = updatedPokemon;
+        PokemonFirebaseState newState = currentState.copyWith(
+          allMegaEvolutionPokemon: newPokemonList,
+        );
+        state = AsyncValue.data(newState);
+      }
+    } catch (e, s) {
+      state = previousState;
+      state = AsyncValue.error(e, s);
+      if (context.mounted) {
+        showErrorSnackBar(
+          context,
+          'Error during updateMegaPokemon: $pokemonIndex | $e',
         );
       }
       rethrow;
