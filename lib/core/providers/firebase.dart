@@ -1,3 +1,5 @@
+// ignore_for_file: always_specify_types
+
 part of com.pogo_check_list_ota_labs.app.providers;
 
 class FirebaseProvider extends ChangeNotifier {
@@ -162,12 +164,10 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     List<PokemonModel> allPokemon = <PokemonModel>[];
 
     if (snapshot.exists && snapshot.value != null && snapshot.value is List) {
-      List<dynamic> pokemonList = List<dynamic>.from(
-        snapshot.value! as List<dynamic>,
-      );
-      for (dynamic pokemon in pokemonList) {
+      List pokemonList = List<dynamic>.from(snapshot.value! as List<dynamic>);
+      for (var pokemon in pokemonList) {
         Map<String, dynamic> mapPokemon = Map<String, dynamic>.from(
-          pokemon as Map<String, dynamic>,
+          pokemon as Map,
         );
         allPokemon.add(PokemonModel.fromJSON(mapPokemon));
       }
@@ -182,7 +182,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     DataSnapshot snapshot = await _firebaseRef.child(firebaseTrainerPath).get();
     if (snapshot.exists && snapshot.value != null && snapshot.value is Map) {
       Map<String, dynamic> dataMap = Map<String, dynamic>.from(
-        snapshot.value! as Map<String, dynamic>,
+        snapshot.value! as Map,
       );
       return TrainerModel.fromJSON(dataMap);
     }

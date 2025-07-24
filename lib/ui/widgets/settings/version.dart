@@ -11,11 +11,21 @@ class VersionWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 12, top: 8, bottom: 8, right: 12),
       decoration: BoxDecoration(
         color: Colors.black12,
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(16),
       ),
-      child: const SelectableText(
-        'By Ota_Labs V.1.0.0+13',
-        textAlign: TextAlign.center,
+      child: Column(
+        children: <Widget>[
+          Image.asset(
+            'assets/ota_bg.png',
+            height: 50,
+            width: 50,
+            fit: BoxFit.fill,
+          ),
+          const SelectableText(
+            'By Ota_Labs V.1.0.0+14',
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     ),
   );
