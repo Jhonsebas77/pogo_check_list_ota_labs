@@ -162,10 +162,12 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     List<PokemonModel> allPokemon = <PokemonModel>[];
 
     if (snapshot.exists && snapshot.value != null && snapshot.value is List) {
-      List pokemonList = List<dynamic>.from(snapshot.value! as List<dynamic>);
-      for (final pokemon in pokemonList) {
+      List<dynamic> pokemonList = List<dynamic>.from(
+        snapshot.value! as List<dynamic>,
+      );
+      for (dynamic pokemon in pokemonList) {
         Map<String, dynamic> mapPokemon = Map<String, dynamic>.from(
-          pokemon as Map,
+          pokemon as Map<String, dynamic>,
         );
         allPokemon.add(PokemonModel.fromJSON(mapPokemon));
       }
@@ -180,7 +182,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     DataSnapshot snapshot = await _firebaseRef.child(firebaseTrainerPath).get();
     if (snapshot.exists && snapshot.value != null && snapshot.value is Map) {
       Map<String, dynamic> dataMap = Map<String, dynamic>.from(
-        snapshot.value! as Map,
+        snapshot.value! as Map<String, dynamic>,
       );
       return TrainerModel.fromJSON(dataMap);
     }
@@ -209,18 +211,13 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     );
   }
 
-  /// A public method the UI can call to refresh the data.
   Future<void> refreshData() async {
-    // This automatically sets the provider's state to loading.
-    state = const AsyncValue.loading();
+    state = const AsyncValue<PokemonFirebaseState>.loading();
     try {
-      // Re-run the logic from the build method to get fresh data.
       PokemonFirebaseState newState = await build();
-      // If successful, update the state with the new data.
-      state = AsyncValue.data(newState);
+      state = AsyncValue<PokemonFirebaseState>.data(newState);
     } catch (e, s) {
-      // If an error occurs, update the state with the error.
-      state = AsyncValue.error(e, s);
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
     }
   }
 
@@ -244,11 +241,11 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
         PokemonFirebaseState newState = currentState.copyWith(
           allPokemon: newPokemonList,
         );
-        state = AsyncValue.data(newState);
+        state = AsyncValue<PokemonFirebaseState>.data(newState);
       }
     } catch (e, s) {
       state = previousState;
-      state = AsyncValue.error(e, s);
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
       if (context.mounted) {
         showErrorSnackBar(
           context,
@@ -279,15 +276,50 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
         PokemonFirebaseState newState = currentState.copyWith(
           allMegaEvolutionPokemon: newPokemonList,
         );
-        state = AsyncValue.data(newState);
+        state = AsyncValue<PokemonFirebaseState>.data(newState);
       }
     } catch (e, s) {
       state = previousState;
-      state = AsyncValue.error(e, s);
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
       if (context.mounted) {
         showErrorSnackBar(
           context,
           'Error during updateMegaPokemon: $pokemonIndex | $e',
+        );
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> updateGigantamaxPokemon(
+    int pokemonIndex,
+    PokemonModel updatedPokemon,
+    BuildContext context,
+  ) async {
+    AsyncValue<PokemonFirebaseState> previousState = state;
+    try {
+      DatabaseReference ref = _firebaseRef.child(
+        '$firebasePokemonGigantamaxPath/${updatedPokemon.id}',
+      );
+      await ref.update(updatedPokemon.toJSON());
+      PokemonFirebaseState? currentState = state.valueOrNull;
+      if (currentState != null) {
+        List<PokemonModel> newPokemonList = List<PokemonModel>.from(
+          currentState.allGigantamaxPokemon,
+        )..sort((PokemonModel a, PokemonModel b) => a.id.compareTo(b.id));
+        newPokemonList[pokemonIndex] = updatedPokemon;
+        PokemonFirebaseState newState = currentState.copyWith(
+          allGigantamaxPokemon: newPokemonList,
+        );
+        state = AsyncValue<PokemonFirebaseState>.data(newState);
+      }
+    } catch (e, s) {
+      state = previousState;
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
+      if (context.mounted) {
+        showErrorSnackBar(
+          context,
+          'Error during updateGigantamaxPokemon: $pokemonIndex | $e',
         );
       }
       rethrow;

@@ -31,7 +31,7 @@ class PokemonListItem extends ConsumerWidget {
         CustomNavigator().push(context, DetailsScreen(pokemonId: index));
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Container(
           padding: const EdgeInsets.only(
             left: 12,

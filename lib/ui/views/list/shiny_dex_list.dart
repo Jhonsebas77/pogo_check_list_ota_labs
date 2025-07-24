@@ -154,7 +154,10 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                     return pokemon.shinyAvailable;
                   }
                 }).toList();
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder:
+                  (BuildContext _, int __) =>
+                      const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
               controller: _scrollController,
               shrinkWrap: true,
               itemCount: sortedPokemon.length,

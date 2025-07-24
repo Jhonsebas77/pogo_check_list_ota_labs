@@ -167,7 +167,10 @@ class _AllPokemonAvailableViewState
                         )
                         .toList()
                     : state.allPokemon;
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder:
+                  (BuildContext _, int __) =>
+                      const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
               controller: _scrollController,
               shrinkWrap: true,
               itemCount: sortedPokemon.length,

@@ -1,4 +1,5 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
+
 class VersionWidget extends StatelessWidget {
   const VersionWidget({super.key});
 
@@ -13,7 +14,7 @@ class VersionWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       child: const SelectableText(
-        'By Ota_Labs V.1.0.0+12',
+        'By Ota_Labs V.1.0.0+13',
         textAlign: TextAlign.center,
       ),
     ),
