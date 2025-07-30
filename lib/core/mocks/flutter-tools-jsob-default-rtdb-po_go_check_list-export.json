@@ -292,7 +292,7 @@
     },
     "6": {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 6,
       "name": "Charizard",
@@ -309,7 +309,7 @@
       "tradable": true
     },
     "15": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 15,
@@ -318,7 +318,7 @@
       "tradable": true
     },
     "18": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 18,
@@ -327,7 +327,7 @@
       "tradable": true
     },
     "65": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 65,
@@ -372,7 +372,7 @@
       "tradable": true
     },
     "130": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 130,
@@ -399,7 +399,7 @@
       "tradable": true
     },
     "181": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 181,
@@ -408,7 +408,7 @@
       "tradable": true
     },
     "208": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 208,
@@ -444,7 +444,7 @@
       "tradable": true
     },
     "248": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 248,
@@ -453,7 +453,7 @@
       "tradable": true
     },
     "254": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 254,
@@ -462,7 +462,7 @@
       "tradable": true
     },
     "257": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 257,
@@ -471,7 +471,7 @@
       "tradable": true
     },
     "260": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 260,
@@ -480,7 +480,7 @@
       "tradable": true
     },
     "282": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 282,
@@ -489,7 +489,7 @@
       "tradable": true
     },
     "302": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 302,
@@ -507,7 +507,7 @@
       "tradable": true
     },
     "306": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 306,
@@ -516,7 +516,7 @@
       "tradable": true
     },
     "308": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 308,
@@ -552,7 +552,7 @@
       "tradable": true
     },
     "334": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 334,
@@ -561,7 +561,7 @@
       "tradable": true
     },
     "354": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 354,
@@ -588,7 +588,7 @@
       "tradable": true
     },
     "373": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 373,
@@ -606,7 +606,7 @@
       "tradable": true
     },
     "380": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 380,
@@ -615,7 +615,7 @@
       "tradable": true
     },
     "381": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 381,
@@ -624,7 +624,7 @@
       "tradable": true
     },
     "382": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 382,
@@ -633,7 +633,7 @@
       "tradable": true
     },
     "383": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 383,
@@ -642,7 +642,7 @@
       "tradable": true
     },
     "384": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 384,
@@ -651,7 +651,7 @@
       "tradable": true
     },
     "428": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 428,
@@ -660,7 +660,7 @@
       "tradable": true
     },
     "445": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 445,
@@ -669,7 +669,7 @@
       "tradable": true
     },
     "448": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 448,
@@ -678,7 +678,7 @@
       "tradable": true
     },
     "460": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 460,
@@ -687,7 +687,7 @@
       "tradable": true
     },
     "475": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 475,
@@ -696,7 +696,7 @@
       "tradable": true
     },
     "531": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 531,
@@ -705,7 +705,7 @@
       "tradable": true
     },
     "719": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 719,
@@ -6827,7 +6827,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 679,
@@ -9955,5 +9955,41 @@
     "nick_name": "Jhonsebas77",
     "team": "mystic",
     "trainer_id": "016618932768"
+  },
+  "zygarde_cells": {
+    "actual_form": "10%",
+    "quantity": 0,
+    "forms": {
+      "10%": {
+        "already_catch_shiny_version": false,
+        "already_catch": true,
+        "alternative_form": "10",
+        "available": true,
+        "id": 718,
+        "name": "10%",
+        "shiny_available": false,
+        "tradable": false
+      },
+      "50%": {
+        "already_catch_shiny_version": false,
+        "already_catch": false,
+        "alternative_form": "50",
+        "available": true,
+        "id": 718,
+        "name": "50%",
+        "shiny_available": false,
+        "tradable": false
+      },
+      "100%": {
+        "already_catch_shiny_version": false,
+        "already_catch": false,
+        "alternative_form": "100",
+        "available": true,
+        "id": 718,
+        "name": "100%",
+        "shiny_available": false,
+        "tradable": false
+      }
+    }
   }
 }

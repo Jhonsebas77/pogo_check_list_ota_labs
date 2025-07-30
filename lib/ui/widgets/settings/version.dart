@@ -22,7 +22,7 @@ class VersionWidget extends StatelessWidget {
             fit: BoxFit.fill,
           ),
           const SelectableText(
-            'By Ota_Labs V.1.0.0+15',
+            'By Ota_Labs V.1.0.0+16',
             textAlign: TextAlign.center,
           ),
         ],

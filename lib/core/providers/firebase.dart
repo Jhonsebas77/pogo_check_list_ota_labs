@@ -16,27 +16,31 @@ final Provider<FirebaseProvider> firebaseServiceProvider =
 
 class PokemonFirebaseState {
   const PokemonFirebaseState({
-    this.allPokemon = const <PokemonModel>[],
     this.allGigantamaxPokemon = const <PokemonModel>[],
     this.allMegaEvolutionPokemon = const <PokemonModel>[],
+    this.allPokemon = const <PokemonModel>[],
     this.trainerInformation,
+    this.zygardeCells,
   });
-  final List<PokemonModel> allPokemon;
   final List<PokemonModel> allGigantamaxPokemon;
   final List<PokemonModel> allMegaEvolutionPokemon;
+  final List<PokemonModel> allPokemon;
   final TrainerModel? trainerInformation;
+  final ZygardeCells? zygardeCells;
 
   PokemonFirebaseState copyWith({
     List<PokemonModel>? allPokemon,
     List<PokemonModel>? allGigantamaxPokemon,
     List<PokemonModel>? allMegaEvolutionPokemon,
     TrainerModel? trainerInformation,
+    ZygardeCells? zygardeCells,
   }) => PokemonFirebaseState(
     allPokemon: allPokemon ?? this.allPokemon,
     allGigantamaxPokemon: allGigantamaxPokemon ?? this.allGigantamaxPokemon,
     allMegaEvolutionPokemon:
         allMegaEvolutionPokemon ?? this.allMegaEvolutionPokemon,
     trainerInformation: trainerInformation ?? this.trainerInformation,
+    zygardeCells: zygardeCells ?? this.zygardeCells,
   );
 
   int getTotalPokemonLength() =>
@@ -188,6 +192,17 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     return null;
   }
 
+  Future<ZygardeCells?> _fetchZygardeData() async {
+    DataSnapshot snapshot = await _firebaseRef.child(firebaseZygardePath).get();
+    if (snapshot.exists && snapshot.value != null && snapshot.value is Map) {
+      Map<String, dynamic> dataMap = Map<String, dynamic>.from(
+        snapshot.value! as Map,
+      );
+      return ZygardeCells.fromJSON(dataMap);
+    }
+    return null;
+  }
+
   @override
   Future<PokemonFirebaseState> build() async {
     List<Object?> results = await Future.wait(<Future<Object?>>[
@@ -195,6 +210,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       _fetchGigamaxPokemonList(),
       _fetchMegaEvolutionPokemonList(),
       _fetchTrainerData(),
+      _fetchZygardeData(),
     ]);
     List<PokemonModel> pokemonList = results[0]! as List<PokemonModel>;
     List<PokemonModel> gigantamaxPokemonList =
@@ -202,11 +218,13 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     List<PokemonModel> megaEvolutionPokemonList =
         results[2]! as List<PokemonModel>;
     TrainerModel? trainerInfo = results[3] as TrainerModel?;
+    ZygardeCells? zygardeInfo = results[4] as ZygardeCells?;
     return PokemonFirebaseState(
       allGigantamaxPokemon: gigantamaxPokemonList,
+      allMegaEvolutionPokemon: megaEvolutionPokemonList,
       allPokemon: pokemonList,
       trainerInformation: trainerInfo,
-      allMegaEvolutionPokemon: megaEvolutionPokemonList,
+      zygardeCells: zygardeInfo,
     );
   }
 

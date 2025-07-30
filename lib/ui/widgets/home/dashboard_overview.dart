@@ -16,7 +16,7 @@ class DashboardOverview extends ConsumerWidget {
               spacing: 12,
               runSpacing: 12,
               children: <Widget>[
-                HomeCircularWidget(
+                HomeCircularProgressWidget(
                   allItemLength: state.getTotalPokemonLength().toDouble(),
                   counterItemLength:
                       state.getAlreadyCatchPokemonLength().toDouble(),
@@ -25,14 +25,14 @@ class DashboardOverview extends ConsumerWidget {
                     color: Colors.white,
                   ),
                 ),
-                HomeCircularWidget(
+                HomeCircularProgressWidget(
                   allItemLength:
                       state.getShinyAvailablePokemonLength().toDouble(),
                   counterItemLength:
                       state.getAlreadyCatchPokemonShinyLength().toDouble(),
                   centerWidget: const Text('✨', textAlign: TextAlign.start),
                 ),
-                HomeCircularWidget(
+                HomeCircularProgressWidget(
                   allItemLength:
                       state.getAllGigantamaxPokemonLength().toDouble(),
                   counterItemLength:
@@ -44,7 +44,7 @@ class DashboardOverview extends ConsumerWidget {
                     fit: BoxFit.fill,
                   ),
                 ),
-                HomeCircularWidget(
+                HomeCircularProgressWidget(
                   allItemLength:
                       state.getAllMegaEvolutionsPokemonLength().toDouble(),
                   counterItemLength:
@@ -55,6 +55,16 @@ class DashboardOverview extends ConsumerWidget {
                     'assets/icon_mega.png',
                     height: 30,
                     width: 30,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                HomeLinearProgressWidget(
+                  allItemLength: 250,
+                  counterItemLength: state.zygardeCells?.quantity ?? 0,
+                  centerWidget: Image.asset(
+                    'assets/pokedex_sprites/718_10.png',
+                    height: 50,
+                    width: 50,
                     fit: BoxFit.fill,
                   ),
                 ),
