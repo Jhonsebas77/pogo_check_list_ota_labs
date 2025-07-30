@@ -241,10 +241,14 @@ class _AllPokemonAvailableViewState
               itemCount: sortedPokemon.length,
               itemBuilder: (BuildContext context, int index) {
                 PokemonModel pokemon = sortedPokemon[index];
-                return PokemonListItem(
-                  index: pokemon.id,
-                  selectPokemon: pokemon,
-                );
+                if (pokemon.id == 0) {
+                  return const SizedBox();
+                } else {
+                  return PokemonListItem(
+                    index: pokemon.id,
+                    selectPokemon: pokemon,
+                  );
+                }
               },
             );
           },

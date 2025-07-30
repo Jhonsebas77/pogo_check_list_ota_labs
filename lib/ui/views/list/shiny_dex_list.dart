@@ -240,11 +240,15 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
               itemCount: sortedPokemon.length,
               itemBuilder: (BuildContext context, int index) {
                 PokemonModel pokemon = sortedPokemon[index];
-                return PokemonListItem(
-                  index: pokemon.id,
-                  selectPokemon: pokemon,
-                  isShiny: true,
-                );
+                if (pokemon.id == 0) {
+                  return const SizedBox();
+                } else {
+                  return PokemonListItem(
+                    index: pokemon.id,
+                    selectPokemon: pokemon,
+                    isShiny: true,
+                  );
+                }
               },
             );
           },

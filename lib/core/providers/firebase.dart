@@ -102,7 +102,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       if (snapshot.value is Map) {
         try {
           Map<String, dynamic>.from(
-            // ignore: cast_nullable_to_non_nullable, always_specify_types
+            // ignore: cast_nullable_to_non_nullable
             snapshot.value as Map,
           ).forEach((String id, dynamic pokemonGigantamax) {
             if (pokemonGigantamax is Map) {
@@ -135,7 +135,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       if (snapshot.value is Map) {
         try {
           Map<String, dynamic>.from(
-            // ignore: cast_nullable_to_non_nullable, always_specify_types
+            // ignore: cast_nullable_to_non_nullable
             snapshot.value as Map,
           ).forEach((String id, dynamic pokemonGigantamax) {
             if (pokemonGigantamax is Map) {
@@ -171,7 +171,6 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
         );
         allPokemon.add(PokemonModel.fromJSON(mapPokemon));
       }
-      allPokemon.removeAt(0);
       return allPokemon;
     } else {
       throw Exception('Could not fetch Pokémon data.');
