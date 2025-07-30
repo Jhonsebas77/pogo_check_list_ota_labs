@@ -22,6 +22,7 @@ part 'home/trainer_information.dart';
 part 'list/pokemon_list_gigantamax_item.dart';
 part 'list/pokemon_list_item.dart';
 part 'list/pokemon_list_megaevolution_item.dart';
+part 'list/simple_chip_with_icon.dart';
 part 'settings/version.dart';
 part 'shimmers/dashboard_overview_shimmer.dart';
 part 'shimmers/pokemon_gigantamax_shimmer.dart';

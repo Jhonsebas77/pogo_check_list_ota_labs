@@ -14,6 +14,8 @@ class _AllPokemonAvailableViewState
   bool displayOnlyMissingPokemon = false;
   final ScrollController _scrollController = ScrollController();
   bool isInTheEndOfTheList = false;
+  bool isFilterApply = false;
+  PokemonSortCriteria _currentSortCriteria = PokemonSortCriteria.byDex;
 
   @override
   void initState() {
@@ -46,22 +48,22 @@ class _AllPokemonAvailableViewState
     setState(() {});
   }
 
+  IconData getFilterIcon() {
+    switch (_currentSortCriteria) {
+      case PokemonSortCriteria.byName:
+        return Icons.sort_by_alpha;
+      case PokemonSortCriteria.byEvolution:
+        return Icons.upgrade;
+      case PokemonSortCriteria.byDex:
+        return Icons.numbers;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     AsyncValue<PokemonFirebaseState> firebasePokemonState = ref.watch(
       firebasePokemonProvider,
     );
-    ref.listen(firebasePokemonProvider, (
-      AsyncValue<PokemonFirebaseState>? previous,
-      AsyncValue<PokemonFirebaseState> next,
-    ) {
-      if (next is AsyncError) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error: ${next.error}')));
-      }
-    });
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -98,6 +100,7 @@ class _AllPokemonAvailableViewState
                             data:
                                 (PokemonFirebaseState state) => Text(
                                   '${state.getAlreadyCatchPokemonLength()}/${state.getTotalPokemonLength()} (${(state.getAlreadyCatchPokemonLength() / state.getTotalPokemonLength() * 100).toStringAsFixed(2)}%)',
+                                  style: const TextStyle(color: Colors.white54),
                                 ),
                             error:
                                 (Object error, StackTrace stackTrace) =>
@@ -140,7 +143,51 @@ class _AllPokemonAvailableViewState
                                 },
                               ),
                               const SizedBox(width: 16),
-                              const Icon(Icons.filter_list_rounded),
+                              PopupMenuButton<PokemonSortCriteria>(
+                                icon:
+                                    isFilterApply
+                                        ? Row(
+                                          children: <Widget>[
+                                            Icon(
+                                              getFilterIcon(),
+                                              color: Colors.white,
+                                            ),
+                                            const Icon(
+                                              Icons.filter_list_rounded,
+                                              color: Colors.white,
+                                            ),
+                                          ],
+                                        )
+                                        : const Icon(Icons.filter_list_rounded),
+                                tooltip: 'Ordenar Pokémones',
+                                color: const Color.fromRGBO(198, 73, 52, 0.9),
+                                offset: const Offset(0, 60),
+                                onSelected: (PokemonSortCriteria result) {
+                                  setState(() {
+                                    _currentSortCriteria = result;
+                                    isFilterApply = true;
+                                  });
+                                },
+                                itemBuilder:
+                                    (
+                                      BuildContext context,
+                                    ) => <PopupMenuEntry<PokemonSortCriteria>>[
+                                      const PopupMenuItem<PokemonSortCriteria>(
+                                        value: PokemonSortCriteria.byName,
+                                        child: SimpleChipWithIcon(
+                                          iconData: Icons.sort_by_alpha,
+                                          text: 'Nombre',
+                                        ),
+                                      ),
+                                      const PopupMenuItem<PokemonSortCriteria>(
+                                        value: PokemonSortCriteria.byDex,
+                                        child: SimpleChipWithIcon(
+                                          iconData: Icons.numbers,
+                                          text: 'Déx',
+                                        ),
+                                      ),
+                                    ],
+                              ),
                             ],
                           ),
                         ),
@@ -167,6 +214,24 @@ class _AllPokemonAvailableViewState
                         )
                         .toList()
                     : state.allPokemon;
+            switch (_currentSortCriteria) {
+              case PokemonSortCriteria.byName:
+                sortedPokemon.sort(
+                  (PokemonModel a, PokemonModel b) =>
+                      a.name.toLowerCase().compareTo(b.name.toLowerCase()),
+                );
+                break;
+              case PokemonSortCriteria.byDex:
+                sortedPokemon.sort(
+                  (PokemonModel a, PokemonModel b) => a.id.compareTo(b.id),
+                );
+                break;
+              case PokemonSortCriteria.byEvolution:
+                sortedPokemon.sort(
+                  (PokemonModel a, PokemonModel b) => a.name.compareTo(b.name),
+                );
+                break;
+            }
             return ListView.separated(
               separatorBuilder:
                   (BuildContext _, int __) =>
