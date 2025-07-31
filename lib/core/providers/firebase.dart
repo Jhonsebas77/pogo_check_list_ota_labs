@@ -112,7 +112,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
             if (pokemonGigantamax is Map) {
               Map<String, dynamic> _pokemonGigantamax =
                   Map<String, dynamic>.from(pokemonGigantamax);
-              PokemonModel _pokemonModel = PokemonModel.fromJSON(
+              PokemonModel _pokemonModel = PokemonModel.fromJson(
                 _pokemonGigantamax,
               );
               allGigantamaxPokemon.add(_pokemonModel);
@@ -120,13 +120,15 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
           });
           return allGigantamaxPokemon;
         } catch (e) {
-          throw Exception('Could not fetch Pokémon data.');
+          throw Exception(
+            '[A] Could not fetch Gigamax Pokémon data. | ${e.toString()}',
+          );
         }
       } else {
-        throw Exception('Could not fetch Pokémon data.');
+        throw Exception('[B] Could not fetch Gigamax Pokémon data.');
       }
     } else {
-      throw Exception('Could not fetch Pokémon data.');
+      throw Exception('[C] Could not fetch Gigamax Pokémon data.');
     }
   }
 
@@ -145,7 +147,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
             if (pokemonGigantamax is Map) {
               Map<String, dynamic> _pokemonGigantamax =
                   Map<String, dynamic>.from(pokemonGigantamax);
-              PokemonModel _pokemonModel = PokemonModel.fromJSON(
+              PokemonModel _pokemonModel = PokemonModel.fromJson(
                 _pokemonGigantamax,
               );
               allMegaEvolutionPokemon.add(_pokemonModel);
@@ -153,13 +155,15 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
           });
           return allMegaEvolutionPokemon;
         } catch (e) {
-          throw Exception('Could not fetch Pokémon data.');
+          throw Exception(
+            '[A] Could not fetch Megaevolution Pokémon data. | ${e.toString()}',
+          );
         }
       } else {
-        throw Exception('Could not fetch Pokémon data.');
+        throw Exception('[B] Could not fetch Megaevolution Pokémon data.');
       }
     } else {
-      throw Exception('Could not fetch Pokémon data.');
+      throw Exception('[C] Could not fetch Megaevolution Pokémon data.');
     }
   }
 
@@ -173,7 +177,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
         Map<String, dynamic> mapPokemon = Map<String, dynamic>.from(
           pokemon as Map,
         );
-        allPokemon.add(PokemonModel.fromJSON(mapPokemon));
+        allPokemon.add(PokemonModel.fromJson(mapPokemon));
       }
       return allPokemon;
     } else {
@@ -187,7 +191,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       Map<String, dynamic> dataMap = Map<String, dynamic>.from(
         snapshot.value! as Map,
       );
-      return TrainerModel.fromJSON(dataMap);
+      return TrainerModel.fromJson(dataMap);
     }
     return null;
   }
@@ -198,7 +202,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       Map<String, dynamic> dataMap = Map<String, dynamic>.from(
         snapshot.value! as Map,
       );
-      return ZygardeCells.fromJSON(dataMap);
+      return ZygardeCells.fromJson(dataMap);
     }
     return null;
   }

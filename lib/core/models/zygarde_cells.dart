@@ -4,15 +4,27 @@ class ZygardeCells {
   const ZygardeCells({
     required this.actualForm,
     required this.forms,
+    required this.limit,
     required this.quantity,
   });
 
-  factory ZygardeCells.fromJSON(Map<String, dynamic> json) => ZygardeCells(
-    actualForm:
-        json['actual_form'] != null ? json['actual_form'] as String : '',
-    forms: <PokemonModel>[],
-    quantity: json['quantity'] != null ? json['quantity'] as int : 0,
-  );
+  factory ZygardeCells.fromJson(Map<String, dynamic> json) {
+    List<dynamic>? rawList = json['forms'] ?? <dynamic>[];
+    return ZygardeCells(
+      actualForm:
+          json['actual_form'] != null ? json['actual_form'] as String : '',
+      forms:
+          rawList
+              ?.whereType<Map>()
+              .map(
+                (Map item) =>
+                    PokemonModel.fromJson(Map<String, dynamic>.from(item)),
+              )
+              .toList(),
+      limit: json['limit'] != null ? json['limit'] as int : 0,
+      quantity: json['quantity'] != null ? json['quantity'] as int : 0,
+    );
+  }
 
   Map<String, dynamic> toJSON() => <String, dynamic>{
     'actualForm': actualForm,
@@ -21,7 +33,8 @@ class ZygardeCells {
   };
 
   final int quantity;
-  final List<PokemonModel> forms;
+  final int limit;
+  final List<PokemonModel>? forms;
   final String actualForm;
 
   @override
@@ -32,11 +45,12 @@ class ZygardeCells {
           hashCode == other.hashCode;
 
   @override
-  int get hashCode => Object.hash(quantity, actualForm);
+  int get hashCode => Object.hash(quantity, actualForm, forms, limit);
 
   @override
   String toString() => '''ZygardeCells(
     'quantity': $quantity,
+    'limit': $limit,
     'actual_form':  $actualForm
   )''';
 }

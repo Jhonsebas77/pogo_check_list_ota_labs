@@ -79,8 +79,12 @@ class TrainerInformation extends ConsumerWidget {
           );
         },
         error:
-            (Object error, StackTrace stackTrace) =>
-                Center(child: Text('Error: $error')),
+            (Object error, StackTrace stackTrace) => SimpleErrorChip(
+              iconData: Icons.person,
+              error: error.toString(),
+              stackTrace: stackTrace,
+              text: 'Con la información del entrenador',
+            ),
         loading: TrainerInfoShimmer.new,
       ),
     );

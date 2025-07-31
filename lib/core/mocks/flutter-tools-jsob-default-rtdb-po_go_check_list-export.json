@@ -9958,38 +9958,51 @@
   },
   "zygarde_cells": {
     "actual_form": "10%",
-    "quantity": 0,
-    "forms": {
-      "10%": {
+    "forms": [
+      {
         "already_catch_shiny_version": false,
         "already_catch": true,
-        "alternative_form": "10",
+        "alternative_form": {
+          "id": "10",
+          "name": "10%",
+          "order": 1
+        },
         "available": true,
         "id": 718,
-        "name": "10%",
+        "name": "Zygarde",
         "shiny_available": false,
         "tradable": false
       },
-      "50%": {
+      {
         "already_catch_shiny_version": false,
         "already_catch": false,
-        "alternative_form": "50",
+        "alternative_form": {
+          "id": "50",
+          "name": "50%",
+          "order": 2
+        },
         "available": true,
         "id": 718,
-        "name": "50%",
+        "name": "Zygarde",
         "shiny_available": false,
         "tradable": false
       },
-      "100%": {
+      {
         "already_catch_shiny_version": false,
         "already_catch": false,
-        "alternative_form": "100",
+        "alternative_form": {
+          "id": "100",
+          "name": "100%",
+          "order": 3
+        },
         "available": true,
         "id": 718,
-        "name": "100%",
+        "name": "Zygarde",
         "shiny_available": false,
         "tradable": false
       }
-    }
+    ],
+    "limit": 300,
+    "quantity": 46
   }
 }

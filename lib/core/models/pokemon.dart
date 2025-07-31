@@ -9,21 +9,29 @@ class PokemonModel {
     required this.name,
     required this.shinyAvailable,
     required this.tradable,
+    this.alternativeForm,
   });
 
-  factory PokemonModel.fromJSON(Map<String, dynamic> json) => PokemonModel(
-    alreadyCatch:
-        json['already_catch'] != null && json['already_catch'] as bool,
-    alreadyCatchShinyVersion:
-        json['already_catch_shiny_version'] != null &&
-        json['already_catch_shiny_version'] as bool,
-    available: json['available'] != null && json['available'] as bool,
-    id: json['id'] != null ? json['id'] as int : 0,
-    name: json['name'] != null ? json['name'] as String : '',
-    shinyAvailable:
-        json['shiny_available'] != null && json['shiny_available'] as bool,
-    tradable: json['tradable'] != null && json['tradable'] as bool,
-  );
+  factory PokemonModel.fromJson(Map<String, dynamic> json) {
+    dynamic rawAlternativeForm = json['alternative_form'];
+    return PokemonModel(
+      alreadyCatch:
+          json['already_catch'] != null && json['already_catch'] as bool,
+      alreadyCatchShinyVersion:
+          json['already_catch_shiny_version'] != null &&
+          json['already_catch_shiny_version'] as bool,
+      available: json['available'] != null && json['available'] as bool,
+      id: json['id'] != null ? json['id'] as int : 0,
+      name: json['name'] != null ? json['name'] as String : '',
+      shinyAvailable:
+          json['shiny_available'] != null && json['shiny_available'] as bool,
+      tradable: json['tradable'] != null && json['tradable'] as bool,
+      alternativeForm:
+          rawAlternativeForm is Map
+              ? PokemonAlternativeForm.fromJson(Map.from(rawAlternativeForm))
+              : const PokemonAlternativeForm(),
+    );
+  }
 
   Map<String, dynamic> toJSON() => <String, dynamic>{
     'already_catch_shiny_version': alreadyCatchShinyVersion,
@@ -33,6 +41,7 @@ class PokemonModel {
     'name': name,
     'shiny_available': shinyAvailable,
     'tradable': tradable,
+    'alternative_form': alternativeForm,
   };
 
   final bool alreadyCatch;
@@ -42,6 +51,7 @@ class PokemonModel {
   final bool tradable;
   final int id;
   final String name;
+  final PokemonAlternativeForm? alternativeForm;
 
   @override
   bool operator ==(Object other) =>
@@ -59,6 +69,7 @@ class PokemonModel {
     name,
     shinyAvailable,
     tradable,
+    alternativeForm,
   );
 
   @override

@@ -3,7 +3,7 @@ part of com.pogo_check_list_ota_labs.app.models;
 class TrainerModel {
   const TrainerModel({this.level, this.nickName, this.team, this.trainerId});
 
-  factory TrainerModel.fromJSON(Map<dynamic, dynamic> json) => TrainerModel(
+  factory TrainerModel.fromJson(Map<dynamic, dynamic> json) => TrainerModel(
       level: json['level'] != null ? json['level'] as String : '',
       nickName: json['nick_name'] != null ? json['nick_name'] as String : '',
       team: json['team'] != null ? json['team'] as String : '',

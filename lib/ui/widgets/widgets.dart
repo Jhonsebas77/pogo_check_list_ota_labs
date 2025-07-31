@@ -13,6 +13,7 @@ import '../navigator.dart';
 import '../views/views.dart';
 
 part 'empty_state.dart';
+part 'errors.dart';
 part 'header/dex_header_actions.dart';
 part 'header/dex_header_leading.dart';
 part 'home/circular_progress_widget.dart';
