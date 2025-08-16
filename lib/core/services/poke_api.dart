@@ -6,7 +6,7 @@ class PokemonAPIService {
       Uri.parse('$pokemonDetailPath$pokemonId'),
     );
     if (response.statusCode == 200) {
-      return PokemonDetail.fromJSON(
+      return PokemonDetail.fromJson(
         jsonDecode(response.body) as Map<String, dynamic>,
       );
     } else {

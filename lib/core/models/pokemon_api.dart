@@ -8,7 +8,7 @@ class PokemonDetail {
     required this.types,
   });
 
-  factory PokemonDetail.fromJSON(Map<String, dynamic> json) {
+  factory PokemonDetail.fromJson(Map<String, dynamic> json) {
     String name = json['name'] as String;
     String capitalizedName = name[0].toUpperCase() + name.substring(1);
 

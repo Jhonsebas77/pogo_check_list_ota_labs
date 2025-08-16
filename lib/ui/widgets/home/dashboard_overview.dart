@@ -3,6 +3,16 @@ part of com.pogo_check_list_ota_labs.app.widgets;
 class DashboardOverview extends ConsumerWidget {
   const DashboardOverview({super.key});
 
+  String? getZygardeFormAccordToCells(ZygardeCells _zygardeCells) {
+    if (_zygardeCells.quantity >= 200) {
+      return _zygardeCells.forms?[2].alternativeForm?.id;
+    } else if (_zygardeCells.quantity >= 50) {
+      return _zygardeCells.forms?[1].alternativeForm?.id;
+    } else {
+      return _zygardeCells.forms?[0].alternativeForm?.id;
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     AsyncValue<PokemonFirebaseState> firebasePokemonState = ref.watch(
@@ -16,7 +26,7 @@ class DashboardOverview extends ConsumerWidget {
               spacing: 12,
               runSpacing: 12,
               children: <Widget>[
-                HomeCircularWidget(
+                HomeCircularProgressWidget(
                   allItemLength: state.getTotalPokemonLength().toDouble(),
                   counterItemLength:
                       state.getAlreadyCatchPokemonLength().toDouble(),
@@ -25,14 +35,14 @@ class DashboardOverview extends ConsumerWidget {
                     color: Colors.white,
                   ),
                 ),
-                HomeCircularWidget(
+                HomeCircularProgressWidget(
                   allItemLength:
                       state.getShinyAvailablePokemonLength().toDouble(),
                   counterItemLength:
                       state.getAlreadyCatchPokemonShinyLength().toDouble(),
                   centerWidget: const Text('✨', textAlign: TextAlign.start),
                 ),
-                HomeCircularWidget(
+                HomeCircularProgressWidget(
                   allItemLength:
                       state.getAllGigantamaxPokemonLength().toDouble(),
                   counterItemLength:
@@ -44,7 +54,7 @@ class DashboardOverview extends ConsumerWidget {
                     fit: BoxFit.fill,
                   ),
                 ),
-                HomeCircularWidget(
+                HomeCircularProgressWidget(
                   allItemLength:
                       state.getAllMegaEvolutionsPokemonLength().toDouble(),
                   counterItemLength:
@@ -58,11 +68,39 @@ class DashboardOverview extends ConsumerWidget {
                     fit: BoxFit.fill,
                   ),
                 ),
+                GestureDetector(
+                  onTap: () async {
+                    await showDialog<void>(
+                      context: context,
+                      builder:
+                          (BuildContext context) => ZygardeCellsModal(
+                            zygardeCells: state.zygardeCells!,
+                          ),
+                    );
+                  },
+                  onLongPress: () {
+                    CustomNavigator().push(context, const ZygardeDetails());
+                  },
+                  child: HomeLinearProgressWidget(
+                    allItemLength: state.zygardeCells?.limit ?? 0,
+                    counterItemLength: state.zygardeCells?.quantity ?? 0,
+                    centerWidget: Image.asset(
+                      'assets/pokedex_sprites/718_${getZygardeFormAccordToCells(state.zygardeCells!)}.png',
+                      height: 50,
+                      width: 50,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
               ],
             ),
         error:
-            (Object error, StackTrace stackTrace) =>
-                Center(child: Text('Error: $error')),
+            (Object error, StackTrace stackTrace) => SimpleErrorChip(
+              iconData: Icons.dashboard,
+              error: error.toString(),
+              stackTrace: stackTrace,
+              text: 'Con la información del resumen',
+            ),
         loading: DashboardOverviewShimmer.new,
       ),
     );
