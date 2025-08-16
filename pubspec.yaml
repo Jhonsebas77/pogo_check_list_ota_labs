@@ -39,12 +39,12 @@ flutter:
 flutter_native_splash:
   color: "#c64a34"
   image: assets/splash.png
-  branding: assets/ota_bg.png
+  branding: assets/branding.png
   image_dark: assets/splash.png
-  branding_dark: assets/ota_bg.png
+  branding_dark: assets/branding.png
   android_12:
     image: assets/splash.png
     color: "#c64a34"
-    branding: assets/ota_bg.png
-    branding_dark: assets/ota_bg.png
+    branding: assets/branding.png
+    branding_dark: assets/branding.png
   ios: true
