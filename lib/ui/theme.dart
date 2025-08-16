@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   colorScheme: ColorScheme.fromSeed(
-    seedColor: Colors.greenAccent,
+    seedColor: Colors.red,
     brightness: Brightness.light,
   ),
   textTheme: const TextTheme(bodyLarge: TextStyle(color: Colors.black)),
@@ -12,7 +12,7 @@ ThemeData lightTheme = ThemeData(
 
 ThemeData darkTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
-    seedColor: Colors.green,
+    seedColor: Colors.red,
     brightness: Brightness.dark,
   ),
   textTheme: const TextTheme(bodyLarge: TextStyle(color: Colors.black)),
