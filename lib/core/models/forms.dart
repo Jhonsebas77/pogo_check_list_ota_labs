@@ -10,7 +10,7 @@ class PokemonAlternativeForm {
         name: json['name'] != null ? json['name'] as String : '',
       );
 
-  Map<String, dynamic> toJSON() => <String, dynamic>{
+  Map<String, dynamic> toJson() => <String, dynamic>{
     'id': id,
     'name': name,
     'order': order,

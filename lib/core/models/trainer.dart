@@ -10,7 +10,7 @@ class TrainerModel {
       trainerId: json['trainer_id'] != null ? json['trainer_id'] as String : '',
     );
 
-  Map<String, dynamic> toJSON() => <String, dynamic>{
+  Map<String, dynamic> toJson() => <String, dynamic>{
     'level': level,
     'nick_name': nickName,
     'team': team,

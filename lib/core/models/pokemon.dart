@@ -33,7 +33,7 @@ class PokemonModel {
     );
   }
 
-  Map<String, dynamic> toJSON() => <String, dynamic>{
+  Map<String, dynamic> toJson() => <String, dynamic>{
     'already_catch_shiny_version': alreadyCatchShinyVersion,
     'already_catch': alreadyCatch,
     'available': available,
@@ -41,7 +41,7 @@ class PokemonModel {
     'name': name,
     'shiny_available': shinyAvailable,
     'tradable': tradable,
-    'alternative_form': alternativeForm,
+    if (alternativeForm != null) 'alternative_form': alternativeForm!.toJson(),
   };
 
   final bool alreadyCatch;

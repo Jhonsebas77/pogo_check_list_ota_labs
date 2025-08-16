@@ -26,9 +26,11 @@ class ZygardeCells {
     );
   }
 
-  Map<String, dynamic> toJSON() => <String, dynamic>{
-    'actualForm': actualForm,
-    'forms': forms,
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'actual_form': actualForm,
+    'forms':
+        forms?.map((PokemonModel pokemonForm) => pokemonForm.toJson()).toList(),
+    'limit': limit,
     'quantity': quantity,
   };
 
@@ -49,8 +51,6 @@ class ZygardeCells {
 
   @override
   String toString() => '''ZygardeCells(
-    'quantity': $quantity,
-    'limit': $limit,
-    'actual_form':  $actualForm
+   ${toJson()}
   )''';
 }

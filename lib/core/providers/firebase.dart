@@ -252,7 +252,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       DatabaseReference ref = _firebaseRef.child(
         '$firebasePokemonPath/$pokemonIndex',
       );
-      await ref.update(updatedPokemon.toJSON());
+      await ref.update(updatedPokemon.toJson());
       PokemonFirebaseState? currentState = state.valueOrNull;
       if (currentState != null) {
         List<PokemonModel> newPokemonList = List<PokemonModel>.from(
@@ -287,7 +287,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       DatabaseReference ref = _firebaseRef.child(
         '$firebasePokemonMegaEvolutionPath/${updatedPokemon.id}',
       );
-      await ref.update(updatedPokemon.toJSON());
+      await ref.update(updatedPokemon.toJson());
       PokemonFirebaseState? currentState = state.valueOrNull;
       if (currentState != null) {
         List<PokemonModel> newPokemonList = List<PokemonModel>.from(
@@ -322,7 +322,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       DatabaseReference ref = _firebaseRef.child(
         '$firebasePokemonGigantamaxPath/${updatedPokemon.id}',
       );
-      await ref.update(updatedPokemon.toJSON());
+      await ref.update(updatedPokemon.toJson());
       PokemonFirebaseState? currentState = state.valueOrNull;
       if (currentState != null) {
         List<PokemonModel> newPokemonList = List<PokemonModel>.from(
@@ -341,6 +341,37 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
         showErrorSnackBar(
           context,
           'Error during updateGigantamaxPokemon: $pokemonIndex | $e',
+        );
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> updateZygardeInformation(
+    ZygardeCells zygardeCells,
+    BuildContext context,
+  ) async {
+    AsyncValue<PokemonFirebaseState> previousState = state;
+    try {
+      DatabaseReference ref = _firebaseRef.child(firebaseZygardePath);
+      await ref.update(zygardeCells.toJson());
+      PokemonFirebaseState? currentState = state.valueOrNull;
+      if (currentState != null) {
+        PokemonFirebaseState newState = currentState.copyWith(
+          zygardeCells: zygardeCells,
+        );
+        state = AsyncValue<PokemonFirebaseState>.data(newState);
+        if (context.mounted) {
+          showSuccessSnackBar(context, '[Zygarde actualizado]');
+        }
+      }
+    } catch (e, s) {
+      state = previousState;
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
+      if (context.mounted) {
+        showErrorSnackBar(
+          context,
+          'Error during updateZygardeInformation: $zygardeCells | $e',
         );
       }
       rethrow;
