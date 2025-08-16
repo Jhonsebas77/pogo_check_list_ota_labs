@@ -101,8 +101,15 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                                   style: const TextStyle(color: Colors.white54),
                                 ),
                             error:
-                                (Object error, StackTrace stackTrace) =>
-                                    Center(child: Text('Error: $error')),
+                                (
+                                  Object error,
+                                  StackTrace stackTrace,
+                                ) => SimpleErrorChip(
+                                  iconData: Icons.catching_pokemon,
+                                  error: error.toString(),
+                                  stackTrace: stackTrace,
+                                  isSmall: true,
+                                ),
                             loading:
                                 () => const SimpleTextShimmer(
                                   widthShimmer: 100,
@@ -253,8 +260,12 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
             );
           },
           error:
-              (Object error, StackTrace stackTrace) =>
-                  Center(child: Text('Error: $error')),
+              (Object error, StackTrace stackTrace) => SimpleErrorChip(
+                iconData: Icons.catching_pokemon,
+                error: error.toString(),
+                stackTrace: stackTrace,
+                text: 'Con la información de los Pokemon Shiny',
+              ),
           loading: PokemonListShimmer.new,
         ),
         floatingActionButton: FloatingActionButton(

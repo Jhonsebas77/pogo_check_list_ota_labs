@@ -79,8 +79,12 @@ class _MegaEvolutionPokemonState
             );
           },
           error:
-              (Object error, StackTrace stackTrace) =>
-                  Center(child: Text('Error: $error')),
+              (Object error, StackTrace stackTrace) => SimpleErrorChip(
+                iconData: Icons.catching_pokemon,
+                error: error.toString(),
+                stackTrace: stackTrace,
+                text: 'Con la información de los Pokemon Mega',
+              ),
           loading: PokemonGigantamaxListShimmer.new,
         ),
         floatingActionButton: FloatingActionButton(

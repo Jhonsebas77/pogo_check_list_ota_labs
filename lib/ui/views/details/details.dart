@@ -37,7 +37,13 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
           loading: () => const Center(child: CircularProgressIndicator()),
 
           // State 2: The Future completed with an error
-          error: (Object error, StackTrace stackTrace) => Text('Error: $error'),
+          error:
+              (Object error, StackTrace stackTrace) => SimpleErrorChip(
+                iconData: Icons.catching_pokemon,
+                error: error.toString(),
+                stackTrace: stackTrace,
+                text: 'Con el detalle del Pokémon ${widget.pokemonId}',
+              ),
 
           // State 3: The Future completed successfully with data
           data:

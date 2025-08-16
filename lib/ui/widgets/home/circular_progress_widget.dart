@@ -1,7 +1,7 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
 
-class HomeCircularWidget extends StatelessWidget {
-  const HomeCircularWidget({
+class HomeCircularProgressWidget extends StatelessWidget {
+  const HomeCircularProgressWidget({
     required this.allItemLength,
     required this.centerWidget,
     required this.counterItemLength,

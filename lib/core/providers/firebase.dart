@@ -16,27 +16,31 @@ final Provider<FirebaseProvider> firebaseServiceProvider =
 
 class PokemonFirebaseState {
   const PokemonFirebaseState({
-    this.allPokemon = const <PokemonModel>[],
     this.allGigantamaxPokemon = const <PokemonModel>[],
     this.allMegaEvolutionPokemon = const <PokemonModel>[],
+    this.allPokemon = const <PokemonModel>[],
     this.trainerInformation,
+    this.zygardeCells,
   });
-  final List<PokemonModel> allPokemon;
   final List<PokemonModel> allGigantamaxPokemon;
   final List<PokemonModel> allMegaEvolutionPokemon;
+  final List<PokemonModel> allPokemon;
   final TrainerModel? trainerInformation;
+  final ZygardeCells? zygardeCells;
 
   PokemonFirebaseState copyWith({
     List<PokemonModel>? allPokemon,
     List<PokemonModel>? allGigantamaxPokemon,
     List<PokemonModel>? allMegaEvolutionPokemon,
     TrainerModel? trainerInformation,
+    ZygardeCells? zygardeCells,
   }) => PokemonFirebaseState(
     allPokemon: allPokemon ?? this.allPokemon,
     allGigantamaxPokemon: allGigantamaxPokemon ?? this.allGigantamaxPokemon,
     allMegaEvolutionPokemon:
         allMegaEvolutionPokemon ?? this.allMegaEvolutionPokemon,
     trainerInformation: trainerInformation ?? this.trainerInformation,
+    zygardeCells: zygardeCells ?? this.zygardeCells,
   );
 
   int getTotalPokemonLength() =>
@@ -108,7 +112,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
             if (pokemonGigantamax is Map) {
               Map<String, dynamic> _pokemonGigantamax =
                   Map<String, dynamic>.from(pokemonGigantamax);
-              PokemonModel _pokemonModel = PokemonModel.fromJSON(
+              PokemonModel _pokemonModel = PokemonModel.fromJson(
                 _pokemonGigantamax,
               );
               allGigantamaxPokemon.add(_pokemonModel);
@@ -116,13 +120,15 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
           });
           return allGigantamaxPokemon;
         } catch (e) {
-          throw Exception('Could not fetch Pokémon data.');
+          throw Exception(
+            '[A] Could not fetch Gigamax Pokémon data. | ${e.toString()}',
+          );
         }
       } else {
-        throw Exception('Could not fetch Pokémon data.');
+        throw Exception('[B] Could not fetch Gigamax Pokémon data.');
       }
     } else {
-      throw Exception('Could not fetch Pokémon data.');
+      throw Exception('[C] Could not fetch Gigamax Pokémon data.');
     }
   }
 
@@ -141,7 +147,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
             if (pokemonGigantamax is Map) {
               Map<String, dynamic> _pokemonGigantamax =
                   Map<String, dynamic>.from(pokemonGigantamax);
-              PokemonModel _pokemonModel = PokemonModel.fromJSON(
+              PokemonModel _pokemonModel = PokemonModel.fromJson(
                 _pokemonGigantamax,
               );
               allMegaEvolutionPokemon.add(_pokemonModel);
@@ -149,13 +155,15 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
           });
           return allMegaEvolutionPokemon;
         } catch (e) {
-          throw Exception('Could not fetch Pokémon data.');
+          throw Exception(
+            '[A] Could not fetch Megaevolution Pokémon data. | ${e.toString()}',
+          );
         }
       } else {
-        throw Exception('Could not fetch Pokémon data.');
+        throw Exception('[B] Could not fetch Megaevolution Pokémon data.');
       }
     } else {
-      throw Exception('Could not fetch Pokémon data.');
+      throw Exception('[C] Could not fetch Megaevolution Pokémon data.');
     }
   }
 
@@ -169,7 +177,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
         Map<String, dynamic> mapPokemon = Map<String, dynamic>.from(
           pokemon as Map,
         );
-        allPokemon.add(PokemonModel.fromJSON(mapPokemon));
+        allPokemon.add(PokemonModel.fromJson(mapPokemon));
       }
       return allPokemon;
     } else {
@@ -183,7 +191,18 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       Map<String, dynamic> dataMap = Map<String, dynamic>.from(
         snapshot.value! as Map,
       );
-      return TrainerModel.fromJSON(dataMap);
+      return TrainerModel.fromJson(dataMap);
+    }
+    return null;
+  }
+
+  Future<ZygardeCells?> _fetchZygardeData() async {
+    DataSnapshot snapshot = await _firebaseRef.child(firebaseZygardePath).get();
+    if (snapshot.exists && snapshot.value != null && snapshot.value is Map) {
+      Map<String, dynamic> dataMap = Map<String, dynamic>.from(
+        snapshot.value! as Map,
+      );
+      return ZygardeCells.fromJson(dataMap);
     }
     return null;
   }
@@ -195,6 +214,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       _fetchGigamaxPokemonList(),
       _fetchMegaEvolutionPokemonList(),
       _fetchTrainerData(),
+      _fetchZygardeData(),
     ]);
     List<PokemonModel> pokemonList = results[0]! as List<PokemonModel>;
     List<PokemonModel> gigantamaxPokemonList =
@@ -202,11 +222,13 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     List<PokemonModel> megaEvolutionPokemonList =
         results[2]! as List<PokemonModel>;
     TrainerModel? trainerInfo = results[3] as TrainerModel?;
+    ZygardeCells? zygardeInfo = results[4] as ZygardeCells?;
     return PokemonFirebaseState(
       allGigantamaxPokemon: gigantamaxPokemonList,
+      allMegaEvolutionPokemon: megaEvolutionPokemonList,
       allPokemon: pokemonList,
       trainerInformation: trainerInfo,
-      allMegaEvolutionPokemon: megaEvolutionPokemonList,
+      zygardeCells: zygardeInfo,
     );
   }
 
@@ -230,7 +252,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       DatabaseReference ref = _firebaseRef.child(
         '$firebasePokemonPath/$pokemonIndex',
       );
-      await ref.update(updatedPokemon.toJSON());
+      await ref.update(updatedPokemon.toJson());
       PokemonFirebaseState? currentState = state.valueOrNull;
       if (currentState != null) {
         List<PokemonModel> newPokemonList = List<PokemonModel>.from(
@@ -265,7 +287,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       DatabaseReference ref = _firebaseRef.child(
         '$firebasePokemonMegaEvolutionPath/${updatedPokemon.id}',
       );
-      await ref.update(updatedPokemon.toJSON());
+      await ref.update(updatedPokemon.toJson());
       PokemonFirebaseState? currentState = state.valueOrNull;
       if (currentState != null) {
         List<PokemonModel> newPokemonList = List<PokemonModel>.from(
@@ -300,7 +322,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       DatabaseReference ref = _firebaseRef.child(
         '$firebasePokemonGigantamaxPath/${updatedPokemon.id}',
       );
-      await ref.update(updatedPokemon.toJSON());
+      await ref.update(updatedPokemon.toJson());
       PokemonFirebaseState? currentState = state.valueOrNull;
       if (currentState != null) {
         List<PokemonModel> newPokemonList = List<PokemonModel>.from(
@@ -319,6 +341,37 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
         showErrorSnackBar(
           context,
           'Error during updateGigantamaxPokemon: $pokemonIndex | $e',
+        );
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> updateZygardeInformation(
+    ZygardeCells zygardeCells,
+    BuildContext context,
+  ) async {
+    AsyncValue<PokemonFirebaseState> previousState = state;
+    try {
+      DatabaseReference ref = _firebaseRef.child(firebaseZygardePath);
+      await ref.update(zygardeCells.toJson());
+      PokemonFirebaseState? currentState = state.valueOrNull;
+      if (currentState != null) {
+        PokemonFirebaseState newState = currentState.copyWith(
+          zygardeCells: zygardeCells,
+        );
+        state = AsyncValue<PokemonFirebaseState>.data(newState);
+        if (context.mounted) {
+          showSuccessSnackBar(context, '[Zygarde actualizado]');
+        }
+      }
+    } catch (e, s) {
+      state = previousState;
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
+      if (context.mounted) {
+        showErrorSnackBar(
+          context,
+          'Error during updateZygardeInformation: $zygardeCells | $e',
         );
       }
       rethrow;
