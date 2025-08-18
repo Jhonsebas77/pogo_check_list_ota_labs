@@ -31,6 +31,7 @@ class _MegaEvolutionPokemonState
     AsyncValue<PokemonFirebaseState> firebasePokemonState = ref.watch(
       firebasePokemonProvider,
     );
+    double itemWidth = 150;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -51,41 +52,53 @@ class _MegaEvolutionPokemonState
           elevation: 0,
         ),
         backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
-        body: firebasePokemonState.when(
-          data: (PokemonFirebaseState state) {
-            if (state.allMegaEvolutionPokemon.isEmpty) {
-              return const EmptyState();
-            }
-            List<PokemonModel> sortedPokemon =
-                state.allMegaEvolutionPokemon.where((PokemonModel pokemon) {
-                    if (displayOnlyMissingPokemon) {
-                      return !pokemon.alreadyCatch;
-                    } else {
-                      return pokemon.id != 0;
-                    }
-                  }).toList()
-                  ..sort(
-                    (PokemonModel a, PokemonModel b) => a.id.compareTo(b.id),
-                  );
-            return GridView.count(
-              crossAxisCount: 3,
-              children: List<PokemonListMegaEvolutionItem>.generate(
-                sortedPokemon.length,
-                (int index) => PokemonListMegaEvolutionItem(
-                  index: index,
-                  selectPokemon: sortedPokemon[index],
-                ),
-              ),
-            );
-          },
-          error:
-              (Object error, StackTrace stackTrace) => SimpleErrorChip(
-                iconData: Icons.catching_pokemon,
-                error: error.toString(),
-                stackTrace: stackTrace,
-                text: 'Con la información de los Pokemon Mega',
-              ),
-          loading: PokemonGigantamaxListShimmer.new,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: firebasePokemonState.when(
+              data: (PokemonFirebaseState state) {
+                if (state.allMegaEvolutionPokemon.isEmpty) {
+                  return const EmptyState();
+                }
+                List<PokemonModel> sortedPokemon =
+                    state.allMegaEvolutionPokemon.where((PokemonModel pokemon) {
+                        if (displayOnlyMissingPokemon) {
+                          return !pokemon.alreadyCatch;
+                        } else {
+                          return pokemon.id != 0;
+                        }
+                      }).toList()
+                      ..sort(
+                        (PokemonModel a, PokemonModel b) =>
+                            a.id.compareTo(b.id),
+                      );
+                return SingleChildScrollView(
+                  child: Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: List<Widget>.generate(
+                      sortedPokemon.length,
+                      (int index) => SizedBox(
+                        width: itemWidth,
+                        child: PokemonListMegaEvolutionItem(
+                          index: index,
+                          selectPokemon: sortedPokemon[index],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              error:
+                  (Object error, StackTrace stackTrace) => SimpleErrorChip(
+                    iconData: Icons.catching_pokemon,
+                    error: error.toString(),
+                    stackTrace: stackTrace,
+                    text: 'Con la información de los Pokemon Mega',
+                  ),
+              loading: PokemonGigantamaxListShimmer.new,
+            ),
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {

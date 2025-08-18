@@ -40,84 +40,79 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
         DetailsScreen(pokemonId: selectPokemon.id),
       );
     },
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-      child: Container(
-        padding: const EdgeInsets.only(left: 12, top: 8, bottom: 8, right: 12),
-        decoration: BoxDecoration(
-          color: selectPokemon.alreadyCatch ? Colors.white12 : Colors.black12,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(height: 4),
-            Stack(
-              children: <Widget>[
-                if (selectPokemon.alreadyCatch)
-                  Image.asset(
-                    'assets/gigamax.png',
-                    height: 80,
-                    width: 80,
-                    fit: BoxFit.fill,
-                  )
-                else
-                  Image.asset(
-                    'assets/bg_holder_pokemon.png',
-                    height: 80,
-                    width: 80,
-                    fit: BoxFit.fill,
-                  ),
-                if (selectPokemon.available)
-                  Image.asset(
+    child: DecoratedBox(
+      decoration: BoxDecoration(
+        color: selectPokemon.alreadyCatch ? Colors.white12 : Colors.black12,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const SizedBox(height: 16),
+          Stack(
+            children: <Widget>[
+              if (selectPokemon.alreadyCatch)
+                Image.asset(
+                  'assets/gigamax.png',
+                  height: 80,
+                  width: 80,
+                  fit: BoxFit.fill,
+                )
+              else
+                Image.asset(
+                  'assets/bg_holder_pokemon.png',
+                  height: 80,
+                  width: 80,
+                  fit: BoxFit.fill,
+                ),
+              if (selectPokemon.available)
+                Image.asset(
+                  'assets/pokedex_gigantamax/${selectPokemon.id}.png',
+                  height: 80,
+                  width: 80,
+                  fit: BoxFit.fill,
+                )
+              else
+                Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  enabled: false,
+                  child: Image.asset(
                     'assets/pokedex_gigantamax/${selectPokemon.id}.png',
                     height: 80,
                     width: 80,
                     fit: BoxFit.fill,
-                  )
-                else
-                  Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    enabled: false,
-                    child: Image.asset(
-                      'assets/pokedex_gigantamax/${selectPokemon.id}.png',
-                      height: 80,
-                      width: 80,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-              ],
-            ),
-            const SizedBox(width: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  width: 200,
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    selectPokemon.name,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
                   ),
                 ),
-                Text(
-                  paddingDexNumber(dexNumber: selectPokemon.id),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              FittedBox(
+                child: Text(
+                  textAlign: TextAlign.center,
+                  selectPokemon.name,
                   style: const TextStyle(
-                    fontSize: 10,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+              Text(
+                paddingDexNumber(dexNumber: selectPokemon.id),
+                style: const TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+        ],
       ),
     ),
   );

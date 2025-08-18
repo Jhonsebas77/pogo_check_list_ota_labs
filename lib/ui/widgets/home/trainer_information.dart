@@ -14,6 +14,7 @@ class TrainerInformation extends ConsumerWidget {
         data: (PokemonFirebaseState state) {
           TrainerModel? _trainerInfo = state.trainerInformation;
           return Container(
+            width: 400,
             padding: const EdgeInsets.only(
               left: 12,
               top: 8,
@@ -25,35 +26,43 @@ class TrainerInformation extends ConsumerWidget {
               borderRadius: BorderRadius.circular(50),
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Image.asset(
-                    'assets/team_${_trainerInfo?.team ?? ''}.png',
-                    height: 80,
-                    width: 80,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: <Widget>[
-                    Text(
-                      _trainerInfo?.nickName ?? '',
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Image.asset(
+                        'assets/team_${_trainerInfo?.team ?? ''}.png',
+                        height: 80,
+                        width: 80,
+                        fit: BoxFit.fill,
                       ),
                     ),
-                    Text(
-                      'Lv. ${_trainerInfo?.level}',
-                      style: const TextStyle(fontSize: 16, color: Colors.white),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        FittedBox(
+                          child: Text(
+                            _trainerInfo?.nickName ?? '',
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'Lv. ${_trainerInfo?.level}',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                const SizedBox(width: 24),
                 GestureDetector(
                   onTap: () {
                     Clipboard.setData(
