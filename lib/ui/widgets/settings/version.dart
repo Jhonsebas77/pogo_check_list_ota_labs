@@ -1,7 +1,31 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
 
-class VersionWidget extends StatelessWidget {
+class VersionWidget extends StatefulWidget {
   const VersionWidget({super.key});
+
+  @override
+  State<VersionWidget> createState() => _VersionWidgetState();
+}
+
+class _VersionWidgetState extends State<VersionWidget> {
+  String _appName = '...';
+  String _version = '...';
+  String _buildNumber = '...';
+
+  @override
+  void initState() {
+    super.initState();
+    _initPackageInfo();
+  }
+
+  Future<void> _initPackageInfo() async {
+    PackageInfo info = await PackageInfo.fromPlatform();
+    setState(() {
+      _appName = info.appName;
+      _version = info.version;
+      _buildNumber = info.buildNumber;
+    });
+  }
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -15,14 +39,15 @@ class VersionWidget extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
+          SelectableText(_appName, textAlign: TextAlign.center),
           Image.asset(
             'assets/ota_bg.png',
             height: 50,
             width: 50,
             fit: BoxFit.fill,
           ),
-          const SelectableText(
-            'By Ota_Labs V.1.0.0+18',
+          SelectableText(
+            'By Ota_Labs $_version($_buildNumber)',
             textAlign: TextAlign.center,
           ),
         ],
