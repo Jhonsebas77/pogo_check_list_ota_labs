@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) => DefaultTabController(
-    length: 3,
+    length: 4,
     child: SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -68,7 +68,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
         body: const TabBarView(
-          children: <Widget>[HomePoGoView(), PokedexView(), SettingsView()],
+          children: <Widget>[
+            HomePoGoView(),
+            PokedexView(),
+            WantedView(),
+            SettingsView(),
+          ],
         ),
         bottomNavigationBar: const TabBar(
           indicatorColor: Colors.white,
@@ -77,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
           tabs: <Widget>[
             Tab(icon: Icon(Icons.home), text: 'Inicio'),
             Tab(icon: Icon(Icons.catching_pokemon), text: 'Pokedex'),
+            Tab(icon: Icon(Icons.search), text: 'Buscando'),
             Tab(icon: Icon(Icons.settings), text: 'Ajustes'),
           ],
         ),

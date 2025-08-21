@@ -15,6 +15,7 @@ part 'details/details.dart';
 part 'home/home.dart';
 part 'home/pokedex_view.dart';
 part 'home/settings.dart';
+part 'home/wanted.dart';
 part 'list/dex_list.dart';
 part 'list/gigantamax_dex_list.dart';
 part 'list/megaevolution_dex_list.dart';
