@@ -4,11 +4,25 @@ class PokemonTradeCard extends StatelessWidget {
   const PokemonTradeCard({
     required this.pokemonId,
     required this.pokemonName,
+    this.wantShiny = false,
+    this.wantSpecialBackground = false,
+    this.wantAdventureEffect = false,
+    this.wantDynamax = false,
+    this.wantGigantamax = false,
+    this.wantLucky = false,
+    this.alreadyCaught = false,
     super.key,
   });
 
   final int pokemonId;
   final String pokemonName;
+  final bool? wantShiny;
+  final bool? wantSpecialBackground;
+  final bool? wantAdventureEffect;
+  final bool? wantDynamax;
+  final bool? wantGigantamax;
+  final bool? wantLucky;
+  final bool? alreadyCaught;
 
   String get _dex => paddingDexNumber(dexNumber: pokemonId).substring(1);
 
@@ -38,27 +52,64 @@ class PokemonTradeCard extends StatelessWidget {
                     width: 80,
                     fit: BoxFit.fill,
                   ),
-                  Image.asset(
-                    'assets/pokedex_sprites/$pokemonId.png',
-                    height: 80,
-                    width: 80,
-                  ),
+                  if (wantShiny ?? false)
+                    Image.asset(
+                      'assets/pokedex_sprites_shiny/$pokemonId.png',
+                      height: 80,
+                      width: 80,
+                    )
+                  else
+                    Image.asset(
+                      'assets/pokedex_sprites/$pokemonId.png',
+                      height: 80,
+                      width: 80,
+                    ),
                 ],
               ),
               const SizedBox(width: 8),
               const SizedBox(height: 8),
-              const Expanded(
+              Expanded(
                 child: Center(
                   child: Wrap(
                     spacing: 2,
                     runSpacing: 4,
                     children: <Widget>[
-                      AvatarImage(label: 'Shiny'),
-                      AvatarImage(label: 'Fondo especial'),
-                      AvatarImage(label: 'Dinamax'),
-                      AvatarImage(label: 'Gigantamax'),
-                      AvatarImage(label: 'Efecto de aventura'),
-                      AvatarImage(label: 'Suerte'),
+                      if (wantShiny ?? false)
+                        Image.asset(
+                          'assets/icon_shiny.png',
+                          height: 40,
+                          width: 40,
+                        ),
+                      if (wantSpecialBackground ?? false)
+                        Image.asset(
+                          'assets/icon_special_background.png',
+                          height: 40,
+                          width: 40,
+                        ),
+                      if (wantDynamax ?? false)
+                        Image.asset(
+                          'assets/icon_dinamax.png',
+                          height: 40,
+                          width: 40,
+                        ),
+                      if (wantGigantamax ?? false)
+                        Image.asset(
+                          'assets/icon_gigamax.png',
+                          height: 40,
+                          width: 40,
+                        ),
+                      if (wantAdventureEffect ?? false)
+                        Image.asset(
+                          'assets/icon_adventure_effect.png',
+                          height: 40,
+                          width: 40,
+                        ),
+                      if (wantLucky ?? false)
+                        Image.asset(
+                          'assets/icon_lucky.png',
+                          height: 40,
+                          width: 40,
+                        ),
                     ],
                   ),
                 ),
@@ -66,7 +117,6 @@ class PokemonTradeCard extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 8),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
@@ -86,14 +136,12 @@ class PokemonTradeCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
                 ),
               ),
-              const Icon(
-                Icons.catching_pokemon,
-                color: Color(0xFFF37A24),
-                size: 18,
-              ),
+              if (alreadyCaught ?? false)
+                const Icon(Icons.catching_pokemon, color: Colors.red, size: 18),
             ],
           ),
         ),
