@@ -37,4 +37,6 @@ part 'shimmers/pokemon_list_shimmer.dart';
 part 'shimmers/simple_text_shimmer.dart';
 part 'shimmers/trainer_info_shimmer.dart';
 part 'snackbar.dart';
+part 'trade/offer_pokemon.dart';
 part 'trade/pokemon_trade_card.dart';
+part 'trade/wanted_pokemon.dart';
