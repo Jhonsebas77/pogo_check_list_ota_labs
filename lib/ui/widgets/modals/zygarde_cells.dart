@@ -56,11 +56,26 @@ class _ZygardeCellsModalState extends ConsumerState<ZygardeCellsModal> {
               Navigator.of(context).pop();
             }
           },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.greenAccent[400],
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            elevation: 0,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              const Text('Actualizar '),
+              const Text(
+                'Actualizar ',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
               Image.asset(
                 'assets/zygarde_cell.png',
                 height: 20,
@@ -85,6 +100,7 @@ class _ZygardeCellsModalState extends ConsumerState<ZygardeCellsModal> {
                 color: Colors.white,
                 splashRadius: 10,
               ),
+              const SizedBox(width: 4),
               Container(
                 padding: const EdgeInsets.only(
                   left: 12,
@@ -111,6 +127,7 @@ class _ZygardeCellsModalState extends ConsumerState<ZygardeCellsModal> {
                   ],
                 ),
               ),
+              const SizedBox(width: 4),
               IconButton(
                 onPressed: minusZygardeCells,
                 icon: const Icon(Icons.exposure_minus_1),

@@ -16,7 +16,6 @@ class ModalBase extends StatelessWidget {
     this.childrenPadding,
     this.childrenGap,
     this.button,
-    this.footerDividerThickness = 1,
     this.listViewController,
     this.isDismissible = true,
     this.onPressedExitIcon,
@@ -39,7 +38,6 @@ class ModalBase extends StatelessWidget {
   final EdgeInsetsGeometry? childrenPadding;
   final double? childrenGap;
   final Widget? button;
-  final double footerDividerThickness;
   final ScrollController? listViewController;
   final bool isDismissible;
   final void Function()? onPressedExitIcon;
@@ -83,79 +81,114 @@ class ModalBase extends StatelessWidget {
             maxHeight: MediaQuery.of(context).size.height * maxHeightFactor,
             maxWidth: getMaxWidth(context),
           ),
-          child: DecoratedBox(
+          child: Container(
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: const Color.fromRGBO(198, 73, 52, 1),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                if (showExitIcon) ...<Widget>[
-                  const SizedBox(height: 8),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        IconButton(
-                          onPressed:
-                              onPressedExitIconOverride ??
-                              () {
-                                Navigator.of(context).pop();
-                                onPressedExitIcon?.call();
-                              },
-                          icon: const Icon(Icons.close, color: Colors.white,),
-                        ),
-                      ],
-                    ),
-                  ),
-                ] else
-                  const SizedBox(height: 16),
-                Flexible(
-                  child: ScrollConfiguration(
-                    behavior: const ScrollBehavior().copyWith(
-                      overscroll: false,
-                    ),
-                    child: RawScrollbar(
-                      controller: listViewController,
-                      crossAxisMargin: 4,
-                      thumbColor: Colors.black26,
-                      trackColor: Colors.transparent,
-                      thickness: showScrollbar ? 4 : 0,
-                      radius: showScrollbar ? const Radius.circular(2) : null,
-                      child: ListView(
-                        shrinkWrap: true,
-                        primary: true,
-                        controller: listViewController,
-                        padding: childrenPadding,
-                        children: <Widget>[
-                          if (title != null)
-                            Text(
-                              title!,
-                              style: titleStyle,
-                              textAlign:
-                                  centerTitle
-                                      ? TextAlign.center
-                                      : TextAlign.start,
-                            ),
-                          if (children != null)
-                            ...children!.mapIndexed(
-                              (int index, Widget child) => Padding(
-                                padding: const EdgeInsets.only(top: 16),
-                                child: child,
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                if (button != null) ...<Widget>[
-                  Divider(thickness: footerDividerThickness),
-                  button!,
+              borderRadius: BorderRadius.circular(20),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[
+                  Colors.white.withValues(alpha: 0.2),
+                  Colors.white.withValues(alpha: 0.1),
                 ],
-              ],
+              ),
+            ),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                gradient: const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    Color.fromRGBO(198, 73, 52, 1),
+                    Color.fromRGBO(198, 73, 52, 1),
+                  ],
+                ),
+              ),
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 8,
+                    left: 8,
+                    child: Icon(
+                      Icons.catching_pokemon,
+                      color: Colors.white.withValues(alpha: 0.3),
+                      size: 28,
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      if (showExitIcon) ...<Widget>[
+                        const SizedBox(height: 8),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              IconButton(
+                                onPressed:
+                                    onPressedExitIconOverride ??
+                                    () {
+                                      Navigator.of(context).pop();
+                                      onPressedExitIcon?.call();
+                                    },
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ] else
+                        const SizedBox(height: 16),
+                      Flexible(
+                        child: ScrollConfiguration(
+                          behavior: const ScrollBehavior().copyWith(
+                            overscroll: false,
+                          ),
+                          child: RawScrollbar(
+                            controller: listViewController,
+                            crossAxisMargin: 4,
+                            thumbColor: Colors.black26,
+                            trackColor: Colors.transparent,
+                            thickness: showScrollbar ? 4 : 0,
+                            radius:
+                                showScrollbar ? const Radius.circular(2) : null,
+                            child: ListView(
+                              shrinkWrap: true,
+                              primary: true,
+                              controller: listViewController,
+                              padding: childrenPadding,
+                              children: <Widget>[
+                                if (title != null)
+                                  Text(
+                                    title!,
+                                    style: titleStyle,
+                                    textAlign:
+                                        centerTitle
+                                            ? TextAlign.center
+                                            : TextAlign.start,
+                                  ),
+                                if (children != null)
+                                  ...children!.mapIndexed(
+                                    (int index, Widget child) => Padding(
+                                      padding: const EdgeInsets.only(top: 16),
+                                      child: child,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      if (button != null) button!,
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
