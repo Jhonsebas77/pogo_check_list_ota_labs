@@ -17,21 +17,21 @@ class SettingsView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8),
               child: Material(
-                color: Colors.white,
+                color: Colors.black12,
                 elevation: 1,
                 shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Colors.white, width: 3),
+                  side: const BorderSide(color: Colors.black12, width: 3),
                   borderRadius: BorderRadiusGeometry.circular(12),
                 ),
                 child: ListTile(
                   title: const Text(
                     'Intercambios',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: Colors.white),
                   ),
-                  leading: const Icon(Icons.search, color: Colors.black),
+                  leading: const Icon(Icons.search, color: Colors.white),
                   trailing: const Icon(
                     Icons.arrow_forward_ios_rounded,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                   onTap: () {
                     CustomNavigator().push(context, const WantedView());

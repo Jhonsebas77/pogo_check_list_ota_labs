@@ -3,6 +3,12 @@ part of com.pogo_check_list_ota_labs.app.views;
 class WantedView extends StatelessWidget {
   const WantedView({super.key});
 
+  Future<PokemonTrade> loadTradeData() async {
+    String jsonString = await rootBundle.loadString('assets/mocks/trade.json');
+    Map<String, dynamic>? jsonMap = jsonDecode(jsonString);
+    return PokemonTrade.fromJson(jsonMap!);
+  }
+
   @override
   Widget build(BuildContext context) => DefaultTabController(
     length: 2,
@@ -52,8 +58,31 @@ class WantedView extends StatelessWidget {
                 expandedHeight: 150,
               ),
             ],
-        body: const TabBarView(
-          children: <Widget>[WantedPokemon(), OfferPokemon()],
+        body: FutureBuilder<PokemonTrade>(
+          future: loadTradeData(),
+          builder: (
+            BuildContext context,
+            AsyncSnapshot<PokemonTrade> asyncSnapshot,
+          ) {
+            if (asyncSnapshot.hasError) {
+              return Center(
+                child: Text('Error loading data: ${asyncSnapshot.error}'),
+              );
+            }
+            if (asyncSnapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (asyncSnapshot.hasData) {
+              PokemonTrade tradeData = asyncSnapshot.data!;
+              return TabBarView(
+                children: <Widget>[
+                  PokemonTradeList(pokemonList: tradeData.wantedPokemon),
+                  PokemonTradeList(pokemonList: tradeData.offerPokemon),
+                ],
+              );
+            }
+            return const Center(child: Text('No data available.'));
+          },
         ),
       ),
     ),
