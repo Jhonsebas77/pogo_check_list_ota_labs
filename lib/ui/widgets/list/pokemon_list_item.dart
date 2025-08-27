@@ -16,12 +16,6 @@ class PokemonListItem extends ConsumerWidget {
   final bool isShiny;
   final bool isAlreadyCaught;
 
-  // bool isAlreadyCaught =
-  //       (isShiny ?? false)
-  //           ? (_alreadyCatchShinyVersion ?? false)
-  //           : (_alreadyCatch ?? false);
-  //   Color colorPokeball = isAlreadyCaught ? Colors.black : Colors.white;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Color colorPokeball = isAlreadyCaught ? Colors.black : Colors.white;
@@ -173,27 +167,53 @@ class PokemonListItem extends ConsumerWidget {
                   child: Row(
                     children: <Widget>[
                       if (!selectPokemon.tradable)
-                        Image.asset(
-                          'assets/transfer_blocked.png',
-                          height: 50,
-                          width: 50,
-                          fit: BoxFit.fill,
+                        const Stack(
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundColor: Color(0xFFA0E1FF),
+                              child: Icon(
+                                Icons.wifi_protected_setup_sharp,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Icon(Icons.block, color: Colors.red, size: 40),
+                          ],
                         ),
                       if (!selectPokemon.shinyAvailable)
-                        Image.asset(
-                          'assets/shiny_blocked.png',
-                          height: 50,
-                          width: 50,
-                          fit: BoxFit.fill,
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Stack(
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/icon_shiny.png',
+                                height: 40,
+                                width: 40,
+                              ),
+                              const Icon(
+                                Icons.block,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                            ],
+                          ),
                         ),
                       if (isShiny
                           ? selectPokemon.alreadyCatchShinyVersion
                           : selectPokemon.alreadyCatch)
-                        Image.asset(
-                          'assets/catch_pokemon.png',
-                          height: 50,
-                          width: 50,
-                          fit: BoxFit.fill,
+                        const Stack(
+                          alignment: AlignmentDirectional.topEnd,
+                          children: <Widget>[
+                            Icon(
+                              Icons.catching_pokemon,
+                              color: Colors.white,
+                              size: 50,
+                            ),
+                            Icon(
+                              Icons.check_circle,
+                              color: Colors.lightGreen,
+                              size: 30,
+                            ),
+                          ],
                         )
                       else if (selectPokemon.available)
                         Icon(
@@ -205,10 +225,16 @@ class PokemonListItem extends ConsumerWidget {
                   ),
                 )
               else
-                const Icon(
-                  Icons.catching_pokemon,
-                  color: Colors.blueGrey,
-                  size: 50,
+                const Stack(
+                  alignment: AlignmentDirectional.topEnd,
+                  children: <Widget>[
+                    Icon(
+                      Icons.catching_pokemon,
+                      color: Colors.blueGrey,
+                      size: 50,
+                    ),
+                    Icon(Icons.block, color: Colors.red, size: 30),
+                  ],
                 ),
             ],
           ),

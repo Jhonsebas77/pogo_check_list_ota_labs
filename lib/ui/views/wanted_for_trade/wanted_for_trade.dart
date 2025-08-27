@@ -101,10 +101,10 @@ class WantedForTradeView extends StatelessWidget {
         child: Tooltip(
           verticalOffset: 24,
           margin: const EdgeInsets.symmetric(horizontal: 16),
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(32),
-            color: const Color.fromRGBO(198, 73, 52, 1),
+            borderRadius: BorderRadius.circular(16),
+            color: Colors.black45,
           ),
           showDuration: const Duration(seconds: 5),
           preferBelow: true,

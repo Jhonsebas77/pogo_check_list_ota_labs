@@ -5,6 +5,10 @@ class InformationTradeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(16),
+      color: const Color.fromRGBO(198, 73, 52, 1),
+    ),
     constraints: const BoxConstraints(maxWidth: 300),
     padding: const EdgeInsets.all(8),
     child: Column(
