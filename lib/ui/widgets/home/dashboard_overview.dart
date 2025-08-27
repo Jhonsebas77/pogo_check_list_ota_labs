@@ -26,46 +26,121 @@ class DashboardOverview extends ConsumerWidget {
               spacing: 12,
               runSpacing: 12,
               children: <Widget>[
-                HomeCircularProgressWidget(
-                  allItemLength: state.getTotalPokemonLength().toDouble(),
-                  counterItemLength:
-                      state.getAlreadyCatchPokemonLength().toDouble(),
-                  centerWidget: const Icon(
-                    Icons.catching_pokemon,
-                    color: Colors.white,
+                GestureDetector(
+                  onTap: () async {
+                    await showDialog<void>(
+                      context: context,
+                      builder:
+                          (BuildContext context) => CountOverviewModal(
+                            title: 'Capturados',
+                            allItemLength:
+                                state.getTotalPokemonLength().toDouble(),
+                            counterItemLength:
+                                state.getAlreadyCatchPokemonLength().toDouble(),
+                          ),
+                    );
+                  },
+                  child: HomeCircularProgressWidget(
+                    allItemLength: state.getTotalPokemonLength().toDouble(),
+                    counterItemLength:
+                        state.getAlreadyCatchPokemonLength().toDouble(),
+                    centerWidget: const Icon(
+                      Icons.catching_pokemon,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                HomeCircularProgressWidget(
-                  allItemLength:
-                      state.getShinyAvailablePokemonLength().toDouble(),
-                  counterItemLength:
-                      state.getAlreadyCatchPokemonShinyLength().toDouble(),
-                  centerWidget: const Text('✨', textAlign: TextAlign.start),
-                ),
-                HomeCircularProgressWidget(
-                  allItemLength:
-                      state.getAllGigantamaxPokemonLength().toDouble(),
-                  counterItemLength:
-                      state.getAlreadyCatchGigantamaxPokemonLength().toDouble(),
-                  centerWidget: Image.asset(
-                    'assets/gigamax.png',
-                    height: 30,
-                    width: 30,
-                    fit: BoxFit.fill,
+                GestureDetector(
+                  onTap: () async {
+                    await showDialog<void>(
+                      context: context,
+                      builder:
+                          (BuildContext context) => CountOverviewModal(
+                            title: 'Shiny capturados',
+                            allItemLength:
+                                state
+                                    .getShinyAvailablePokemonLength()
+                                    .toDouble(),
+                            counterItemLength:
+                                state
+                                    .getAlreadyCatchPokemonShinyLength()
+                                    .toDouble(),
+                          ),
+                    );
+                  },
+                  child: HomeCircularProgressWidget(
+                    allItemLength:
+                        state.getShinyAvailablePokemonLength().toDouble(),
+                    counterItemLength:
+                        state.getAlreadyCatchPokemonShinyLength().toDouble(),
+                    centerWidget: const Text('✨', textAlign: TextAlign.start),
                   ),
                 ),
-                HomeCircularProgressWidget(
-                  allItemLength:
-                      state.getAllMegaEvolutionsPokemonLength().toDouble(),
-                  counterItemLength:
-                      state
-                          .getAlreadyCatchMegaEvolutionsPokemonLength()
-                          .toDouble(),
-                  centerWidget: Image.asset(
-                    'assets/icon_mega.png',
-                    height: 30,
-                    width: 30,
-                    fit: BoxFit.fill,
+                GestureDetector(
+                  onTap: () async {
+                    await showDialog<void>(
+                      context: context,
+                      builder:
+                          (BuildContext context) => CountOverviewModal(
+                            title: 'Formas Gigantamax capturados',
+                            allItemLength:
+                                state
+                                    .getAllGigantamaxPokemonLength()
+                                    .toDouble(),
+                            counterItemLength:
+                                state
+                                    .getAlreadyCatchGigantamaxPokemonLength()
+                                    .toDouble(),
+                          ),
+                    );
+                  },
+                  child: HomeCircularProgressWidget(
+                    allItemLength:
+                        state.getAllGigantamaxPokemonLength().toDouble(),
+                    counterItemLength:
+                        state
+                            .getAlreadyCatchGigantamaxPokemonLength()
+                            .toDouble(),
+                    centerWidget: Image.asset(
+                      'assets/gigamax.png',
+                      height: 30,
+                      width: 30,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    await showDialog<void>(
+                      context: context,
+                      builder:
+                          (BuildContext context) => CountOverviewModal(
+                            title: 'Formas Mega evolucionadas capturadas',
+                            allItemLength:
+                                state
+                                    .getAllMegaEvolutionsPokemonLength()
+                                    .toDouble(),
+                            counterItemLength:
+                                state
+                                    // ignore: lines_longer_than_80_chars
+                                    .getAlreadyCatchMegaEvolutionsPokemonLength()
+                                    .toDouble(),
+                          ),
+                    );
+                  },
+                  child: HomeCircularProgressWidget(
+                    allItemLength:
+                        state.getAllMegaEvolutionsPokemonLength().toDouble(),
+                    counterItemLength:
+                        state
+                            .getAlreadyCatchMegaEvolutionsPokemonLength()
+                            .toDouble(),
+                    centerWidget: Image.asset(
+                      'assets/icon_mega.png',
+                      height: 30,
+                      width: 30,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
                 GestureDetector(

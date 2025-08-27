@@ -75,10 +75,20 @@ class WantedForTradeView extends StatelessWidget {
             }
             if (asyncSnapshot.hasData) {
               PokemonTrade tradeData = asyncSnapshot.data!;
+              List<PokemonTradeItem> _wantedPokemon =
+                  tradeData.wantedPokemon..sort(
+                    (PokemonTradeItem a, PokemonTradeItem b) =>
+                        a.id.compareTo(b.id),
+                  );
+              List<PokemonTradeItem> _offerPokemon =
+                  tradeData.offerPokemon..sort(
+                    (PokemonTradeItem a, PokemonTradeItem b) =>
+                        a.id.compareTo(b.id),
+                  );
               return TabBarView(
                 children: <Widget>[
-                  PokemonTradeList(pokemonList: tradeData.wantedPokemon),
-                  PokemonTradeList(pokemonList: tradeData.offerPokemon),
+                  PokemonTradeList(pokemonList: _wantedPokemon),
+                  PokemonTradeList(pokemonList: _offerPokemon),
                 ],
               );
             }

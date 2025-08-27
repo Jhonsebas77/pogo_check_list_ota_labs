@@ -58,6 +58,20 @@ class InformationTradeCard extends StatelessWidget {
                     ),
                   ],
                 ),
+                Row(
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/icon_adventure_effect.png',
+                      height: 40,
+                      width: 40,
+                    ),
+                    const SizedBox(width: 4),
+                    const Text(
+                      'Efecto aventura',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
               ],
             ),
             Column(
@@ -99,24 +113,21 @@ class InformationTradeCard extends StatelessWidget {
                     Text('Espejo', style: TextStyle(color: Colors.white)),
                   ],
                 ),
+                const Row(
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Icon(Icons.catching_pokemon, color: Colors.red),
+                    ),
+                    SizedBox(width: 4),
+                    Text('Disponibles', style: TextStyle(color: Colors.white)),
+                  ],
+                ),
               ],
             ),
           ],
         ),
-        Row(
-          children: <Widget>[
-            Image.asset(
-              'assets/icon_adventure_effect.png',
-              height: 40,
-              width: 40,
-            ),
-            const SizedBox(width: 4),
-            const Text(
-              'Efecto aventura',
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
-        ),
+        const SizedBox(height: 12),
       ],
     ),
   );

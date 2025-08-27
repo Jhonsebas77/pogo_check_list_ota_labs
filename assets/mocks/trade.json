@@ -43,8 +43,36 @@
             "quantity": 1
         },
         {
+            "id": 480,
+            "name": "Uxie",
+            "want_shiny": true,
+            "want_lucky": true,
+            "quantity": 1
+        },
+        {
             "id": 485,
             "name": "Heatran",
+            "want_shiny": true,
+            "want_lucky": true,
+            "quantity": 1
+        },
+        {
+            "id": 638,
+            "name": "Cobalion",
+            "want_shiny": true,
+            "want_lucky": true,
+            "quantity": 1
+        },
+        {
+            "id": 641,
+            "name": "Tornadus",
+            "want_shiny": true,
+            "want_lucky": true,
+            "quantity": 1
+        },
+        {
+            "id": 640,
+            "name": "Virizion",
             "want_shiny": true,
             "want_lucky": true,
             "quantity": 1
@@ -60,6 +88,7 @@
             "id": 786,
             "name": "Tapu Lele",
             "want_shiny": true,
+            "want_lucky": true,
             "quantity": 1
         },
         {
@@ -124,7 +153,6 @@
             "want_adventure_effect": false,
             "want_gigantamax": false,
             "want_lucky ": false,
-            "already_caught ": true,
             "quantity": 1
         },
         {
@@ -138,8 +166,50 @@
             "want_adventure_effect": false,
             "want_gigantamax": false,
             "want_lucky ": false,
-            "already_caught ": true,
             "quantity": 1
+        },
+        {
+            "id": 113,
+            "name": "Chansey",
+            "want_shiny": true,
+            "want_mirror_change": true,
+            "already_caught": true,
+            "want_dynamax": true,
+            "want_special_background": false,
+            "want_adventure_effect": false,
+            "want_gigantamax": false,
+            "want_lucky ": false,
+            "quantity": 1
+        },
+        {
+            "id": 4,
+            "name": "Charmander",
+            "want_shiny": true,
+            "already_caught": true,
+            "quantity": 6
+        },
+        {
+            "id": 132,
+            "name": "Ditto",
+            "want_shiny": true,
+            "already_caught": true,
+            "quantity": 1
+        },
+        {
+            "id": 797,
+            "name": "Celesteela",
+            "want_shiny": true,
+            "already_caught": true,
+            "want_special_background": true,
+            "want_mirror_change": true,
+            "quantity": 1
+        },
+        {
+            "id": 7,
+            "name": "Squirtle",
+            "want_shiny": true,
+            "already_caught": true,
+            "quantity": 4
         },
         {
             "id": 6,
@@ -152,7 +222,6 @@
             "want_adventure_effect": false,
             "want_gigantamax": true,
             "want_lucky ": false,
-            "already_caught ": false,
             "quantity": 1
         },
         {
@@ -295,6 +364,13 @@
             "name": "Regidrago",
             "want_shiny": true,
             "want_mirror_change": true,
+            "already_caught": true,
+            "quantity": 1
+        },
+        {
+            "id": 545,
+            "name": "Scolipede",
+            "want_shiny": true,
             "already_caught": true,
             "quantity": 1
         }

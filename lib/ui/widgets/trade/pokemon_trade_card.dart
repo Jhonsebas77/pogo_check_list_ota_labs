@@ -180,13 +180,3 @@ class PokemonTradeCard extends StatelessWidget {
     ),
   );
 }
-
-class AvatarImage extends StatelessWidget {
-  const AvatarImage({required this.label, super.key});
-  final String label;
-  @override
-  Widget build(BuildContext context) => const CircleAvatar(
-    backgroundColor: Colors.amber,
-    child: Icon(Icons.catching_pokemon),
-  );
-}
