@@ -34,7 +34,7 @@ class SettingsView extends StatelessWidget {
                     color: Colors.white,
                   ),
                   onTap: () {
-                    CustomNavigator().push(context, const WantedView());
+                    CustomNavigator().push(context, const WantedForTradeView());
                   },
                 ),
               ),

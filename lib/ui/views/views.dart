@@ -22,5 +22,5 @@ part 'list/dex_list.dart';
 part 'list/gigantamax_dex_list.dart';
 part 'list/megaevolution_dex_list.dart';
 part 'list/shiny_dex_list.dart';
-part 'wanted/wanted.dart';
+part 'wanted_for_trade/wanted_for_trade.dart';
 part 'zygarde/zygarde_details.dart';

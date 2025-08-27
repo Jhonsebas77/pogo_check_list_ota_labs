@@ -85,26 +85,12 @@ class ModalBase extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[
-                  Colors.white.withValues(alpha: 0.2),
-                  Colors.white.withValues(alpha: 0.1),
-                ],
-              ),
+              color: Colors.white12,
             ),
             child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                gradient: const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[
-                    Color.fromRGBO(198, 73, 52, 1),
-                    Color.fromRGBO(198, 73, 52, 1),
-                  ],
-                ),
+                color: const Color.fromRGBO(198, 73, 52, 1),
               ),
               child: Stack(
                 children: <Widget>[

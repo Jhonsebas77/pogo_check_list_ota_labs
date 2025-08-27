@@ -32,7 +32,7 @@ class PokemonTradeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-    width: 200,
+    width: 180,
     child: DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -72,8 +72,7 @@ class PokemonTradeCard extends StatelessWidget {
                       ),
                   ],
                 ),
-                const SizedBox(width: 8),
-                const SizedBox(height: 8),
+                const SizedBox(width: 2),
                 Expanded(
                   child: Center(
                     child: Wrap(
@@ -119,8 +118,10 @@ class PokemonTradeCard extends StatelessWidget {
                         if (wantMirrorChange ?? false)
                           const CircleAvatar(
                             backgroundColor: Color(0xFFA0E1FF),
-                            foregroundColor: Colors.black,
-                            child: Icon(Icons.safety_divider_sharp),
+                            child: Icon(
+                              Icons.safety_divider_sharp,
+                              color: Colors.white,
+                            ),
                           ),
                       ],
                     ),
@@ -147,8 +148,9 @@ class PokemonTradeCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     'N.º $_dex $pokemonName',
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontSize: 14,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
