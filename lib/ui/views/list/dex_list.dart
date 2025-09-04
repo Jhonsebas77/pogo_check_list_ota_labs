@@ -67,7 +67,7 @@ class _AllPokemonAvailableViewState
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
           systemOverlayStyle: SystemUiOverlayStyle.light,
           toolbarHeight: 82,
           elevation: 0,
@@ -136,7 +136,7 @@ class _AllPokemonAvailableViewState
                               Switch(
                                 value: displayOnlyMissingPokemon,
                                 thumbIcon: thumbIcon,
-                                activeColor: Colors.indigo,
+                                // activeColor: Colors.indigo,
                                 onChanged: (_) async {
                                   setState(() {
                                     displayOnlyMissingPokemon =
@@ -204,7 +204,7 @@ class _AllPokemonAvailableViewState
             ),
           ),
         ),
-        backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+        // backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
         body: firebasePokemonState.when(
           data: (PokemonFirebaseState state) {
             if (state.allPokemon.isEmpty) {

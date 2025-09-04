@@ -34,7 +34,7 @@ class _GigantamaxPokemonViewState extends ConsumerState<GigantamaxPokemonView> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
           systemOverlayStyle: SystemUiOverlayStyle.light,
           toolbarHeight: 82,
           leading: const DexHeaderLeading(),
@@ -50,7 +50,7 @@ class _GigantamaxPokemonViewState extends ConsumerState<GigantamaxPokemonView> {
           centerTitle: true,
           elevation: 0,
         ),
-        backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+        // backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),

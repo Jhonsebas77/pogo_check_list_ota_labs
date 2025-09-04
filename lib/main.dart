@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
     title: 'Pogo Checks',
-    theme: lightTheme,
-    darkTheme: darkTheme,
+    theme: appTheme,
+    darkTheme: appDarkTheme,
     themeMode: ThemeMode.system,
     home: const MyHomePage(title: 'Pogo Checks'),
   );
