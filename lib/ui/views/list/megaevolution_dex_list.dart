@@ -51,7 +51,7 @@ class _MegaEvolutionPokemonState
           centerTitle: true,
           elevation: 0,
         ),
-        backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         body: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
@@ -101,10 +101,12 @@ class _MegaEvolutionPokemonState
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await ref.read(firebasePokemonProvider.notifier).refreshData();
-          },
-          child: const Icon(Icons.update),
+          onPressed: ref.read(firebasePokemonProvider.notifier).refreshData,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          child: Icon(
+            Icons.update,
+            color: Theme.of(context).colorScheme.onSecondary,
+          ),
         ),
       ),
     );

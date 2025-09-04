@@ -42,7 +42,12 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
     },
     child: DecoratedBox(
       decoration: BoxDecoration(
-        color: selectPokemon.alreadyCatch ? Colors.white12 : Colors.black12,
+        color:
+            selectPokemon.alreadyCatch
+                ? Theme.of(context).colorScheme.onSurface.withAlpha(100)
+                : Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest.withAlpha(100),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -75,8 +80,9 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
                 )
               else
                 Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
+                  baseColor: Theme.of(context).colorScheme.onSurfaceVariant,
+                  highlightColor:
+                      Theme.of(context).colorScheme.onSurfaceVariant,
                   enabled: false,
                   child: Image.asset(
                     'assets/pokedex_gigantamax/${selectPokemon.id}.png',
@@ -94,19 +100,25 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
                 child: Text(
                   textAlign: TextAlign.center,
                   selectPokemon.name,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color:
+                        selectPokemon.alreadyCatch
+                            ? Theme.of(context).colorScheme.surface
+                            : Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
               ),
               Text(
                 paddingDexNumber(dexNumber: selectPokemon.id),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color:
+                      selectPokemon.alreadyCatch
+                          ? Theme.of(context).colorScheme.surface
+                          : Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
             ],

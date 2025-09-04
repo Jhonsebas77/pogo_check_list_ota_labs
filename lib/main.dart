@@ -6,6 +6,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import 'core/providers/providers.dart';
 import 'core/utils/constants.dart';
 import 'firebase_options.dart';
 import 'ui/theme.dart';
@@ -25,17 +26,19 @@ Future<void> main() async {
   ]);
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
-
   @override
-  Widget build(BuildContext context) => MaterialApp(
-    title: 'Pogo Checks',
-    theme: appTheme,
-    darkTheme: appDarkTheme,
-    themeMode: ThemeMode.system,
-    home: const MyHomePage(title: 'Pogo Checks'),
-  );
+  Widget build(BuildContext context, WidgetRef ref) {
+    ThemeMode themeMode = ref.watch(themeModeProvider);
+    return MaterialApp(
+      title: 'Pogo Checks',
+      theme: appTheme,
+      darkTheme: appDarkTheme,
+      themeMode: themeMode,
+      home: const MyHomePage(title: 'Pogo Checks'),
+    );
+  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -66,15 +69,18 @@ class _MyHomePageState extends State<MyHomePage> {
           leading: const DexHeaderLeading(),
           actions: const DexHeaderActions().getActions(),
         ),
-        backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         body: const TabBarView(
           children: <Widget>[HomePoGoView(), PokedexView(), SettingsView()],
         ),
-        bottomNavigationBar: const TabBar(
-          indicatorColor: Colors.white,
-          labelColor: Colors.white,
-          labelStyle: TextStyle(color: Colors.white, fontSize: 18),
-          tabs: <Widget>[
+        bottomNavigationBar: TabBar(
+          indicatorColor: Theme.of(context).colorScheme.onPrimary,
+          labelColor: Theme.of(context).colorScheme.onPrimary,
+          labelStyle: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+            fontSize: 18,
+          ),
+          tabs: const <Widget>[
             Tab(icon: Icon(Icons.home), text: 'Inicio'),
             Tab(icon: Icon(Icons.catching_pokemon), text: 'Pokedex'),
             Tab(icon: Icon(Icons.settings), text: 'Ajustes'),

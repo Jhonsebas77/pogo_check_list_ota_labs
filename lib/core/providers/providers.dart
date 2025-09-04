@@ -13,3 +13,4 @@ import '../utils/constants.dart';
 
 part 'firebase.dart';
 part 'poke_api.dart';
+part 'theme.dart';

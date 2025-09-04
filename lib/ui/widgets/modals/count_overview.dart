@@ -30,6 +30,8 @@ class CountOverviewModal extends StatelessWidget {
             LinearProgressIndicator(
               value: counterItemLength / allItemLength,
               borderRadius: BorderRadius.circular(50),
+              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+              color: Theme.of(context).colorScheme.secondary,
             ),
             Text(
               '${counterItemLength.floor()} / ${allItemLength.floor()}',

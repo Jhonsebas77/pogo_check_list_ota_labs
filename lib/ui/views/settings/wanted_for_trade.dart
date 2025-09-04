@@ -13,7 +13,7 @@ class WantedForTradeView extends StatelessWidget {
   Widget build(BuildContext context) => DefaultTabController(
     length: 2,
     child: Scaffold(
-      backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: NestedScrollView(
         headerSliverBuilder:
             (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
@@ -23,17 +23,17 @@ class WantedForTradeView extends StatelessWidget {
                 floating: true,
                 toolbarHeight: 82,
                 centerTitle: true,
-                title: const Text(
+                title: Text(
                   'Intercambios',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 leading: const DexHeaderLeading(),
                 actions: const DexHeaderActions().getActions(),
-                backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+                backgroundColor: Theme.of(context).colorScheme.primary,
                 bottom: TabBar(
                   tabs: const <Widget>[
                     Tab(
@@ -43,17 +43,17 @@ class WantedForTradeView extends StatelessWidget {
                     Tab(icon: Icon(Icons.catching_pokemon), text: 'Ofreciendo'),
                   ],
                   indicator: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  labelColor: Colors.blue,
+                  labelColor: Theme.of(context).colorScheme.onSecondary,
                   unselectedLabelColor: Colors.white70,
                   indicatorPadding: const EdgeInsets.symmetric(
                     horizontal: 16,
                     vertical: 8,
                   ),
                   indicatorSize: TabBarIndicatorSize.tab,
-                  dividerColor: const Color.fromRGBO(198, 73, 52, 1),
+                  dividerColor: Theme.of(context).colorScheme.primary,
                 ),
                 expandedHeight: 150,
               ),
@@ -100,11 +100,10 @@ class WantedForTradeView extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: Tooltip(
           verticalOffset: 24,
-          margin: const EdgeInsets.symmetric(horizontal: 16),
-          padding: const EdgeInsets.all(8),
+          constraints: const BoxConstraints(maxWidth: 300),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: Colors.black45,
+            color: Theme.of(context).colorScheme.primaryContainer,
           ),
           showDuration: const Duration(seconds: 5),
           preferBelow: true,
@@ -114,9 +113,13 @@ class WantedForTradeView extends StatelessWidget {
             baseline: TextBaseline.alphabetic,
             child: InformationTradeCard(),
           ),
-          child: const CircleAvatar(
-            backgroundColor: Colors.blue,
-            child: Icon(Icons.info_outline, size: 16, color: Colors.white),
+          child: CircleAvatar(
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            child: Icon(
+              Icons.info_outline,
+              size: 16,
+              color: Theme.of(context).colorScheme.onSecondary,
+            ),
           ),
         ),
       ),

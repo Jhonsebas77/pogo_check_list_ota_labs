@@ -41,7 +41,7 @@ class _ZygardeDetailsState extends ConsumerState<ZygardeDetails> {
           leading: const DexHeaderLeading(),
           actions: const DexHeaderActions().getActions(),
         ),
-        backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+        backgroundColor: Theme.of(context).colorScheme.primary,
 
         body: SingleChildScrollView(
           child: Column(

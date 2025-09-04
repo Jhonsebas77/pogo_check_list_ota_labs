@@ -36,10 +36,13 @@ class PokemonTradeCard extends StatelessWidget {
     child: DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: <Color>[Color(0xFFE5F6FF), Color(0xFFA0E1FF)],
+          colors: <Color>[
+            const Color(0xFFE5F6FF),
+            Theme.of(context).colorScheme.secondary,
+          ],
         ),
       ),
       child: Column(
@@ -117,7 +120,7 @@ class PokemonTradeCard extends StatelessWidget {
                           ),
                         if (wantMirrorChange ?? false)
                           const CircleAvatar(
-                            backgroundColor: Color(0xFFA0E1FF),
+                            backgroundColor: Color.fromRGBO(52, 177, 198, 1),
                             child: Icon(
                               Icons.safety_divider_sharp,
                               color: Colors.white,
@@ -133,7 +136,7 @@ class PokemonTradeCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
-              color: Colors.grey[100],
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               border: Border(
                 top: BorderSide(color: Colors.grey[300]!, width: 1),
               ),
@@ -149,25 +152,27 @@ class PokemonTradeCard extends StatelessWidget {
                   child: Text(
                     'N.º $_dex $pokemonName',
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color:
+                          Theme.of(context).colorScheme.surfaceContainerHighest,
                     ),
                   ),
                 ),
                 if (alreadyCaught ?? false)
                   const Icon(
                     Icons.catching_pokemon,
-                    color: Colors.red,
+                    color: Colors.white,
                     size: 18,
                   ),
                 if ((alreadyCaught ?? false) && quantity != 0) ...<Widget>[
                   const SizedBox(width: 4),
                   Text(
                     '$quantity',
-                    style: const TextStyle(
-                      color: Colors.black,
+                    style: TextStyle(
+                      color:
+                          Theme.of(context).colorScheme.surfaceContainerHighest,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

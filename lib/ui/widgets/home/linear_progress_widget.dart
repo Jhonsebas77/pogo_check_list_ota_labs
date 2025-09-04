@@ -28,6 +28,7 @@ class HomeLinearProgressWidget extends StatelessWidget {
           LinearProgressIndicator(
             value: counterItemLength / allItemLength,
             borderRadius: BorderRadius.circular(50),
+            color: Theme.of(context).colorScheme.secondary,
           ),
           Text(
             '$counterItemLength / $allItemLength',

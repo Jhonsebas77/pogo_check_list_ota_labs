@@ -76,8 +76,17 @@ class TrainerInformation extends ConsumerWidget {
                     }
                   },
                   child: Chip(
-                    label: const Text('Copiar ID'),
-                    avatar: const Icon(Icons.copy),
+                    label: Text(
+                      'Copiar ID',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSecondary,
+                      ),
+                    ),
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    avatar: Icon(
+                      Icons.copy,
+                      color: Theme.of(context).colorScheme.onSecondary,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(32),
                     ),

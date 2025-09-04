@@ -23,15 +23,13 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+          backgroundColor: Theme.of(context).colorScheme.primary,
           systemOverlayStyle: SystemUiOverlayStyle.light,
           elevation: 0,
           toolbarHeight: 82,
           leading: const DexHeaderLeading(),
           actions: const DexHeaderActions().getActions(),
         ),
-        // backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
-
         body: pokemonAsyncValue.when(
           // State 1: The Future is loading
           loading: () => const Center(child: CircularProgressIndicator()),

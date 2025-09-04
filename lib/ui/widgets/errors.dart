@@ -27,7 +27,7 @@ class SimpleErrorChip extends StatelessWidget {
       child: Padding(
         padding: (isSmall ?? false) ? EdgeInsets.zero : const EdgeInsets.all(8),
         child: Card(
-          color: Colors.redAccent,
+          color: Theme.of(context).colorScheme.error,
           child:
               (isSmall ?? false)
                   ? Padding(
