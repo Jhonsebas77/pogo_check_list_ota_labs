@@ -19,11 +19,12 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
     AsyncValue<PokemonDetail> pokemonAsyncValue = ref.watch(
       pokemonProvider('${widget.pokemonId}'),
     );
-
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor:
+              isDarkMode ? null : Theme.of(context).colorScheme.primary,
           systemOverlayStyle: SystemUiOverlayStyle.light,
           elevation: 0,
           toolbarHeight: 82,
@@ -50,7 +51,10 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                   children: <Widget>[
                     Text(
                       pokemon.name,
-                      style: const TextStyle(fontSize: 24, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
                     ),
                     Stack(
                       children: <Widget>[
@@ -62,12 +66,6 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                         ),
                         Hero(
                           tag: pokemon.id,
-                          // child: Image.asset(
-                          //   'assets/pokedex_sprites/${pokemon.id}.png',
-                          //   height: 120,
-                          //   width: 120,
-                          //   fit: BoxFit.fill,
-                          // ),
                           child: Image.network(
                             pokemon.imageUrl,
                             height: 120,

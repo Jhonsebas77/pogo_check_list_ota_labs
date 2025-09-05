@@ -10,7 +10,6 @@ import 'package:shimmer/shimmer.dart';
 import '../../core/enums/enums.dart';
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
-import '../navigator.dart';
 import '../theme.dart';
 import '../widgets/widgets.dart';
 

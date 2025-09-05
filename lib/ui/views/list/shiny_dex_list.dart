@@ -134,7 +134,8 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                               Switch(
                                 value: displayOnlyMissingPokemon,
                                 thumbIcon: thumbIcon,
-                                activeThumbColor: Colors.indigo,
+                                activeColor:
+                                    Theme.of(context).colorScheme.secondary,
                                 onChanged: (_) async {
                                   setState(() {
                                     displayOnlyMissingPokemon =
@@ -163,7 +164,7 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                                         )
                                         : const Icon(Icons.filter_list_rounded),
                                 tooltip: 'Ordenar Pokémones',
-                                color: const Color.fromRGBO(198, 73, 52, 0.9),
+                                color: Theme.of(context).colorScheme.primary,
                                 offset: const Offset(0, 60),
                                 onSelected: (PokemonSortCriteria result) {
                                   setState(() {

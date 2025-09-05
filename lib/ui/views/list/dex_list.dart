@@ -136,6 +136,8 @@ class _AllPokemonAvailableViewState
                               Switch(
                                 value: displayOnlyMissingPokemon,
                                 thumbIcon: thumbIcon,
+                                activeColor:
+                                    Theme.of(context).colorScheme.secondary,
                                 onChanged: (_) async {
                                   setState(() {
                                     displayOnlyMissingPokemon =
@@ -164,7 +166,7 @@ class _AllPokemonAvailableViewState
                                         )
                                         : const Icon(Icons.filter_list_rounded),
                                 tooltip: 'Ordenar Pokémones',
-                                color: const Color.fromRGBO(198, 73, 52, 0.9),
+                                color: Theme.of(context).colorScheme.primary,
                                 offset: const Offset(0, 60),
                                 onSelected: (PokemonSortCriteria result) {
                                   setState(() {

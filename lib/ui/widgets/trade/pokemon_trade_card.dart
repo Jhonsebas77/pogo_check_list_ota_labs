@@ -161,9 +161,10 @@ class PokemonTradeCard extends StatelessWidget {
                   ),
                 ),
                 if (alreadyCaught ?? false)
-                  const Icon(
+                  Icon(
                     Icons.catching_pokemon,
-                    color: Colors.white,
+                    color:
+                        Theme.of(context).colorScheme.surfaceContainerHighest,
                     size: 18,
                   ),
                 if ((alreadyCaught ?? false) && quantity != 0) ...<Widget>[

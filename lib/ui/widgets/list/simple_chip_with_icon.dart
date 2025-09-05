@@ -13,13 +13,13 @@ class SimpleChipWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
     children: <Widget>[
-      Icon(iconData, color: Colors.black87, size: 14),
+      Icon(iconData, color: Theme.of(context).colorScheme.onPrimary, size: 14),
       const SizedBox(width: 4),
       Text(
         text,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 14,
-          color: Colors.black87,
+          color: Theme.of(context).colorScheme.onPrimary,
           fontWeight: FontWeight.normal,
         ),
       ),

@@ -8,7 +8,7 @@ class ColorSchemeView extends ConsumerWidget {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Color Scheme'),
+        title: const Text('Esquema de colores'),
         systemOverlayStyle: SystemUiOverlayStyle.light,
         elevation: 0,
         toolbarHeight: 82,
@@ -21,9 +21,13 @@ class ColorSchemeView extends ConsumerWidget {
           ref
               .read(themeModeProvider.notifier)
               .setThemeMode(isDarkMode ? ThemeMode.light : ThemeMode.dark);
+          showInformationSnackBar(
+            context,
+            '''[Tema actualizado] ->  ${isDarkMode ? 'Tema claro' : 'Tema oscuro'}''',
+          );
         },
         backgroundColor: Theme.of(context).colorScheme.secondary,
-        tooltip: isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode',
+        tooltip: isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro',
         child: Icon(
           isDarkMode ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
         ),

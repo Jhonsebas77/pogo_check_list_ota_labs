@@ -4,69 +4,36 @@ class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
 
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context) => const Center(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text(
-              'Herramientas',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Material(
-                color: Colors.black12,
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Colors.black12, width: 3),
-                  borderRadius: BorderRadiusGeometry.circular(12),
-                ),
-                child: ListTile(
-                  title: const Text(
-                    'Intercambios',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: const Icon(Icons.search, color: Colors.white),
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: Colors.white,
-                  ),
-                  onTap: () {
-                    CustomNavigator().push(context, const WantedForTradeView());
-                  },
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Material(
-                color: Colors.black12,
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Colors.black12, width: 3),
-                  borderRadius: BorderRadiusGeometry.circular(12),
-                ),
-                child: ListTile(
-                  title: const Text(
-                    'Aspecto',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  leading: const Icon(Icons.palette, color: Colors.white),
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: Colors.white,
-                  ),
-                  onTap: () {
-                    CustomNavigator().push(context, const ColorSchemeView());
-                  },
-                ),
-              ),
+            SettingsTitleSection(title: 'Herramientas'),
+            SettingsMenuItem(
+              title: 'Intercambios',
+              leadingIcon: Icons.search,
+              viewToNavigate: WantedForTradeView(),
             ),
           ],
         ),
-        const Column(children: <Widget>[Divider(), VersionWidget()]),
+        SizedBox(height: 16),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SettingsTitleSection(title: 'Aplicación'),
+            SettingsMenuItem(
+              title: 'Aspecto',
+              leadingIcon: Icons.palette,
+              viewToNavigate: ColorSchemeView(),
+            ),
+          ],
+        ),
+        Column(children: <Widget>[Divider(), VersionWidget()]),
       ],
     ),
   );

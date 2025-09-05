@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 const Color primaryColor = Color.fromRGBO(198, 73, 52, 1);
+const Color primaryDarkColor = Color.fromRGBO(198, 73, 52, 1);
 const Color secondaryColor = Color.fromRGBO(52, 177, 198, 1);
-const Color tertiaryColor = Color.fromRGBO(198, 122, 52, 1);
+const Color secondaryDarkColor = Color.fromRGBO(77, 208, 225, 1);
+const Color tertiaryColor = Color.fromRGBO(218, 153, 33, 1);
+const Color tertiaryDarkColor = Color.fromRGBO(255, 203, 80, 1);
 const Color lightErrorColor = Color.fromRGBO(184, 52, 90, 1);
 const Color darkErrorColor = Color.fromRGBO(239, 107, 129, 1);
 
@@ -74,9 +77,9 @@ final ThemeData appDarkTheme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
     seedColor: primaryColor,
-    primary: primaryColor,
-    secondary: secondaryColor,
-    tertiary: tertiaryColor,
+    primary: primaryDarkColor,
+    secondary: secondaryDarkColor,
+    tertiary: tertiaryDarkColor,
     error: darkErrorColor,
     brightness: Brightness.dark,
   ),

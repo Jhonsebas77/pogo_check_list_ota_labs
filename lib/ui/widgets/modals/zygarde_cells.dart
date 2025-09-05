@@ -57,7 +57,7 @@ class _ZygardeCellsModalState extends ConsumerState<ZygardeCellsModal> {
             }
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.greenAccent[400],
+            backgroundColor: Theme.of(context).colorScheme.secondary,
             padding: const EdgeInsets.symmetric(vertical: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
@@ -68,12 +68,12 @@ class _ZygardeCellsModalState extends ConsumerState<ZygardeCellsModal> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              const Text(
+              Text(
                 'Actualizar ',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
               Image.asset(

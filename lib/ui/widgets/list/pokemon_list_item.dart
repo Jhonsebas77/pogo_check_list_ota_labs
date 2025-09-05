@@ -58,11 +58,14 @@ class PokemonListItem extends ConsumerWidget {
                           fit: BoxFit.fill,
                         )
                       else
-                        Image.asset(
-                          'assets/pokedex_sprites_shiny/${selectPokemon.id}.png',
-                          height: 50,
-                          width: 50,
-                          fit: BoxFit.fill,
+                        Hero(
+                          tag: selectPokemon.id,
+                          child: Image.asset(
+                            'assets/pokedex_sprites_shiny/${selectPokemon.id}.png',
+                            height: 50,
+                            width: 50,
+                            fit: BoxFit.fill,
+                          ),
                         )
                     else if (!isShiny)
                       if (selectPokemon.available == false)
