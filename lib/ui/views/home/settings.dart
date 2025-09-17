@@ -18,6 +18,11 @@ class SettingsView extends StatelessWidget {
               leadingIcon: Icons.search,
               viewToNavigate: WantedForTradeView(),
             ),
+            SettingsMenuItem(
+              title: 'Tabla de tipos',
+              leadingIcon: Icons.apps,
+              viewToNavigate: TypeChartView(),
+            ),
           ],
         ),
         SizedBox(height: 16),
