@@ -5,8 +5,9 @@ class WantedForTradeView extends StatelessWidget {
 
   Future<PokemonTrade> loadTradeData() async {
     String jsonString = await rootBundle.loadString('assets/mocks/trade.json');
-    Map<String, dynamic>? jsonMap = jsonDecode(jsonString);
-    return PokemonTrade.fromJson(jsonMap!);
+    Map<String, dynamic>? jsonMap =
+        jsonDecode(jsonString) as Map<String, dynamic>;
+    return PokemonTrade.fromJson(jsonMap);
   }
 
   @override

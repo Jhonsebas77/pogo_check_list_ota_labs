@@ -23,6 +23,11 @@ class SettingsView extends StatelessWidget {
               leadingIcon: Icons.apps,
               viewToNavigate: TypeChartView(),
             ),
+            SettingsMenuItem(
+              title: 'Amistades con suerte',
+              leadingIcon: Icons.supervised_user_circle,
+              viewToNavigate: LuckyFriendsView(),
+            ),
           ],
         ),
         SizedBox(height: 16),

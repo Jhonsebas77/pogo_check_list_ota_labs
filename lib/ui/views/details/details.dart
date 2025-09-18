@@ -81,8 +81,11 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                       children:
                           pokemon.types
                               .map(
-                                (String type) =>
-                                    Chip(label: Text(type.toUpperCase())),
+                                (String type) => TypeBadge(
+                                  type: kPokemonTypesTranslated[type]!,
+                                  color: kTypeColors[type] ?? Colors.grey,
+                                  icon: kTypeIcons[type] ?? Icons.help_outline,
+                                ),
                               )
                               .toList(),
                     ),
