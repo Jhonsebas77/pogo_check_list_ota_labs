@@ -37,7 +37,7 @@ class WantedForTradeView extends StatelessWidget {
                     tabs: const <Widget>[
                       Tab(
                         icon: Icon(Icons.wifi_protected_setup_sharp),
-                        text: 'Quiero',
+                        text: 'Buscando',
                       ),
                       Tab(
                         icon: Icon(Icons.catching_pokemon),
@@ -105,7 +105,7 @@ class WantedForTradeView extends StatelessWidget {
             constraints: const BoxConstraints(maxWidth: 300),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Theme.of(context).colorScheme.primary,
+              color: Colors.black87,
             ),
             showDuration: const Duration(seconds: 5),
             preferBelow: true,

@@ -238,24 +238,28 @@ class _AllPokemonAvailableViewState
                 );
                 break;
             }
-            return ListView.separated(
-              separatorBuilder:
-                  (BuildContext _, int __) =>
-                      const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-              controller: _scrollController,
-              shrinkWrap: true,
-              itemCount: sortedPokemon.length,
-              itemBuilder: (BuildContext context, int index) {
-                PokemonModel pokemon = sortedPokemon[index];
-                if (pokemon.id == 0) {
-                  return const SizedBox();
-                } else {
-                  return PokemonListItem(
-                    index: pokemon.id,
-                    selectPokemon: pokemon,
-                  );
-                }
-              },
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: ListView.separated(
+                separatorBuilder:
+                    (BuildContext _, int __) => const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 4),
+                    ),
+                controller: _scrollController,
+                shrinkWrap: true,
+                itemCount: sortedPokemon.length,
+                itemBuilder: (BuildContext context, int index) {
+                  PokemonModel pokemon = sortedPokemon[index];
+                  if (pokemon.id == 0) {
+                    return const SizedBox();
+                  } else {
+                    return PokemonListItem(
+                      index: pokemon.id,
+                      selectPokemon: pokemon,
+                    );
+                  }
+                },
+              ),
             );
           },
           error:

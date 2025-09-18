@@ -10,10 +10,10 @@ class SettingsTitleSection extends StatelessWidget {
     padding: const EdgeInsets.all(8),
     child: Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
-        color: Theme.of(context).colorScheme.onSurface,
+        color: Colors.white,
       ),
     ),
   );

@@ -43,24 +43,16 @@ class LuckyFriendListTile extends StatelessWidget {
       );
     }
     return Stack(
+      alignment: AlignmentDirectional.center,
       children: <Widget>[
-        Container(
+        Image.asset(
+          'assets/bg_holder_pokemon.png',
           height: 64,
           width: 64,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: <Color>[
-                const Color.fromARGB(255, 201, 201, 201),
-                Theme.of(context).colorScheme.secondary,
-              ],
-            ),
-          ),
-          child: const Center(
-            child: Icon(Icons.person, color: Colors.white, size: 28),
-          ),
+          fit: BoxFit.fill,
+        ),
+        const Center(
+          child: Icon(Icons.emoji_people, color: Colors.grey, size: 50),
         ),
         Positioned(
           bottom: 0,
@@ -113,14 +105,14 @@ class LuckyFriendListTile extends StatelessWidget {
                     children: List<Widget>.generate(
                       4,
                       (_) => const SizedBox(
-                        width: 30,
-                        height: 30,
+                        width: 24,
+                        height: 24,
                         child: CircleAvatar(
                           backgroundColor: Colors.orange,
                           child: Icon(
                             Icons.favorite,
                             color: Colors.yellow,
-                            size: 20,
+                            size: 16,
                           ),
                         ),
                       ),

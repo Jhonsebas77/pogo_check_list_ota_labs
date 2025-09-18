@@ -21,9 +21,7 @@ class HomeMenuItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(left: 12, top: 8, bottom: 8, right: 12),
         decoration: BoxDecoration(
-          color: Theme.of(
-            context,
-          ).colorScheme.surfaceContainerHighest.withAlpha(100),
+          color: Colors.black12,
           borderRadius: BorderRadius.circular(50),
         ),
         child: Row(
@@ -32,10 +30,10 @@ class HomeMenuItem extends StatelessWidget {
             const SizedBox(width: 16),
             Text(
               label,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.onSurface,
+                color: Colors.white,
               ),
             ),
           ],

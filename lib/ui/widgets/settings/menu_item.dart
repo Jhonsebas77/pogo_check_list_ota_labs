@@ -12,34 +12,21 @@ class SettingsMenuItem extends StatelessWidget {
   final Widget viewToNavigate;
 
   @override
-  Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.all(8),
-    child: Material(
-      color: Theme.of(
-        context,
-      ).colorScheme.surfaceContainerHighest.withAlpha(100),
-      elevation: 1,
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(color: Colors.black12, width: 3),
-        borderRadius: BorderRadiusGeometry.circular(12),
+  Widget build(BuildContext context) => DecoratedBox(
+    decoration: BoxDecoration(
+      color: Colors.black12,
+      borderRadius: BorderRadius.circular(32),
+    ),
+    child: ListTile(
+      title: Text(title, style: const TextStyle(color: Colors.white)),
+      leading: Icon(leadingIcon, color: Colors.white),
+      trailing: const Icon(
+        Icons.arrow_forward_ios_rounded,
+        color: Colors.white,
       ),
-      child: ListTile(
-        title: Text(
-          title,
-          style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
-        ),
-        leading: Icon(
-          leadingIcon,
-          color: Theme.of(context).colorScheme.onSurface,
-        ),
-        trailing: Icon(
-          Icons.arrow_forward_ios_rounded,
-          color: Theme.of(context).colorScheme.onSurface,
-        ),
-        onTap: () {
-          CustomNavigator().push(context, viewToNavigate);
-        },
-      ),
+      onTap: () {
+        CustomNavigator().push(context, viewToNavigate);
+      },
     ),
   );
 }

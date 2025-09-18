@@ -79,15 +79,18 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                       spacing: 8,
                       runSpacing: 4,
                       children:
-                          pokemon.types
-                              .map(
-                                (String type) => TypeBadge(
-                                  type: kPokemonTypesTranslated[type]!,
-                                  color: kTypeColors[type] ?? Colors.grey,
-                                  icon: kTypeIcons[type] ?? Icons.help_outline,
-                                ),
-                              )
-                              .toList(),
+                          pokemon.types.map((String type) {
+                            String? _translatedType =
+                                kPokemonTypesTranslated[type];
+                            return TypeBadge(
+                              type: _translatedType!,
+                              color:
+                                  kTypeColors[_translatedType] ?? Colors.grey,
+                              icon:
+                                  kTypeIcons[_translatedType] ??
+                                  Icons.help_outline,
+                            );
+                          }).toList(),
                     ),
                   ],
                 ),
