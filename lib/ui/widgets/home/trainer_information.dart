@@ -32,11 +32,22 @@ class TrainerInformation extends ConsumerWidget {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(8),
-                      child: Image.asset(
-                        'assets/team_${_trainerInfo?.team ?? ''}.png',
-                        height: 80,
-                        width: 80,
-                        fit: BoxFit.fill,
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/bg_holder_pokemon.png',
+                            height: 64,
+                            width: 64,
+                            fit: BoxFit.fill,
+                          ),
+                          Image.asset(
+                            'assets/team_${_trainerInfo?.team ?? ''}.png',
+                            height: 50,
+                            width: 50,
+                            fit: BoxFit.fill,
+                          ),
+                        ],
                       ),
                     ),
                     Column(
@@ -76,8 +87,17 @@ class TrainerInformation extends ConsumerWidget {
                     }
                   },
                   child: Chip(
-                    label: const Text('Copiar ID'),
-                    avatar: const Icon(Icons.copy),
+                    label: Text(
+                      'Copiar ID',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSecondary,
+                      ),
+                    ),
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    avatar: Icon(
+                      Icons.copy,
+                      color: Theme.of(context).colorScheme.onSecondary,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(32),
                     ),

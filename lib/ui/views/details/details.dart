@@ -19,19 +19,18 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
     AsyncValue<PokemonDetail> pokemonAsyncValue = ref.watch(
       pokemonProvider('${widget.pokemonId}'),
     );
-
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor:
+              isDarkMode ? null : Theme.of(context).colorScheme.primary,
           systemOverlayStyle: SystemUiOverlayStyle.light,
           elevation: 0,
           toolbarHeight: 82,
           leading: const DexHeaderLeading(),
           actions: const DexHeaderActions().getActions(),
         ),
-        backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
-
         body: pokemonAsyncValue.when(
           // State 1: The Future is loading
           loading: () => const Center(child: CircularProgressIndicator()),
@@ -52,7 +51,10 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                   children: <Widget>[
                     Text(
                       pokemon.name,
-                      style: const TextStyle(fontSize: 24, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
                     ),
                     Stack(
                       children: <Widget>[
@@ -64,12 +66,6 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                         ),
                         Hero(
                           tag: pokemon.id,
-                          // child: Image.asset(
-                          //   'assets/pokedex_sprites/${pokemon.id}.png',
-                          //   height: 120,
-                          //   width: 120,
-                          //   fit: BoxFit.fill,
-                          // ),
                           child: Image.network(
                             pokemon.imageUrl,
                             height: 120,
@@ -83,12 +79,18 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                       spacing: 8,
                       runSpacing: 4,
                       children:
-                          pokemon.types
-                              .map(
-                                (String type) =>
-                                    Chip(label: Text(type.toUpperCase())),
-                              )
-                              .toList(),
+                          pokemon.types.map((String type) {
+                            String? _translatedType =
+                                kPokemonTypesTranslated[type];
+                            return TypeBadge(
+                              type: _translatedType!,
+                              color:
+                                  kTypeColors[_translatedType] ?? Colors.grey,
+                              icon:
+                                  kTypeIcons[_translatedType] ??
+                                  Icons.help_outline,
+                            );
+                          }).toList(),
                     ),
                   ],
                 ),

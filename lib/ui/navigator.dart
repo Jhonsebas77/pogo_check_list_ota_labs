@@ -4,17 +4,28 @@ import 'package:flutter/material.dart';
 
 import 'widgets/widgets.dart';
 
+enum CustomNavigationAnimation {
+  slideRight,
+  slideBottom,
+  fade,
+  scale,
+  scaleFade,
+}
+
 class CustomNavigator {
-  void push(BuildContext context, Widget view) {
-    Navigator.push(
+  void push(
+    BuildContext context,
+    Widget view, {
+    CustomNavigationAnimation animation = CustomNavigationAnimation.slideRight,
+  }) {
+    Navigator.of(
       context,
-      MaterialPageRoute<Widget>(builder: (BuildContext context) => view),
-    );
+    ).push(AnimationRoute(page: view, animationType: animation));
   }
 
   void pop(BuildContext context) {
     if (Navigator.canPop(context)) {
-      Navigator.pop(context);
+      Navigator.of(context).pop();
     } else {
       if (context.mounted) {
         showErrorSnackBar(context, 'No hay mas páginas');
@@ -23,4 +34,58 @@ class CustomNavigator {
   }
 
   bool canPop(BuildContext context) => Navigator.canPop(context);
+}
+
+class AnimationRoute extends PageRouteBuilder<Widget> {
+  AnimationRoute({
+    required this.page,
+    CustomNavigationAnimation animationType =
+        CustomNavigationAnimation.slideRight,
+  }) : super(
+         transitionDuration: const Duration(milliseconds: 500),
+         pageBuilder:
+             (
+               BuildContext context,
+               Animation<double> animation,
+               Animation<double> secondaryAnimation,
+             ) => page,
+         transitionsBuilder:
+             (
+               BuildContext context,
+               Animation<double> animation,
+               Animation<double> secondaryAnimation,
+               Widget child,
+             ) => switch (animationType) {
+               CustomNavigationAnimation.fade => FadeTransition(
+                 opacity: Tween<double>(begin: 0, end: 1).animate(animation),
+                 child: child,
+               ),
+               CustomNavigationAnimation.slideRight => SlideTransition(
+                 position: Tween<Offset>(
+                   begin: const Offset(1, 0),
+                   end: Offset.zero,
+                 ).animate(animation),
+                 child: child,
+               ),
+               CustomNavigationAnimation.scale => ScaleTransition(
+                 scale: Tween<double>(begin: 0.5, end: 1).animate(animation),
+                 child: child,
+               ),
+               CustomNavigationAnimation.scaleFade => ScaleTransition(
+                 scale: Tween<double>(begin: 0.5, end: 1).animate(animation),
+                 child: FadeTransition(
+                   opacity: Tween<double>(begin: 0, end: 1).animate(animation),
+                   child: child,
+                 ),
+               ),
+               CustomNavigationAnimation.slideBottom => SlideTransition(
+                 position: Tween<Offset>(
+                   begin: const Offset(0, 1),
+                   end: Offset.zero,
+                 ).animate(animation),
+                 child: child,
+               ),
+             },
+       );
+  final Widget page;
 }

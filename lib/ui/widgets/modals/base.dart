@@ -90,7 +90,7 @@ class ModalBase extends StatelessWidget {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: const Color.fromRGBO(198, 73, 52, 1),
+                color: Theme.of(context).colorScheme.primary,
               ),
               child: Stack(
                 children: <Widget>[

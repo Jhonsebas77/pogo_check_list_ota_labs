@@ -31,7 +31,7 @@ class _VersionWidgetState extends State<VersionWidget> {
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsets.all(8),
     child: Container(
-      width: 250,
+      width: 260,
       padding: const EdgeInsets.only(left: 12, top: 8, bottom: 8, right: 12),
       decoration: BoxDecoration(
         color: Colors.black12,
@@ -45,19 +45,22 @@ class _VersionWidgetState extends State<VersionWidget> {
             width: 50,
             fit: BoxFit.fill,
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: 16),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SelectableText(
                 _appName,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
               SelectableText(
                 'By Ota_Labs $_version($_buildNumber)',
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 12),
+                style: const TextStyle(fontSize: 12, color: Colors.white),
               ),
             ],
           ),

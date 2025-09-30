@@ -67,7 +67,7 @@ class _AllPokemonAvailableViewState
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           systemOverlayStyle: SystemUiOverlayStyle.light,
           toolbarHeight: 82,
           elevation: 0,
@@ -136,7 +136,8 @@ class _AllPokemonAvailableViewState
                               Switch(
                                 value: displayOnlyMissingPokemon,
                                 thumbIcon: thumbIcon,
-                                activeColor: Colors.indigo,
+                                activeColor:
+                                    Theme.of(context).colorScheme.secondary,
                                 onChanged: (_) async {
                                   setState(() {
                                     displayOnlyMissingPokemon =
@@ -165,7 +166,7 @@ class _AllPokemonAvailableViewState
                                         )
                                         : const Icon(Icons.filter_list_rounded),
                                 tooltip: 'Ordenar Pokémones',
-                                color: const Color.fromRGBO(198, 73, 52, 0.9),
+                                color: Theme.of(context).colorScheme.primary,
                                 offset: const Offset(0, 60),
                                 onSelected: (PokemonSortCriteria result) {
                                   setState(() {
@@ -204,7 +205,7 @@ class _AllPokemonAvailableViewState
             ),
           ),
         ),
-        backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         body: firebasePokemonState.when(
           data: (PokemonFirebaseState state) {
             if (state.allPokemon.isEmpty) {
@@ -237,24 +238,28 @@ class _AllPokemonAvailableViewState
                 );
                 break;
             }
-            return ListView.separated(
-              separatorBuilder:
-                  (BuildContext _, int __) =>
-                      const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-              controller: _scrollController,
-              shrinkWrap: true,
-              itemCount: sortedPokemon.length,
-              itemBuilder: (BuildContext context, int index) {
-                PokemonModel pokemon = sortedPokemon[index];
-                if (pokemon.id == 0) {
-                  return const SizedBox();
-                } else {
-                  return PokemonListItem(
-                    index: pokemon.id,
-                    selectPokemon: pokemon,
-                  );
-                }
-              },
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: ListView.separated(
+                separatorBuilder:
+                    (BuildContext _, int __) => const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 4),
+                    ),
+                controller: _scrollController,
+                shrinkWrap: true,
+                itemCount: sortedPokemon.length,
+                itemBuilder: (BuildContext context, int index) {
+                  PokemonModel pokemon = sortedPokemon[index];
+                  if (pokemon.id == 0) {
+                    return const SizedBox();
+                  } else {
+                    return PokemonListItem(
+                      index: pokemon.id,
+                      selectPokemon: pokemon,
+                    );
+                  }
+                },
+              ),
             );
           },
           error:
@@ -268,9 +273,10 @@ class _AllPokemonAvailableViewState
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
-          backgroundColor: Colors.indigo,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           child: Icon(
             isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
+            color: Theme.of(context).colorScheme.onSecondary,
           ),
         ),
       ),

@@ -101,15 +101,13 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                                   style: const TextStyle(color: Colors.white54),
                                 ),
                             error:
-                                (
-                                  Object error,
-                                  StackTrace stackTrace,
-                                ) => SimpleErrorChip(
-                                  iconData: Icons.catching_pokemon,
-                                  error: error.toString(),
-                                  stackTrace: stackTrace,
-                                  isSmall: true,
-                                ),
+                                (Object error, StackTrace stackTrace) =>
+                                    SimpleErrorChip(
+                                      iconData: Icons.catching_pokemon,
+                                      error: error.toString(),
+                                      stackTrace: stackTrace,
+                                      isSmall: true,
+                                    ),
                             loading:
                                 () => const SimpleTextShimmer(
                                   widthShimmer: 100,
@@ -136,7 +134,8 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                               Switch(
                                 value: displayOnlyMissingPokemon,
                                 thumbIcon: thumbIcon,
-                                activeColor: Colors.indigo,
+                                activeColor:
+                                    Theme.of(context).colorScheme.secondary,
                                 onChanged: (_) async {
                                   setState(() {
                                     displayOnlyMissingPokemon =
@@ -165,7 +164,7 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                                         )
                                         : const Icon(Icons.filter_list_rounded),
                                 tooltip: 'Ordenar Pokémones',
-                                color: const Color.fromRGBO(198, 73, 52, 0.9),
+                                color: Theme.of(context).colorScheme.primary,
                                 offset: const Offset(0, 60),
                                 onSelected: (PokemonSortCriteria result) {
                                   setState(() {
@@ -204,7 +203,7 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
             ),
           ),
         ),
-        backgroundColor: const Color.fromRGBO(198, 73, 52, 1),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         body: firebasePokemonState.when(
           data: (PokemonFirebaseState state) {
             if (state.allPokemon.isEmpty) {
@@ -270,9 +269,10 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
-          backgroundColor: Colors.indigo,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           child: Icon(
             isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
+            color: Theme.of(context).colorScheme.onSecondary,
           ),
         ),
       ),

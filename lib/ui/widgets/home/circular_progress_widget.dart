@@ -26,8 +26,8 @@ class HomeCircularProgressWidget extends StatelessWidget {
         radius: 28,
         lineWidth: 6,
         percent: counterItemLength / allItemLength,
-        backgroundColor: Colors.black45,
-        progressColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        progressColor: Theme.of(context).colorScheme.secondary,
         circularStrokeCap: CircularStrokeCap.square,
         center: centerWidget,
         footer: Text(
