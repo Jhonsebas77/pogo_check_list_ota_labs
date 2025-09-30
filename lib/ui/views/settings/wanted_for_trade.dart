@@ -22,15 +22,13 @@ class WantedForTradeView extends StatelessWidget {
           headerSliverBuilder:
               (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
                 SliverAppBar(
-                  systemOverlayStyle: SystemUiOverlayStyle.light,
                   pinned: true,
                   floating: true,
-                  toolbarHeight: 82,
                   centerTitle: true,
-                  title: const Text(
-                    'Intercambios',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
+                  title: const Text('Intercambios'),
+                  systemOverlayStyle: SystemUiOverlayStyle.light,
+                  elevation: 0,
+                  toolbarHeight: 82,
                   leading: const DexHeaderLeading(),
                   actions: const DexHeaderActions().getActions(),
                   bottom: TabBar(

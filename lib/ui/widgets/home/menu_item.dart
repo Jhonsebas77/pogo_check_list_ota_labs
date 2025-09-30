@@ -16,7 +16,11 @@ class HomeMenuItem extends StatelessWidget {
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     child: GestureDetector(
       onTap: () {
-        CustomNavigator().push(context, viewToNavigate);
+        CustomNavigator().push(
+          context,
+          viewToNavigate,
+          animation: CustomNavigationAnimation.slideBottom,
+        );
       },
       child: Container(
         padding: const EdgeInsets.only(left: 12, top: 8, bottom: 8, right: 12),

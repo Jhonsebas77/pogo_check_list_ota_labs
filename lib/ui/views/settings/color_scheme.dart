@@ -6,30 +6,33 @@ class ColorSchemeView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Esquema de colores'),
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        elevation: 0,
-        toolbarHeight: 82,
-        leading: const DexHeaderLeading(),
-        actions: const DexHeaderActions().getActions(),
-      ),
-      body: const Center(child: ColorSchemeWidget()),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ref
-              .read(themeModeProvider.notifier)
-              .setThemeMode(isDarkMode ? ThemeMode.light : ThemeMode.dark);
-          showInformationSnackBar(
-            context,
-            '''[Tema actualizado] ->  ${isDarkMode ? 'Tema claro' : 'Tema oscuro'}''',
-          );
-        },
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        tooltip: isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro',
-        child: Icon(
-          isDarkMode ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Esquema de colores'),
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          elevation: 0,
+          toolbarHeight: 82,
+          leading: const DexHeaderLeading(),
+          actions: const DexHeaderActions().getActions(),
+        ),
+        body: const Center(child: ColorSchemeWidget()),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            ref
+                .read(themeModeProvider.notifier)
+                .setThemeMode(isDarkMode ? ThemeMode.light : ThemeMode.dark);
+            showInformationSnackBar(
+              context,
+              '''[Tema actualizado] ->  ${isDarkMode ? 'Tema claro' : 'Tema oscuro'}''',
+            );
+          },
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          tooltip:
+              isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro',
+          child: Icon(
+            isDarkMode ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+          ),
         ),
       ),
     );

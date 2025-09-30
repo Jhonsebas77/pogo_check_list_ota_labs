@@ -25,7 +25,11 @@ class SettingsMenuItem extends StatelessWidget {
         color: Colors.white,
       ),
       onTap: () {
-        CustomNavigator().push(context, viewToNavigate);
+        CustomNavigator().push(
+          context,
+          viewToNavigate,
+          animation: CustomNavigationAnimation.fade,
+        );
       },
     ),
   );

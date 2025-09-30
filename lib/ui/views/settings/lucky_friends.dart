@@ -12,16 +12,16 @@ class LuckyFriendsView extends ConsumerWidget {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor:
-            isDarkMode ? null : Theme.of(context).colorScheme.primary,
         appBar: AppBar(
+          title: const Text('Amistades con suerte'),
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          elevation: 0,
+          toolbarHeight: 82,
           leading: const DexHeaderLeading(),
           actions: const DexHeaderActions().getActions(),
-          title: const Text(
-            'Amistades con suerte',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
         ),
+        backgroundColor:
+            isDarkMode ? null : Theme.of(context).colorScheme.primary,
         floatingActionButton: FloatingActionButton(
           mini: true,
           onPressed: () {},

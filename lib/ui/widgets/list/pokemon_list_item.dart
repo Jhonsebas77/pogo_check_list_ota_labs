@@ -19,7 +19,11 @@ class PokemonListItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) => GestureDetector(
     onTap: () {
-      CustomNavigator().push(context, DetailsScreen(pokemonId: index));
+      CustomNavigator().push(
+        context,
+        DetailsScreen(pokemonId: index),
+        animation: CustomNavigationAnimation.fade,
+      );
     },
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -14,30 +14,35 @@ class PokemonListMegaEvolutionItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => GestureDetector(
-    onTap: () async {
-      PokemonModel _pokemon = PokemonModel(
-        alreadyCatch: !selectPokemon.alreadyCatch,
-        alreadyCatchShinyVersion: selectPokemon.alreadyCatchShinyVersion,
-        available: selectPokemon.available,
-        id: selectPokemon.id,
-        name: selectPokemon.name,
-        shinyAvailable: selectPokemon.shinyAvailable,
-        tradable: selectPokemon.tradable,
-      );
-      await ref
-          .read(firebasePokemonProvider.notifier)
-          .updateMegaEvolutionPokemon(index, _pokemon, context);
-      if (context.mounted) {
-        showSuccessSnackBar(
-          context,
-          '''[Registro actualizado]\n${paddingDexNumber(dexNumber: selectPokemon.id)} ${selectPokemon.name}''',
-        );
-      }
-    },
+    onTap:
+        selectPokemon.available
+            ? () async {
+              PokemonModel _pokemon = PokemonModel(
+                alreadyCatch: !selectPokemon.alreadyCatch,
+                alreadyCatchShinyVersion:
+                    selectPokemon.alreadyCatchShinyVersion,
+                available: selectPokemon.available,
+                id: selectPokemon.id,
+                name: selectPokemon.name,
+                shinyAvailable: selectPokemon.shinyAvailable,
+                tradable: selectPokemon.tradable,
+              );
+              await ref
+                  .read(firebasePokemonProvider.notifier)
+                  .updateMegaEvolutionPokemon(index, _pokemon, context);
+              if (context.mounted) {
+                showSuccessSnackBar(
+                  context,
+                  '''[Registro actualizado]\n${paddingDexNumber(dexNumber: selectPokemon.id)} ${selectPokemon.name}''',
+                );
+              }
+            }
+            : null,
     onLongPress: () {
       CustomNavigator().push(
         context,
         DetailsScreen(pokemonId: selectPokemon.id),
+        animation: CustomNavigationAnimation.fade,
       );
     },
     child: DecoratedBox(

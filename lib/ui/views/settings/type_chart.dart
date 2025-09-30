@@ -22,10 +22,10 @@ class _TypeChartViewState extends State<TypeChartView> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Tabla de tipos',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
+          title: const Text('Tabla de tipos'),
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          elevation: 0,
+          toolbarHeight: 82,
           leading: const DexHeaderLeading(),
           actions: const DexHeaderActions().getActions(),
         ),
@@ -146,7 +146,7 @@ class _TypeChartViewState extends State<TypeChartView> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all( 8),
+                      padding: const EdgeInsets.all(8),
                       child: ConstrainedBox(
                         constraints: BoxConstraints(
                           minHeight: MediaQuery.of(context).size.height * 0.1,

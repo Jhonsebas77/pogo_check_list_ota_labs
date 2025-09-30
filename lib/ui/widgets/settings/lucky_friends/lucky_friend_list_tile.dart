@@ -5,33 +5,6 @@ class LuckyFriendListTile extends StatelessWidget {
 
   final LuckyFriend friend;
 
-  Widget _buildAvatar(BuildContext context) {
-    if (friend.avatarUrl != null && friend.avatarUrl!.isNotEmpty) {
-      return CircleAvatar(
-        radius: 32,
-        backgroundImage: NetworkImage(friend.avatarUrl!),
-      );
-    }
-    return Stack(
-      alignment: AlignmentDirectional.center,
-      children: <Widget>[
-        Image.asset(
-          'assets/bg_holder_pokemon.png',
-          height: 64,
-          width: 64,
-          fit: BoxFit.fill,
-        ),
-        const Center(
-          child: Icon(
-            Icons.connect_without_contact_rounded,
-            color: Color(0xFFDA7B28),
-            size: 50,
-          ),
-        ),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) => Container(
     decoration: BoxDecoration(
@@ -42,7 +15,6 @@ class LuckyFriendListTile extends StatelessWidget {
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        _buildAvatar(context),
         const SizedBox(width: 16),
         Expanded(
           child: Column(
@@ -90,37 +62,55 @@ class LuckyFriendListTile extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 16),
-        if (friend.pokemonOffer == null)
-          const Icon(Icons.catching_pokemon, size: 50, color: Colors.grey),
-        if (friend.pokemonOffer != null)
-          if (friend.pokemonOffer?.isShiny ?? false)
+        Stack(
+          alignment: AlignmentDirectional.center,
+          children: <Widget>[
             Image.asset(
-              'assets/pokedex_sprites_shiny/${friend.pokemonOffer?.id}.png',
-              height: 50,
-              width: 50,
-            )
-          else
-            Image.asset(
-              'assets/pokedex_sprites/${friend.pokemonOffer?.id}.png',
-              height: 50,
-              width: 50,
+              'assets/bg_holder_pokemon.png',
+              height: 64,
+              width: 64,
+              fit: BoxFit.fill,
             ),
+            if (friend.pokemonOffer != null)
+              if (friend.pokemonOffer?.isShiny ?? false)
+                Image.asset(
+                  'assets/pokedex_sprites_shiny/${friend.pokemonOffer?.id}.png',
+                  height: 50,
+                  width: 50,
+                )
+              else
+                Image.asset(
+                  'assets/pokedex_sprites/${friend.pokemonOffer?.id}.png',
+                  height: 50,
+                  width: 50,
+                ),
+          ],
+        ),
         const Icon(Icons.wifi_protected_setup_sharp),
-        if (friend.pokemonWanted == null)
-          const Icon(Icons.catching_pokemon, size: 50, color: Colors.grey),
-        if (friend.pokemonWanted != null)
-          if (friend.pokemonWanted?.isShiny ?? false)
+        Stack(
+          alignment: AlignmentDirectional.center,
+          children: <Widget>[
             Image.asset(
-              'assets/pokedex_sprites_shiny/${friend.pokemonWanted?.id}.png',
-              height: 50,
-              width: 50,
-            )
-          else
-            Image.asset(
-              'assets/pokedex_sprites/${friend.pokemonWanted?.id}.png',
-              height: 50,
-              width: 50,
+              'assets/bg_holder_pokemon.png',
+              height: 64,
+              width: 64,
+              fit: BoxFit.fill,
             ),
+            if (friend.pokemonWanted != null)
+              if (friend.pokemonWanted?.isShiny ?? false)
+                Image.asset(
+                  'assets/pokedex_sprites_shiny/${friend.pokemonWanted?.id}.png',
+                  height: 50,
+                  width: 50,
+                )
+              else
+                Image.asset(
+                  'assets/pokedex_sprites/${friend.pokemonWanted?.id}.png',
+                  height: 50,
+                  width: 50,
+                ),
+          ],
+        ),
         const SizedBox(width: 16),
       ],
     ),
