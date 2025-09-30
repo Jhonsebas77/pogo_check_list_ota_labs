@@ -6,125 +6,107 @@
             "activity_type": "gift",
             "time_label": "2+ days ago",
             "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "pokemon_offer": {
+                "id": 800,
+                "name": "Necrozma",
+                "want_shiny": true
+            },
+            "pokemon_want": {
+                "id": 485,
+                "name": "Heatran",
+                "want_shiny": true
+            }
         },
         {
             "name": "Apokha",
             "activity": "Apokha sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "Bluesfera",
             "activity": "Bluesfera caught Gothita!",
             "activity_type": "catch",
             "time_label": "Yesterday",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "byronbk",
             "activity": "byronbk sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "CamatoDj93",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "ChrisJulliand",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "CrbLucio",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "CSR21z",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "DecoGomez2809",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "Jaime333333",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "Jottajotta1",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "juanv1022",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "Magnagarurumonh",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         },
         {
             "name": "Reloco787",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false,
-            "pokemon_offer": "",
-            "pokemon_want": ""
+            "contacted": false
         }
     ]
 }

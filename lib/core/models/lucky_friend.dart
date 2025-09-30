@@ -9,6 +9,8 @@ class LuckyFriend {
     required this.timeLabel,
     this.avatarUrl,
     this.activityType = LuckyFriendActivityType.other,
+    this.pokemonWanted,
+    this.pokemonOffer,
   });
 
   factory LuckyFriend.fromJson(Map<String, dynamic> json) => LuckyFriend(
@@ -17,6 +19,18 @@ class LuckyFriend {
     timeLabel: json['time_label'] != null ? json['time_label'] as String : '',
     avatarUrl: json['avatar_url'] != null ? json['avatar_url'] as String : null,
     activityType: _mapActivityType(json['activity_type'] as String?),
+    pokemonWanted:
+        json['pokemon_want'] != null
+            ? PokemonTradeItem.fromJson(
+              json['pokemon_want'] as Map<String, dynamic>,
+            )
+            : null,
+    pokemonOffer:
+        json['pokemon_offer'] != null
+            ? PokemonTradeItem.fromJson(
+              json['pokemon_offer'] as Map<String, dynamic>,
+            )
+            : null,
   );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -32,6 +46,8 @@ class LuckyFriend {
   final String timeLabel;
   final String? avatarUrl;
   final LuckyFriendActivityType activityType;
+  final PokemonTradeItem? pokemonWanted;
+  final PokemonTradeItem? pokemonOffer;
 
   static LuckyFriendActivityType _mapActivityType(String? value) {
     switch (value) {
