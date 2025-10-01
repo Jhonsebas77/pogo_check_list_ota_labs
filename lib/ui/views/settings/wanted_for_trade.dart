@@ -32,6 +32,15 @@ class WantedForTradeView extends StatelessWidget {
                   leading: const DexHeaderLeading(),
                   actions: const DexHeaderActions().getActions(),
                   bottom: TabBar(
+                    indicatorColor: Colors.transparent,
+                    labelColor: Colors.white,
+                    dividerColor: Colors.transparent,
+                    labelStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.4,
+                    ),
                     tabs: const <Widget>[
                       Tab(
                         icon: Icon(Icons.wifi_protected_setup_sharp),
@@ -42,18 +51,6 @@ class WantedForTradeView extends StatelessWidget {
                         text: 'Ofreciendo',
                       ),
                     ],
-                    indicator: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    labelColor: Theme.of(context).colorScheme.onSecondary,
-                    unselectedLabelColor: Colors.white70,
-                    indicatorPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
-                    ),
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    dividerColor: Colors.transparent,
                   ),
                   expandedHeight: 150,
                 ),

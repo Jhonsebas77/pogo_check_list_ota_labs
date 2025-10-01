@@ -18,10 +18,24 @@
             }
         },
         {
+            "name": "Anthonnio",
+            "activity": "Apokha sent you a Gift!",
+            "activity_type": "gift",
+            "time_label": "2+ days ago",
+            "contacted": false
+        },
+        {
             "name": "Apokha",
             "activity": "Apokha sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
+            "contacted": false
+        },
+        {
+            "name": "Bluuesfera",
+            "activity": "Bluesfera caught Gothita!",
+            "activity_type": "catch",
+            "time_label": "Yesterday",
             "contacted": false
         },
         {
@@ -68,6 +82,13 @@
         },
         {
             "name": "DecoGomez2809",
+            "activity": "CamiloDipa sent you a Gift!",
+            "activity_type": "gift",
+            "time_label": "2+ days ago",
+            "contacted": false
+        },
+        {
+            "name": "Galendor123",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",

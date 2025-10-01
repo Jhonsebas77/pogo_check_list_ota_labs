@@ -588,3 +588,17 @@ List<List<int>> getEvolutionGroups() => <List<int>>[
   <int>[996, 997, 998],
   <int>[999, 1000],
 ];
+
+List<List<int>> getLegendaryGroups() => <List<int>>[
+  <int>[144],
+  <int>[145],
+  <int>[146],
+  <int>[150],
+  <int>[151],
+  <int>[243],
+  <int>[244],
+  <int>[245],
+  <int>[249],
+  <int>[250],
+  <int>[251],
+];
