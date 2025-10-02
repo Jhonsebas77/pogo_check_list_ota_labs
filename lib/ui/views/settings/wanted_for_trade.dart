@@ -40,7 +40,7 @@ class _WantedForTradeViewState extends State<WantedForTradeView> {
                   floating: true,
                   centerTitle: true,
                   title: const Text('Intercambios'),
-                  systemOverlayStyle: SystemUiOverlayStyle.light,
+                  systemOverlayStyle: SystemUiOverlayStyle.dark,
                   elevation: 0,
                   toolbarHeight: 82,
                   leading: const DexHeaderLeading(),
@@ -56,10 +56,7 @@ class _WantedForTradeViewState extends State<WantedForTradeView> {
                       letterSpacing: 0.4,
                     ),
                     tabs: const <Widget>[
-                      Tab(
-                        icon: Icon(Icons.wifi_protected_setup_sharp),
-                        text: 'Buscando',
-                      ),
+                      Tab(icon: Icon(Icons.compare_arrows), text: 'Buscando'),
                       Tab(
                         icon: Icon(Icons.catching_pokemon),
                         text: 'Ofreciendo',

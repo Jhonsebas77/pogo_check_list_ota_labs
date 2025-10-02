@@ -35,7 +35,7 @@ class _GigantamaxPokemonViewState extends ConsumerState<GigantamaxPokemonView> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primary,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
           toolbarHeight: 82,
           leading: const DexHeaderLeading(),
           actions: const DexHeaderActions().getActions(),

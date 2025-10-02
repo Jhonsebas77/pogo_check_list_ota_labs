@@ -14,7 +14,7 @@ class LuckyFriendsView extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Amistades con suerte'),
-          systemOverlayStyle: SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
           elevation: 0,
           toolbarHeight: 82,
           leading: const DexHeaderLeading(),

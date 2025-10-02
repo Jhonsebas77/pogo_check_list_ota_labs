@@ -68,7 +68,7 @@ class _AllPokemonAvailableViewState
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primary,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
           toolbarHeight: 82,
           elevation: 0,
           leading: const DexHeaderLeading(),

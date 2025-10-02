@@ -86,7 +86,14 @@ class LuckyFriendListTile extends StatelessWidget {
                 ),
           ],
         ),
-        const Icon(Icons.wifi_protected_setup_sharp),
+        Icon(
+          Icons.compare_arrows,
+          size: 32,
+          color:
+              (friend.pokemonOffer != null || friend.pokemonWanted != null)
+                  ? Colors.orange
+                  : Colors.grey,
+        ),
         Stack(
           alignment: AlignmentDirectional.center,
           children: <Widget>[
@@ -111,7 +118,7 @@ class LuckyFriendListTile extends StatelessWidget {
                 ),
           ],
         ),
-        const SizedBox(width: 16),
+        const SizedBox(width: 8),
       ],
     ),
   );

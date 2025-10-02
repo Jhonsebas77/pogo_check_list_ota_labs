@@ -25,7 +25,7 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
         appBar: AppBar(
           backgroundColor:
               isDarkMode ? null : Theme.of(context).colorScheme.primary,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
           elevation: 0,
           toolbarHeight: 82,
           leading: const DexHeaderLeading(),

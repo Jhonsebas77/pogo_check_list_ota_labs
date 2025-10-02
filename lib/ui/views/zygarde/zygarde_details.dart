@@ -33,7 +33,7 @@ class _ZygardeDetailsState extends ConsumerState<ZygardeDetails> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
           elevation: 0,
           toolbarHeight: 82,
           title: const Text('Células Zygarde'),

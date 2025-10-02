@@ -23,7 +23,7 @@ class _TypeChartViewState extends State<TypeChartView> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Tabla de tipos'),
-          systemOverlayStyle: SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
           elevation: 0,
           toolbarHeight: 82,
           leading: const DexHeaderLeading(),

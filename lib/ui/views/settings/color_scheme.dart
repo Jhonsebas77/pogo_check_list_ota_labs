@@ -10,7 +10,7 @@ class ColorSchemeView extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Esquema de colores'),
-          systemOverlayStyle: SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
           elevation: 0,
           toolbarHeight: 82,
           leading: const DexHeaderLeading(),

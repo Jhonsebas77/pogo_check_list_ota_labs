@@ -36,7 +36,7 @@ class _MegaEvolutionPokemonState
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
           toolbarHeight: 82,
           leading: const DexHeaderLeading(),
           actions: const DexHeaderActions().getActions(),

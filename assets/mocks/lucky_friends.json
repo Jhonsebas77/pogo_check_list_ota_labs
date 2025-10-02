@@ -64,7 +64,17 @@
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false
+            "contacted": false,
+            "pokemon_offer": {
+                "id": 889,
+                "name": "Zamazenta",
+                "want_shiny": true
+            },
+            "pokemon_want": {
+                "id": 640,
+                "name": "Virizion",
+                "want_shiny": true
+            }
         },
         {
             "name": "CrbLucio",
@@ -124,6 +134,13 @@
         },
         {
             "name": "Reloco787",
+            "activity": "CamiloDipa sent you a Gift!",
+            "activity_type": "gift",
+            "time_label": "2+ days ago",
+            "contacted": false
+        },
+        {
+            "name": "SantiagoPrieto9",
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
