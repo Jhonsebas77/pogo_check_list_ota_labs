@@ -9,7 +9,7 @@ class LuckyFriendsView extends ConsumerWidget {
       luckyFriendsProvider,
     );
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
+    ScreenshotController screenshotController = ScreenshotController();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -22,17 +22,52 @@ class LuckyFriendsView extends ConsumerWidget {
         ),
         backgroundColor:
             isDarkMode ? null : Theme.of(context).colorScheme.primary,
-        floatingActionButton: FloatingActionButton(
-          mini: true,
-          onPressed: () {},
-          child: Text('${luckyFriends.value?.length ?? 0}'),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Chip(
+              label: Text(
+                '${luckyFriends.value?.length ?? 0} Amigos con suerte',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+              ),
+              visualDensity: VisualDensity.compact,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+            ),
+            const SizedBox(width: 4),
+            CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              child: IconButton(
+                tooltip: 'Tomar screenshot',
+                icon: Icon(
+                  Icons.screenshot,
+                  size: 16,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+                onPressed: () {
+                  ref
+                      .read(screenShotViewModelNotifier.notifier)
+                      .captureAndSaveInGallery(
+                        screenshotController,
+                        'lucky-friends',
+                        context,
+                      );
+                },
+              ),
+            ),
+          ],
         ),
         body: SafeArea(
           top: false,
           child: luckyFriends.when(
             data:
-                (List<LuckyFriend> friends) =>
-                    _LuckyFriendsBody(friends: friends),
+                (List<LuckyFriend> friends) => SingleChildScrollView(
+                  child: Screenshot(
+                    controller: screenshotController,
+                    child: LuckyFriendsList(friends: friends),
+                  ),
+                ),
             error:
                 (Object error, StackTrace stackTrace) => const SimpleErrorChip(
                   iconData: Icons.people,
@@ -42,30 +77,6 @@ class LuckyFriendsView extends ConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _LuckyFriendsBody extends StatelessWidget {
-  const _LuckyFriendsBody({required this.friends});
-
-  final List<LuckyFriend> friends;
-
-  @override
-  Widget build(BuildContext context) {
-    if (friends.isEmpty) {
-      return const EmptyState();
-    }
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
-      children: <Widget>[
-        ...friends.map(
-          (LuckyFriend friend) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6),
-            child: LuckyFriendListTile(friend: friend),
-          ),
-        ),
-      ],
     );
   }
 }

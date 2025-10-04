@@ -33,6 +33,7 @@ part 'list/simple_chip_with_icon.dart';
 part 'modals/base.dart';
 part 'modals/count_overview.dart';
 part 'modals/zygarde_cells.dart';
+part 'settings/lucky_friends/list_friends.dart';
 part 'settings/lucky_friends/lucky_friend_list_tile.dart';
 part 'settings/menu_item.dart';
 part 'settings/title_section.dart';
