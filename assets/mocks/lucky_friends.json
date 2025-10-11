@@ -22,7 +22,17 @@
             "activity": "Apokha sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false
+            "contacted": false,
+            "pokemon_offer": {
+                "id": 381,
+                "name": "Latios",
+                "want_shiny": true
+            },
+            "pokemon_want": {
+                "id": 381,
+                "name": "Latios",
+                "want_shiny": true
+            }
         },
         {
             "name": "Apokha",
@@ -95,7 +105,17 @@
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false
+            "contacted": false,
+            "pokemon_offer": {
+                "id": 791,
+                "name": "Solgaleo",
+                "want_shiny": false
+            },
+            "pokemon_want": {
+                "id": 716,
+                "name": "Xerneas",
+                "want_shiny": true
+            }
         },
         {
             "name": "Galendor123",
@@ -144,7 +164,17 @@
             "activity": "CamiloDipa sent you a Gift!",
             "activity_type": "gift",
             "time_label": "2+ days ago",
-            "contacted": false
+            "contacted": false,
+            "pokemon_offer": {
+                "id": 383,
+                "name": "Groudon",
+                "want_shiny": true
+            },
+            "pokemon_want": {
+                "id": 383,
+                "name": "Groudon",
+                "want_shiny": true
+            }
         }
     ]
 }

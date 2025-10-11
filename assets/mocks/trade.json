@@ -1,19 +1,6 @@
 {
     "wanted_pokemon": [
         {
-            "id": 244,
-            "name": "Entei",
-            "want_shiny": true,
-            "want_mirror_change": false,
-            "already_caught": false,
-            "want_dynamax": false,
-            "want_special_background": false,
-            "want_adventure_effect": false,
-            "want_gigantamax": false,
-            "want_lucky ": false,
-            "quantity": 1
-        },
-        {
             "id": 245,
             "name": "Suicune",
             "want_shiny": true,
@@ -275,14 +262,6 @@
             "quantity": 2
         },
         {
-            "id": 381,
-            "name": "Latios",
-            "want_shiny": true,
-            "want_mirror_change": true,
-            "already_caught": true,
-            "quantity": 1
-        },
-        {
             "id": 382,
             "name": "Kyogre",
             "want_shiny": true,
@@ -292,14 +271,6 @@
         {
             "id": 382,
             "name": "Kyogre",
-            "want_shiny": true,
-            "want_mirror_change": true,
-            "already_caught": true,
-            "quantity": 1
-        },
-        {
-            "id": 383,
-            "name": "Groudon",
             "want_shiny": true,
             "want_mirror_change": true,
             "already_caught": true,
