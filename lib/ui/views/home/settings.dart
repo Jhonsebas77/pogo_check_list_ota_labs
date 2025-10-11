@@ -17,6 +17,11 @@ class SettingsView extends StatelessWidget {
             children: <Widget>[
               SettingsTitleSection(title: 'Herramientas'),
               SettingsMenuItem(
+                title: 'Amistades con suerte',
+                leadingIcon: Icons.supervised_user_circle,
+                viewToNavigate: LuckyFriendsView(),
+              ),
+              SettingsMenuItem(
                 title: 'Intercambios',
                 leadingIcon: Icons.search,
                 viewToNavigate: WantedForTradeView(),
@@ -25,11 +30,6 @@ class SettingsView extends StatelessWidget {
                 title: 'Tabla de tipos',
                 leadingIcon: Icons.apps,
                 viewToNavigate: TypeChartView(),
-              ),
-              SettingsMenuItem(
-                title: 'Amistades con suerte',
-                leadingIcon: Icons.supervised_user_circle,
-                viewToNavigate: LuckyFriendsView(),
               ),
             ],
           ),

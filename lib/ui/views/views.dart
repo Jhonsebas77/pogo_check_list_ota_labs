@@ -2,14 +2,17 @@ library com.pogo_check_list_ota_labs.app.views;
 
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../core/enums/enums.dart';
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
+import '../../core/state/state.dart';
 import '../../core/utils/constants.dart';
 import '../../core/utils/type_chart.dart';
 import '../theme.dart';

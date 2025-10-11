@@ -1,12 +1,12 @@
 part of com.pogo_check_list_ota_labs.app.views;
 
-class WantedForTradeView extends StatefulWidget {
+class WantedForTradeView extends ConsumerStatefulWidget {
   const WantedForTradeView({super.key});
   @override
-  State<WantedForTradeView> createState() => _WantedForTradeViewState();
+  ConsumerState<WantedForTradeView> createState() => _WantedForTradeViewState();
 }
 
-class _WantedForTradeViewState extends State<WantedForTradeView> {
+class _WantedForTradeViewState extends ConsumerState<WantedForTradeView> {
   final Set<int> _legendaryIds =
       getLegendaryGroups().expand((List<int> group) => group).toSet();
 
@@ -27,6 +27,7 @@ class _WantedForTradeViewState extends State<WantedForTradeView> {
   @override
   Widget build(BuildContext context) {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    ScreenshotController screenshotController = ScreenshotController();
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -66,69 +67,100 @@ class _WantedForTradeViewState extends State<WantedForTradeView> {
                   expandedHeight: 150,
                 ),
               ],
-          body: FutureBuilder<PokemonTrade>(
-            future: loadTradeData(),
-            builder: (
-              BuildContext context,
-              AsyncSnapshot<PokemonTrade> asyncSnapshot,
-            ) {
-              if (asyncSnapshot.hasError) {
-                return const SimpleErrorChip(
-                  iconData: Icons.catching_pokemon,
-                  text: 'Con la información de los Pokemon a intercambiar',
-                );
-              }
-              if (asyncSnapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: Icon(
-                    Icons.catching_pokemon_outlined,
-                    color: Colors.grey,
-                    size: 50,
-                  ),
-                );
-              }
-              if (asyncSnapshot.hasData) {
-                PokemonTrade tradeData = asyncSnapshot.data!;
-                List<PokemonTradeItem> wantedPokemon =
-                    List<PokemonTradeItem>.from(tradeData.wantedPokemon)..sort(
-                      (PokemonTradeItem a, PokemonTradeItem b) =>
-                          a.id.compareTo(b.id),
-                    );
-                List<PokemonTradeItem> offerPokemon =
-                    List<PokemonTradeItem>.from(tradeData.offerPokemon)..sort(
-                      (PokemonTradeItem a, PokemonTradeItem b) =>
-                          a.id.compareTo(b.id),
-                    );
-                if (_showOnlyLegendary) {
-                  wantedPokemon =
-                      wantedPokemon
-                          .where(
-                            (PokemonTradeItem pokemon) =>
-                                _legendaryIds.contains(pokemon.id),
-                          )
-                          .toList();
-                  offerPokemon =
-                      offerPokemon
-                          .where(
-                            (PokemonTradeItem pokemon) =>
-                                _legendaryIds.contains(pokemon.id),
-                          )
-                          .toList();
+          body: Screenshot(
+            controller: screenshotController,
+            child: FutureBuilder<PokemonTrade>(
+              future: loadTradeData(),
+              builder: (
+                BuildContext context,
+                AsyncSnapshot<PokemonTrade> asyncSnapshot,
+              ) {
+                if (asyncSnapshot.hasError) {
+                  return const SimpleErrorChip(
+                    iconData: Icons.catching_pokemon,
+                    text: 'Con la información de los Pokemon a intercambiar',
+                  );
                 }
-                return TabBarView(
-                  children: <Widget>[
-                    PokemonTradeList(pokemonList: wantedPokemon),
-                    PokemonTradeList(pokemonList: offerPokemon),
-                  ],
-                );
-              }
-              return const Center(child: Text('No data available.'));
-            },
+                if (asyncSnapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: Icon(
+                      Icons.catching_pokemon_outlined,
+                      color: Colors.grey,
+                      size: 50,
+                    ),
+                  );
+                }
+                if (asyncSnapshot.hasData) {
+                  PokemonTrade tradeData = asyncSnapshot.data!;
+                  List<PokemonTradeItem> wantedPokemon =
+                      List<PokemonTradeItem>.from(tradeData.wantedPokemon)
+                        ..sort(
+                          (PokemonTradeItem a, PokemonTradeItem b) =>
+                              a.id.compareTo(b.id),
+                        );
+                  List<PokemonTradeItem> offerPokemon =
+                      List<PokemonTradeItem>.from(tradeData.offerPokemon)..sort(
+                        (PokemonTradeItem a, PokemonTradeItem b) =>
+                            a.id.compareTo(b.id),
+                      );
+                  if (_showOnlyLegendary) {
+                    wantedPokemon =
+                        wantedPokemon
+                            .where(
+                              (PokemonTradeItem pokemon) =>
+                                  _legendaryIds.contains(pokemon.id),
+                            )
+                            .toList();
+                    offerPokemon =
+                        offerPokemon
+                            .where(
+                              (PokemonTradeItem pokemon) =>
+                                  _legendaryIds.contains(pokemon.id),
+                            )
+                            .toList();
+                  }
+                  return TabBarView(
+                    children: <Widget>[
+                      PokemonTradeList(
+                        pokemonList: wantedPokemon,
+                        type: 'Buscando',
+                      ),
+                      PokemonTradeList(
+                        pokemonList: offerPokemon,
+                        type: 'Ofreciendo',
+                      ),
+                    ],
+                  );
+                }
+                return const Center(child: Text('No data available.'));
+              },
+            ),
           ),
         ),
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
+            CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              child: IconButton(
+                tooltip: 'Tomar screenshot',
+                icon: Icon(
+                  Icons.screenshot,
+                  size: 16,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+                onPressed: () {
+                  ref
+                      .read(screenShotViewModelNotifier.notifier)
+                      .captureAndSaveInGallery(
+                        screenshotController,
+                        'trade-offer-pokemon',
+                        context,
+                      );
+                },
+              ),
+            ),
+            const SizedBox(width: 4),
             CircleAvatar(
               backgroundColor: Theme.of(context).colorScheme.secondary,
               child: IconButton(
@@ -139,7 +171,6 @@ class _WantedForTradeViewState extends State<WantedForTradeView> {
                   size: 16,
                   color: Theme.of(context).colorScheme.onSecondary,
                 ),
-                color: Theme.of(context).colorScheme.secondary,
                 tooltip:
                     _showOnlyLegendary
                         ? 'Mostrar todos los Pokémon'
@@ -147,9 +178,9 @@ class _WantedForTradeViewState extends State<WantedForTradeView> {
                 onPressed: _toggleLegendaryFilter,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Tooltip(
+            const SizedBox(width: 4),
+            if (!kIsWeb)
+              Tooltip(
                 verticalOffset: 24,
                 constraints: const BoxConstraints(maxWidth: 300),
                 decoration: BoxDecoration(
@@ -173,7 +204,6 @@ class _WantedForTradeViewState extends State<WantedForTradeView> {
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),
