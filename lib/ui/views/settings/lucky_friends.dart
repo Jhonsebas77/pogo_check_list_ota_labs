@@ -12,13 +12,9 @@ class LuckyFriendsView extends ConsumerWidget {
     ScreenshotController screenshotController = ScreenshotController();
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Amistades con suerte'),
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-          elevation: 0,
-          toolbarHeight: 82,
-          leading: const DexHeaderLeading(),
-          actions: const DexHeaderActions().getActions(),
+        appBar: const CustomAppBar(
+          title: 'Amistades con suerte',
+          isTransparent: true,
         ),
         backgroundColor:
             isDarkMode ? null : Theme.of(context).colorScheme.primary,

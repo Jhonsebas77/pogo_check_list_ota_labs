@@ -19,18 +19,9 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
     AsyncValue<PokemonDetail> pokemonAsyncValue = ref.watch(
       pokemonProvider('${widget.pokemonId}'),
     );
-    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor:
-              isDarkMode ? null : Theme.of(context).colorScheme.primary,
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-          elevation: 0,
-          toolbarHeight: 82,
-          leading: const DexHeaderLeading(),
-          actions: const DexHeaderActions().getActions(),
-        ),
+        appBar: const CustomAppBar(title: 'Gigantamax'),
         body: pokemonAsyncValue.when(
           // State 1: The Future is loading
           loading: () => const Center(child: CircularProgressIndicator()),

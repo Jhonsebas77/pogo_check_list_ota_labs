@@ -175,6 +175,30 @@
                 "name": "Groudon",
                 "want_shiny": true
             }
+        },
+        {
+            "name": "jag87",
+            "activity": "CamiloDipa sent you a Gift!",
+            "activity_type": "gift",
+            "time_label": "2+ days ago",
+            "contacted": false
+        },
+        {
+            "name": "jjgallon",
+            "activity": "CamiloDipa sent you a Gift!",
+            "activity_type": "gift",
+            "time_label": "2+ days ago",
+            "contacted": false,
+            "pokemon_offer": {
+                "id": 447,
+                "name": "Riolu",
+                "want_shiny": true
+            },
+            "pokemon_want": {
+                "id": 380,
+                "name": "Latias",
+                "want_shiny": true
+            }
         }
     ]
 }

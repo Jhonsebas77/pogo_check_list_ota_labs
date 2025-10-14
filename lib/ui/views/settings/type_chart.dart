@@ -21,13 +21,9 @@ class _TypeChartViewState extends State<TypeChartView> {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Tabla de tipos'),
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-          elevation: 0,
-          toolbarHeight: 82,
-          leading: const DexHeaderLeading(),
-          actions: const DexHeaderActions().getActions(),
+        appBar: const CustomAppBar(
+          title: 'Tabla de tipos',
+          isTransparent: true,
         ),
         backgroundColor:
             isDarkMode ? null : Theme.of(context).colorScheme.primary,

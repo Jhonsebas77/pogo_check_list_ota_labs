@@ -58,59 +58,52 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) => DefaultTabController(
-      length: 3,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            systemOverlayStyle: SystemUiOverlayStyle.dark,
-            elevation: 0,
-            toolbarHeight: 82,
-            leading: const DexHeaderLeading(),
-            actions: const DexHeaderActions().getActions(),
-          ),
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          body: const TabBarView(
-            children: <Widget>[HomePoGoView(), PokedexView(), SettingsView()],
-          ),
-          bottomNavigationBar: Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-            child: SizedBox(
-              height: 60,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(50),
+    length: 3,
+    child: SafeArea(
+      child: Scaffold(
+        appBar: const CustomAppBar(),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        body: const TabBarView(
+          children: <Widget>[HomePoGoView(), PokedexView(), SettingsView()],
+        ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+          child: SizedBox(
+            height: 60,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
+                child: TabBar(
+                  indicatorColor: Colors.transparent,
+                  labelColor: Colors.white,
+                  dividerColor: Colors.transparent,
+                  labelStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.4,
                   ),
-                  child: TabBar(
-                    indicatorColor: Colors.transparent,
-                    labelColor: Colors.white,
-                    dividerColor: Colors.transparent,
-                    labelStyle: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0.4,
+                  tabs: const <Widget>[
+                    Tab(icon: Icon(Icons.home_rounded), text: 'Inicio'),
+                    Tab(
+                      icon: Icon(Icons.catching_pokemon_rounded),
+                      text: 'Pokédex',
                     ),
-                    tabs: const <Widget>[
-                      Tab(icon: Icon(Icons.home_rounded), text: 'Inicio'),
-                      Tab(
-                        icon: Icon(Icons.catching_pokemon_rounded),
-                        text: 'Pokédex',
-                      ),
-                      Tab(icon: Icon(Icons.settings_rounded), text: 'Ajustes'),
-                    ],
-                  ),
+                    Tab(icon: Icon(Icons.settings_rounded), text: 'Ajustes'),
+                  ],
                 ),
               ),
             ),
           ),
         ),
       ),
-    );
+    ),
+  );
 }

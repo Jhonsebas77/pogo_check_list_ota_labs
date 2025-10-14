@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 const Color primaryColor = Color.fromRGBO(198, 73, 52, 1);
 const Color primaryDarkColor = Color.fromRGBO(198, 73, 52, 1);
@@ -143,3 +144,8 @@ final WidgetStateProperty<Icon?> thumbIcon =
       }
       return const Icon(Icons.catching_pokemon);
     });
+
+SystemUiOverlayStyle getSystemOverlayStyle(BuildContext context) =>
+    Theme.of(context).brightness == Brightness.dark
+        ? SystemUiOverlayStyle.light
+        : SystemUiOverlayStyle.dark;

@@ -68,7 +68,7 @@ class _AllPokemonAvailableViewState
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primary,
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          systemOverlayStyle: getSystemOverlayStyle(context),
           toolbarHeight: 82,
           elevation: 0,
           leading: const DexHeaderLeading(),
@@ -136,7 +136,7 @@ class _AllPokemonAvailableViewState
                               Switch(
                                 value: displayOnlyMissingPokemon,
                                 thumbIcon: thumbIcon,
-                                activeColor:
+                                activeThumbColor:
                                     Theme.of(context).colorScheme.secondary,
                                 onChanged: (_) async {
                                   setState(() {

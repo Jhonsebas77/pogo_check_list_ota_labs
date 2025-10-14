@@ -377,4 +377,34 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       rethrow;
     }
   }
+
+  Future<void> updateTrainerInformation(
+    TrainerModel updatedTrainer,
+    BuildContext context,
+  ) async {
+    AsyncValue<PokemonFirebaseState> previousState = state;
+    PokemonFirebaseState? cachedState = state.valueOrNull;
+    try {
+      DatabaseReference ref = _firebaseRef.child(firebaseTrainerPath);
+      await ref.update(updatedTrainer.toJson());
+      PokemonFirebaseState baseState =
+          cachedState ??
+          previousState.valueOrNull ??
+          const PokemonFirebaseState();
+      PokemonFirebaseState newState = baseState.copyWith(
+        trainerInformation: updatedTrainer,
+      );
+      state = AsyncValue<PokemonFirebaseState>.data(newState);
+      if (context.mounted) {
+        showSuccessSnackBar(context, '[Información de entrenador actualiza]');
+      }
+    } catch (e, s) {
+      state = previousState;
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
+      if (context.mounted) {
+        showErrorSnackBar(context, 'Error during updateTrainerInformation: $e');
+      }
+      rethrow;
+    }
+  }
 }

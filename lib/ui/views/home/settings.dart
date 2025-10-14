@@ -22,6 +22,11 @@ class SettingsView extends StatelessWidget {
                 viewToNavigate: LuckyFriendsView(),
               ),
               SettingsMenuItem(
+                title: 'Editar perfil de entrenador',
+                leadingIcon: Icons.mode_edit_rounded,
+                viewToNavigate: TrainerEditorView(),
+              ),
+              SettingsMenuItem(
                 title: 'Intercambios',
                 leadingIcon: Icons.search,
                 viewToNavigate: WantedForTradeView(),

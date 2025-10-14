@@ -15,8 +15,10 @@ import '../../core/utils/constants.dart';
 import '../../core/utils/type_chart.dart';
 import '../../core/utils/utils.dart';
 import '../navigator.dart';
+import '../theme.dart';
 import '../views/views.dart';
 
+part 'app_bar.dart';
 part 'empty_state.dart';
 part 'errors.dart';
 part 'header/dex_header_actions.dart';

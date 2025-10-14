@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.ota_labs.pogo_check_list"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "27.0.12077973"
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -21,8 +21,8 @@ android {
 
     defaultConfig {
         applicationId = "com.ota_labs.pogo_check_list"
-        minSdk = 26
-        targetSdk = 35
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }

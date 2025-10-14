@@ -66,7 +66,7 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          systemOverlayStyle: getSystemOverlayStyle(context),
           toolbarHeight: 82,
           leading: const DexHeaderLeading(),
           actions: const DexHeaderActions().getActions(),
@@ -134,7 +134,7 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                               Switch(
                                 value: displayOnlyMissingPokemon,
                                 thumbIcon: thumbIcon,
-                                activeColor:
+                                activeThumbColor:
                                     Theme.of(context).colorScheme.secondary,
                                 onChanged: (_) async {
                                   setState(() {

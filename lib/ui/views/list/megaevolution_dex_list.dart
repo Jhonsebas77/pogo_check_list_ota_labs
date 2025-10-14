@@ -34,23 +34,7 @@ class _MegaEvolutionPokemonState
     double itemWidth = 150;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-          toolbarHeight: 82,
-          leading: const DexHeaderLeading(),
-          actions: const DexHeaderActions().getActions(),
-          title: const Text(
-            'Mega Evolution',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          centerTitle: true,
-          elevation: 0,
-        ),
+        appBar: const CustomAppBar(title: 'Mega Evolution'),
         backgroundColor: Theme.of(context).colorScheme.primary,
         body: Center(
           child: Padding(

@@ -31,7 +31,7 @@ class _VersionWidgetState extends State<VersionWidget> {
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsets.all(8),
     child: Container(
-      width: 260,
+      width: 270,
       padding: const EdgeInsets.only(left: 12, top: 8, bottom: 8, right: 12),
       decoration: BoxDecoration(
         color: Colors.black12,

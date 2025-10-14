@@ -41,7 +41,7 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView> {
                   floating: true,
                   centerTitle: true,
                   title: const Text('Intercambios'),
-                  systemOverlayStyle: SystemUiOverlayStyle.dark,
+                  systemOverlayStyle: getSystemOverlayStyle(context),
                   elevation: 0,
                   toolbarHeight: 82,
                   leading: const DexHeaderLeading(),

@@ -28,7 +28,7 @@
       "tradable": true
     },
     "12": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 12,
@@ -111,10 +111,10 @@
     "569": {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 569,
       "name": "Garbodor",
-      "shiny_available": false,
+      "shiny_available": true,
       "tradable": true
     },
     "809": {
@@ -237,7 +237,7 @@
     "861": {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 861,
       "name": "Grimmsnarl",
       "shiny_available": false,
@@ -534,18 +534,18 @@
       "tradable": true
     },
     "319": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 319,
       "name": "Sharpedo",
       "shiny_available": false,
       "tradable": true
     },
     "323": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 323,
       "name": "Camerupt",
       "shiny_available": false,
@@ -570,7 +570,7 @@
       "tradable": true
     },
     "359": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 359,
@@ -597,9 +597,9 @@
       "tradable": true
     },
     "376": {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 376,
       "name": "Metagross",
       "shiny_available": false,
@@ -2634,7 +2634,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 213,
       "name": "Shuckle",
@@ -3219,7 +3219,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 278,
       "name": "Wingull",
@@ -3228,7 +3228,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 279,
       "name": "Pelipper",
@@ -3399,7 +3399,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 298,
       "name": "Azurill",
@@ -3552,7 +3552,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 315,
       "name": "Roselia",
@@ -3624,7 +3624,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 323,
       "name": "Camerupt",
@@ -4740,7 +4740,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 447,
       "name": "Riolu",
@@ -5415,7 +5415,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 522,
       "name": "Blitzle",
@@ -5424,7 +5424,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 523,
       "name": "Zebstrika",
@@ -6108,7 +6108,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 599,
       "name": "Klink",
@@ -6117,7 +6117,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 600,
       "name": "Klang",
@@ -6126,7 +6126,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 601,
       "name": "Klinklang",
@@ -6539,7 +6539,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 647,
@@ -6845,7 +6845,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 681,
@@ -8573,7 +8573,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 873,
@@ -8600,12 +8600,12 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 876,
       "name": "Indeedee",
-      "shiny_available": false,
+      "shiny_available": true,
       "tradable": true
     },
     {
@@ -8672,12 +8672,12 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 884,
       "name": "Duraludon",
-      "shiny_available": false,
+      "shiny_available": true,
       "tradable": true
     },
     {
@@ -8726,7 +8726,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 890,
@@ -9042,7 +9042,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 925,
       "name": "Maushold",
@@ -9150,7 +9150,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 937,
       "name": "Ceruledge",
@@ -9509,8 +9509,8 @@
       "tradable": false
     },
     {
-      "already_catch": false,
-      "already_catch_shiny_version": false,
+      "already_catch": true,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 977,
       "name": "Dondozo",
@@ -9951,7 +9951,7 @@
     }
   ],
   "trainer": {
-    "level": "46",
+    "level": "47",
     "nick_name": "Jhonsebas77",
     "team": "mystic",
     "trainer_id": "016618932768"
@@ -10003,6 +10003,6 @@
       }
     ],
     "limit": 300,
-    "quantity": 59
+    "quantity": 65
   }
 }

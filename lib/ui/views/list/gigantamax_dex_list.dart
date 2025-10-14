@@ -33,23 +33,7 @@ class _GigantamaxPokemonViewState extends ConsumerState<GigantamaxPokemonView> {
     double itemWidth = 150;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-          toolbarHeight: 82,
-          leading: const DexHeaderLeading(),
-          actions: const DexHeaderActions().getActions(),
-          title: const Text(
-            'Gigantamax',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          centerTitle: true,
-          elevation: 0,
-        ),
+        appBar: const CustomAppBar(title: 'Gigantamax'),
         backgroundColor: Theme.of(context).colorScheme.primary,
         body: Center(
           child: Padding(

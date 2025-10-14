@@ -27,6 +27,7 @@ part 'list/gigantamax_dex_list.dart';
 part 'list/megaevolution_dex_list.dart';
 part 'list/shiny_dex_list.dart';
 part 'settings/color_scheme.dart';
+part 'settings/edit_profile.dart';
 part 'settings/lucky_friends.dart';
 part 'settings/type_chart.dart';
 part 'settings/wanted_for_trade.dart';

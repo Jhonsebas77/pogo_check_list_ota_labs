@@ -8,13 +8,9 @@ class ColorSchemeView extends ConsumerWidget {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Esquema de colores'),
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-          elevation: 0,
-          toolbarHeight: 82,
-          leading: const DexHeaderLeading(),
-          actions: const DexHeaderActions().getActions(),
+        appBar: const CustomAppBar(
+          title: 'Esquema de colores',
+          isTransparent: true,
         ),
         body: const Center(child: ColorSchemeWidget()),
         floatingActionButton: FloatingActionButton(

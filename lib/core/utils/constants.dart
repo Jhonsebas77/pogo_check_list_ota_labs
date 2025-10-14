@@ -697,3 +697,18 @@ List<List<int>> getLegendaryGroups() => <List<int>>[
   <int>[809],
   <int>[893],
 ];
+
+final List<String> teamsOptions = <String>['mystic', 'valor', 'instinct'];
+
+String getSelectedTeamFromString(String team) {
+  switch (team) {
+    case 'valor':
+      return 'Equipo Valor';
+    case 'mystic':
+      return 'Equipo Mystic';
+    case 'instinct':
+      return 'Equipo Instinct';
+    default:
+      return team;
+  }
+}
