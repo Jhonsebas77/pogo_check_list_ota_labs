@@ -157,32 +157,6 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
     }
   }
 
-  Widget _buildTextField({
-    required String label,
-    required IconData icon,
-    required TextEditingController controller,
-    required String? Function(String?) validator,
-    required BuildContext context,
-    TextInputType? inputType,
-    int maxLines = 1,
-    double? fieldWidth,
-  }) => SizedBox(
-    width: fieldWidth ?? MediaQuery.sizeOf(context).width,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: TextFormField(
-        controller: controller,
-        maxLines: maxLines,
-        validator: validator,
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
-        ),
-        keyboardType: inputType ?? TextInputType.name,
-        decoration: _inputDecoration(context, label: label, icon: icon),
-      ),
-    ),
-  );
-
   Widget _buildDropdown({double? fieldWidth}) => SizedBox(
     width: fieldWidth ?? MediaQuery.sizeOf(context).width,
     child: Padding(
@@ -207,11 +181,7 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
                   ),
                 )
                 .toList(),
-        decoration: _inputDecoration(
-          context,
-          label: 'Equipo',
-          icon: Icons.flag,
-        ),
+        decoration: inputDecoration(context, icon: Icons.flag),
         validator: (String? value) {
           if (value == null || value.isEmpty) {
             return 'Selecciona un equipo';
@@ -237,90 +207,80 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
             _syncFormWithTrainer(trainer);
             return GestureDetector(
               onTap: () => FocusScope.of(context).unfocus(),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 500),
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(16),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        const SettingsTitleSection(title: 'Entrenador'),
-                        _buildTextField(
-                          label: 'Apodo',
-                          icon: Icons.person,
-                          controller: _nickNameController,
-                          validator: (String? value) {
-                            if (value == null || value.trim().isEmpty) {
-                              return 'Ingresa el apodo del entrenador';
-                            }
-                            return null;
-                          },
-                          context: context,
-                        ),
-                        const SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            _buildTextField(
-                              label: 'Trainer ID',
-                              fieldWidth:
-                                  MediaQuery.sizeOf(context).width / 2.3,
-                              icon: Icons.badge,
-                              controller: _trainerIdController,
-                              validator: (String? value) {
-                                if (value == null || value.trim().isEmpty) {
-                                  return 'Ingresa el Trainer ID';
-                                }
-                                if (value.trim().length < 12) {
-                                  return '''El Trainer ID debe contener al menos 12 dígitos''';
-                                }
-                                return null;
-                              },
-                              context: context,
-                            ),
-                            _buildTextField(
-                              label: 'Nivel',
-                              fieldWidth:
-                                  MediaQuery.sizeOf(context).width / 2.3,
-                              icon: Icons.leaderboard,
-                              controller: _levelController,
-                              inputType: TextInputType.number,
-                              validator: (String? value) {
-                                if (value == null || value.trim().isEmpty) {
-                                  return 'Ingresa el nivel actual';
-                                }
-                                int? parsed = int.tryParse(value.trim());
-                                if (parsed == null ||
-                                    parsed <= 0 ||
-                                    parsed > 50) {
-                                  return 'Ingresa un nivel válido (1 - 50)';
-                                }
-                                return null;
-                              },
-                              context: context,
-                            ),
-                          ],
-                        ),
-                        const SettingsTitleSection(title: 'Equipo'),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            _buildDropdown(
-                              fieldWidth:
-                                  MediaQuery.sizeOf(context).width / 1.5,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 30),
-                              child: _buildTrainerPreview(context),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                      ],
-                    ),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      const SettingsTitleSection(title: 'Entrenador'),
+                      CustomTextField(
+                        label: 'Apodo',
+                        icon: Icons.person,
+                        controller: _nickNameController,
+                        validator: (String? value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return 'Ingresa el apodo del entrenador';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          CustomTextField(
+                            label: 'Trainer ID',
+                            fieldWidth: MediaQuery.sizeOf(context).width / 2.3,
+                            icon: Icons.badge,
+                            controller: _trainerIdController,
+                            validator: (String? value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return 'Ingresa el Trainer ID';
+                              }
+                              if (value.trim().length < 12) {
+                                return '''El Trainer ID debe contener al menos 12 dígitos''';
+                              }
+                              return null;
+                            },
+                          ),
+                          CustomTextField(
+                            label: 'Nivel',
+                            fieldWidth: MediaQuery.sizeOf(context).width / 2.3,
+                            icon: Icons.leaderboard,
+                            controller: _levelController,
+                            inputType: TextInputType.number,
+                            validator: (String? value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return 'Ingresa el nivel actual';
+                              }
+                              int? parsed = int.tryParse(value.trim());
+                              if (parsed == null ||
+                                  parsed <= 0 ||
+                                  parsed > 50) {
+                                return 'Ingresa un nivel válido (1 - 50)';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
+                      const SettingsTitleSection(title: 'Equipo'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          _buildDropdown(
+                            fieldWidth: MediaQuery.sizeOf(context).width / 1.5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 30),
+                            child: _buildTrainerPreview(context),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -436,32 +396,4 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
       ],
     );
   }
-
-  InputDecoration _inputDecoration(
-    BuildContext context, {
-    required String label,
-    required IconData icon,
-  }) => InputDecoration(
-    labelText: label,
-    filled: true,
-    fillColor: Colors.black12,
-    labelStyle: const TextStyle(color: Colors.white70),
-    prefixIcon: Icon(icon, color: Colors.white70),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(32),
-      borderSide: const BorderSide(color: Colors.transparent),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(32),
-      borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(32),
-      borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
-    ),
-    focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(32),
-      borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
-    ),
-  );
 }

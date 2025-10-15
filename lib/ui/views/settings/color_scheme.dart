@@ -8,10 +8,7 @@ class ColorSchemeView extends ConsumerWidget {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
-        appBar: const CustomAppBar(
-          title: 'Esquema de colores',
-          isTransparent: true,
-        ),
+        appBar: const CustomAppBar(title: 'Esquema de colores'),
         body: const Center(child: ColorSchemeWidget()),
         floatingActionButton: FloatingActionButton(
           onPressed: () {

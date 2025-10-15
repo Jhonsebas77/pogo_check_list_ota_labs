@@ -1,19 +1,6 @@
 {
     "wanted_pokemon": [
         {
-            "id": 245,
-            "name": "Suicune",
-            "want_shiny": true,
-            "want_mirror_change": false,
-            "already_caught": false,
-            "want_dynamax": false,
-            "want_special_background": false,
-            "want_adventure_effect": false,
-            "want_gigantamax": false,
-            "want_lucky ": false,
-            "quantity": 1
-        },
-        {
             "id": 377,
             "name": "Regisrock",
             "want_shiny": true,

@@ -3,9 +3,9 @@
     "short_name": "pogo_check_list_ota_labs",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#c64a34",
+    "theme_color": "#c64a34",
+    "description": "A app to check my progress in PoGo",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

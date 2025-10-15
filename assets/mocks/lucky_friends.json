@@ -2,10 +2,7 @@
     "friends": [
         {
             "name": "AlejoGutKetchup",
-            "activity": "AlejoGutKetchup sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
-            "contacted": false,
+            "contacted": true,
             "pokemon_offer": {
                 "id": 800,
                 "name": "Necrozma",
@@ -19,10 +16,7 @@
         },
         {
             "name": "Anthonnio",
-            "activity": "Apokha sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
-            "contacted": false,
+            "contacted": true,
             "pokemon_offer": {
                 "id": 381,
                 "name": "Latios",
@@ -36,45 +30,27 @@
         },
         {
             "name": "Apokha",
-            "activity": "Apokha sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
             "contacted": false
         },
         {
             "name": "Bluuesfera",
-            "activity": "Bluesfera caught Gothita!",
-            "activity_type": "catch",
-            "time_label": "Yesterday",
             "contacted": false
         },
         {
             "name": "Bluesfera",
-            "activity": "Bluesfera caught Gothita!",
-            "activity_type": "catch",
-            "time_label": "Yesterday",
             "contacted": false
         },
         {
             "name": "byronbk",
-            "activity": "byronbk sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
             "contacted": false
         },
         {
             "name": "CamatoDj93",
-            "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
             "contacted": false
         },
         {
             "name": "ChrisJulliand",
-            "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
-            "contacted": false,
+            "contacted": true,
             "pokemon_offer": {
                 "id": 889,
                 "name": "Zamazenta",
@@ -88,24 +64,15 @@
         },
         {
             "name": "CrbLucio",
-            "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
             "contacted": false
         },
         {
             "name": "CSR21z",
-            "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
             "contacted": false
         },
         {
             "name": "DecoGomez2809",
-            "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
-            "contacted": false,
+            "contacted": true,
             "pokemon_offer": {
                 "id": 791,
                 "name": "Solgaleo",
@@ -119,52 +86,32 @@
         },
         {
             "name": "Galendor123",
-            "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
             "contacted": false
         },
         {
             "name": "Jaime333333",
-            "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
             "contacted": false
         },
         {
             "name": "Jottajotta1",
-            "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
             "contacted": false
         },
         {
             "name": "juanv1022",
-            "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
             "contacted": false
         },
         {
             "name": "Magnagarurumonh",
-            "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
             "contacted": false
         },
         {
             "name": "Reloco787",
-            "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
             "contacted": false
         },
         {
             "name": "SantiagoPrieto9",
             "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
-            "contacted": false,
+            "contacted": true,
             "pokemon_offer": {
                 "id": 383,
                 "name": "Groudon",
@@ -179,24 +126,24 @@
         {
             "name": "jag87",
             "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
+            "contacted": false
+        },
+        {
+            "name": "MonkeyDRulos",
             "contacted": false
         },
         {
             "name": "jjgallon",
             "activity": "CamiloDipa sent you a Gift!",
-            "activity_type": "gift",
-            "time_label": "2+ days ago",
-            "contacted": false,
+            "contacted": true,
             "pokemon_offer": {
                 "id": 447,
                 "name": "Riolu",
                 "want_shiny": true
             },
             "pokemon_want": {
-                "id": 380,
-                "name": "Latias",
+                "id": 245,
+                "name": "Suicune",
                 "want_shiny": true
             }
         }
