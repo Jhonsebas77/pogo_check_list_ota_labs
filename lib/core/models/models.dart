@@ -5,5 +5,6 @@ part 'lucky_friend.dart';
 part 'pokemon.dart';
 part 'pokemon_api.dart';
 part 'pokemon_trade.dart';
+part 'pokemon_trade_item.dart';
 part 'trainer.dart';
 part 'zygarde_cells.dart';

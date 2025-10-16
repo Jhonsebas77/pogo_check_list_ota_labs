@@ -5,8 +5,8 @@ class LuckyFriendsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<List<LuckyFriend>> luckyFriends = ref.watch(
-      luckyFriendsProvider,
+    AsyncValue<PokemonFirebaseState> firebasePokemonState = ref.watch(
+      firebasePokemonProvider,
     );
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     ScreenshotController screenshotController = ScreenshotController();
@@ -23,7 +23,7 @@ class LuckyFriendsView extends ConsumerWidget {
           children: <Widget>[
             Chip(
               label: Text(
-                '${luckyFriends.value?.length ?? 0} Amigos con suerte',
+                '''${firebasePokemonState.value?.allLuckyFriends.length ?? 0} Amigos con suerte''',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSecondary,
                 ),
@@ -56,14 +56,16 @@ class LuckyFriendsView extends ConsumerWidget {
         ),
         body: SafeArea(
           top: false,
-          child: luckyFriends.when(
-            data:
-                (List<LuckyFriend> friends) => SingleChildScrollView(
-                  child: Screenshot(
-                    controller: screenshotController,
-                    child: LuckyFriendsList(friends: friends),
-                  ),
+          child: firebasePokemonState.when(
+            data: (PokemonFirebaseState state) {
+              List<LuckyFriend> _friendsInfo = state.allLuckyFriends;
+              return SingleChildScrollView(
+                child: Screenshot(
+                  controller: screenshotController,
+                  child: LuckyFriendsList(friends: _friendsInfo),
                 ),
+              );
+            },
             error:
                 (Object error, StackTrace stackTrace) => const SimpleErrorChip(
                   iconData: Icons.people,

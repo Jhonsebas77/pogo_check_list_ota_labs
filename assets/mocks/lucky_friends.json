@@ -110,7 +110,6 @@
         },
         {
             "name": "SantiagoPrieto9",
-            "activity": "CamiloDipa sent you a Gift!",
             "contacted": true,
             "pokemon_offer": {
                 "id": 383,
@@ -125,8 +124,17 @@
         },
         {
             "name": "jag87",
-            "activity": "CamiloDipa sent you a Gift!",
-            "contacted": false
+            "contacted": false,
+            "pokemon_offer": {
+                "id": 150,
+                "name": "Mewtwo",
+                "want_shiny": true
+            },
+            "pokemon_want": {
+                "id": 798,
+                "name": "Kartana",
+                "want_shiny": true
+            }
         },
         {
             "name": "MonkeyDRulos",
@@ -134,7 +142,6 @@
         },
         {
             "name": "jjgallon",
-            "activity": "CamiloDipa sent you a Gift!",
             "contacted": true,
             "pokemon_offer": {
                 "id": 447,

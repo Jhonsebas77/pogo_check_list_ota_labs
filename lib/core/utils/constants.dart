@@ -4,98 +4,102 @@ import 'package:flutter/material.dart';
 
 const String databaseURL =
     'https://flutter-tools-jsob-default-rtdb.firebaseio.com/po_go_check_list';
+const String pokemonDetailPath = 'https://pokeapi.co/api/v2/pokemon/';
+const String placeHolderImage = 'https://i.ibb.co/KcX8h982/download-16.png';
+
+// [Firebase Path]
+const String firebaseLuckyFriendsPath = '/po_go_check_list/lucky_friends';
 const String firebaseOriginPath = '/po_go_check_list';
 const String firebasePokemonGigantamaxPath = '/po_go_check_list/gigantamax';
 const String firebasePokemonMegaEvolutionPath =
     '/po_go_check_list/megaevolution';
 const String firebasePokemonPath = '/po_go_check_list/pokemon';
+const String firebasePokemonForTradePath = '/po_go_check_list/traded_pokemon';
 const String firebaseTrainerPath = '/po_go_check_list/trainer';
 const String firebaseZygardePath = '/po_go_check_list/zygarde_cells';
-const String placeHolderImage = 'https://i.ibb.co/KcX8h982/download-16.png';
-const String pokemonDetailPath = 'https://pokeapi.co/api/v2/pokemon/';
 
 const List<String> kPokemonTypes = <String>[
-  'normal',
-  'fuego',
-  'agua',
-  'eléctrico',
-  'planta',
-  'hielo',
-  'pelea',
-  'veneno',
-  'tierra',
-  'volador',
-  'psíquico',
-  'insecto',
-  'roca',
-  'fantasma',
-  'dragon',
-  'siniestro',
   'acero',
+  'agua',
+  'dragon',
+  'eléctrico',
+  'fantasma',
+  'fuego',
   'hada',
+  'hielo',
+  'insecto',
+  'normal',
+  'pelea',
+  'planta',
+  'psíquico',
+  'roca',
+  'siniestro',
+  'tierra',
+  'veneno',
+  'volador',
 ];
 
 const Map<String, String> kPokemonTypesTranslated = <String, String>{
-  'normal': 'normal',
-  'fire': 'fuego',
-  'water': 'agua',
-  'electric': 'eléctrico',
-  'grass': 'planta',
-  'ice': 'hielo',
-  'fighting': 'pelea',
-  'poison': 'veneno',
-  'ground': 'tierra',
-  'flying': 'volador',
-  'psychic': 'psíquico',
   'bug': 'insecto',
-  'rock': 'roca',
-  'ghost': 'fantasma',
-  'dragon': 'dragon',
   'dark': 'siniestro',
-  'steel': 'acero',
+  'dragon': 'dragon',
+  'electric': 'eléctrico',
   'fairy': 'hada',
+  'fighting': 'pelea',
+  'fire': 'fuego',
+  'flying': 'volador',
+  'ghost': 'fantasma',
+  'grass': 'planta',
+  'ground': 'tierra',
+  'ice': 'hielo',
+  'normal': 'normal',
+  'poison': 'veneno',
+  'psychic': 'psíquico',
+  'rock': 'roca',
+  'steel': 'acero',
+  'water': 'agua',
 };
 
 const Map<String, Color> kTypeColors = <String, Color>{
-  'normal': Color(0xFFAAA67F),
-  'fuego': Color(0xFFF57D31),
-  'agua': Color(0xFF6493EB),
-  'eléctrico': Color(0xFFF9CF30),
-  'planta': Color(0xFF74CB48),
-  'hielo': Color(0xFF9AD6DF),
-  'pelea': Color(0xFFC12239),
-  'veneno': Color(0xFFA43E9E),
-  'tierra': Color(0xFFDEC16B),
-  'volador': Color(0xFFA891EC),
-  'psíquico': Color(0xFFFB5584),
-  'insecto': Color(0xFFA7B723),
-  'roca': Color(0xFFB69E31),
-  'fantasma': Color(0xFF70559B),
-  'dragon': Color(0xFF7037FF),
-  'siniestro': Color(0xFF75574C),
   'acero': Color(0xFFB7B9D0),
+  'agua': Color(0xFF6493EB),
+  'dragon': Color(0xFF7037FF),
+  'eléctrico': Color(0xFFF9CF30),
+  'fantasma': Color(0xFF70559B),
+  'fuego': Color(0xFFF57D31),
   'hada': Color(0xFFE69EAC),
+  'hielo': Color(0xFF9AD6DF),
+  'insecto': Color(0xFFA7B723),
+  'normal': Color(0xFFAAA67F),
+  'pelea': Color(0xFFC12239),
+  'planta': Color(0xFF74CB48),
+  'psíquico': Color(0xFFFB5584),
+  'roca': Color(0xFFB69E31),
+  'siniestro': Color(0xFF75574C),
+  'tierra': Color(0xFFDEC16B),
+  'veneno': Color(0xFFA43E9E),
+  'volador': Color(0xFFA891EC),
 };
 
 const Map<String, IconData> kTypeIcons = <String, IconData>{
-  'normal': Icons.star_outline,
-  'fuego': Icons.local_fire_department,
-  'agua': Icons.water_drop,
-  'eléctrico': Icons.bolt,
-  'planta': Icons.eco,
-  'hielo': Icons.ac_unit,
-  'pelea': Icons.sports_mma,
-  'veneno': Icons.biotech,
-  'tierra': Icons.terrain,
-  'volador': Icons.air,
-  'psíquico': Icons.psychology,
-  'insecto': Icons.bug_report,
-  'roca': Icons.landscape,
-  'fantasma': Icons.nightlight,
-  'dragon': Icons.auto_awesome,
-  'siniestro': Icons.dark_mode,
   'acero': Icons.build,
+  'agua': Icons.water_drop,
+  'dragon': Icons.auto_awesome,
+  'eléctrico': Icons.bolt,
+  'fantasma': Icons.nightlight,
+  'fuego': Icons.local_fire_department,
   'hada': Icons.auto_fix_high,
+  'hielo': Icons.ac_unit,
+  'insecto': Icons.bug_report,
+  'normal': Icons.star_outline,
+  'pelea': Icons.sports_mma,
+  'planta': Icons.eco,
+  'psíquico': Icons.psychology,
+  'roca': Icons.landscape,
+  'siniestro': Icons.dark_mode,
+  'tierra': Icons.terrain,
+  'veneno': Icons.biotech,
+  'volador': Icons.air,
 };
 
 List<List<int>> getEvolutionGroups() => <List<int>>[

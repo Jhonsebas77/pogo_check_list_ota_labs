@@ -19,12 +19,16 @@ class PokemonFirebaseState {
     this.allGigantamaxPokemon = const <PokemonModel>[],
     this.allMegaEvolutionPokemon = const <PokemonModel>[],
     this.allPokemon = const <PokemonModel>[],
+    this.allLuckyFriends = const <LuckyFriend>[],
     this.trainerInformation,
     this.zygardeCells,
+    this.pokemonForTrade,
   });
   final List<PokemonModel> allGigantamaxPokemon;
   final List<PokemonModel> allMegaEvolutionPokemon;
   final List<PokemonModel> allPokemon;
+  final List<LuckyFriend> allLuckyFriends;
+  final PokemonTrade? pokemonForTrade;
   final TrainerModel? trainerInformation;
   final ZygardeCells? zygardeCells;
 
@@ -32,8 +36,10 @@ class PokemonFirebaseState {
     List<PokemonModel>? allPokemon,
     List<PokemonModel>? allGigantamaxPokemon,
     List<PokemonModel>? allMegaEvolutionPokemon,
+    List<LuckyFriend>? allLuckyFriends,
     TrainerModel? trainerInformation,
     ZygardeCells? zygardeCells,
+    PokemonTrade? pokemonForTrade,
   }) => PokemonFirebaseState(
     allPokemon: allPokemon ?? this.allPokemon,
     allGigantamaxPokemon: allGigantamaxPokemon ?? this.allGigantamaxPokemon,
@@ -41,6 +47,8 @@ class PokemonFirebaseState {
         allMegaEvolutionPokemon ?? this.allMegaEvolutionPokemon,
     trainerInformation: trainerInformation ?? this.trainerInformation,
     zygardeCells: zygardeCells ?? this.zygardeCells,
+    allLuckyFriends: allLuckyFriends ?? this.allLuckyFriends,
+    pokemonForTrade: pokemonForTrade ?? this.pokemonForTrade,
   );
 
   int getTotalPokemonLength() =>
@@ -86,6 +94,8 @@ class PokemonFirebaseState {
           .where((PokemonModel pokemon) => pokemon.alreadyCatch)
           .toList()
           .length;
+
+  int getLuckyFriendsLength() => allLuckyFriends.toList().length;
 }
 
 final AsyncNotifierProvider<FirebasePokemon, PokemonFirebaseState>
@@ -207,6 +217,52 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     return null;
   }
 
+  Future<List<LuckyFriend>> _fetchLuckyFriendsList() async {
+    DataSnapshot snapshot =
+        await _firebaseRef.child(firebaseLuckyFriendsPath).get();
+    List<LuckyFriend> allLuckyFriends = <LuckyFriend>[];
+    if (snapshot.exists && snapshot.value != null) {
+      if (snapshot.value is List) {
+        try {
+          List pokemonList = List<dynamic>.from(
+            snapshot.value! as List<dynamic>,
+          );
+          for (var pokemon in pokemonList) {
+            Map<String, dynamic> mapPokemon = Map<String, dynamic>.from(
+              pokemon as Map,
+            );
+            allLuckyFriends.add(LuckyFriend.fromJson(mapPokemon));
+          }
+          allLuckyFriends.sort(
+            (LuckyFriend a, LuckyFriend b) =>
+                a.name.toLowerCase().compareTo(b.name.toLowerCase()),
+          );
+          return allLuckyFriends;
+        } catch (e) {
+          throw Exception(
+            '[A] Could not fetch LuckyFriends data. | ${e.toString()}',
+          );
+        }
+      } else {
+        throw Exception('[B] Could not fetch LuckyFriends data.');
+      }
+    } else {
+      throw Exception('[C] Could not fetch LuckyFriends data.');
+    }
+  }
+
+  Future<PokemonTrade?> _fetchPokemonForTrade() async {
+    DataSnapshot snapshot =
+        await _firebaseRef.child(firebasePokemonForTradePath).get();
+    if (snapshot.exists && snapshot.value != null && snapshot.value is Map) {
+      Map<String, dynamic> dataMap = Map<String, dynamic>.from(
+        snapshot.value! as Map,
+      );
+      return PokemonTrade.fromJson(dataMap);
+    }
+    return null;
+  }
+
   @override
   Future<PokemonFirebaseState> build() async {
     List<Object?> results = await Future.wait(<Future<Object?>>[
@@ -215,6 +271,8 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       _fetchMegaEvolutionPokemonList(),
       _fetchTrainerData(),
       _fetchZygardeData(),
+      _fetchLuckyFriendsList(),
+      _fetchPokemonForTrade(),
     ]);
     List<PokemonModel> pokemonList = results[0]! as List<PokemonModel>;
     List<PokemonModel> gigantamaxPokemonList =
@@ -223,12 +281,16 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
         results[2]! as List<PokemonModel>;
     TrainerModel? trainerInfo = results[3] as TrainerModel?;
     ZygardeCells? zygardeInfo = results[4] as ZygardeCells?;
+    List<LuckyFriend>? luckyFriendsInfo = results[5]! as List<LuckyFriend>;
+    PokemonTrade? pokemonForTradeInfo = results[6] as PokemonTrade?;
     return PokemonFirebaseState(
       allGigantamaxPokemon: gigantamaxPokemonList,
       allMegaEvolutionPokemon: megaEvolutionPokemonList,
       allPokemon: pokemonList,
       trainerInformation: trainerInfo,
       zygardeCells: zygardeInfo,
+      allLuckyFriends: luckyFriendsInfo,
+      pokemonForTrade: pokemonForTradeInfo,
     );
   }
 

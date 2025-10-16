@@ -8,22 +8,22 @@ class LuckyFriend {
     this.contacted,
   });
 
-  factory LuckyFriend.fromJson(Map<String, dynamic> json) => LuckyFriend(
-    name: json['name'] != null ? json['name'] as String : '',
-    pokemonWanted:
-        json['pokemon_want'] != null
-            ? PokemonTradeItem.fromJson(
-              json['pokemon_want'] as Map<String, dynamic>,
-            )
-            : null,
-    pokemonOffer:
-        json['pokemon_offer'] != null
-            ? PokemonTradeItem.fromJson(
-              json['pokemon_offer'] as Map<String, dynamic>,
-            )
-            : null,
-    contacted: json['contacted'] != null && json['contacted'] as bool,
-  );
+  factory LuckyFriend.fromJson(Map<String, dynamic> json) {
+    dynamic rawPokemonOffer = json['pokemon_offer'];
+    dynamic rawPokemonWanted = json['pokemon_want'];
+    return LuckyFriend(
+      name: json['name'] != null ? json['name'] as String : '',
+      pokemonWanted:
+          rawPokemonWanted is Map
+              ? PokemonTradeItem.fromJson(Map.from(rawPokemonWanted))
+              : null,
+      pokemonOffer:
+          rawPokemonOffer is Map
+              ? PokemonTradeItem.fromJson(Map.from(rawPokemonOffer))
+              : null,
+      contacted: json['contacted'] != null && json['contacted'] as bool,
+    );
+  }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     'name': name,
@@ -36,4 +36,12 @@ class LuckyFriend {
   final PokemonTradeItem? pokemonOffer;
 
   bool get isContacted => contacted == true;
+
+  @override
+  String toString() => '''LuckyFriend(
+    'name': $name,
+    'contacted':  $contacted,
+    'pokemonWanted':  $pokemonWanted,
+    'pokemonOffer': $pokemonOffer
+  )''';
 }

@@ -29,8 +29,8 @@ class PokemonTradeList extends StatelessWidget {
               children: List<Widget>.generate(
                 pokemonList.length,
                 (int index) => PokemonTradeCard(
-                  pokemonId: pokemonList[index].id,
-                  pokemonName: pokemonList[index].name,
+                  pokemonId: pokemonList[index].id ?? 0,
+                  pokemonName: pokemonList[index].name ?? '',
                   alreadyCaught: pokemonList[index].alreadyCaught,
                   quantity: pokemonList[index].quantity ?? 1,
                   wantAdventureEffect: pokemonList[index].haveAdventureEffect,

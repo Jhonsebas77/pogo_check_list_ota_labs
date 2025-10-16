@@ -11,12 +11,6 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView> {
       getLegendaryGroups().expand((List<int> group) => group).toSet();
 
   bool _showOnlyLegendary = false;
-  Future<PokemonTrade> loadTradeData() async {
-    String jsonString = await rootBundle.loadString('assets/mocks/trade.json');
-    Map<String, dynamic>? jsonMap =
-        jsonDecode(jsonString) as Map<String, dynamic>;
-    return PokemonTrade.fromJson(jsonMap);
-  }
 
   void _toggleLegendaryFilter() {
     setState(() {
@@ -26,6 +20,9 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView> {
 
   @override
   Widget build(BuildContext context) {
+    AsyncValue<PokemonFirebaseState> firebasePokemonState = ref.watch(
+      firebasePokemonProvider,
+    );
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     ScreenshotController screenshotController = ScreenshotController();
     return DefaultTabController(
@@ -69,71 +66,63 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView> {
               ],
           body: Screenshot(
             controller: screenshotController,
-            child: FutureBuilder<PokemonTrade>(
-              future: loadTradeData(),
-              builder: (
-                BuildContext context,
-                AsyncSnapshot<PokemonTrade> asyncSnapshot,
-              ) {
-                if (asyncSnapshot.hasError) {
-                  return const SimpleErrorChip(
-                    iconData: Icons.catching_pokemon,
-                    text: 'Con la información de los Pokemon a intercambiar',
-                  );
+            child: firebasePokemonState.when(
+              data: (PokemonFirebaseState state) {
+                PokemonTrade tradeData = state.pokemonForTrade!;
+                List<PokemonTradeItem> wantedPokemon =
+                    List<PokemonTradeItem>.from(tradeData.wantedPokemon)..sort(
+                      (PokemonTradeItem a, PokemonTradeItem b) =>
+                          (a.id!).compareTo(b.id ?? 0),
+                    );
+                List<PokemonTradeItem> offerPokemon =
+                    List<PokemonTradeItem>.from(tradeData.offerPokemon)..sort(
+                      (PokemonTradeItem a, PokemonTradeItem b) =>
+                          (a.id!).compareTo(b.id ?? 0),
+                    );
+                if (_showOnlyLegendary) {
+                  wantedPokemon =
+                      wantedPokemon
+                          .where(
+                            (PokemonTradeItem pokemon) =>
+                                _legendaryIds.contains(pokemon.id),
+                          )
+                          .toList();
+                  offerPokemon =
+                      offerPokemon
+                          .where(
+                            (PokemonTradeItem pokemon) =>
+                                _legendaryIds.contains(pokemon.id),
+                          )
+                          .toList();
                 }
-                if (asyncSnapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
+                return TabBarView(
+                  children: <Widget>[
+                    PokemonTradeList(
+                      pokemonList: wantedPokemon,
+                      type: 'Buscando',
+                    ),
+                    PokemonTradeList(
+                      pokemonList: offerPokemon,
+                      type: 'Ofreciendo',
+                    ),
+                  ],
+                );
+              },
+              error:
+                  (Object error, StackTrace stackTrace) =>
+                      const SimpleErrorChip(
+                        iconData: Icons.catching_pokemon,
+                        text:
+                            'Con la información de los Pokemon a intercambiar',
+                      ),
+              loading:
+                  () => const Center(
                     child: Icon(
                       Icons.catching_pokemon_outlined,
                       color: Colors.grey,
                       size: 50,
                     ),
-                  );
-                }
-                if (asyncSnapshot.hasData) {
-                  PokemonTrade tradeData = asyncSnapshot.data!;
-                  List<PokemonTradeItem> wantedPokemon =
-                      List<PokemonTradeItem>.from(tradeData.wantedPokemon)
-                        ..sort(
-                          (PokemonTradeItem a, PokemonTradeItem b) =>
-                              a.id.compareTo(b.id),
-                        );
-                  List<PokemonTradeItem> offerPokemon =
-                      List<PokemonTradeItem>.from(tradeData.offerPokemon)..sort(
-                        (PokemonTradeItem a, PokemonTradeItem b) =>
-                            a.id.compareTo(b.id),
-                      );
-                  if (_showOnlyLegendary) {
-                    wantedPokemon =
-                        wantedPokemon
-                            .where(
-                              (PokemonTradeItem pokemon) =>
-                                  _legendaryIds.contains(pokemon.id),
-                            )
-                            .toList();
-                    offerPokemon =
-                        offerPokemon
-                            .where(
-                              (PokemonTradeItem pokemon) =>
-                                  _legendaryIds.contains(pokemon.id),
-                            )
-                            .toList();
-                  }
-                  return TabBarView(
-                    children: <Widget>[
-                      PokemonTradeList(
-                        pokemonList: wantedPokemon,
-                        type: 'Buscando',
-                      ),
-                      PokemonTradeList(
-                        pokemonList: offerPokemon,
-                        type: 'Ofreciendo',
-                      ),
-                    ],
-                  );
-                }
-                return const Center(child: Text('No data available.'));
-              },
+                  ),
             ),
           ),
         ),

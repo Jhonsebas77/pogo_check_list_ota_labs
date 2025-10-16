@@ -71,6 +71,12 @@ class LuckyFriendListTile extends StatelessWidget {
               width: 64,
               fit: BoxFit.fill,
             ),
+            if (friend.pokemonOffer == null)
+              Image.asset(
+                'assets/pokedex_sprites/0.png',
+                height: 50,
+                width: 50,
+              ),
             if (friend.pokemonOffer != null)
               if (friend.pokemonOffer?.isShiny ?? false)
                 Image.asset(
@@ -103,6 +109,12 @@ class LuckyFriendListTile extends StatelessWidget {
               width: 64,
               fit: BoxFit.fill,
             ),
+            if (friend.pokemonWanted == null)
+              Image.asset(
+                'assets/pokedex_sprites/0.png',
+                height: 50,
+                width: 50,
+              ),
             if (friend.pokemonWanted != null)
               if (friend.pokemonWanted?.isShiny ?? false)
                 Image.asset(

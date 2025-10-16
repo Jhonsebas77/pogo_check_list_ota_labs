@@ -253,14 +253,15 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
                             controller: _levelController,
                             inputType: TextInputType.number,
                             validator: (String? value) {
+                              int maxLevel = 80;
                               if (value == null || value.trim().isEmpty) {
                                 return 'Ingresa el nivel actual';
                               }
                               int? parsed = int.tryParse(value.trim());
                               if (parsed == null ||
                                   parsed <= 0 ||
-                                  parsed > 50) {
-                                return 'Ingresa un nivel válido (1 - 50)';
+                                  parsed > maxLevel) {
+                                return 'Ingresa un nivel válido (1 - 80)';
                               }
                               return null;
                             },

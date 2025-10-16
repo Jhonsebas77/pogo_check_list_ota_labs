@@ -234,14 +234,6 @@
             "quantity": 1
         },
         {
-            "id": 150,
-            "name": "Mewtwo",
-            "want_shiny": true,
-            "want_mirror_change": true,
-            "already_caught": true,
-            "quantity": 1
-        },
-        {
             "id": 249,
             "name": "Lugia",
             "want_shiny": true,
