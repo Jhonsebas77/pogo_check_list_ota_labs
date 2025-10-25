@@ -54,3 +54,4 @@ part 'shimmers/simple_text_shimmer.dart';
 part 'shimmers/trainer_info_shimmer.dart';
 part 'snackbar.dart';
 part 'type_badge.dart';
+part 'zygarde/forms.dart';

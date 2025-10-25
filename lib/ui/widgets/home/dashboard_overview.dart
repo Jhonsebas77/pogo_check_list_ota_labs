@@ -3,14 +3,17 @@ part of com.pogo_check_list_ota_labs.app.widgets;
 class DashboardOverview extends ConsumerWidget {
   const DashboardOverview({super.key});
 
-  String? getZygardeFormAccordToCells(ZygardeCells _zygardeCells) {
-    if (_zygardeCells.quantity >= 200) {
-      return _zygardeCells.forms?[2].alternativeForm?.id;
-    } else if (_zygardeCells.quantity >= 50) {
-      return _zygardeCells.forms?[1].alternativeForm?.id;
-    } else {
-      return _zygardeCells.forms?[0].alternativeForm?.id;
+  String getZygardeActualForm(ZygardeCells zygardeCells) {
+    String zygardeId = '';
+    switch (zygardeCells.actualForm) {
+      case '10%':
+        zygardeId = zygardeCells.forms![0].alternativeForm?.id ?? '10';
+      case '50%':
+        zygardeId = zygardeCells.forms![1].alternativeForm?.id ?? '50';
+      case '100%':
+        zygardeId = zygardeCells.forms![2].alternativeForm?.id ?? '100';
     }
+    return zygardeId;
   }
 
   @override
@@ -160,7 +163,7 @@ class DashboardOverview extends ConsumerWidget {
                     allItemLength: state.zygardeCells?.limit ?? 0,
                     counterItemLength: state.zygardeCells?.quantity ?? 0,
                     centerWidget: Image.asset(
-                      'assets/pokedex_sprites/718_${getZygardeFormAccordToCells(state.zygardeCells!)}.png',
+                      'assets/pokedex_sprites/718_${getZygardeActualForm(state.zygardeCells!)}.png',
                       height: 50,
                       width: 50,
                       fit: BoxFit.fill,

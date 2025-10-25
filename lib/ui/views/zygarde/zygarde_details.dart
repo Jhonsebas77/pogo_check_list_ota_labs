@@ -13,14 +13,17 @@ class _ZygardeDetailsState extends ConsumerState<ZygardeDetails> {
     super.initState();
   }
 
-  String? getZygardeFormAccordToCells(ZygardeCells _zygardeCells) {
-    if (_zygardeCells.quantity >= 200) {
-      return _zygardeCells.forms?[2].alternativeForm?.id;
-    } else if (_zygardeCells.quantity >= 50) {
-      return _zygardeCells.forms?[1].alternativeForm?.id;
-    } else {
-      return _zygardeCells.forms?[0].alternativeForm?.id;
+  String getZygardeActualForm(ZygardeCells zygardeCells) {
+    String zygardeId = '';
+    switch (zygardeCells.actualForm) {
+      case '10%':
+        zygardeId = zygardeCells.forms![0].alternativeForm?.id ?? '10';
+      case '50%':
+        zygardeId = zygardeCells.forms![1].alternativeForm?.id ?? '50';
+      case '100%':
+        zygardeId = zygardeCells.forms![2].alternativeForm?.id ?? '100';
     }
+    return zygardeId;
   }
 
   @override
@@ -33,165 +36,114 @@ class _ZygardeDetailsState extends ConsumerState<ZygardeDetails> {
       child: Scaffold(
         appBar: const CustomAppBar(title: 'Células Zygarde'),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              const Text('Zygarde'),
-              firebasePokemonState.when(
-                data:
-                    (PokemonFirebaseState state) => Column(
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+        body: Center(
+          child: SingleChildScrollView(
+            child: SizedBox(
+              width: 271,
+              child: Column(
+                children: <Widget>[
+                  firebasePokemonState.when(
+                    data:
+                        (PokemonFirebaseState state) => Column(
                           children: <Widget>[
-                            Column(
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Image.asset(
-                                  'assets/pokedex_sprites/718_${getZygardeFormAccordToCells(state.zygardeCells!)}.png',
-                                  height: 50,
-                                  width: 50,
-                                  fit: BoxFit.fill,
+                                Card(
+                                  color: Colors.black.withValues(alpha: 0.35),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Column(
+                                          children: <Widget>[
+                                            Image.asset(
+                                              'assets/pokedex_sprites/718_${getZygardeActualForm(state.zygardeCells!)}.png',
+                                              height: 50,
+                                              width: 50,
+                                              fit: BoxFit.fill,
+                                            ),
+                                            Text(
+                                              state.zygardeCells!.actualForm,
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8),
+                                          child: Column(
+                                            children: <Widget>[
+                                              SizedBox(
+                                                width: 80,
+                                                child: LinearProgressIndicator(
+                                                  value:
+                                                      state
+                                                          .zygardeCells!
+                                                          .quantity /
+                                                      state.zygardeCells!.limit,
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
+                                                  backgroundColor:
+                                                      Theme.of(context)
+                                                          .colorScheme
+                                                          .secondaryContainer,
+                                                  color:
+                                                      Theme.of(
+                                                        context,
+                                                      ).colorScheme.secondary,
+                                                ),
+                                              ),
+                                              Text(
+                                                '${state.zygardeCells!.quantity} / ${state.zygardeCells!.limit} ',
+                                                style: const TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                textAlign: TextAlign.start,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                                Text(state.zygardeCells!.actualForm),
+                                const SizedBox(width: 16),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Image.asset(
+                                      'assets/zygarde_cell.png',
+                                      height: 50,
+                                      width: 50,
+                                      fit: BoxFit.fill,
+                                    ),
+                                    Text('${state.zygardeCells!.quantity}'),
+                                  ],
+                                ),
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Column(
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: 80,
-                                    child: LinearProgressIndicator(
-                                      value:
-                                          state.zygardeCells!.quantity /
-                                          state.zygardeCells!.limit,
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                  ),
-                                  Text(
-                                    '${state.zygardeCells!.quantity} / ${state.zygardeCells!.limit} ',
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ],
-                              ),
+                            ZygardeForms(zygardeCells: state.zygardeCells!),
+                          ],
+                        ),
+                    error:
+                        (Object error, StackTrace stackTrace) =>
+                            SimpleErrorChip(
+                              iconData: Icons.dashboard,
+                              error: error.toString(),
+                              stackTrace: stackTrace,
+                              text: 'Con la información de Zygarde',
                             ),
-                          ],
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Divider(thickness: 2),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image.asset(
-                              'assets/zygarde_cell.png',
-                              height: 50,
-                              width: 50,
-                              fit: BoxFit.fill,
-                            ),
-                            Text('${state.zygardeCells!.quantity}'),
-                          ],
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Divider(thickness: 2),
-                        ),
-                        const Text('Forms'),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            if (state.zygardeCells!.actualForm ==
-                                state
-                                    .zygardeCells!
-                                    .forms?[0]
-                                    .alternativeForm
-                                    ?.name)
-                              Image.asset(
-                                'assets/pokedex_sprites/718_10.png',
-                                height: 50,
-                                width: 50,
-                                fit: BoxFit.fill,
-                              )
-                            else
-                              Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                enabled: false,
-                                child: Image.asset(
-                                  'assets/pokedex_sprites/718_10.png',
-                                  height: 50,
-                                  width: 50,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            if (state.zygardeCells!.actualForm ==
-                                state
-                                    .zygardeCells!
-                                    .forms?[1]
-                                    .alternativeForm
-                                    ?.name)
-                              Image.asset(
-                                'assets/pokedex_sprites/718_50.png',
-                                height: 50,
-                                width: 50,
-                                fit: BoxFit.fill,
-                              )
-                            else
-                              Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                enabled: false,
-                                child: Image.asset(
-                                  'assets/pokedex_sprites/718_50.png',
-                                  height: 50,
-                                  width: 50,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            if (state.zygardeCells!.actualForm ==
-                                state
-                                    .zygardeCells!
-                                    .forms?[2]
-                                    .alternativeForm
-                                    ?.name)
-                              Image.asset(
-                                'assets/pokedex_sprites/718_100.png',
-                                height: 50,
-                                width: 50,
-                                fit: BoxFit.fill,
-                              )
-                            else
-                              Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                enabled: false,
-                                child: Image.asset(
-                                  'assets/pokedex_sprites/718_100.png',
-                                  height: 50,
-                                  width: 50,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                          ],
-                        ),
-                      ],
-                    ),
-                error:
-                    (Object error, StackTrace stackTrace) => SimpleErrorChip(
-                      iconData: Icons.dashboard,
-                      error: error.toString(),
-                      stackTrace: stackTrace,
-                      text: 'Con la información de Zygarde',
-                    ),
-                loading: DashboardOverviewShimmer.new,
+                    loading: DashboardOverviewShimmer.new,
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
