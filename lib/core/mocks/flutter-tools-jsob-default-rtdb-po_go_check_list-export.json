@@ -9718,7 +9718,7 @@
       "tradable": false
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 982,
@@ -9979,7 +9979,7 @@
       "tradable": false
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 1011,
