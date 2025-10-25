@@ -1,9 +1,15 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({this.isTransparent = false, this.title, super.key});
+  const CustomAppBar({
+    this.isTransparent = false,
+    this.title,
+    this.isLoading = false,
+    super.key,
+  });
   final String? title;
   final bool? isTransparent;
+  final bool? isLoading;
   @override
   Widget build(BuildContext context) => AppBar(
     backgroundColor:
@@ -14,14 +20,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     toolbarHeight: 82,
     leading: const DexHeaderLeading(),
     actions: const DexHeaderActions().getActions(),
-    title: Text(
-      title ?? '',
-      style: const TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-    ),
+    title:
+        (isLoading ?? false)
+            ? const SimpleTextShimmer(widthShimmer: 200, heightShimmer: 24)
+            : Text(
+              title ?? '',
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
     centerTitle: true,
     elevation: 0,
   );

@@ -21,7 +21,14 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
     );
     return SafeArea(
       child: Scaffold(
-        appBar: const CustomAppBar(title: 'Gigantamax'),
+        appBar: pokemonAsyncValue.when(
+          loading: () => const CustomAppBar(isLoading: true),
+          error:
+              (Object error, StackTrace stackTrace) =>
+                  CustomAppBar(title: '${widget.pokemonId}'),
+
+          data: (PokemonDetail pokemon) => CustomAppBar(title: pokemon.name),
+        ),
         body: pokemonAsyncValue.when(
           // State 1: The Future is loading
           loading: () => const Center(child: CircularProgressIndicator()),
@@ -40,13 +47,7 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
               (PokemonDetail pokemon) => Center(
                 child: Column(
                   children: <Widget>[
-                    Text(
-                      pokemon.name,
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Theme.of(context).colorScheme.onSurface,
-                      ),
-                    ),
+                    const SizedBox(height: 16),
                     Stack(
                       children: <Widget>[
                         Image.asset(

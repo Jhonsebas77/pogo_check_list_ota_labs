@@ -280,6 +280,170 @@
       "tradable": true
     }
   },
+  "lucky_friends": [
+    {
+      "contacted": true,
+      "name": "AlejoGutKetchup",
+      "pokemon_offer": {
+        "id": 800,
+        "name": "Necrozma",
+        "want_shiny": true
+      },
+      "pokemon_want": {
+        "id": 485,
+        "name": "Heatran",
+        "want_shiny": true
+      }
+    },
+    {
+      "contacted": true,
+      "name": "Anthonnio",
+      "pokemon_offer": {
+        "id": 381,
+        "name": "Latios",
+        "want_shiny": true
+      },
+      "pokemon_want": {
+        "id": 381,
+        "name": "Latios",
+        "want_shiny": true
+      }
+    },
+    {
+      "contacted": false,
+      "name": "Apokha"
+    },
+    {
+      "contacted": false,
+      "name": "Bluuesfera"
+    },
+    {
+      "contacted": false,
+      "name": "Bluesfera"
+    },
+    {
+      "contacted": false,
+      "name": "byronbk"
+    },
+    {
+      "contacted": false,
+      "name": "CamatoDj93"
+    },
+    {
+      "contacted": true,
+      "name": "ChrisJulliand",
+      "pokemon_offer": {
+        "id": 889,
+        "name": "Zamazenta",
+        "want_shiny": true
+      },
+      "pokemon_want": {
+        "id": 640,
+        "name": "Virizion",
+        "want_shiny": true
+      }
+    },
+    {
+      "contacted": false,
+      "name": "CrbLucio"
+    },
+    {
+      "contacted": false,
+      "name": "CSR21z"
+    },
+    {
+      "contacted": true,
+      "name": "DecoGomez2809",
+      "pokemon_offer": {
+        "id": 791,
+        "name": "Solgaleo",
+        "want_shiny": false
+      },
+      "pokemon_want": {
+        "id": 716,
+        "name": "Xerneas",
+        "want_shiny": true
+      }
+    },
+    {
+      "contacted": false,
+      "name": "Galendor123"
+    },
+    {
+      "contacted": false,
+      "name": "Jaime333333"
+    },
+    {
+      "contacted": false,
+      "name": "Jottajotta1"
+    },
+    {
+      "contacted": false,
+      "name": "juanv1022"
+    },
+    {
+      "contacted": false,
+      "name": "Magnagarurumonh"
+    },
+    {
+      "contacted": false,
+      "name": "Reloco787"
+    },
+    {
+      "contacted": true,
+      "name": "SantiagoPrieto9",
+      "pokemon_offer": {
+        "id": 383,
+        "name": "Groudon",
+        "want_shiny": true
+      },
+      "pokemon_want": {
+        "id": 383,
+        "name": "Groudon",
+        "want_shiny": true
+      }
+    },
+    {
+      "contacted": false,
+      "name": "jag87",
+      "pokemon_offer": {
+        "id": 150,
+        "name": "Mewtwo",
+        "want_shiny": true
+      },
+      "pokemon_want": {
+        "id": 798,
+        "name": "Kartana",
+        "want_shiny": true
+      }
+    },
+    {
+      "contacted": false,
+      "name": "MonkeyDRulos"
+    },
+    {
+      "contacted": false,
+      "name": "Maashuta"
+    },
+    {
+      "contacted": false,
+      "name": "SrChevy8"
+    },
+    {
+      "contacted": true,
+      "name": "jjgallon",
+      "pokemon_offer": {
+        "id": 447,
+        "name": "Riolu",
+        "want_shiny": true
+      },
+      "pokemon_want": {
+        "id": 245,
+        "name": "Suicune",
+        "want_shiny": true
+      }
+    }
+  ],
   "megaevolution": {
     "3": {
       "already_catch": true,
@@ -8407,7 +8571,7 @@
       "available": true,
       "id": 854,
       "name": "Sinistea",
-      "shiny_available": false,
+      "shiny_available": true,
       "tradable": true
     },
     {
@@ -8416,7 +8580,7 @@
       "available": true,
       "id": 855,
       "name": "Polteageist",
-      "shiny_available": false,
+      "shiny_available": true,
       "tradable": true
     },
     {
@@ -9556,11 +9720,11 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 982,
       "name": "Dudunsparce",
-      "shiny_available": false,
-      "tradable": false
+      "shiny_available": true,
+      "tradable": true
     },
     {
       "already_catch": true,
@@ -9817,29 +9981,29 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 1011,
       "name": "Dipplin",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 1012,
       "name": "Poltchageist",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 1013,
       "name": "Sinistcha",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
       "already_catch": false,
@@ -9889,11 +10053,11 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 1019,
       "name": "Hydrapple",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
       "already_catch": false,
@@ -9950,8 +10114,818 @@
       "tradable": false
     }
   ],
+  "traded_pokemon": {
+    "offer_pokemon": [
+      {
+        "already_caught": true,
+        "id": 1,
+        "name": "Bulbasaur jajaja",
+        "quantity": 2,
+        "want_adventure_effect": false,
+        "want_dynamax": false,
+        "want_gigantamax": false,
+        "want_lucky ": false,
+        "want_mirror_change": false,
+        "want_shiny": true,
+        "want_special_background": false
+      },
+      {
+        "already_caught": true,
+        "id": 1,
+        "name": "Bulbasaur",
+        "quantity": 1,
+        "want_adventure_effect": false,
+        "want_dynamax": true,
+        "want_gigantamax": false,
+        "want_lucky ": false,
+        "want_mirror_change": true,
+        "want_shiny": true,
+        "want_special_background": false
+      },
+      {
+        "already_caught": true,
+        "id": 4,
+        "name": "Charmander",
+        "quantity": 1,
+        "want_adventure_effect": false,
+        "want_dynamax": true,
+        "want_gigantamax": false,
+        "want_lucky ": false,
+        "want_mirror_change": true,
+        "want_shiny": true,
+        "want_special_background": false
+      },
+      {
+        "already_caught": true,
+        "id": 113,
+        "name": "Chansey",
+        "quantity": 1,
+        "want_adventure_effect": false,
+        "want_dynamax": true,
+        "want_gigantamax": false,
+        "want_lucky ": false,
+        "want_mirror_change": false,
+        "want_shiny": true,
+        "want_special_background": false
+      },
+      {
+        "already_caught": true,
+        "id": 4,
+        "name": "Charmander",
+        "quantity": 6,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 132,
+        "name": "Ditto",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 797,
+        "name": "Celesteela",
+        "quantity": 1,
+        "want_mirror_change": true,
+        "want_shiny": true,
+        "want_special_background": true
+      },
+      {
+        "already_caught": true,
+        "id": 7,
+        "name": "Squirtle",
+        "quantity": 4,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 6,
+        "name": "Charizard",
+        "quantity": 1,
+        "want_adventure_effect": false,
+        "want_dynamax": false,
+        "want_gigantamax": true,
+        "want_lucky ": false,
+        "want_mirror_change": false,
+        "want_shiny": true,
+        "want_special_background": false
+      },
+      {
+        "already_caught": true,
+        "id": 66,
+        "name": "Machop",
+        "quantity": 1,
+        "want_dynamax": true,
+        "want_mirror_change": true,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 131,
+        "name": "Lapras",
+        "quantity": 1,
+        "want_gigantamax": true,
+        "want_mirror_change": true,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 143,
+        "name": "Snorlax",
+        "quantity": 1,
+        "want_gigantamax": true,
+        "want_mirror_change": true,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 529,
+        "name": "Drilbur",
+        "quantity": 1,
+        "want_dynamax": true,
+        "want_mirror_change": true,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 249,
+        "name": "Lugia",
+        "quantity": 2,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 382,
+        "name": "Kyogre",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 382,
+        "name": "Kyogre",
+        "quantity": 1,
+        "want_mirror_change": true,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 484,
+        "name": "Palkia",
+        "quantity": 1,
+        "want_mirror_change": true,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 484,
+        "name": "Origen",
+        "quantity": 2,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 643,
+        "name": "Reshiram",
+        "quantity": 1,
+        "want_mirror_change": true,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 644,
+        "name": "Reshiram",
+        "quantity": 1,
+        "want_mirror_change": true,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 646,
+        "name": "Kyurem",
+        "quantity": 1,
+        "want_shiny": true,
+        "want_special_background": true
+      },
+      {
+        "already_caught": true,
+        "id": 888,
+        "name": "Zacian",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 895,
+        "name": "Regidrago",
+        "quantity": 1,
+        "want_mirror_change": true,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 545,
+        "name": "Scolipede",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 10,
+        "name": "Caterpie",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 13,
+        "name": "Weedle",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 27,
+        "name": "Sandsdrew",
+        "quantity": 5,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "alternative_form ": true,
+        "id": 27,
+        "name": "Alola",
+        "quantity": 5,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 43,
+        "name": "Oddish",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 54,
+        "name": "Pysduck",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 56,
+        "name": "Mankey",
+        "quantity": 20,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 60,
+        "name": "Poliwag",
+        "quantity": 6,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 63,
+        "name": "Abra",
+        "quantity": 2,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 66,
+        "name": "Machop",
+        "quantity": 9,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 69,
+        "name": "Belsprout",
+        "quantity": 2,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "alternative_form ": true,
+        "id": 74,
+        "name": "Alola",
+        "quantity": 3,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 77,
+        "name": "Ponyta",
+        "quantity": 5,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "alternative_form ": true,
+        "id": 77,
+        "name": "Galar",
+        "quantity": 8,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 79,
+        "name": "Slowpoke",
+        "quantity": 4,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "alternative_form ": true,
+        "id": 79,
+        "name": "Galar",
+        "quantity": 2,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 92,
+        "name": "Gastly",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 95,
+        "name": "Onix",
+        "quantity": 3,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 113,
+        "name": "Chansey",
+        "quantity": 13,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 123,
+        "name": "Scyther",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 125,
+        "name": "Electabuzz",
+        "quantity": 3,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 126,
+        "name": "Magmar",
+        "quantity": 4,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 127,
+        "name": "Pinsir",
+        "quantity": 1,
+        "want_mirror_change": true,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 129,
+        "name": "Magikarp",
+        "quantity": 4,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 131,
+        "name": "Lapras",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 133,
+        "name": "Eevee",
+        "quantity": 20,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 137,
+        "name": "Porygon",
+        "quantity": 11,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 147,
+        "name": "Dratini",
+        "quantity": 6,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 152,
+        "name": "Chikorita",
+        "quantity": 4,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 155,
+        "name": "Cyndaquil",
+        "quantity": 6,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 158,
+        "name": "Totodile",
+        "quantity": 10,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 163,
+        "name": "Disfraz",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 167,
+        "name": "Spinarak",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 175,
+        "name": "Togepi",
+        "quantity": 2,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 176,
+        "name": "Togetic",
+        "quantity": 4,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 179,
+        "name": "Marrep",
+        "quantity": 4,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 183,
+        "name": "Marril",
+        "quantity": 2,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 187,
+        "name": "Hoppip",
+        "quantity": 8,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 191,
+        "name": "Sunkern",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 206,
+        "name": "Dunsparce",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 215,
+        "name": "Sneasel",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "alternative_form ": true,
+        "id": 215,
+        "name": "Hisui",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 216,
+        "name": "Tediursa",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 220,
+        "name": "Snibu",
+        "quantity": 8,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 228,
+        "name": "Houndoom",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 246,
+        "name": "Larvitar",
+        "quantity": 2,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 255,
+        "name": "Torchic",
+        "quantity": 2,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 258,
+        "name": "Mudkip",
+        "quantity": 4,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 261,
+        "name": "Poochiyena",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "alternative_form ": true,
+        "id": 263,
+        "name": "Galar",
+        "quantity": 3,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 266,
+        "name": "Silcoon",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 273,
+        "name": "Seedot",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 280,
+        "name": "Ralts",
+        "quantity": 6,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 302,
+        "name": "Sableye",
+        "quantity": 3,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 308,
+        "name": "Medichamp",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 314,
+        "name": "Illumise",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 315,
+        "name": "Roselia",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 318,
+        "name": "Carvanha",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 328,
+        "name": "Trapinch",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 333,
+        "name": "Swablu",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 349,
+        "name": "Feebas",
+        "quantity": 3,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 355,
+        "name": "Duskull",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 363,
+        "name": "Spheal",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 361,
+        "name": "Snorunt",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 371,
+        "name": "Bagon",
+        "quantity": 8,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 374,
+        "name": "Beldum",
+        "quantity": 5,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 387,
+        "name": "Turtwig",
+        "quantity": 3,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 390,
+        "name": "Chimchar",
+        "quantity": 1,
+        "want_shiny": true
+      },
+      {
+        "already_caught": true,
+        "id": 396,
+        "name": "Starly",
+        "quantity": 7,
+        "want_shiny": true
+      }
+    ],
+    "wanted_pokemon": [
+      {
+        "id": 377,
+        "name": "Regisrock",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true,
+        "want_special_background": true
+      },
+      {
+        "id": 380,
+        "name": "Latias",
+        "quantity": 1,
+        "want_dynamax": true,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 480,
+        "name": "Uxie",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 638,
+        "name": "Cobalion",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 641,
+        "name": "Tornadus",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 716,
+        "name": "Xerneas",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 786,
+        "name": "Tapu Lele",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 787,
+        "name": "Tapu Bulu",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 788,
+        "name": "Tapu Fini",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 795,
+        "name": "Pheromosa",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 796,
+        "name": "Xurkitree",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 798,
+        "name": "Kartana",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 805,
+        "name": "Stakataka",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      },
+      {
+        "id": 806,
+        "name": "Blacephalon",
+        "quantity": 1,
+        "want_lucky": true,
+        "want_shiny": true
+      }
+    ]
+  },
   "trainer": {
-    "level": "47",
+    "level": "70",
     "nick_name": "Jhonsebas77",
     "team": "mystic",
     "trainer_id": "016618932768"
@@ -10004,971 +10978,5 @@
     ],
     "limit": 300,
     "quantity": 65
-  },
-  "traded_pokemon": {
-    "wanted_pokemon": [
-      {
-        "id": 377,
-        "name": "Regisrock",
-        "want_shiny": true,
-        "want_lucky": true,
-        "want_special_background": true,
-        "quantity": 1
-      },
-      {
-        "id": 380,
-        "name": "Latias",
-        "want_shiny": true,
-        "want_lucky": true,
-        "want_dynamax": true,
-        "quantity": 1
-      },
-      {
-        "id": 480,
-        "name": "Uxie",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      },
-      {
-        "id": 638,
-        "name": "Cobalion",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      },
-      {
-        "id": 641,
-        "name": "Tornadus",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      },
-      {
-        "id": 716,
-        "name": "Xerneas",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      },
-      {
-        "id": 786,
-        "name": "Tapu Lele",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      },
-      {
-        "id": 787,
-        "name": "Tapu Bulu",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      },
-      {
-        "id": 788,
-        "name": "Tapu Fini",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      },
-      {
-        "id": 795,
-        "name": "Pheromosa",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      },
-      {
-        "id": 796,
-        "name": "Xurkitree",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      },
-      {
-        "id": 798,
-        "name": "Kartana",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      },
-      {
-        "id": 805,
-        "name": "Stakataka",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      },
-      {
-        "id": 806,
-        "name": "Blacephalon",
-        "want_shiny": true,
-        "want_lucky": true,
-        "quantity": 1
-      }
-    ],
-    "offer_pokemon": [
-      {
-        "id": 1,
-        "name": "Bulbasaur",
-        "want_shiny": true,
-        "want_mirror_change": false,
-        "already_caught": true,
-        "want_dynamax": false,
-        "want_special_background": false,
-        "want_adventure_effect": false,
-        "want_gigantamax": false,
-        "want_lucky ": false,
-        "quantity": 2
-      },
-      {
-        "id": 1,
-        "name": "Bulbasaur",
-        "want_shiny": true,
-        "want_mirror_change": true,
-        "already_caught": true,
-        "want_dynamax": true,
-        "want_special_background": false,
-        "want_adventure_effect": false,
-        "want_gigantamax": false,
-        "want_lucky ": false,
-        "quantity": 1
-      },
-      {
-        "id": 4,
-        "name": "Charmander",
-        "want_shiny": true,
-        "want_mirror_change": true,
-        "already_caught": true,
-        "want_dynamax": true,
-        "want_special_background": false,
-        "want_adventure_effect": false,
-        "want_gigantamax": false,
-        "want_lucky ": false,
-        "quantity": 1
-      },
-      {
-        "id": 113,
-        "name": "Chansey",
-        "want_shiny": true,
-        "want_mirror_change": false,
-        "already_caught": true,
-        "want_dynamax": true,
-        "want_special_background": false,
-        "want_adventure_effect": false,
-        "want_gigantamax": false,
-        "want_lucky ": false,
-        "quantity": 1
-      },
-      {
-        "id": 4,
-        "name": "Charmander",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 6
-      },
-      {
-        "id": 132,
-        "name": "Ditto",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 797,
-        "name": "Celesteela",
-        "want_shiny": true,
-        "already_caught": true,
-        "want_special_background": true,
-        "want_mirror_change": true,
-        "quantity": 1
-      },
-      {
-        "id": 7,
-        "name": "Squirtle",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 4
-      },
-      {
-        "id": 6,
-        "name": "Charizard",
-        "want_shiny": true,
-        "want_mirror_change": false,
-        "already_caught": true,
-        "want_dynamax": false,
-        "want_special_background": false,
-        "want_adventure_effect": false,
-        "want_gigantamax": true,
-        "want_lucky ": false,
-        "quantity": 1
-      },
-      {
-        "id": 66,
-        "name": "Machop",
-        "want_shiny": true,
-        "want_mirror_change": true,
-        "already_caught": true,
-        "want_dynamax": true,
-        "quantity": 1
-      },
-      {
-        "id": 131,
-        "name": "Lapras",
-        "want_shiny": true,
-        "want_mirror_change": true,
-        "already_caught": true,
-        "want_gigantamax": true,
-        "quantity": 1
-      },
-      {
-        "id": 143,
-        "name": "Snorlax",
-        "want_shiny": true,
-        "want_mirror_change": true,
-        "already_caught": true,
-        "want_gigantamax": true,
-        "quantity": 1
-      },
-      {
-        "id": 529,
-        "name": "Drilbur",
-        "want_shiny": true,
-        "want_mirror_change": true,
-        "already_caught": true,
-        "want_dynamax": true,
-        "quantity": 1
-      },
-      {
-        "id": 249,
-        "name": "Lugia",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 2
-      },
-      {
-        "id": 382,
-        "name": "Kyogre",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 382,
-        "name": "Kyogre",
-        "want_shiny": true,
-        "want_mirror_change": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 484,
-        "name": "Palkia",
-        "want_shiny": true,
-        "want_mirror_change": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 484,
-        "name": "Origen",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 2
-      },
-      {
-        "id": 643,
-        "name": "Reshiram",
-        "want_shiny": true,
-        "want_mirror_change": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 644,
-        "name": "Reshiram",
-        "want_shiny": true,
-        "want_mirror_change": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 646,
-        "name": "Kyurem",
-        "want_shiny": true,
-        "want_special_background": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 888,
-        "name": "Zacian",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 895,
-        "name": "Regidrago",
-        "want_shiny": true,
-        "want_mirror_change": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 545,
-        "name": "Scolipede",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 10,
-        "name": "Caterpie",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 13,
-        "name": "Weedle",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 27,
-        "name": "Sandsdrew",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 5
-      },
-      {
-        "id": 27,
-        "name": "Alola",
-        "want_shiny": true,
-        "already_caught": true,
-        "alternative_form ": true,
-        "quantity": 5
-      },
-      {
-        "id": 43,
-        "name": "Oddish",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 54,
-        "name": "Pysduck",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 56,
-        "name": "Mankey",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 20
-      },
-      {
-        "id": 60,
-        "name": "Poliwag",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 6
-      },
-      {
-        "id": 63,
-        "name": "Abra",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 2
-      },
-      {
-        "id": 66,
-        "name": "Machop",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 9
-      },
-      {
-        "id": 69,
-        "name": "Belsprout",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 2
-      },
-      {
-        "id": 74,
-        "name": "Alola",
-        "want_shiny": true,
-        "already_caught": true,
-        "alternative_form ": true,
-        "quantity": 3
-      },
-      {
-        "id": 77,
-        "name": "Ponyta",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 5
-      },
-      {
-        "id": 77,
-        "name": "Galar",
-        "want_shiny": true,
-        "already_caught": true,
-        "alternative_form ": true,
-        "quantity": 8
-      },
-      {
-        "id": 79,
-        "name": "Slowpoke",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 4
-      },
-      {
-        "id": 79,
-        "name": "Galar",
-        "want_shiny": true,
-        "already_caught": true,
-        "alternative_form ": true,
-        "quantity": 2
-      },
-      {
-        "id": 92,
-        "name": "Gastly",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 95,
-        "name": "Onix",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 3
-      },
-      {
-        "id": 113,
-        "name": "Chansey",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 13
-      },
-      {
-        "id": 123,
-        "name": "Scyther",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 125,
-        "name": "Electabuzz",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 3
-      },
-      {
-        "id": 126,
-        "name": "Magmar",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 4
-      },
-      {
-        "id": 127,
-        "name": "Pinsir",
-        "want_shiny": true,
-        "already_caught": true,
-        "want_mirror_change": true,
-        "quantity": 1
-      },
-      {
-        "id": 129,
-        "name": "Magikarp",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 4
-      },
-      {
-        "id": 131,
-        "name": "Lapras",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 133,
-        "name": "Eevee",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 20
-      },
-      {
-        "id": 137,
-        "name": "Porygon",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 11
-      },
-      {
-        "id": 147,
-        "name": "Dratini",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 6
-      },
-      {
-        "id": 152,
-        "name": "Chikorita",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 4
-      },
-      {
-        "id": 155,
-        "name": "Cyndaquil",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 6
-      },
-      {
-        "id": 158,
-        "name": "Totodile",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 10
-      },
-      {
-        "id": 163,
-        "name": "Disfraz",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 167,
-        "name": "Spinarak",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 175,
-        "name": "Togepi",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 2
-      },
-      {
-        "id": 176,
-        "name": "Togetic",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 4
-      },
-      {
-        "id": 179,
-        "name": "Marrep",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 4
-      },
-      {
-        "id": 183,
-        "name": "Marril",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 2
-      },
-      {
-        "id": 187,
-        "name": "Hoppip",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 8
-      },
-      {
-        "id": 191,
-        "name": "Sunkern",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 206,
-        "name": "Dunsparce",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 215,
-        "name": "Sneasel",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 215,
-        "name": "Hisui",
-        "want_shiny": true,
-        "already_caught": true,
-        "alternative_form ": true,
-        "quantity": 1
-      },
-      {
-        "id": 216,
-        "name": "Tediursa",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 220,
-        "name": "Snibu",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 8
-      },
-      {
-        "id": 228,
-        "name": "Houndoom",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 246,
-        "name": "Larvitar",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 2
-      },
-      {
-        "id": 255,
-        "name": "Torchic",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 2
-      },
-      {
-        "id": 258,
-        "name": "Mudkip",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 4
-      },
-      {
-        "id": 261,
-        "name": "Poochiyena",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 263,
-        "name": "Galar",
-        "want_shiny": true,
-        "already_caught": true,
-        "alternative_form ": true,
-        "quantity": 3
-      },
-      {
-        "id": 266,
-        "name": "Silcoon",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 273,
-        "name": "Seedot",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 280,
-        "name": "Ralts",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 6
-      },
-      {
-        "id": 302,
-        "name": "Sableye",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 3
-      },
-      {
-        "id": 308,
-        "name": "Medichamp",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 314,
-        "name": "Illumise",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 315,
-        "name": "Roselia",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 318,
-        "name": "Carvanha",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 328,
-        "name": "Trapinch",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 333,
-        "name": "Swablu",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 349,
-        "name": "Feebas",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 3
-      },
-      {
-        "id": 355,
-        "name": "Duskull",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 363,
-        "name": "Spheal",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 361,
-        "name": "Snorunt",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 371,
-        "name": "Bagon",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 8
-      },
-      {
-        "id": 374,
-        "name": "Beldum",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 5
-      },
-      {
-        "id": 387,
-        "name": "Turtwig",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 3
-      },
-      {
-        "id": 390,
-        "name": "Chimchar",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 1
-      },
-      {
-        "id": 396,
-        "name": "Starly",
-        "want_shiny": true,
-        "already_caught": true,
-        "quantity": 7
-      }
-    ]
-  },
-  "lucky_friends": [
-    {
-      "name": "AlejoGutKetchup",
-      "contacted": true,
-      "pokemon_offer": {
-        "id": 800,
-        "name": "Necrozma",
-        "want_shiny": true
-      },
-      "pokemon_want": {
-        "id": 485,
-        "name": "Heatran",
-        "want_shiny": true
-      }
-    },
-    {
-      "name": "Anthonnio",
-      "contacted": true,
-      "pokemon_offer": {
-        "id": 381,
-        "name": "Latios",
-        "want_shiny": true
-      },
-      "pokemon_want": {
-        "id": 381,
-        "name": "Latios",
-        "want_shiny": true
-      }
-    },
-    {
-      "name": "Apokha",
-      "contacted": false
-    },
-    {
-      "name": "Bluuesfera",
-      "contacted": false
-    },
-    {
-      "name": "Bluesfera",
-      "contacted": false
-    },
-    {
-      "name": "byronbk",
-      "contacted": false
-    },
-    {
-      "name": "CamatoDj93",
-      "contacted": false
-    },
-    {
-      "name": "ChrisJulliand",
-      "contacted": true,
-      "pokemon_offer": {
-        "id": 889,
-        "name": "Zamazenta",
-        "want_shiny": true
-      },
-      "pokemon_want": {
-        "id": 640,
-        "name": "Virizion",
-        "want_shiny": true
-      }
-    },
-    {
-      "name": "CrbLucio",
-      "contacted": false
-    },
-    {
-      "name": "CSR21z",
-      "contacted": false
-    },
-    {
-      "name": "DecoGomez2809",
-      "contacted": true,
-      "pokemon_offer": {
-        "id": 791,
-        "name": "Solgaleo",
-        "want_shiny": false
-      },
-      "pokemon_want": {
-        "id": 716,
-        "name": "Xerneas",
-        "want_shiny": true
-      }
-    },
-    {
-      "name": "Galendor123",
-      "contacted": false
-    },
-    {
-      "name": "Jaime333333",
-      "contacted": false
-    },
-    {
-      "name": "Jottajotta1",
-      "contacted": false
-    },
-    {
-      "name": "juanv1022",
-      "contacted": false
-    },
-    {
-      "name": "Magnagarurumonh",
-      "contacted": false
-    },
-    {
-      "name": "Reloco787",
-      "contacted": false
-    },
-    {
-      "name": "SantiagoPrieto9",
-      "contacted": true,
-      "pokemon_offer": {
-        "id": 383,
-        "name": "Groudon",
-        "want_shiny": true
-      },
-      "pokemon_want": {
-        "id": 383,
-        "name": "Groudon",
-        "want_shiny": true
-      }
-    },
-    {
-      "name": "jag87",
-      "contacted": false,
-      "pokemon_offer": {
-        "id": 150,
-        "name": "Mewtwo",
-        "want_shiny": true
-      },
-      "pokemon_want": {
-        "id": 798,
-        "name": "Kartana",
-        "want_shiny": true
-      }
-    },
-    {
-      "name": "MonkeyDRulos",
-      "contacted": false
-    },
-    {
-      "name": "jjgallon",
-      "contacted": true,
-      "pokemon_offer": {
-        "id": 447,
-        "name": "Riolu",
-        "want_shiny": true
-      },
-      "pokemon_want": {
-        "id": 245,
-        "name": "Suicune",
-        "want_shiny": true
-      }
-    }
-  ]
+  }
 }

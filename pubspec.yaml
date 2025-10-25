@@ -2,7 +2,7 @@ name: pogo_check_list_ota_labs
 description: "A app to check my progress in PoGo"
 publish_to: "none"
 
-version: 1.0.0+29
+version: 1.0.0+30
 
 environment:
   sdk: ^3.7.2
@@ -36,7 +36,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/mocks/
     - assets/pokedex_gigantamax/
     - assets/pokedex_mega_evolutions/
     - assets/pokedex_sprites_shiny/
