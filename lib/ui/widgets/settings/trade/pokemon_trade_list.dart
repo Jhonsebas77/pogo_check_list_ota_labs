@@ -1,10 +1,20 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
 
 class PokemonTradeList extends StatelessWidget {
-  const PokemonTradeList({required this.pokemonList, this.type, super.key});
+  const PokemonTradeList({
+    required this.pokemonList,
+    this.type,
+    this.onLongPressEdit,
+    this.originalIndices,
+    super.key,
+  });
 
   final List<PokemonTradeItem> pokemonList;
   final String? type;
+  final void Function(int originalIndex, PokemonTradeItem item)?
+  onLongPressEdit;
+  final List<int>? originalIndices;
+
   @override
   Widget build(BuildContext context) => Center(
     child: SingleChildScrollView(
@@ -26,23 +36,35 @@ class PokemonTradeList extends StatelessWidget {
             child: Wrap(
               spacing: 12,
               runSpacing: 12,
-              children: List<Widget>.generate(
-                pokemonList.length,
-                (int index) => PokemonTradeCard(
-                  pokemonId: pokemonList[index].id ?? 0,
-                  pokemonName: pokemonList[index].name ?? '',
-                  alreadyCaught: pokemonList[index].alreadyCaught,
-                  quantity: pokemonList[index].quantity ?? 1,
-                  wantAdventureEffect: pokemonList[index].haveAdventureEffect,
-                  wantDynamax: pokemonList[index].isDynamax,
-                  wantGigantamax: pokemonList[index].isGigantamax,
-                  wantLucky: pokemonList[index].isLucky,
-                  wantMirrorChange: pokemonList[index].isMirrorChange,
-                  wantShiny: pokemonList[index].isShiny,
-                  wantSpecialBackground:
-                      pokemonList[index].haveSpecialBackground,
-                ),
-              ),
+              children: List<Widget>.generate(pokemonList.length, (int index) {
+                int originalIndex =
+                    originalIndices != null && index < originalIndices!.length
+                        ? originalIndices![index]
+                        : index;
+                return GestureDetector(
+                  onLongPress:
+                      onLongPressEdit == null
+                          ? null
+                          : () => onLongPressEdit!(
+                            originalIndex,
+                            pokemonList[index],
+                          ),
+                  child: PokemonTradeCard(
+                    pokemonId: pokemonList[index].id ?? 0,
+                    pokemonName: pokemonList[index].name ?? '',
+                    alreadyCaught: pokemonList[index].alreadyCaught,
+                    quantity: pokemonList[index].quantity ?? 1,
+                    wantAdventureEffect: pokemonList[index].haveAdventureEffect,
+                    wantDynamax: pokemonList[index].isDynamax,
+                    wantGigantamax: pokemonList[index].isGigantamax,
+                    wantLucky: pokemonList[index].isLucky,
+                    wantMirrorChange: pokemonList[index].isMirrorChange,
+                    wantShiny: pokemonList[index].isShiny,
+                    wantSpecialBackground:
+                        pokemonList[index].haveSpecialBackground,
+                  ),
+                );
+              }),
             ),
           ),
           if (kIsWeb)

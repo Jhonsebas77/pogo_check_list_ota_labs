@@ -29,5 +29,5 @@ part 'settings/lucky_friends.dart';
 part 'settings/lucky_friends_editor.dart';
 part 'settings/type_chart.dart';
 part 'settings/wanted_for_trade.dart';
-part 'settings/wanted_for_trade_editor.dart.dart';
+part 'settings/wanted_for_trade_editor.dart';
 part 'zygarde/zygarde_details.dart';

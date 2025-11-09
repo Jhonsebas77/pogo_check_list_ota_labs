@@ -6,11 +6,42 @@ class WantedForTradeView extends ConsumerStatefulWidget {
   ConsumerState<WantedForTradeView> createState() => _WantedForTradeViewState();
 }
 
-class _WantedForTradeViewState extends ConsumerState<WantedForTradeView> {
+class _WantedForTradeViewState extends ConsumerState<WantedForTradeView>
+    with TickerProviderStateMixin {
   final Set<int> _legendaryIds =
       getLegendaryGroups().expand((List<int> group) => group).toSet();
 
   bool _showOnlyLegendary = false;
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  void _openTradeItemEditor(
+    BuildContext context, {
+    required PokemonTradeCategory category,
+    PokemonTradeItem? item,
+    int? index,
+  }) {
+    CustomNavigator().push(
+      context,
+      PokemonTradeItemEditorView(
+        category: category,
+        initialItem: item,
+        initialIndex: index,
+      ),
+      animation: CustomNavigationAnimation.slideBottom,
+    );
+  }
 
   void _toggleLegendaryFilter() {
     setState(() {
@@ -44,6 +75,7 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView> {
                   leading: const DexHeaderLeading(),
                   actions: const DexHeaderActions().getActions(),
                   bottom: TabBar(
+                    controller: _tabController,
                     indicatorColor: Colors.transparent,
                     labelColor: Colors.white,
                     dividerColor: Colors.transparent,
@@ -72,41 +104,80 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView> {
                 if (tradeData == null) {
                   return const Center(child: EmptyState());
                 }
-                List<PokemonTradeItem> wantedPokemon =
-                    List<PokemonTradeItem>.from(tradeData.wantedPokemon)..sort(
-                      (PokemonTradeItem a, PokemonTradeItem b) =>
-                          (a.id ?? 0).compareTo(b.id ?? 0),
-                    );
-                List<PokemonTradeItem> offerPokemon =
-                    List<PokemonTradeItem>.from(tradeData.offerPokemon)..sort(
-                      (PokemonTradeItem a, PokemonTradeItem b) =>
-                          (a.id ?? 0).compareTo(b.id ?? 0),
-                    );
+                List<PokemonTradeItem> allWantedPokemon =
+                    List<PokemonTradeItem>.from(tradeData.wantedPokemon);
+                List<PokemonTradeItem> allOfferPokemon =
+                    List<PokemonTradeItem>.from(tradeData.offerPokemon);
+                List<int> wantedOrder = List<int>.generate(
+                  allWantedPokemon.length,
+                  (int index) => index,
+                )..sort(
+                  (int a, int b) => (allWantedPokemon[a].id ?? 0).compareTo(
+                    allWantedPokemon[b].id ?? 0,
+                  ),
+                );
+                List<int> offerOrder = List<int>.generate(
+                  allOfferPokemon.length,
+                  (int index) => index,
+                )..sort(
+                  (int a, int b) => (allOfferPokemon[a].id ?? 0).compareTo(
+                    allOfferPokemon[b].id ?? 0,
+                  ),
+                );
                 if (_showOnlyLegendary) {
-                  wantedPokemon =
-                      wantedPokemon
+                  wantedOrder =
+                      wantedOrder
                           .where(
-                            (PokemonTradeItem pokemon) =>
-                                _legendaryIds.contains(pokemon.id),
+                            (int index) => _legendaryIds.contains(
+                              allWantedPokemon[index].id,
+                            ),
                           )
                           .toList();
-                  offerPokemon =
-                      offerPokemon
+                  offerOrder =
+                      offerOrder
                           .where(
-                            (PokemonTradeItem pokemon) =>
-                                _legendaryIds.contains(pokemon.id),
+                            (int index) => _legendaryIds.contains(
+                              allOfferPokemon[index].id,
+                            ),
                           )
                           .toList();
                 }
+                List<PokemonTradeItem> wantedPokemon =
+                    wantedOrder
+                        .map((int index) => allWantedPokemon[index])
+                        .toList();
+                List<PokemonTradeItem> offerPokemon =
+                    offerOrder
+                        .map((int index) => allOfferPokemon[index])
+                        .toList();
                 return TabBarView(
+                  controller: _tabController,
                   children: <Widget>[
                     PokemonTradeList(
                       pokemonList: wantedPokemon,
                       type: 'Buscando',
+                      originalIndices: wantedOrder,
+                      onLongPressEdit:
+                          (int index, PokemonTradeItem item) =>
+                              _openTradeItemEditor(
+                                context,
+                                category: PokemonTradeCategory.wanted,
+                                item: item,
+                                index: index,
+                              ),
                     ),
                     PokemonTradeList(
                       pokemonList: offerPokemon,
                       type: 'Ofreciendo',
+                      originalIndices: offerOrder,
+                      onLongPressEdit:
+                          (int index, PokemonTradeItem item) =>
+                              _openTradeItemEditor(
+                                context,
+                                category: PokemonTradeCategory.offer,
+                                item: item,
+                                index: index,
+                              ),
                     ),
                   ],
                 );
@@ -156,18 +227,20 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView> {
             CircleAvatar(
               backgroundColor: Theme.of(context).colorScheme.secondary,
               child: IconButton(
-                tooltip: 'Editar intercambios',
+                tooltip: 'Agregar Pokémon',
                 icon: Icon(
-                  Icons.edit,
+                  Icons.add,
                   size: 16,
                   color: Theme.of(context).colorScheme.onSecondary,
                 ),
-                onPressed:
-                    () => CustomNavigator().push(
-                      context,
-                      const PokemonTradeEditorView(),
-                      animation: CustomNavigationAnimation.fade,
-                    ),
+                onPressed: () {
+                  PokemonTradeCategory category =
+                      (_tabController.index == 0)
+                          ? PokemonTradeCategory.wanted
+                          : PokemonTradeCategory.offer;
+
+                  _openTradeItemEditor(context, category: category);
+                },
               ),
             ),
             const SizedBox(width: 4),
