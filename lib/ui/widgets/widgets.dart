@@ -43,6 +43,7 @@ part 'settings/menu_item.dart';
 part 'settings/title_section.dart';
 part 'settings/trade/information_tooltip_content.dart';
 part 'settings/trade/pokemon_trade_card.dart';
+part 'settings/trade/pokemon_trade_item_editor.dart';
 part 'settings/trade/pokemon_trade_list.dart';
 part 'settings/type_chart/type_matchup_chip.dart';
 part 'settings/type_chart/type_section.dart';

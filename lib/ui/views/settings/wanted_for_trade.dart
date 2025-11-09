@@ -68,16 +68,19 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView> {
             controller: screenshotController,
             child: firebasePokemonState.when(
               data: (PokemonFirebaseState state) {
-                PokemonTrade tradeData = state.pokemonForTrade!;
+                PokemonTrade? tradeData = state.pokemonForTrade;
+                if (tradeData == null) {
+                  return const Center(child: EmptyState());
+                }
                 List<PokemonTradeItem> wantedPokemon =
                     List<PokemonTradeItem>.from(tradeData.wantedPokemon)..sort(
                       (PokemonTradeItem a, PokemonTradeItem b) =>
-                          (a.id!).compareTo(b.id ?? 0),
+                          (a.id ?? 0).compareTo(b.id ?? 0),
                     );
                 List<PokemonTradeItem> offerPokemon =
                     List<PokemonTradeItem>.from(tradeData.offerPokemon)..sort(
                       (PokemonTradeItem a, PokemonTradeItem b) =>
-                          (a.id!).compareTo(b.id ?? 0),
+                          (a.id ?? 0).compareTo(b.id ?? 0),
                     );
                 if (_showOnlyLegendary) {
                   wantedPokemon =
@@ -147,6 +150,24 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView> {
                         context,
                       );
                 },
+              ),
+            ),
+            const SizedBox(width: 4),
+            CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              child: IconButton(
+                tooltip: 'Editar intercambios',
+                icon: Icon(
+                  Icons.edit,
+                  size: 16,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+                onPressed:
+                    () => CustomNavigator().push(
+                      context,
+                      const PokemonTradeEditorView(),
+                      animation: CustomNavigationAnimation.fade,
+                    ),
               ),
             ),
             const SizedBox(width: 4),

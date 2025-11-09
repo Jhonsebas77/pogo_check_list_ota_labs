@@ -35,6 +35,24 @@ class LuckyFriendsView extends ConsumerWidget {
             CircleAvatar(
               backgroundColor: Theme.of(context).colorScheme.secondary,
               child: IconButton(
+                tooltip: 'Editar amistades',
+                icon: Icon(
+                  Icons.edit,
+                  size: 16,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+                onPressed:
+                    () => CustomNavigator().push(
+                      context,
+                      const LuckyFriendsEditorView(),
+                      animation: CustomNavigationAnimation.fade,
+                    ),
+              ),
+            ),
+            const SizedBox(width: 4),
+            CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              child: IconButton(
                 tooltip: 'Tomar screenshot',
                 icon: Icon(
                   Icons.screenshot,

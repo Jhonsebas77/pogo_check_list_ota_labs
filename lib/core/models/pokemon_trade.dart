@@ -33,9 +33,20 @@ class PokemonTrade {
 
     return PokemonTrade(wantedPokemon: wanted, offerPokemon: offer);
   }
+
   final List<PokemonTradeItem> wantedPokemon;
   final List<PokemonTradeItem> offerPokemon;
 
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'wanted_pokemon':
+        wantedPokemon
+            .map((PokemonTradeItem pokemon) => pokemon.toJson())
+            .toList(),
+    'offer_pokemon':
+        offerPokemon
+            .map((PokemonTradeItem pokemon) => pokemon.toJson())
+            .toList(),
+  };
   @override
   String toString() => '''PokemonTrade(
     'wantedPokemon': $wantedPokemon,
