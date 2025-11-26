@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 12,
-                  vertical: 6,
+                  vertical: 4,
                 ),
                 child: TabBar(
                   indicatorColor: Colors.transparent,

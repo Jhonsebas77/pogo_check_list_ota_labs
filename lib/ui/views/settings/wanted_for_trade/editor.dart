@@ -1,7 +1,5 @@
 part of com.pogo_check_list_ota_labs.app.views;
 
-enum PokemonTradeCategory { wanted, offer }
-
 extension PokemonTradeCategoryX on PokemonTradeCategory {
   String get singularLabel =>
       this == PokemonTradeCategory.wanted
@@ -187,24 +185,25 @@ class _PokemonTradeItemEditorViewState
             ? widget.category.editTitle
             : widget.category.createTitle;
     return Scaffold(
-      appBar: CustomAppBar(title: title),
+      appBar: CustomAppBar(title: title, isTransparent: true),
       backgroundColor:
-          isDarkMode
-              ? Theme.of(context).scaffoldBackgroundColor
-              : Theme.of(context).colorScheme.primary,
+          isDarkMode ? null : Theme.of(context).colorScheme.primary,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
-            children: <Widget>[
-              PokemonTradeItemEditor(
-                title: widget.category.singularLabel,
-                data: _formData,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Form(
+                key: _formKey,
+                child: PokemonTradeItemEditor(
+                  title: widget.category.singularLabel,
+                  data: _formData,
+                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: SafeArea(
@@ -220,7 +219,7 @@ class _PokemonTradeItemEditorViewState
                 label: Text(
                   _isSaving
                       ? 'Eliminando...'
-                      : 'Eliminar ${widget.category.singularLabel.toLowerCase()}',
+                      : '''Eliminar ${widget.category.singularLabel.toLowerCase()}''',
                 ),
               ),
             if (widget.isEditing) const SizedBox(height: 8),

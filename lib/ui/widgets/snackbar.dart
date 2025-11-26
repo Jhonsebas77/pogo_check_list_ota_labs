@@ -1,7 +1,5 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
 
-enum SnackbarType { information, success, error }
-
 void showInformationSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).hideCurrentSnackBar();
   ScaffoldMessenger.of(context).showSnackBar(
