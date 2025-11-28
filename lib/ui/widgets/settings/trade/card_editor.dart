@@ -1,6 +1,6 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
 
-class PokemonTradeItemEditor extends StatefulWidget {
+class PokemonTradeItemEditor extends ConsumerStatefulWidget {
   const PokemonTradeItemEditor({
     required this.data,
     required this.title,
@@ -13,10 +13,12 @@ class PokemonTradeItemEditor extends StatefulWidget {
   final VoidCallback? onRemove;
 
   @override
-  State<PokemonTradeItemEditor> createState() => _PokemonTradeItemEditorState();
+  ConsumerState<PokemonTradeItemEditor> createState() =>
+      _PokemonTradeItemEditorState();
 }
 
-class _PokemonTradeItemEditorState extends State<PokemonTradeItemEditor> {
+class _PokemonTradeItemEditorState
+    extends ConsumerState<PokemonTradeItemEditor> {
   @override
   Widget build(BuildContext context) {
     int _pokemonId = int.tryParse(widget.data.idController.text) ?? 0;
@@ -53,45 +55,55 @@ class _PokemonTradeItemEditorState extends State<PokemonTradeItemEditor> {
                         'assets/pokedex_sprites_shiny/$_pokemonId.png',
                         height: 80,
                         width: 80,
+                        errorBuilder:
+                            (
+                              BuildContext context,
+                              Object error,
+                              StackTrace? stackTrace,
+                            ) => const SizedBox(height: 80, width: 80),
                       )
                     else
                       Image.asset(
                         'assets/pokedex_sprites/$_pokemonId.png',
                         height: 80,
                         width: 80,
+                        errorBuilder:
+                            (
+                              BuildContext context,
+                              Object error,
+                              StackTrace? stackTrace,
+                            ) => const SizedBox(height: 80, width: 80),
                       ),
                   ],
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: TextFormField(
-                    controller: widget.data.idController,
-                    keyboardType: TextInputType.number,
-                    decoration: inputDecoration(
-                      context,
-                      label: 'ID del Pokémon',
-                      icon: Icons.tag,
-                    ),
-                    validator: (String? value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return null;
+                  child: PokemonSelector(
+                    selectedPokemonId: _pokemonId == 0 ? null : _pokemonId,
+                    label: 'Seleccionar Pokémon',
+                    onChanged: (int? newId) {
+                      if (newId != null) {
+                        setState(() {
+                          widget.data.idController.text = newId.toString();
+                          // Find name
+                          final List<PokemonModel> allPokemon =
+                              ref
+                                  .read(firebasePokemonProvider)
+                                  .valueOrNull
+                                  ?.allPokemon ??
+                              <PokemonModel>[];
+                          try {
+                            final PokemonModel pokemon = allPokemon.firstWhere(
+                              (PokemonModel p) => p.id == newId,
+                            );
+                            widget.data.nameController.text = pokemon.name;
+                          } catch (_) {}
+                        });
                       }
-                      return int.tryParse(value.trim()) == null
-                          ? 'Ingresa un ID válido'
-                          : null;
                     },
                   ),
                 ),
               ],
-            ),
-            const SizedBox(height: 8),
-            TextFormField(
-              controller: widget.data.nameController,
-              decoration: inputDecoration(
-                context,
-                label: 'Nombre (opcional)',
-                icon: Icons.badge_outlined,
-              ),
             ),
             const SizedBox(height: 8),
             if (widget.title == 'Pokémon ofrecido')
