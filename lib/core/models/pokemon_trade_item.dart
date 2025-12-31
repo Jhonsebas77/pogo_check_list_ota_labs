@@ -49,6 +49,20 @@ class PokemonTradeItem {
   final int? quantity;
   final String? name;
 
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'id': id,
+    'name': name,
+    'quantity': quantity,
+    'already_caught': alreadyCaught ?? false,
+    'want_adventure_effect': haveAdventureEffect ?? false,
+    'want_special_background': haveSpecialBackground ?? false,
+    'want_lucky': isLucky ?? false,
+    'want_shiny': isShiny ?? false,
+    'want_mirror_change': isMirrorChange ?? false,
+    'want_dynamax': isDynamax ?? false,
+    'want_gigantamax': isGigantamax ?? false,
+  };
+
   @override
   String toString() => '''PokemonTradeItem(
     'name': $name,

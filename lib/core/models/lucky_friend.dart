@@ -28,6 +28,8 @@ class LuckyFriend {
   Map<String, dynamic> toJson() => <String, dynamic>{
     'name': name,
     'contacted': contacted,
+    'pokemon_offer': pokemonOffer?.toJson(),
+    'pokemon_want': pokemonWanted?.toJson(),
   };
 
   final String name;

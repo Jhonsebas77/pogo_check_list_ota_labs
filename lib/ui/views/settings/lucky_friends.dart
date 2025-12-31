@@ -10,6 +10,14 @@ class LuckyFriendsView extends ConsumerWidget {
     );
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     ScreenshotController screenshotController = ScreenshotController();
+    void openEditor({LuckyFriend? friend, int? index}) {
+      CustomNavigator().push(
+        context,
+        LuckyFriendEditorView(initialFriend: friend, initialIndex: index),
+        animation: CustomNavigationAnimation.fade,
+      );
+    }
+
     return SafeArea(
       child: Scaffold(
         appBar: const CustomAppBar(
@@ -31,6 +39,20 @@ class LuckyFriendsView extends ConsumerWidget {
               visualDensity: VisualDensity.compact,
               backgroundColor: Theme.of(context).colorScheme.secondary,
             ),
+            const SizedBox(width: 4),
+            CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              child: IconButton(
+                tooltip: 'Agregar amistad',
+                icon: Icon(
+                  Icons.person_add_alt_1,
+                  size: 16,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+                onPressed: openEditor,
+              ),
+            ),
+            const SizedBox(width: 4),
             const SizedBox(width: 4),
             CircleAvatar(
               backgroundColor: Theme.of(context).colorScheme.secondary,
@@ -62,7 +84,12 @@ class LuckyFriendsView extends ConsumerWidget {
               return SingleChildScrollView(
                 child: Screenshot(
                   controller: screenshotController,
-                  child: LuckyFriendsList(friends: _friendsInfo),
+                  child: LuckyFriendsList(
+                    friends: _friendsInfo,
+                    onLongPressEdit:
+                        (int index, LuckyFriend friend) =>
+                            openEditor(friend: friend, index: index),
+                  ),
                 ),
               );
             },

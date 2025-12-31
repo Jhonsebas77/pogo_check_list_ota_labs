@@ -469,4 +469,72 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       rethrow;
     }
   }
+
+  Future<void> updateLuckyFriends(
+    List<LuckyFriend> luckyFriends,
+    BuildContext context,
+  ) async {
+    AsyncValue<PokemonFirebaseState> previousState = state;
+    try {
+      DatabaseReference ref = _firebaseRef.child(firebaseLuckyFriendsPath);
+      await ref.set(
+        luckyFriends.map((LuckyFriend friend) => friend.toJson()).toList(),
+      );
+      PokemonFirebaseState? currentState =
+          state.valueOrNull ??
+          previousState.valueOrNull ??
+          const PokemonFirebaseState();
+      List<LuckyFriend> updatedFriends = List<LuckyFriend>.from(luckyFriends)
+        ..sort(
+          (LuckyFriend a, LuckyFriend b) =>
+              a.name.toLowerCase().compareTo(b.name.toLowerCase()),
+        );
+      PokemonFirebaseState newState = currentState.copyWith(
+        allLuckyFriends: updatedFriends,
+      );
+      state = AsyncValue<PokemonFirebaseState>.data(newState);
+      if (context.mounted) {
+        showSuccessSnackBar(context, '[Amistades con suerte actualizadas]');
+      }
+    } catch (e, s) {
+      state = previousState;
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
+      if (context.mounted) {
+        showErrorSnackBar(context, 'Error during updateLuckyFriends: $e');
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> updatePokemonTrade(
+    PokemonTrade updatedTrade,
+    BuildContext context,
+  ) async {
+    AsyncValue<PokemonFirebaseState> previousState = state;
+    try {
+      DatabaseReference ref = _firebaseRef.child(firebasePokemonForTradePath);
+      await ref.set(updatedTrade.toJson());
+      PokemonFirebaseState? currentState =
+          state.valueOrNull ??
+          previousState.valueOrNull ??
+          const PokemonFirebaseState();
+      PokemonFirebaseState newState = currentState.copyWith(
+        pokemonForTrade: updatedTrade,
+      );
+      state = AsyncValue<PokemonFirebaseState>.data(newState);
+      if (context.mounted) {
+        showSuccessSnackBar(
+          context,
+          '[Información de intercambios actualizada]',
+        );
+      }
+    } catch (e, s) {
+      state = previousState;
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
+      if (context.mounted) {
+        showErrorSnackBar(context, 'Error during updatePokemonTrade: $e');
+      }
+      rethrow;
+    }
+  }
 }

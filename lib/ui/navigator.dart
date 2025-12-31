@@ -2,15 +2,8 @@ library com.pogo_check_list_ota_labs.app.navigator;
 
 import 'package:flutter/material.dart';
 
+import '../core/enums/enums.dart';
 import 'widgets/widgets.dart';
-
-enum CustomNavigationAnimation {
-  slideRight,
-  slideBottom,
-  fade,
-  scale,
-  scaleFade,
-}
 
 class CustomNavigator {
   void push(
