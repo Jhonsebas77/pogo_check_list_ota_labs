@@ -28,7 +28,9 @@ class PokemonModel {
       tradable: json['tradable'] != null && json['tradable'] as bool,
       alternativeForm:
           rawAlternativeForm is Map
-              ? PokemonAlternativeForm.fromJson(Map.from(rawAlternativeForm))
+              ? PokemonAlternativeForm.fromJson(
+                  Map<String, dynamic>.from(rawAlternativeForm),
+                )
               : const PokemonAlternativeForm(),
     );
   }

@@ -11,7 +11,7 @@ class FirebaseProvider extends ChangeNotifier {
 
 final Provider<FirebaseProvider> firebaseServiceProvider =
     Provider<FirebaseProvider>(
-      (ProviderRef<FirebaseProvider> ref) => FirebaseProvider(),
+      (Ref<FirebaseProvider> ref) => FirebaseProvider(),
     );
 
 class PokemonFirebaseState {
@@ -52,50 +52,37 @@ class PokemonFirebaseState {
   );
 
   int getTotalPokemonLength() =>
-      allPokemon
-          .where((PokemonModel pokemon) => pokemon.available)
-          .toList()
-          .length;
+      allPokemon.where((PokemonModel pokemon) => pokemon.available).length;
 
   int getShinyAvailablePokemonLength() =>
-      allPokemon
-          .where((PokemonModel pokemon) => pokemon.shinyAvailable)
-          .toList()
-          .length;
+      allPokemon.where((PokemonModel pokemon) => pokemon.shinyAvailable).length;
 
   int getAlreadyCatchPokemonShinyLength() =>
       allPokemon
           .where((PokemonModel pokemon) => pokemon.alreadyCatchShinyVersion)
-          .toList()
           .length;
 
   int getAlreadyCatchPokemonLength() =>
-      allPokemon
-          .where((PokemonModel pokemon) => pokemon.alreadyCatch)
-          .toList()
-          .length;
+      allPokemon.where((PokemonModel pokemon) => pokemon.alreadyCatch).length;
 
   int getAllGigantamaxPokemonLength() => allGigantamaxPokemon.length;
 
   int getAlreadyCatchGigantamaxPokemonLength() =>
       allGigantamaxPokemon
           .where((PokemonModel pokemon) => pokemon.alreadyCatch)
-          .toList()
           .length;
 
   int getAllMegaEvolutionsPokemonLength() =>
       allMegaEvolutionPokemon
           .where((PokemonModel pokemon) => pokemon.available)
-          .toList()
           .length;
 
   int getAlreadyCatchMegaEvolutionsPokemonLength() =>
       allMegaEvolutionPokemon
           .where((PokemonModel pokemon) => pokemon.alreadyCatch)
-          .toList()
           .length;
 
-  int getLuckyFriendsLength() => allLuckyFriends.toList().length;
+  int getLuckyFriendsLength() => allLuckyFriends.length;
 }
 
 final AsyncNotifierProvider<FirebasePokemon, PokemonFirebaseState>

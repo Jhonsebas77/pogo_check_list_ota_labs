@@ -146,30 +146,31 @@ class DashboardOverview extends ConsumerWidget {
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () async {
-                    await showDialog<void>(
-                      context: context,
-                      builder:
-                          (BuildContext context) => ZygardeCellsModal(
-                            zygardeCells: state.zygardeCells!,
-                          ),
-                    );
-                  },
-                  onLongPress: () {
-                    CustomNavigator().push(context, const ZygardeDetails());
-                  },
-                  child: HomeLinearProgressWidget(
-                    allItemLength: state.zygardeCells?.limit ?? 0,
-                    counterItemLength: state.zygardeCells?.quantity ?? 0,
-                    centerWidget: Image.asset(
-                      'assets/pokedex_sprites/718_${getZygardeActualForm(state.zygardeCells!)}.png',
-                      height: 50,
-                      width: 50,
-                      fit: BoxFit.fill,
+                if (state.zygardeCells != null)
+                  GestureDetector(
+                    onTap: () async {
+                      await showDialog<void>(
+                        context: context,
+                        builder:
+                            (BuildContext context) => ZygardeCellsModal(
+                              zygardeCells: state.zygardeCells!,
+                            ),
+                      );
+                    },
+                    onLongPress: () {
+                      CustomNavigator().push(context, const ZygardeDetails());
+                    },
+                    child: HomeLinearProgressWidget(
+                      allItemLength: state.zygardeCells!.limit,
+                      counterItemLength: state.zygardeCells!.quantity,
+                      centerWidget: Image.asset(
+                        'assets/pokedex_sprites/718_${getZygardeActualForm(state.zygardeCells!)}.png',
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
         error:

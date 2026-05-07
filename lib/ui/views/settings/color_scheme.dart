@@ -14,7 +14,7 @@ class ColorSchemeView extends ConsumerWidget {
           onPressed: () {
             ref
                 .read(themeModeProvider.notifier)
-                .setThemeMode(isDarkMode ? ThemeMode.light : ThemeMode.dark);
+                .themeMode = isDarkMode ? ThemeMode.light : ThemeMode.dark;
             showInformationSnackBar(
               context,
               '''[Tema actualizado] ->  ${isDarkMode ? 'Tema claro' : 'Tema oscuro'}''',
@@ -203,7 +203,7 @@ class _ColorSwatch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String toHexString(Color color) =>
-        '#${color.value.toRadixString(16).substring(2).toUpperCase()}';
+        '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}';
     return SizedBox(
       width: 110,
       height: 100,

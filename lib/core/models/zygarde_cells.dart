@@ -9,15 +9,15 @@ class ZygardeCells {
   });
 
   factory ZygardeCells.fromJson(Map<String, dynamic> json) {
-    List<dynamic>? rawList = json['forms'] ?? <dynamic>[];
+    List<dynamic> rawList = (json['forms'] as List<dynamic>?) ?? <dynamic>[];
     return ZygardeCells(
       actualForm:
           json['actual_form'] != null ? json['actual_form'] as String : '',
       forms:
           rawList
-              ?.whereType<Map>()
+              .whereType<Map<dynamic, dynamic>>()
               .map(
-                (Map item) =>
+                (Map<dynamic, dynamic> item) =>
                     PokemonModel.fromJson(Map<String, dynamic>.from(item)),
               )
               .toList(),

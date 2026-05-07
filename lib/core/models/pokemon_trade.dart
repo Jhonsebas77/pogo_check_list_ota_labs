@@ -4,32 +4,26 @@ class PokemonTrade {
   PokemonTrade({required this.wantedPokemon, required this.offerPokemon});
 
   factory PokemonTrade.fromJson(Map<String, dynamic> json) {
-    dynamic offerList = json['offer_pokemon'];
-    dynamic wantedList = json['wanted_pokemon'];
+    List<dynamic> offerList =
+        (json['offer_pokemon'] as List<dynamic>?) ?? <dynamic>[];
+    List<dynamic> wantedList =
+        (json['wanted_pokemon'] as List<dynamic>?) ?? <dynamic>[];
 
-    List<PokemonTradeItem> wanted =
-        wantedList
-            .map((item) {
-              if (item is Map) {
-                return PokemonTradeItem.fromJson(
-                  Map<String, dynamic>.from(item),
-                );
-              }
-            })
-            .toList()
-            .cast<PokemonTradeItem>();
+    List<PokemonTradeItem> wanted = wantedList
+        .whereType<Map<dynamic, dynamic>>()
+        .map<PokemonTradeItem>(
+          (Map<dynamic, dynamic> item) =>
+              PokemonTradeItem.fromJson(Map<String, dynamic>.from(item)),
+        )
+        .toList();
 
-    List<PokemonTradeItem> offer =
-        offerList
-            .map((item) {
-              if (item is Map) {
-                return PokemonTradeItem.fromJson(
-                  Map<String, dynamic>.from(item),
-                );
-              }
-            })
-            .toList()
-            .cast<PokemonTradeItem>();
+    List<PokemonTradeItem> offer = offerList
+        .whereType<Map<dynamic, dynamic>>()
+        .map<PokemonTradeItem>(
+          (Map<dynamic, dynamic> item) =>
+              PokemonTradeItem.fromJson(Map<String, dynamic>.from(item)),
+        )
+        .toList();
 
     return PokemonTrade(wantedPokemon: wanted, offerPokemon: offer);
   }

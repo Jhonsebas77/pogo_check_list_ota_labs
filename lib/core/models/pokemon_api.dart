@@ -16,8 +16,8 @@ class PokemonDetail {
         json['sprites']['other']['official-artwork']['front_default'] as String;
 
     List<String> typesList =
-        (json['types'] as List)
-            .map((typeInfo) => typeInfo['type']['name'] as String)
+        (json['types'] as List<dynamic>)
+            .map((dynamic typeInfo) => typeInfo['type']['name'] as String)
             .toList();
 
     return PokemonDetail(

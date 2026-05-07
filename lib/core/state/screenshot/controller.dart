@@ -51,7 +51,5 @@ class ScreenShotViewModel extends Notifier<ScreenShotState> {
   }
 
   @override
-  ScreenShotState build() {
-    throw UnimplementedError();
-  }
+  ScreenShotState build() => ScreenShotState();
 }

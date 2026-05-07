@@ -86,14 +86,14 @@ class _PokemonTradeItemEditorState
                         setState(() {
                           widget.data.idController.text = newId.toString();
                           // Find name
-                          final List<PokemonModel> allPokemon =
+                          List<PokemonModel> allPokemon =
                               ref
                                   .read(firebasePokemonProvider)
                                   .valueOrNull
                                   ?.allPokemon ??
                               <PokemonModel>[];
                           try {
-                            final PokemonModel pokemon = allPokemon.firstWhere(
+                            PokemonModel pokemon = allPokemon.firstWhere(
                               (PokemonModel p) => p.id == newId,
                             );
                             widget.data.nameController.text = pokemon.name;

@@ -4,9 +4,8 @@ class ThemeModeNotifier extends Notifier<ThemeMode> {
   @override
   ThemeMode build() => ThemeMode.dark;
 
-  void setThemeMode(ThemeMode mode) {
-    state = mode;
-  }
+  ThemeMode get themeMode => state;
+  set themeMode(ThemeMode mode) => state = mode;
 }
 
 final NotifierProvider<ThemeModeNotifier, ThemeMode> themeModeProvider =

@@ -18,11 +18,6 @@ class _AllPokemonAvailableViewState
   PokemonSortCriteria _currentSortCriteria = PokemonSortCriteria.byDex;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
@@ -97,11 +92,19 @@ class _AllPokemonAvailableViewState
                             ),
                           ),
                           firebasePokemonState.when(
-                            data:
-                                (PokemonFirebaseState state) => Text(
-                                  '${state.getAlreadyCatchPokemonLength()}/${state.getTotalPokemonLength()} (${(state.getAlreadyCatchPokemonLength() / state.getTotalPokemonLength() * 100).toStringAsFixed(2)}%)',
-                                  style: const TextStyle(color: Colors.white54),
-                                ),
+                            data: (PokemonFirebaseState state) {
+                              int total = state.getTotalPokemonLength();
+                              int caught = state.getAlreadyCatchPokemonLength();
+                              String pct =
+                                  total > 0
+                                      ? (caught / total * 100)
+                                          .toStringAsFixed(2)
+                                      : '0.00';
+                              return Text(
+                                '$caught/$total ($pct%)',
+                                style: const TextStyle(color: Colors.white54),
+                              );
+                            },
                             error:
                                 (Object error, StackTrace stackTrace) =>
                                     SimpleErrorChip(

@@ -35,12 +35,12 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
   }
 
   void _updateSelectionFromId() {
-    final List<PokemonModel> allPokemon =
+    List<PokemonModel> allPokemon =
         ref.read(firebasePokemonProvider).valueOrNull?.allPokemon ??
         <PokemonModel>[];
     if (widget.selectedPokemonId != null && allPokemon.isNotEmpty) {
       try {
-        final PokemonModel pokemon = allPokemon.firstWhere(
+        PokemonModel pokemon = allPokemon.firstWhere(
           (PokemonModel p) => p.id == widget.selectedPokemonId,
         );
         setState(() {
@@ -61,13 +61,13 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
 
   @override
   Widget build(BuildContext context) {
-    final AsyncValue<PokemonFirebaseState> pokemonState = ref.watch(
+    AsyncValue<PokemonFirebaseState> pokemonState = ref.watch(
       firebasePokemonProvider,
     );
 
     return pokemonState.when(
       data: (PokemonFirebaseState state) {
-        final List<PokemonModel> allPokemon = state.allPokemon;
+        List<PokemonModel> allPokemon = state.allPokemon;
 
         // Initial update if needed
         if (_selectedPokemon == null && widget.selectedPokemonId != null) {
@@ -77,8 +77,8 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
         }
 
         return LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            return Autocomplete<PokemonModel>(
+          builder: (BuildContext context, BoxConstraints constraints) =>
+              Autocomplete<PokemonModel>(
               initialValue: TextEditingValue(text: _controller.text),
               displayStringForOption:
                   (PokemonModel option) => '${option.id} - ${option.name}',
@@ -87,7 +87,7 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
                   return const Iterable<PokemonModel>.empty();
                 }
                 return allPokemon.where((PokemonModel option) {
-                  final String query = textEditingValue.text.toLowerCase();
+                  String query = textEditingValue.text.toLowerCase();
                   return option.name.toLowerCase().contains(query) ||
                       option.id.toString().contains(query);
                 });
@@ -105,17 +105,8 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
                 FocusNode fieldFocusNode,
                 VoidCallback onFieldSubmitted,
               ) {
-                // Sync internal controller with the one provided by Autocomplete if needed
-                // But here we want to control the text when selection changes from outside
-                // So we might need a different approach or just let Autocomplete handle it
-                // and update the controller text when external ID changes.
-                
-                // Actually, Autocomplete manages its own controller if we don't pass one,
-                // but fieldViewBuilder gives us one.
-                // We need to keep our _controller in sync or just use the one from builder.
-                
                 if (_controller.text != fieldTextEditingController.text) {
-                    fieldTextEditingController.text = _controller.text;
+                  fieldTextEditingController.text = _controller.text;
                 }
 
                 return TextField(
@@ -130,7 +121,7 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
                     suffixIcon:
                         _selectedPokemon != null
                             ? Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8),
                               child: Image.asset(
                                 'assets/pokedex_sprites/${_selectedPokemon!.id}.png',
                                 width: 24,
@@ -154,21 +145,23 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
                 BuildContext context,
                 AutocompleteOnSelected<PokemonModel> onSelected,
                 Iterable<PokemonModel> options,
-              ) {
-                return Align(
+              ) => Align(
                   alignment: Alignment.topLeft,
                   child: Material(
-                    elevation: 4.0,
-                    color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                     borderRadius: const BorderRadius.vertical(bottom: Radius.circular(16)),
+                    elevation: 4,
+                    color:
+                        Theme.of(context).colorScheme.surfaceContainerHighest,
+                    borderRadius: const BorderRadius.vertical(
+                      bottom: Radius.circular(16),
+                    ),
                     child: SizedBox(
                       width: constraints.maxWidth,
-                      height: 200.0,
+                      height: 200,
                       child: ListView.builder(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8),
                         itemCount: options.length,
                         itemBuilder: (BuildContext context, int index) {
-                          final PokemonModel option = options.elementAt(index);
+                          PokemonModel option = options.elementAt(index);
                           return ListTile(
                             leading: Image.asset(
                               'assets/pokedex_sprites/${option.id}.png',
@@ -200,7 +193,7 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
                                     Theme.of(context)
                                         .colorScheme
                                         .onSurfaceVariant
-                                        .withOpacity(0.7),
+                                        .withValues(alpha: 0.7),
                               ),
                             ),
                             onTap: () {
@@ -211,10 +204,8 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
                       ),
                     ),
                   ),
-                );
-              },
-            );
-          },
+                ),
+            ),
         );
       },
       loading:
