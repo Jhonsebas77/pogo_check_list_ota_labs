@@ -51,6 +51,8 @@ class PokemonListItem extends ConsumerWidget {
                         'assets/pokedex_gigantamax/${selectPokemon.id}.png',
                         height: 50,
                         width: 50,
+                        cacheHeight: 100,
+                        cacheWidth: 100,
                         fit: BoxFit.fill,
                       )
                     else if (isShiny)
@@ -59,6 +61,8 @@ class PokemonListItem extends ConsumerWidget {
                           'assets/pokedex_sprites_shiny/0.png',
                           height: 50,
                           width: 50,
+                          cacheHeight: 100,
+                          cacheWidth: 100,
                           fit: BoxFit.fill,
                         )
                       else
@@ -68,6 +72,8 @@ class PokemonListItem extends ConsumerWidget {
                             'assets/pokedex_sprites_shiny/${selectPokemon.id}.png',
                             height: 50,
                             width: 50,
+                            cacheHeight: 100,
+                            cacheWidth: 100,
                             fit: BoxFit.fill,
                           ),
                         )
@@ -80,6 +86,8 @@ class PokemonListItem extends ConsumerWidget {
                             'assets/pokedex_sprites/${selectPokemon.id}.png',
                             height: 50,
                             width: 50,
+                            cacheHeight: 100,
+                            cacheWidth: 100,
                             fit: BoxFit.fill,
                           ),
                         )
@@ -90,6 +98,8 @@ class PokemonListItem extends ConsumerWidget {
                             'assets/pokedex_sprites/${selectPokemon.id}.png',
                             height: 50,
                             width: 50,
+                            cacheHeight: 100,
+                            cacheWidth: 100,
                             fit: BoxFit.fill,
                           ),
                         ),

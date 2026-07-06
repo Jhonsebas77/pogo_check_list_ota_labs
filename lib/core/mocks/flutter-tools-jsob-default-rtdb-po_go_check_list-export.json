@@ -634,6 +634,24 @@
       "shiny_available": false,
       "tradable": true
     },
+    "26": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 26,
+      "name": "Raichu",
+      "shiny_available": true,
+      "tradable": true
+    },
+    "36": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 36,
+      "name": "Clefable",
+      "shiny_available": false,
+      "tradable": true
+    },
     "65": {
       "already_catch": true,
       "already_catch_shiny_version": false,
@@ -646,7 +664,7 @@
     "71": {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 71,
       "name": "Victribell",
       "shiny_available": false,
@@ -676,6 +694,15 @@
       "available": true,
       "id": 115,
       "name": "Kangaskhan",
+      "shiny_available": true,
+      "tradable": true
+    },
+    "121": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 121,
+      "name": "Starmie",
       "shiny_available": true,
       "tradable": true
     },
@@ -709,7 +736,7 @@
     "149": {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 149,
       "name": "Dragonite",
       "shiny_available": false,
@@ -721,6 +748,24 @@
       "available": false,
       "id": 150,
       "name": "Mewtwo",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "154": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 154,
+      "name": "Meganium",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "160": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 160,
+      "name": "Feraligatr",
       "shiny_available": false,
       "tradable": true
     },
@@ -757,6 +802,15 @@
       "available": true,
       "id": 214,
       "name": "Heracross",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "227": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": true,
+      "id": 227,
+      "name": "Skarmory",
       "shiny_available": false,
       "tradable": true
     },
@@ -895,6 +949,15 @@
       "shiny_available": false,
       "tradable": true
     },
+    "358": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 358,
+      "name": "Chimecho",
+      "shiny_available": false,
+      "tradable": true
+    },
     "359": {
       "already_catch": true,
       "already_catch_shiny_version": false,
@@ -976,6 +1039,15 @@
       "shiny_available": false,
       "tradable": true
     },
+    "398": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 398,
+      "name": "Staraptor",
+      "shiny_available": false,
+      "tradable": true
+    },
     "428": {
       "already_catch": true,
       "already_catch_shiny_version": false,
@@ -1021,6 +1093,51 @@
       "shiny_available": false,
       "tradable": true
     },
+    "478": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 478,
+      "name": "Froslass",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "485": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 485,
+      "name": "Heatran",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "491": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 491,
+      "name": "Darkrai",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "500": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 500,
+      "name": "Emboar",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "530": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 530,
+      "name": "Excadrill",
+      "shiny_available": true,
+      "tradable": true
+    },
     "531": {
       "already_catch": true,
       "already_catch_shiny_version": false,
@@ -1030,12 +1147,228 @@
       "shiny_available": false,
       "tradable": true
     },
+    "545": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 545,
+      "name": "Scolipede",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "560": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 560,
+      "name": "Scrafty",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "604": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 604,
+      "name": "Eelektross",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "609": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 609,
+      "name": "Chandelure",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "623": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 623,
+      "name": "Golurk",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "652": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 652,
+      "name": "Chesnaught",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "655": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 655,
+      "name": "Delphox",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "658": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 658,
+      "name": "Greninja",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "668": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 668,
+      "name": "Pyroar",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "670": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 670,
+      "name": "Floette",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "678": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 678,
+      "name": "Meowstic",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "687": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": true,
+      "id": 687,
+      "name": "Malamar",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "689": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 689,
+      "name": "Barbaracle",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "691": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 691,
+      "name": "Dragalge",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "701": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 701,
+      "name": "Hawlucha",
+      "shiny_available": false,
+      "tradable": true
+    },
     "719": {
       "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 719,
       "name": "Diancie",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "740": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 740,
+      "name": "Crabominable",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "768": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 768,
+      "name": "Golisopod",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "780": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 780,
+      "name": "Drampa",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "801": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 801,
+      "name": "Magearna",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "807": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 807,
+      "name": "Zeraora",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "952": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 952,
+      "name": "Scovillain",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "970": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 970,
+      "name": "Glimmora",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "978": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 978,
+      "name": "Tatsugiri",
+      "shiny_available": false,
+      "tradable": true
+    },
+    "998": {
+      "already_catch": false,
+      "already_catch_shiny_version": false,
+      "available": false,
+      "id": 998,
+      "name": "Baxcalibur",
       "shiny_available": false,
       "tradable": true
     }
@@ -2159,7 +2492,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 124,
       "name": "Jynx",
@@ -2591,7 +2924,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 172,
       "name": "Pichu",
@@ -2933,7 +3266,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 210,
       "name": "Granbull",
@@ -3158,7 +3491,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 235,
       "name": "Smeargle",
@@ -3239,7 +3572,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 244,
       "name": "Entei",
@@ -4031,7 +4364,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 332,
       "name": "Cacturne",
@@ -4283,7 +4616,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 360,
       "name": "Wynaut",
@@ -6155,7 +6488,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 568,
       "name": "Trubbish",
@@ -6164,7 +6497,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 569,
       "name": "Garbodor",
@@ -8046,7 +8379,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 778,
       "name": "Mimikyu",
       "shiny_available": false,
@@ -8234,7 +8567,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 799,
       "name": "Guzzlord",
@@ -8460,7 +8793,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 824,
       "name": "Blipbug",
       "shiny_available": false,
@@ -8469,7 +8802,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 825,
       "name": "Dottler",
       "shiny_available": false,
@@ -8478,7 +8811,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 826,
       "name": "Orbeetle",
       "shiny_available": false,
@@ -8775,28 +9108,28 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 859,
       "name": "Impidimp",
-      "shiny_available": false,
+      "shiny_available": true,
       "tradable": true
     },
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 860,
       "name": "Morgrem",
-      "shiny_available": false,
+      "shiny_available": true,
       "tradable": true
     },
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 861,
       "name": "Grimmsnarl",
-      "shiny_available": false,
+      "shiny_available": true,
       "tradable": true
     },
     {
@@ -9297,7 +9630,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 917,
       "name": "Tarountula",
       "shiny_available": false,
@@ -9306,7 +9639,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 918,
       "name": "Spidops",
       "shiny_available": false,
@@ -9423,7 +9756,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 931,
       "name": "Squawkabilly",
       "shiny_available": false,
@@ -9504,7 +9837,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 940,
       "name": "Wattrel",
       "shiny_available": false,
@@ -9513,7 +9846,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 941,
       "name": "Kilowattrel",
       "shiny_available": false,
@@ -9594,7 +9927,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 950,
       "name": "Klawf",
       "shiny_available": false,
@@ -9639,7 +9972,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 955,
       "name": "Flittle",
       "shiny_available": false,
@@ -9648,7 +9981,7 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 956,
       "name": "Espathra",
       "shiny_available": false,
@@ -9809,7 +10142,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 974,
       "name": "Cetoddle",
@@ -9818,7 +10151,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 975,
       "name": "Cetitan",
@@ -10007,7 +10340,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 996,
       "name": "Frigibax",
@@ -10016,7 +10349,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 997,
       "name": "Arctibax",
@@ -10025,7 +10358,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 998,
       "name": "Baxcalibur",
@@ -11609,7 +11942,7 @@
     ]
   },
   "trainer": {
-    "level": "72",
+    "level": "75",
     "nick_name": "Jhonsebas77",
     "team": "mystic",
     "trainer_id": "016618932768"
@@ -11661,6 +11994,6 @@
       }
     ],
     "limit": 300,
-    "quantity": 105
+    "quantity": 169
   }
 }

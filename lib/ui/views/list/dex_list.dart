@@ -10,38 +10,13 @@ class AllPokemonAvailableView extends ConsumerStatefulWidget {
 }
 
 class _AllPokemonAvailableViewState
-    extends ConsumerState<AllPokemonAvailableView> {
+    extends ConsumerState<AllPokemonAvailableView>
+    with
+        PokemonListScrollMixin<AllPokemonAvailableView>,
+        PokemonSearchMixin<AllPokemonAvailableView> {
   bool displayOnlyMissingPokemon = false;
-  final ScrollController _scrollController = ScrollController();
-  bool isInTheEndOfTheList = false;
   bool isFilterApply = false;
   PokemonSortCriteria _currentSortCriteria = PokemonSortCriteria.byDex;
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void _scrollToEnd() {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      duration: const Duration(seconds: 1),
-      curve: Curves.easeInOut,
-    );
-    isInTheEndOfTheList = true;
-    setState(() {});
-  }
-
-  void _scrollToTop() {
-    _scrollController.animateTo(
-      0,
-      duration: const Duration(seconds: 1),
-      curve: Curves.easeInOut,
-    );
-    isInTheEndOfTheList = false;
-    setState(() {});
-  }
 
   IconData getFilterIcon() {
     switch (_currentSortCriteria) {
@@ -69,7 +44,7 @@ class _AllPokemonAvailableViewState
           leading: const DexHeaderLeading(),
           actions: const DexHeaderActions().getActions(),
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(50),
+            preferredSize: const Size.fromHeight(104),
             child: Column(
               children: <Widget>[
                 Padding(
@@ -97,8 +72,9 @@ class _AllPokemonAvailableViewState
                               int caught = state.getAlreadyCatchPokemonLength();
                               String pct =
                                   total > 0
-                                      ? (caught / total * 100)
-                                          .toStringAsFixed(2)
+                                      ? (caught / total * 100).toStringAsFixed(
+                                        2,
+                                      )
                                       : '0.00';
                               return Text(
                                 '$caught/$total ($pct%)',
@@ -204,6 +180,7 @@ class _AllPokemonAvailableViewState
                     ],
                   ),
                 ),
+                buildSearchField(),
               ],
             ),
           ),
@@ -214,6 +191,8 @@ class _AllPokemonAvailableViewState
             if (state.allPokemon.isEmpty) {
               return const EmptyState();
             }
+            // Se copia la lista (List.of) para no mutar el estado del provider
+            // al ordenar in-place con sort().
             List<PokemonModel> sortedPokemon =
                 displayOnlyMissingPokemon
                     ? state.allPokemon
@@ -222,7 +201,9 @@ class _AllPokemonAvailableViewState
                               pokemon.available && !pokemon.alreadyCatch,
                         )
                         .toList()
-                    : state.allPokemon;
+                    : List<PokemonModel>.of(state.allPokemon);
+            // Se filtra por nombre antes de ordenar para ordenar menos ítems.
+            sortedPokemon = applySearchFilter(sortedPokemon);
             switch (_currentSortCriteria) {
               case PokemonSortCriteria.byName:
                 sortedPokemon.sort(
@@ -241,6 +222,17 @@ class _AllPokemonAvailableViewState
                 );
                 break;
             }
+            if (sortedPokemon.isEmpty) {
+              return EmptyState(
+                message:
+                    hasSearchQuery
+                        ? 'No hay Pokémon que coincidan con "$searchQuery"'
+                        : 'Lo sentimos, aun no tenemos registros',
+              );
+            }
+            // Sincroniza la visibilidad inicial de los botones tras el primer
+            // frame (p. ej. ocultar "bajar" si la lista cabe en pantalla).
+            scheduleScrollButtonsSync();
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: ListView.separated(
@@ -248,8 +240,7 @@ class _AllPokemonAvailableViewState
                     (BuildContext _, int __) => const Padding(
                       padding: EdgeInsets.symmetric(vertical: 4),
                     ),
-                controller: _scrollController,
-                shrinkWrap: true,
+                controller: scrollController,
                 itemCount: sortedPokemon.length,
                 itemBuilder: (BuildContext context, int index) {
                   PokemonModel pokemon = sortedPokemon[index];
@@ -274,14 +265,7 @@ class _AllPokemonAvailableViewState
               ),
           loading: PokemonListShimmer.new,
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
-          backgroundColor: Theme.of(context).colorScheme.secondary,
-          child: Icon(
-            isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
-            color: Theme.of(context).colorScheme.onSecondary,
-          ),
-        ),
+        floatingActionButton: buildScrollButtons(),
       ),
     );
   }
