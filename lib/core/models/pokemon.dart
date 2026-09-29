@@ -9,11 +9,13 @@ class PokemonModel {
     required this.name,
     required this.shinyAvailable,
     required this.tradable,
-    this.alternativeForm,
+    this.formTag,
+    this.alternativeForms,
   });
 
   factory PokemonModel.fromJson(Map<String, dynamic> json) {
-    dynamic rawAlternativeForm = json['alternative_form'];
+    dynamic rawFormTag = json['alternative_form'];
+    dynamic rawAlternativeForms = json['alternative_forms'];
     return PokemonModel(
       alreadyCatch:
           json['already_catch'] != null && json['already_catch'] as bool,
@@ -26,12 +28,23 @@ class PokemonModel {
       shinyAvailable:
           json['shiny_available'] != null && json['shiny_available'] as bool,
       tradable: json['tradable'] != null && json['tradable'] as bool,
-      alternativeForm:
-          rawAlternativeForm is Map
+      formTag:
+          rawFormTag is Map
               ? PokemonAlternativeForm.fromJson(
-                  Map<String, dynamic>.from(rawAlternativeForm),
+                  Map<String, dynamic>.from(rawFormTag),
                 )
               : const PokemonAlternativeForm(),
+      alternativeForms:
+          rawAlternativeForms is List
+              ? rawAlternativeForms
+                  .whereType<Map<dynamic, dynamic>>()
+                  .map(
+                    (Map<dynamic, dynamic> form) => PokemonModel.fromJson(
+                      Map<String, dynamic>.from(form),
+                    ),
+                  )
+                  .toList()
+              : null,
     );
   }
 
@@ -43,7 +56,12 @@ class PokemonModel {
     'name': name,
     'shiny_available': shinyAvailable,
     'tradable': tradable,
-    if (alternativeForm != null) 'alternative_form': alternativeForm!.toJson(),
+    if (formTag != null) 'alternative_form': formTag!.toJson(),
+    if (alternativeForms != null && alternativeForms!.isNotEmpty)
+      'alternative_forms':
+          alternativeForms!
+              .map((PokemonModel form) => form.toJson())
+              .toList(),
   };
 
   final bool alreadyCatch;
@@ -53,7 +71,54 @@ class PokemonModel {
   final bool tradable;
   final int id;
   final String name;
-  final PokemonAlternativeForm? alternativeForm;
+  /// Descriptor que identifica *qué* forma es esta entrada (p. ej. Alola):
+  /// `{ id, name, order }`. Vacío en la entrada base de la especie.
+  final PokemonAlternativeForm? formTag;
+
+  /// Formas alternativas anidadas de esta especie (p. ej. Raichu-Alola).
+  /// Solo la entrada base la usa; cada forma es un [PokemonModel] con el mismo
+  /// [id] de especie y su propio [formTag] descriptor.
+  final List<PokemonModel>? alternativeForms;
+
+  /// `true` si esta entrada representa una forma alternativa concreta
+  /// (su descriptor [formTag] tiene un `id` no vacío).
+  bool get isAlternativeForm => formTag?.id?.isNotEmpty ?? false;
+
+  /// Sufijo de archivo para el sprite de la forma (p. ej. `-alola`), o vacío
+  /// para la forma base.
+  String get formSuffix => isAlternativeForm ? '-${formTag!.id}' : '';
+
+  /// Orden de la forma dentro de la especie (0 = base).
+  int get formOrder => formTag?.order ?? 0;
+
+  /// La especie base seguida de sus formas alternativas, aplanada para mostrar.
+  List<PokemonModel> get withForms => <PokemonModel>[
+    this,
+    ...?alternativeForms,
+  ];
+
+  PokemonModel copyWith({
+    bool? alreadyCatch,
+    bool? alreadyCatchShinyVersion,
+    bool? available,
+    bool? shinyAvailable,
+    bool? tradable,
+    int? id,
+    String? name,
+    PokemonAlternativeForm? formTag,
+    List<PokemonModel>? alternativeForms,
+  }) => PokemonModel(
+    alreadyCatch: alreadyCatch ?? this.alreadyCatch,
+    alreadyCatchShinyVersion:
+        alreadyCatchShinyVersion ?? this.alreadyCatchShinyVersion,
+    available: available ?? this.available,
+    shinyAvailable: shinyAvailable ?? this.shinyAvailable,
+    tradable: tradable ?? this.tradable,
+    id: id ?? this.id,
+    name: name ?? this.name,
+    formTag: formTag ?? this.formTag,
+    alternativeForms: alternativeForms ?? this.alternativeForms,
+  );
 
   @override
   bool operator ==(Object other) =>
@@ -71,7 +136,8 @@ class PokemonModel {
     name,
     shinyAvailable,
     tradable,
-    alternativeForm,
+    formTag,
+    Object.hashAll(alternativeForms ?? const <PokemonModel>[]),
   );
 
   @override

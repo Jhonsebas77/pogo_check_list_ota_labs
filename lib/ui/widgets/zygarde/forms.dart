@@ -7,11 +7,11 @@ class ZygardeForms extends StatelessWidget {
   String witchFormIsActive(ZygardeCells zygardeCells) {
     String previousForm = '';
     if (zygardeCells.actualForm ==
-        zygardeCells.forms?[1].alternativeForm?.name) {
+        zygardeCells.alternativeForms?[1].formTag?.name) {
       previousForm = '10%-50%';
     }
     if (zygardeCells.actualForm ==
-        zygardeCells.forms?[2].alternativeForm?.name) {
+        zygardeCells.alternativeForms?[2].formTag?.name) {
       previousForm = '10%-50%-100%';
     }
     return previousForm;

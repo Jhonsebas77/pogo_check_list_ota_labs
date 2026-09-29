@@ -17,19 +17,22 @@ class PokemonListMegaEvolutionItem extends ConsumerWidget {
     onTap:
         selectPokemon.available
             ? () async {
-              PokemonModel _pokemon = PokemonModel(
+              PokemonModel _pokemon = selectPokemon.copyWith(
                 alreadyCatch: !selectPokemon.alreadyCatch,
-                alreadyCatchShinyVersion:
-                    selectPokemon.alreadyCatchShinyVersion,
-                available: selectPokemon.available,
-                id: selectPokemon.id,
-                name: selectPokemon.name,
-                shinyAvailable: selectPokemon.shinyAvailable,
-                tradable: selectPokemon.tradable,
               );
-              await ref
-                  .read(firebasePokemonProvider.notifier)
-                  .updateMegaEvolutionPokemon(index, _pokemon, context);
+              if (selectPokemon.isAlternativeForm) {
+                await ref
+                    .read(firebasePokemonProvider.notifier)
+                    .updateMegaEvolutionPokemonForm(
+                      _pokemon.id,
+                      _pokemon,
+                      context,
+                    );
+              } else {
+                await ref
+                    .read(firebasePokemonProvider.notifier)
+                    .updateMegaEvolutionPokemon(index, _pokemon, context);
+              }
               if (context.mounted) {
                 showSuccessSnackBar(
                   context,
@@ -74,10 +77,23 @@ class PokemonListMegaEvolutionItem extends ConsumerWidget {
                   ),
                   if (selectPokemon.available)
                     Image.asset(
-                      'assets/pokedex_mega_evolutions/${selectPokemon.id}.png',
+                      'assets/pokedex_mega_evolutions/'
+                      '${selectPokemon.id}${selectPokemon.formSuffix}.png',
                       height: 80,
                       width: 80,
                       fit: BoxFit.fill,
+                      errorBuilder:
+                          (
+                            BuildContext context,
+                            Object error,
+                            StackTrace? stackTrace,
+                          ) => Image.asset(
+                            'assets/pokedex_mega_evolutions/'
+                            '${selectPokemon.id}.png',
+                            height: 80,
+                            width: 80,
+                            fit: BoxFit.fill,
+                          ),
                     )
                   else
                     Shimmer.fromColors(
@@ -86,10 +102,23 @@ class PokemonListMegaEvolutionItem extends ConsumerWidget {
                           Theme.of(context).colorScheme.onSurfaceVariant,
                       enabled: false,
                       child: Image.asset(
-                        'assets/pokedex_mega_evolutions/${selectPokemon.id}.png',
+                        'assets/pokedex_mega_evolutions/'
+                        '${selectPokemon.id}${selectPokemon.formSuffix}.png',
                         height: 80,
                         width: 80,
                         fit: BoxFit.fill,
+                        errorBuilder:
+                            (
+                              BuildContext context,
+                              Object error,
+                              StackTrace? stackTrace,
+                            ) => Image.asset(
+                              'assets/pokedex_mega_evolutions/'
+                              '${selectPokemon.id}.png',
+                              height: 80,
+                              width: 80,
+                              fit: BoxFit.fill,
+                            ),
                       ),
                     ),
                 ],
@@ -101,7 +130,10 @@ class PokemonListMegaEvolutionItem extends ConsumerWidget {
                   FittedBox(
                     child: Text(
                       textAlign: TextAlign.center,
-                      selectPokemon.name,
+                      selectPokemon.isAlternativeForm
+                          ? '${selectPokemon.name} '
+                              '(${selectPokemon.formTag!.name})'
+                          : selectPokemon.name,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

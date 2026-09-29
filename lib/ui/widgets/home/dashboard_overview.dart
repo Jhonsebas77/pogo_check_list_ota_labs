@@ -7,11 +7,11 @@ class DashboardOverview extends ConsumerWidget {
     String zygardeId = '';
     switch (zygardeCells.actualForm) {
       case '10%':
-        zygardeId = zygardeCells.forms![0].alternativeForm?.id ?? '10';
+        zygardeId = zygardeCells.alternativeForms![0].formTag?.id ?? '10';
       case '50%':
-        zygardeId = zygardeCells.forms![1].alternativeForm?.id ?? '50';
+        zygardeId = zygardeCells.alternativeForms![1].formTag?.id ?? '50';
       case '100%':
-        zygardeId = zygardeCells.forms![2].alternativeForm?.id ?? '100';
+        zygardeId = zygardeCells.alternativeForms![2].formTag?.id ?? '100';
     }
     return zygardeId;
   }

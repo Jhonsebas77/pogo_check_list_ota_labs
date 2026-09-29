@@ -44,18 +44,25 @@ class _MegaEvolutionPokemonState
                 if (state.allMegaEvolutionPokemon.isEmpty) {
                   return const EmptyState();
                 }
+                List<PokemonModel> expandedPokemon = <PokemonModel>[
+                  for (final PokemonModel pokemon
+                      in state.allMegaEvolutionPokemon)
+                    ...pokemon.withForms,
+                ];
                 List<PokemonModel> sortedPokemon =
-                    state.allMegaEvolutionPokemon.where((PokemonModel pokemon) {
+                    expandedPokemon.where((PokemonModel pokemon) {
                         if (displayOnlyMissingPokemon) {
                           return !pokemon.alreadyCatch;
                         } else {
                           return pokemon.id != 0;
                         }
                       }).toList()
-                      ..sort(
-                        (PokemonModel a, PokemonModel b) =>
-                            a.id.compareTo(b.id),
-                      );
+                      ..sort((PokemonModel a, PokemonModel b) {
+                        int byId = a.id.compareTo(b.id);
+                        return byId != 0
+                            ? byId
+                            : a.formOrder.compareTo(b.formOrder);
+                      });
                 return SingleChildScrollView(
                   child: Wrap(
                     spacing: 10,

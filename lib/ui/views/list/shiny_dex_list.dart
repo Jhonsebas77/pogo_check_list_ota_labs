@@ -180,18 +180,24 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView>
             if (state.allPokemon.isEmpty) {
               return const EmptyState();
             }
+            // Cada especie se expande a base + formas para mostrar todas
+            // sus formas alternativas (p. ej. Raichu y Raichu-Alola) en filas.
+            List<PokemonModel> expandedPokemon = <PokemonModel>[
+              for (final PokemonModel pokemon in state.allPokemon)
+                ...pokemon.withForms,
+            ];
             // Se copia la lista (List.of) para no mutar el estado del provider
             // al ordenar in-place con sort().
             List<PokemonModel> sortedPokemon =
                 displayOnlyMissingPokemon
-                    ? state.allPokemon
+                    ? expandedPokemon
                         .where(
                           (PokemonModel pokemon) =>
                               pokemon.shinyAvailable &&
                               !pokemon.alreadyCatchShinyVersion,
                         )
                         .toList()
-                    : List<PokemonModel>.of(state.allPokemon);
+                    : List<PokemonModel>.of(expandedPokemon);
             // Se filtra por nombre antes de ordenar para ordenar menos ítems.
             sortedPokemon = applySearchFilter(sortedPokemon);
             switch (_currentSortCriteria) {
@@ -202,9 +208,13 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView>
                 );
                 break;
               case PokemonSortCriteria.byDex:
-                sortedPokemon.sort(
-                  (PokemonModel a, PokemonModel b) => a.id.compareTo(b.id),
-                );
+                sortedPokemon.sort((PokemonModel a, PokemonModel b) {
+                  int byId = a.id.compareTo(b.id);
+                  // Desempate: la base (order 0) antes que sus formas.
+                  return byId != 0
+                      ? byId
+                      : a.formOrder.compareTo(b.formOrder);
+                });
                 break;
               case PokemonSortCriteria.byEvolution:
                 sortedPokemon.sort(

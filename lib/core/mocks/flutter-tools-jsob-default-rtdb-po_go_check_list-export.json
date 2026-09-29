@@ -273,6 +273,22 @@
     "892": {
       "already_catch": false,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "rgi",
+            "name": "Estilo Fluido",
+            "order": 1
+          },
+          "available": false,
+          "id": 892,
+          "name": "Urshifu",
+          "shiny_available": false,
+          "tradable": true
+        }
+      ],
       "available": false,
       "id": 892,
       "name": "Urshifu",
@@ -601,9 +617,25 @@
     "6": {
       "already_catch": true,
       "already_catch_shiny_version": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "x",
+            "name": "X",
+            "order": 1
+          },
+          "available": true,
+          "id": 6,
+          "name": "Charizard",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ],
       "available": true,
       "id": 6,
-      "name": "Charizard",
+      "name": "Charizard (Y)",
       "shiny_available": true,
       "tradable": true
     },
@@ -637,9 +669,25 @@
     "26": {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "x",
+            "name": "X",
+            "order": 1
+          },
+          "available": true,
+          "id": 26,
+          "name": "Raichu (X)",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ],
+      "available": true,
       "id": 26,
-      "name": "Raichu",
+      "name": "Raichu (Y)",
       "shiny_available": true,
       "tradable": true
     },
@@ -700,7 +748,7 @@
     "121": {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 121,
       "name": "Starmie",
       "shiny_available": true,
@@ -745,9 +793,25 @@
     "150": {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "x",
+            "name": "X",
+            "order": 1
+          },
+          "available": true,
+          "id": 150,
+          "name": "Mewtwo",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
+      "available": true,
       "id": 150,
-      "name": "Mewtwo",
+      "name": "Mewtwo (Y)",
       "shiny_available": false,
       "tradable": true
     },
@@ -961,6 +1025,22 @@
     "359": {
       "already_catch": true,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "z",
+            "name": "Z",
+            "order": 1
+          },
+          "available": false,
+          "id": 359,
+          "name": "Absol (Z)",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ],
       "available": true,
       "id": 359,
       "name": "Absol",
@@ -1042,7 +1122,7 @@
     "398": {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 398,
       "name": "Staraptor",
       "shiny_available": false,
@@ -1060,6 +1140,22 @@
     "445": {
       "already_catch": true,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "z",
+            "name": "Z",
+            "order": 1
+          },
+          "available": false,
+          "id": 445,
+          "name": "Garchomp (Z)",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": true,
       "id": 445,
       "name": "Garchomp",
@@ -1069,6 +1165,22 @@
     "448": {
       "already_catch": true,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "z",
+            "name": "Z",
+            "order": 1
+          },
+          "available": false,
+          "id": 448,
+          "name": "Lucario",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": true,
       "id": 448,
       "name": "Lucario",
@@ -1195,7 +1307,7 @@
     "652": {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 652,
       "name": "Chesnaught",
       "shiny_available": false,
@@ -1204,7 +1316,7 @@
     "655": {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 655,
       "name": "Delphox",
       "shiny_available": false,
@@ -1213,7 +1325,7 @@
     "658": {
       "already_catch": false,
       "already_catch_shiny_version": false,
-      "available": false,
+      "available": true,
       "id": 658,
       "name": "Greninja",
       "shiny_available": false,
@@ -1552,7 +1664,23 @@
       "id": 19,
       "name": "Rattata",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 19,
+          "name": "Rattata",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -1561,7 +1689,23 @@
       "id": 20,
       "name": "Raticate",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 20,
+          "name": "Raticate",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -1611,6 +1755,22 @@
     {
       "already_catch": true,
       "already_catch_shiny_version": true,
+      "alternative_forms": [
+        {
+          "already_catch": true,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 26,
+          "name": "Raichu",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ],
       "available": true,
       "id": 26,
       "name": "Raichu",
@@ -1624,7 +1784,23 @@
       "id": 27,
       "name": "Sandshrew",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": true,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 27,
+          "name": "Sandshrew",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -1633,7 +1809,23 @@
       "id": 28,
       "name": "Sandslash",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": true,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 28,
+          "name": "Sandslash",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -1714,7 +1906,23 @@
       "id": 37,
       "name": "Vulpix",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 37,
+          "name": "Vulpix",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -1723,7 +1931,23 @@
       "id": 38,
       "name": "Ninetales",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 38,
+          "name": "Ninetales",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -1831,7 +2055,23 @@
       "id": 50,
       "name": "Diglett",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 50,
+          "name": "Diglett",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -1840,7 +2080,23 @@
       "id": 51,
       "name": "Dugtrio",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 51,
+          "name": "Dugtrio",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -1849,7 +2105,37 @@
       "id": 52,
       "name": "Meowth",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 52,
+          "name": "Meowth",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 2
+          },
+          "available": true,
+          "id": 52,
+          "name": "Meowth",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -1858,7 +2144,23 @@
       "id": 53,
       "name": "Persian",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 53,
+          "name": "Persian",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -1903,7 +2205,23 @@
       "id": 58,
       "name": "Growlithe",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 58,
+          "name": "Growlithe",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -1912,7 +2230,23 @@
       "id": 59,
       "name": "Arcanine",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 59,
+          "name": "Arcanine",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2047,7 +2381,23 @@
       "id": 74,
       "name": "Geodude",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 74,
+          "name": "Geodude",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2056,7 +2406,23 @@
       "id": 75,
       "name": "Graveler",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 75,
+          "name": "Graveler",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2065,7 +2431,23 @@
       "id": 76,
       "name": "Golem",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 76,
+          "name": "Golem",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2074,7 +2456,23 @@
       "id": 77,
       "name": "Ponyta",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 77,
+          "name": "Ponyta",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2083,7 +2481,23 @@
       "id": 78,
       "name": "Rapidash",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 78,
+          "name": "Rapidash",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2092,7 +2506,23 @@
       "id": 79,
       "name": "Slowpoke",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 79,
+          "name": "Slowpoke",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2101,7 +2531,23 @@
       "id": 80,
       "name": "Slowbro",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 80,
+          "name": "Slowbro",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2128,7 +2574,23 @@
       "id": 83,
       "name": "Farfetch'd",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 83,
+          "name": "Farfetch'd",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2173,7 +2635,23 @@
       "id": 88,
       "name": "Grimer",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 88,
+          "name": "Grimer",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2182,7 +2660,23 @@
       "id": 89,
       "name": "Muk",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 89,
+          "name": "Muk",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2281,7 +2775,23 @@
       "id": 100,
       "name": "Voltorb",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 100,
+          "name": "Voltorb",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2290,7 +2800,23 @@
       "id": 101,
       "name": "Electrode",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 101,
+          "name": "Electrode",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2308,7 +2834,23 @@
       "id": 103,
       "name": "Exeggutor",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 103,
+          "name": "Exeggutor",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2326,7 +2868,23 @@
       "id": 105,
       "name": "Marowak",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "alola",
+            "name": "Alola",
+            "order": 1
+          },
+          "available": true,
+          "id": 105,
+          "name": "Marowak",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2371,7 +2929,23 @@
       "id": 110,
       "name": "Weezing",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 110,
+          "name": "Weezing",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2479,7 +3053,23 @@
       "id": 122,
       "name": "Mr. Mime",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 122,
+          "name": "Mr. Mime",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2533,7 +3123,51 @@
       "id": 128,
       "name": "Tauros",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "paldea_combat",
+            "name": "Paldea (Raza Combatiente)",
+            "order": 1
+          },
+          "available": true,
+          "id": 128,
+          "name": "Tauros",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "paldea_blaze",
+            "name": "Paldea (Raza Fuego)",
+            "order": 2
+          },
+          "available": true,
+          "id": 128,
+          "name": "Tauros",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "paldea_aqua",
+            "name": "Paldea (Raza Agua)",
+            "order": 3
+          },
+          "available": true,
+          "id": 128,
+          "name": "Tauros",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2677,7 +3311,23 @@
       "id": 144,
       "name": "Articuno",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 144,
+          "name": "Articuno",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2686,7 +3336,23 @@
       "id": 145,
       "name": "Zapdos",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 145,
+          "name": "Zapdos",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2695,7 +3361,23 @@
       "id": 146,
       "name": "Moltres",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 146,
+          "name": "Moltres",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -2794,7 +3476,23 @@
       "id": 157,
       "name": "Typhlosion",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 157,
+          "name": "Typhlosion",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -3127,7 +3825,23 @@
       "id": 194,
       "name": "Wooper",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "paldea",
+            "name": "Paldea",
+            "order": 1
+          },
+          "available": true,
+          "id": 194,
+          "name": "Wooper",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -3172,7 +3886,23 @@
       "id": 199,
       "name": "Slowking",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 199,
+          "name": "Slowking",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -3280,7 +4010,23 @@
       "id": 211,
       "name": "Qwilfish",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 211,
+          "name": "Qwilfish",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -3316,7 +4062,23 @@
       "id": 215,
       "name": "Sneasel",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 215,
+          "name": "Sneasel",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -3379,7 +4141,23 @@
       "id": 222,
       "name": "Corsola",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 222,
+          "name": "Corsola",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -3748,7 +4526,23 @@
       "id": 263,
       "name": "Zigzagoon",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 263,
+          "name": "Zigzagoon",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -3757,7 +4551,23 @@
       "id": 264,
       "name": "Linoone",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 264,
+          "name": "Linoone",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -4540,7 +5350,51 @@
       "id": 351,
       "name": "Castform",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "sunny",
+            "name": "Forma Sol",
+            "order": 1
+          },
+          "available": true,
+          "id": 351,
+          "name": "Castform",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "rainy",
+            "name": "Forma Lluvia",
+            "order": 2
+          },
+          "available": true,
+          "id": 351,
+          "name": "Castform",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "snowy",
+            "name": "Forma Nieve",
+            "order": 3
+          },
+          "available": true,
+          "id": 351,
+          "name": "Castform",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -4612,7 +5466,23 @@
       "id": 359,
       "name": "Absol",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "z",
+            "name": "Z",
+            "order": 1
+          },
+          "available": false,
+          "id": 359,
+          "name": "Absol",
+          "shiny_available": false,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -4855,7 +5725,51 @@
       "id": 386,
       "name": "Deoxys",
       "shiny_available": true,
-      "tradable": false
+      "tradable": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "attack",
+            "name": "Forma Ataque",
+            "order": 1
+          },
+          "available": true,
+          "id": 386,
+          "name": "Deoxys",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "defense",
+            "name": "Forma Defensa",
+            "order": 2
+          },
+          "available": true,
+          "id": 386,
+          "name": "Deoxys",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "speed",
+            "name": "Forma Velocidad",
+            "order": 3
+          },
+          "available": true,
+          "id": 386,
+          "name": "Deoxys",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -5089,7 +6003,37 @@
       "id": 412,
       "name": "Burmy",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "sandy",
+            "name": "Tronco Arena",
+            "order": 1
+          },
+          "available": true,
+          "id": 412,
+          "name": "Burmy",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "trash",
+            "name": "Tronco Basura",
+            "order": 2
+          },
+          "available": true,
+          "id": 412,
+          "name": "Burmy",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -5098,7 +6042,37 @@
       "id": 413,
       "name": "Wormadam",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "sandy",
+            "name": "Tronco Arena",
+            "order": 1
+          },
+          "available": true,
+          "id": 413,
+          "name": "Wormadam",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "trash",
+            "name": "Tronco Basura",
+            "order": 2
+          },
+          "available": true,
+          "id": 413,
+          "name": "Wormadam",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -5179,7 +6153,23 @@
       "id": 422,
       "name": "Shellos",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "east",
+            "name": "Mar Este",
+            "order": 1
+          },
+          "available": true,
+          "id": 422,
+          "name": "Shellos",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -5188,7 +6178,23 @@
       "id": 423,
       "name": "Gastrodon",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "east",
+            "name": "Mar Este",
+            "order": 1
+          },
+          "available": true,
+          "id": 423,
+          "name": "Gastrodon",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -5692,7 +6698,79 @@
       "id": 479,
       "name": "Rotom",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "heat",
+            "name": "Calor",
+            "order": 1
+          },
+          "available": true,
+          "id": 479,
+          "name": "Rotom",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "wash",
+            "name": "Lavado",
+            "order": 2
+          },
+          "available": true,
+          "id": 479,
+          "name": "Rotom",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "frost",
+            "name": "Frío",
+            "order": 3
+          },
+          "available": true,
+          "id": 479,
+          "name": "Rotom",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "fan",
+            "name": "Ventilador",
+            "order": 4
+          },
+          "available": true,
+          "id": 479,
+          "name": "Rotom",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "mow",
+            "name": "Corte",
+            "order": 5
+          },
+          "available": true,
+          "id": 479,
+          "name": "Rotom",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -5728,7 +6806,23 @@
       "id": 483,
       "name": "Dialga",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "origin",
+            "name": "Forma Origen",
+            "order": 1
+          },
+          "available": true,
+          "id": 483,
+          "name": "Dialga",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -5737,7 +6831,23 @@
       "id": 484,
       "name": "Palkia",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "origin",
+            "name": "Forma Origen",
+            "order": 1
+          },
+          "available": true,
+          "id": 484,
+          "name": "Palkia",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -5764,7 +6874,23 @@
       "id": 487,
       "name": "Giratina",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "origin",
+            "name": "Forma Origen",
+            "order": 1
+          },
+          "available": true,
+          "id": 487,
+          "name": "Giratina",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -5809,7 +6935,23 @@
       "id": 492,
       "name": "Shaymin",
       "shiny_available": true,
-      "tradable": false
+      "tradable": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "sky",
+            "name": "Forma Cielo",
+            "order": 1
+          },
+          "available": true,
+          "id": 492,
+          "name": "Shaymin",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": false,
@@ -5908,7 +7050,23 @@
       "id": 503,
       "name": "Samurott",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 503,
+          "name": "Samurott",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -6191,7 +7349,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 535,
       "name": "Tympole",
@@ -6200,7 +7358,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 536,
       "name": "Palpitoad",
@@ -6209,7 +7367,7 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 537,
       "name": "Seismitoad",
@@ -6322,7 +7480,23 @@
       "id": 549,
       "name": "Lilligant",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 549,
+          "name": "Lilligant",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -6331,7 +7505,37 @@
       "id": 550,
       "name": "Basculin",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "blue_striped",
+            "name": "Raya Azul",
+            "order": 1
+          },
+          "available": true,
+          "id": 550,
+          "name": "Basculin",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "white_striped",
+            "name": "Raya Blanca (Hisui)",
+            "order": 2
+          },
+          "available": true,
+          "id": 550,
+          "name": "Basculin",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -6367,7 +7571,23 @@
       "id": 554,
       "name": "Darumaka",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 554,
+          "name": "Darumaka",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -6376,7 +7596,51 @@
       "id": 555,
       "name": "Darmanitan",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 555,
+          "name": "Darmanitan",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "zen",
+            "name": "Modo Daruma",
+            "order": 2
+          },
+          "available": true,
+          "id": 555,
+          "name": "Darmanitan",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar_zen",
+            "name": "Modo Daruma de Galar",
+            "order": 3
+          },
+          "available": true,
+          "id": 555,
+          "name": "Darmanitan",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -6439,7 +7703,23 @@
       "id": 562,
       "name": "Yamask",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 562,
+          "name": "Yamask",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -6511,7 +7791,23 @@
       "id": 570,
       "name": "Zorua",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 570,
+          "name": "Zorua",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -6520,7 +7816,23 @@
       "id": 571,
       "name": "Zoroark",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 571,
+          "name": "Zoroark",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -6943,7 +8255,23 @@
       "id": 618,
       "name": "Stunfisk",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "galar",
+            "name": "Galar",
+            "order": 1
+          },
+          "available": true,
+          "id": 618,
+          "name": "Stunfisk",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -7033,7 +8361,23 @@
       "id": 628,
       "name": "Braviary",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 628,
+          "name": "Braviary",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -7150,7 +8494,23 @@
       "id": 641,
       "name": "Tornadus",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "therian",
+            "name": "Forma Tótem",
+            "order": 1
+          },
+          "available": true,
+          "id": 641,
+          "name": "Tornadus",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -7159,7 +8519,23 @@
       "id": 642,
       "name": "Thundurus",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "therian",
+            "name": "Forma Tótem",
+            "order": 1
+          },
+          "available": true,
+          "id": 642,
+          "name": "Thundurus",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -7186,7 +8562,23 @@
       "id": 645,
       "name": "Landorus",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "therian",
+            "name": "Forma Tótem",
+            "order": 1
+          },
+          "available": true,
+          "id": 645,
+          "name": "Landorus",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -7213,7 +8605,23 @@
       "id": 648,
       "name": "Meloetta",
       "shiny_available": true,
-      "tradable": false
+      "tradable": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "pirouette",
+            "name": "Forma Danza",
+            "order": 1
+          },
+          "available": true,
+          "id": 648,
+          "name": "Meloetta",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -7726,7 +9134,23 @@
       "id": 705,
       "name": "Sliggoo",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 705,
+          "name": "Sliggoo",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -7735,7 +9159,23 @@
       "id": 706,
       "name": "Goodra",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 706,
+          "name": "Goodra",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -7798,7 +9238,23 @@
       "id": 713,
       "name": "Avalugg",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 713,
+          "name": "Avalugg",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -7843,7 +9299,37 @@
       "id": 718,
       "name": "Zygarde",
       "shiny_available": false,
-      "tradable": false
+      "tradable": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "10_percent",
+            "name": "Forma al 10%",
+            "order": 1
+          },
+          "available": true,
+          "id": 718,
+          "name": "Zygarde",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "complete",
+            "name": "Forma Completa",
+            "order": 2
+          },
+          "available": true,
+          "id": 718,
+          "name": "Zygarde",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -7861,7 +9347,23 @@
       "id": 720,
       "name": "Hoopa",
       "shiny_available": false,
-      "tradable": false
+      "tradable": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "unbound",
+            "name": "Desatado",
+            "order": 1
+          },
+          "available": true,
+          "id": 720,
+          "name": "Hoopa",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -7897,7 +9399,23 @@
       "id": 724,
       "name": "Decidueye",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hisui",
+            "name": "Hisui",
+            "order": 1
+          },
+          "available": true,
+          "id": 724,
+          "name": "Decidueye",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -8050,7 +9568,51 @@
       "id": 741,
       "name": "Oricorio",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "pom-pom",
+            "name": "Estilo Animadora",
+            "order": 1
+          },
+          "available": true,
+          "id": 741,
+          "name": "Oricorio",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "pau",
+            "name": "Estilo Plácido",
+            "order": 2
+          },
+          "available": true,
+          "id": 741,
+          "name": "Oricorio",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "sensu",
+            "name": "Estilo Refinado",
+            "order": 3
+          },
+          "available": true,
+          "id": 741,
+          "name": "Oricorio",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -8086,7 +9648,37 @@
       "id": 745,
       "name": "Lycanroc",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "midnight",
+            "name": "Forma Nocturna",
+            "order": 1
+          },
+          "available": true,
+          "id": 745,
+          "name": "Lycanroc",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "dusk",
+            "name": "Forma Crepuscular",
+            "order": 2
+          },
+          "available": true,
+          "id": 745,
+          "name": "Lycanroc",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": false,
@@ -8377,7 +9969,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 778,
@@ -8581,7 +10173,37 @@
       "id": 800,
       "name": "Necrozma",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "dusk_mane",
+            "name": "Melena Crepuscular",
+            "order": 1
+          },
+          "available": true,
+          "id": 800,
+          "name": "Necrozma",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "dawn_wings",
+            "name": "Alas del Alba",
+            "order": 2
+          },
+          "available": true,
+          "id": 800,
+          "name": "Necrozma",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": false,
@@ -8791,7 +10413,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 824,
@@ -8800,7 +10422,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 825,
@@ -8809,7 +10431,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 826,
@@ -8917,7 +10539,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 838,
@@ -8926,7 +10548,7 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 839,
@@ -9017,12 +10639,28 @@
     },
     {
       "already_catch": true,
-      "already_catch_shiny_version": false,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 849,
       "name": "Toxtricity",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "low_key",
+            "name": "Forma Grave",
+            "order": 1
+          },
+          "available": true,
+          "id": 849,
+          "name": "Toxtricity",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -9106,8 +10744,8 @@
       "tradable": true
     },
     {
-      "already_catch": false,
-      "already_catch_shiny_version": false,
+      "already_catch": true,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 859,
       "name": "Impidimp",
@@ -9115,8 +10753,8 @@
       "tradable": true
     },
     {
-      "already_catch": false,
-      "already_catch_shiny_version": false,
+      "already_catch": true,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 860,
       "name": "Morgrem",
@@ -9124,8 +10762,8 @@
       "tradable": true
     },
     {
-      "already_catch": false,
-      "already_catch_shiny_version": false,
+      "already_catch": true,
+      "already_catch_shiny_version": true,
       "available": true,
       "id": 861,
       "name": "Grimmsnarl",
@@ -9373,7 +11011,23 @@
       "id": 888,
       "name": "Zacian",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "crowned",
+            "name": "Espada Suprema",
+            "order": 1
+          },
+          "available": true,
+          "id": 888,
+          "name": "Zacian",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -9382,7 +11036,23 @@
       "id": 889,
       "name": "Zamazenta",
       "shiny_available": true,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "crowned",
+            "name": "Escudo Supremo",
+            "order": 1
+          },
+          "available": true,
+          "id": 889,
+          "name": "Zamazenta",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -9409,7 +11079,23 @@
       "id": 892,
       "name": "Urshifu",
       "shiny_available": false,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "rapid_strike",
+            "name": "Estilo Fluido",
+            "order": 1
+          },
+          "available": true,
+          "id": 892,
+          "name": "Urshifu",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -9463,7 +11149,37 @@
       "id": 898,
       "name": "Calyrex",
       "shiny_available": false,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "ice_rider",
+            "name": "Jinete Glacial",
+            "order": 1
+          },
+          "available": true,
+          "id": 898,
+          "name": "Calyrex",
+          "shiny_available": true,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "shadow_rider",
+            "name": "Jinete Espectral",
+            "order": 2
+          },
+          "available": true,
+          "id": 898,
+          "name": "Calyrex",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -9526,7 +11242,23 @@
       "id": 905,
       "name": "Enamorus",
       "shiny_available": false,
-      "tradable": true
+      "tradable": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "therian",
+            "name": "Forma Tótem",
+            "order": 1
+          },
+          "available": true,
+          "id": 905,
+          "name": "Enamorus",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ]
     },
     {
       "already_catch": true,
@@ -9628,22 +11360,22 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 917,
       "name": "Tarountula",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 918,
       "name": "Spidops",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
       "already_catch": true,
@@ -9754,13 +11486,13 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 931,
       "name": "Squawkabilly",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
       "already_catch": true,
@@ -9835,22 +11567,22 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 940,
       "name": "Wattrel",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 941,
       "name": "Kilowattrel",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
       "already_catch": false,
@@ -9925,13 +11657,13 @@
       "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 950,
       "name": "Klawf",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
       "already_catch": false,
@@ -9970,22 +11702,22 @@
       "tradable": false
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 955,
       "name": "Flittle",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
-      "already_catch": false,
+      "already_catch": true,
       "already_catch_shiny_version": false,
       "available": true,
       "id": 956,
       "name": "Espathra",
       "shiny_available": false,
-      "tradable": false
+      "tradable": true
     },
     {
       "already_catch": true,
@@ -11949,7 +13681,7 @@
   },
   "zygarde_cells": {
     "actual_form": "50%",
-    "forms": [
+    "alternative_forms": [
       {
         "already_catch": true,
         "already_catch_shiny_version": false,

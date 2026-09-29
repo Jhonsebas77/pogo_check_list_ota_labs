@@ -326,6 +326,60 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     }
   }
 
+  /// Actualiza el estado de captura de una forma alternativa anidada.
+  ///
+  /// Como las formas comparten el `id` de especie, no se pueden guardar como
+  /// entradas hermanas del array `pokemon` (colisionarían con la base). En su
+  /// lugar se reescribe el nodo completo de la especie
+  /// (`/pokemon/<speciesIndex>`) con su lista `alternative_forms` actualizada,
+  /// reemplazando la forma cuyo descriptor coincide con [updatedForm].
+  Future<void> updatePokemonForm(
+    int speciesIndex,
+    PokemonModel updatedForm,
+    BuildContext context,
+  ) async {
+    AsyncValue<PokemonFirebaseState> previousState = state;
+    try {
+      PokemonFirebaseState? currentState = state.valueOrNull;
+      if (currentState == null) {
+        return;
+      }
+      PokemonModel base = currentState.allPokemon[speciesIndex];
+      List<PokemonModel> updatedForms =
+          (base.alternativeForms ?? const <PokemonModel>[])
+              .map(
+                (PokemonModel form) =>
+                    form.formTag?.id == updatedForm.formTag?.id
+                        ? updatedForm
+                        : form,
+              )
+              .toList();
+      PokemonModel newBase = base.copyWith(alternativeForms: updatedForms);
+      DatabaseReference ref = _firebaseRef.child(
+        '$firebasePokemonPath/$speciesIndex',
+      );
+      await ref.update(newBase.toJson());
+      List<PokemonModel> newPokemonList = List<PokemonModel>.from(
+        currentState.allPokemon,
+      );
+      newPokemonList[speciesIndex] = newBase;
+      PokemonFirebaseState newState = currentState.copyWith(
+        allPokemon: newPokemonList,
+      );
+      state = AsyncValue<PokemonFirebaseState>.data(newState);
+    } catch (e, s) {
+      state = previousState;
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
+      if (context.mounted) {
+        showErrorSnackBar(
+          context,
+          'Error during updatePokemonForm: $speciesIndex | $e',
+        );
+      }
+      rethrow;
+    }
+  }
+
   Future<void> updateMegaEvolutionPokemon(
     int pokemonIndex,
     PokemonModel updatedPokemon,
@@ -341,8 +395,13 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       if (currentState != null) {
         List<PokemonModel> newPokemonList = List<PokemonModel>.from(
           currentState.allMegaEvolutionPokemon,
-        )..sort((PokemonModel a, PokemonModel b) => a.id.compareTo(b.id));
-        newPokemonList[pokemonIndex] = updatedPokemon;
+        );
+        int speciesIndex = newPokemonList.indexWhere(
+          (PokemonModel pokemon) => pokemon.id == updatedPokemon.id,
+        );
+        if (speciesIndex != -1) {
+          newPokemonList[speciesIndex] = updatedPokemon;
+        }
         PokemonFirebaseState newState = currentState.copyWith(
           allMegaEvolutionPokemon: newPokemonList,
         );
@@ -355,6 +414,59 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
         showErrorSnackBar(
           context,
           'Error during updateMegaPokemon: $pokemonIndex | $e',
+        );
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> updateMegaEvolutionPokemonForm(
+    int speciesId,
+    PokemonModel updatedForm,
+    BuildContext context,
+  ) async {
+    AsyncValue<PokemonFirebaseState> previousState = state;
+    try {
+      PokemonFirebaseState? currentState = state.valueOrNull;
+      if (currentState == null) {
+        return;
+      }
+      int speciesIndex = currentState.allMegaEvolutionPokemon.indexWhere(
+        (PokemonModel pokemon) => pokemon.id == speciesId,
+      );
+      if (speciesIndex == -1) {
+        return;
+      }
+      PokemonModel base = currentState.allMegaEvolutionPokemon[speciesIndex];
+      List<PokemonModel> updatedForms =
+          (base.alternativeForms ?? const <PokemonModel>[])
+              .map(
+                (PokemonModel form) =>
+                    form.formTag?.id == updatedForm.formTag?.id
+                        ? updatedForm
+                        : form,
+              )
+              .toList();
+      PokemonModel newBase = base.copyWith(alternativeForms: updatedForms);
+      DatabaseReference ref = _firebaseRef.child(
+        '$firebasePokemonMegaEvolutionPath/$speciesId',
+      );
+      await ref.update(newBase.toJson());
+      List<PokemonModel> newPokemonList = List<PokemonModel>.from(
+        currentState.allMegaEvolutionPokemon,
+      );
+      newPokemonList[speciesIndex] = newBase;
+      PokemonFirebaseState newState = currentState.copyWith(
+        allMegaEvolutionPokemon: newPokemonList,
+      );
+      state = AsyncValue<PokemonFirebaseState>.data(newState);
+    } catch (e, s) {
+      state = previousState;
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
+      if (context.mounted) {
+        showErrorSnackBar(
+          context,
+          'Error during updateMegaEvolutionPokemonForm: $speciesId | $e',
         );
       }
       rethrow;
@@ -376,8 +488,13 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
       if (currentState != null) {
         List<PokemonModel> newPokemonList = List<PokemonModel>.from(
           currentState.allGigantamaxPokemon,
-        )..sort((PokemonModel a, PokemonModel b) => a.id.compareTo(b.id));
-        newPokemonList[pokemonIndex] = updatedPokemon;
+        );
+        int speciesIndex = newPokemonList.indexWhere(
+          (PokemonModel pokemon) => pokemon.id == updatedPokemon.id,
+        );
+        if (speciesIndex != -1) {
+          newPokemonList[speciesIndex] = updatedPokemon;
+        }
         PokemonFirebaseState newState = currentState.copyWith(
           allGigantamaxPokemon: newPokemonList,
         );
@@ -396,6 +513,59 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     }
   }
 
+  Future<void> updateGigantamaxPokemonForm(
+    int speciesId,
+    PokemonModel updatedForm,
+    BuildContext context,
+  ) async {
+    AsyncValue<PokemonFirebaseState> previousState = state;
+    try {
+      PokemonFirebaseState? currentState = state.valueOrNull;
+      if (currentState == null) {
+        return;
+      }
+      int speciesIndex = currentState.allGigantamaxPokemon.indexWhere(
+        (PokemonModel pokemon) => pokemon.id == speciesId,
+      );
+      if (speciesIndex == -1) {
+        return;
+      }
+      PokemonModel base = currentState.allGigantamaxPokemon[speciesIndex];
+      List<PokemonModel> updatedForms =
+          (base.alternativeForms ?? const <PokemonModel>[])
+              .map(
+                (PokemonModel form) =>
+                    form.formTag?.id == updatedForm.formTag?.id
+                        ? updatedForm
+                        : form,
+              )
+              .toList();
+      PokemonModel newBase = base.copyWith(alternativeForms: updatedForms);
+      DatabaseReference ref = _firebaseRef.child(
+        '$firebasePokemonGigantamaxPath/$speciesId',
+      );
+      await ref.update(newBase.toJson());
+      List<PokemonModel> newPokemonList = List<PokemonModel>.from(
+        currentState.allGigantamaxPokemon,
+      );
+      newPokemonList[speciesIndex] = newBase;
+      PokemonFirebaseState newState = currentState.copyWith(
+        allGigantamaxPokemon: newPokemonList,
+      );
+      state = AsyncValue<PokemonFirebaseState>.data(newState);
+    } catch (e, s) {
+      state = previousState;
+      state = AsyncValue<PokemonFirebaseState>.error(e, s);
+      if (context.mounted) {
+        showErrorSnackBar(
+          context,
+          'Error during updateGigantamaxPokemonForm: $speciesId | $e',
+        );
+      }
+      rethrow;
+    }
+  }
+
   Future<void> updateZygardeInformation(
     ZygardeCells zygardeCells,
     BuildContext context,
@@ -403,7 +573,10 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     AsyncValue<PokemonFirebaseState> previousState = state;
     try {
       DatabaseReference ref = _firebaseRef.child(firebaseZygardePath);
-      await ref.update(zygardeCells.toJson());
+      await ref.update(<String, dynamic>{
+        ...zygardeCells.toJson(),
+        'forms': null,
+      });
       PokemonFirebaseState? currentState = state.valueOrNull;
       if (currentState != null) {
         PokemonFirebaseState newState = currentState.copyWith(
