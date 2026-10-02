@@ -16,6 +16,27 @@ class PokemonListItem extends ConsumerWidget {
   final bool isShiny;
   final bool isAlreadyCaught;
 
+  /// Etiqueta Hero única. Las formas base conservan el `id` (int) para mantener
+  /// la animación hacia el detalle; las formas alternativas usan una etiqueta
+  /// distinta para evitar colisiones cuando base y forma comparten `id`.
+  Object get _heroTag =>
+      selectPokemon.isAlternativeForm
+          ? '${selectPokemon.id}${selectPokemon.formSuffix}'
+          : selectPokemon.id;
+
+  /// `errorBuilder` que cae al sprite [fallbackAsset] de la especie base cuando
+  /// falta el PNG de la forma alternativa.
+  ImageErrorWidgetBuilder _spriteFallback(String fallbackAsset) =>
+      (BuildContext context, Object error, StackTrace? stackTrace) =>
+          Image.asset(
+            fallbackAsset,
+            height: 50,
+            width: 50,
+            cacheHeight: 100,
+            cacheWidth: 100,
+            fit: BoxFit.fill,
+          );
+
   @override
   Widget build(BuildContext context, WidgetRef ref) => GestureDetector(
     onTap: () {
@@ -51,6 +72,8 @@ class PokemonListItem extends ConsumerWidget {
                         'assets/pokedex_gigantamax/${selectPokemon.id}.png',
                         height: 50,
                         width: 50,
+                        cacheHeight: 100,
+                        cacheWidth: 100,
                         fit: BoxFit.fill,
                       )
                     else if (isShiny)
@@ -59,16 +82,23 @@ class PokemonListItem extends ConsumerWidget {
                           'assets/pokedex_sprites_shiny/0.png',
                           height: 50,
                           width: 50,
+                          cacheHeight: 100,
+                          cacheWidth: 100,
                           fit: BoxFit.fill,
                         )
                       else
                         Hero(
-                          tag: selectPokemon.id,
+                          tag: _heroTag,
                           child: Image.asset(
-                            'assets/pokedex_sprites_shiny/${selectPokemon.id}.png',
+                            'assets/pokedex_sprites_shiny/${selectPokemon.id}${selectPokemon.formSuffix}.png',
                             height: 50,
                             width: 50,
+                            cacheHeight: 100,
+                            cacheWidth: 100,
                             fit: BoxFit.fill,
+                            errorBuilder: _spriteFallback(
+                              'assets/pokedex_sprites_shiny/${selectPokemon.id}.png',
+                            ),
                           ),
                         )
                     else if (!isShiny)
@@ -77,20 +107,30 @@ class PokemonListItem extends ConsumerWidget {
                           baseColor: Colors.grey[300]!,
                           highlightColor: Colors.grey[100]!,
                           child: Image.asset(
-                            'assets/pokedex_sprites/${selectPokemon.id}.png',
+                            'assets/pokedex_sprites/${selectPokemon.id}${selectPokemon.formSuffix}.png',
                             height: 50,
                             width: 50,
+                            cacheHeight: 100,
+                            cacheWidth: 100,
                             fit: BoxFit.fill,
+                            errorBuilder: _spriteFallback(
+                              'assets/pokedex_sprites/${selectPokemon.id}.png',
+                            ),
                           ),
                         )
                       else
                         Hero(
-                          tag: selectPokemon.id,
+                          tag: _heroTag,
                           child: Image.asset(
-                            'assets/pokedex_sprites/${selectPokemon.id}.png',
+                            'assets/pokedex_sprites/${selectPokemon.id}${selectPokemon.formSuffix}.png',
                             height: 50,
                             width: 50,
+                            cacheHeight: 100,
+                            cacheWidth: 100,
                             fit: BoxFit.fill,
+                            errorBuilder: _spriteFallback(
+                              'assets/pokedex_sprites/${selectPokemon.id}.png',
+                            ),
                           ),
                         ),
                   ],
@@ -108,7 +148,10 @@ class PokemonListItem extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      selectPokemon.name,
+                      selectPokemon.isAlternativeForm
+                          ? '${selectPokemon.name} '
+                              '(${selectPokemon.formTag!.name})'
+                          : selectPokemon.name,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -125,7 +168,9 @@ class PokemonListItem extends ConsumerWidget {
                     selectPokemon.available
                         ? () async {
                           if (index == selectPokemon.id) {
-                            PokemonModel _pokemon = PokemonModel(
+                            // copyWith preserva alternativeForm/alternativeForms
+                            // (evita la pérdida de datos del toggle anterior).
+                            PokemonModel _pokemon = selectPokemon.copyWith(
                               alreadyCatch:
                                   isShiny
                                       ? selectPokemon.alreadyCatch
@@ -134,15 +179,24 @@ class PokemonListItem extends ConsumerWidget {
                                   isShiny
                                       ? !selectPokemon.alreadyCatchShinyVersion
                                       : selectPokemon.alreadyCatchShinyVersion,
-                              available: selectPokemon.available,
-                              id: selectPokemon.id,
-                              name: selectPokemon.name,
-                              shinyAvailable: selectPokemon.shinyAvailable,
-                              tradable: selectPokemon.tradable,
                             );
-                            await ref
-                                .read(firebasePokemonProvider.notifier)
-                                .updatePokemon(_pokemon.id, _pokemon, context);
+                            if (selectPokemon.isAlternativeForm) {
+                              await ref
+                                  .read(firebasePokemonProvider.notifier)
+                                  .updatePokemonForm(
+                                    _pokemon.id,
+                                    _pokemon,
+                                    context,
+                                  );
+                            } else {
+                              await ref
+                                  .read(firebasePokemonProvider.notifier)
+                                  .updatePokemon(
+                                    _pokemon.id,
+                                    _pokemon,
+                                    context,
+                                  );
+                            }
                             if (context.mounted) {
                               showSuccessSnackBar(
                                 context,

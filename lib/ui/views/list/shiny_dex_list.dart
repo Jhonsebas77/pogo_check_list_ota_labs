@@ -8,43 +8,13 @@ class ShinyPokemonView extends ConsumerStatefulWidget {
   ConsumerState<ShinyPokemonView> createState() => _ShinyPokemonViewState();
 }
 
-class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
+class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView>
+    with
+        PokemonListScrollMixin<ShinyPokemonView>,
+        PokemonSearchMixin<ShinyPokemonView> {
   bool displayOnlyMissingPokemon = false;
-  final ScrollController _scrollController = ScrollController();
-  bool isInTheEndOfTheList = false;
   bool isFilterApply = false;
   PokemonSortCriteria _currentSortCriteria = PokemonSortCriteria.byDex;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void _scrollToEnd() {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      duration: const Duration(seconds: 2),
-      curve: Curves.easeInOut,
-    );
-    isInTheEndOfTheList = true;
-    setState(() {});
-  }
-
-  void _scrollToTop() {
-    _scrollController.animateTo(
-      0,
-      duration: const Duration(seconds: 2),
-      curve: Curves.easeInOut,
-    );
-    isInTheEndOfTheList = false;
-    setState(() {});
-  }
 
   IconData getFilterIcon() {
     switch (_currentSortCriteria) {
@@ -72,7 +42,7 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
           actions: const DexHeaderActions().getActions(),
           elevation: 0,
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(50),
+            preferredSize: const Size.fromHeight(104),
             child: Column(
               children: <Widget>[
                 Padding(
@@ -199,6 +169,7 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                     ],
                   ),
                 ),
+                buildSearchField(),
               ],
             ),
           ),
@@ -209,16 +180,26 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
             if (state.allPokemon.isEmpty) {
               return const EmptyState();
             }
+            // Cada especie se expande a base + formas para mostrar todas
+            // sus formas alternativas (p. ej. Raichu y Raichu-Alola) en filas.
+            List<PokemonModel> expandedPokemon = <PokemonModel>[
+              for (final PokemonModel pokemon in state.allPokemon)
+                ...pokemon.withForms,
+            ];
+            // Se copia la lista (List.of) para no mutar el estado del provider
+            // al ordenar in-place con sort().
             List<PokemonModel> sortedPokemon =
                 displayOnlyMissingPokemon
-                    ? state.allPokemon
+                    ? expandedPokemon
                         .where(
                           (PokemonModel pokemon) =>
                               pokemon.shinyAvailable &&
                               !pokemon.alreadyCatchShinyVersion,
                         )
                         .toList()
-                    : state.allPokemon;
+                    : List<PokemonModel>.of(expandedPokemon);
+            // Se filtra por nombre antes de ordenar para ordenar menos ítems.
+            sortedPokemon = applySearchFilter(sortedPokemon);
             switch (_currentSortCriteria) {
               case PokemonSortCriteria.byName:
                 sortedPokemon.sort(
@@ -227,9 +208,13 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                 );
                 break;
               case PokemonSortCriteria.byDex:
-                sortedPokemon.sort(
-                  (PokemonModel a, PokemonModel b) => a.id.compareTo(b.id),
-                );
+                sortedPokemon.sort((PokemonModel a, PokemonModel b) {
+                  int byId = a.id.compareTo(b.id);
+                  // Desempate: la base (order 0) antes que sus formas.
+                  return byId != 0
+                      ? byId
+                      : a.formOrder.compareTo(b.formOrder);
+                });
                 break;
               case PokemonSortCriteria.byEvolution:
                 sortedPokemon.sort(
@@ -237,12 +222,22 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
                 );
                 break;
             }
+            if (sortedPokemon.isEmpty) {
+              return EmptyState(
+                message:
+                    hasSearchQuery
+                        ? 'No hay Pokémon que coincidan con "$searchQuery"'
+                        : 'Lo sentimos, aun no tenemos registros',
+              );
+            }
+            // Sincroniza la visibilidad inicial de los botones tras el primer
+            // frame (p. ej. ocultar "bajar" si la lista cabe en pantalla).
+            scheduleScrollButtonsSync();
             return ListView.separated(
               separatorBuilder:
                   (BuildContext _, int __) =>
                       const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-              controller: _scrollController,
-              shrinkWrap: true,
+              controller: scrollController,
               itemCount: sortedPokemon.length,
               itemBuilder: (BuildContext context, int index) {
                 PokemonModel pokemon = sortedPokemon[index];
@@ -267,14 +262,7 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView> {
               ),
           loading: PokemonListShimmer.new,
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: isInTheEndOfTheList ? _scrollToTop : _scrollToEnd,
-          backgroundColor: Theme.of(context).colorScheme.secondary,
-          child: Icon(
-            isInTheEndOfTheList ? Icons.arrow_upward : Icons.arrow_downward,
-            color: Theme.of(context).colorScheme.onSecondary,
-          ),
-        ),
+        floatingActionButton: buildScrollButtons(),
       ),
     );
   }

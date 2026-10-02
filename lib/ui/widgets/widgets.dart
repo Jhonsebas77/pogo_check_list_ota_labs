@@ -1,5 +1,7 @@
 library com.pogo_check_list_ota_labs.app.widgets;
 
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +37,8 @@ part 'inputs/pokemon_selector.dart';
 part 'list/pokemon_list_gigantamax_item.dart';
 part 'list/pokemon_list_item.dart';
 part 'list/pokemon_list_megaevolution_item.dart';
+part 'list/pokemon_search.dart';
+part 'list/scroll_list_buttons.dart';
 part 'list/simple_chip_with_icon.dart';
 part 'modals/base.dart';
 part 'modals/count_overview.dart';

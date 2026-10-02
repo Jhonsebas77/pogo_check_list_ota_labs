@@ -1,7 +1,12 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
 
 class EmptyState extends StatelessWidget {
-  const EmptyState({super.key});
+  const EmptyState({
+    this.message = 'Lo sentimos, aun no tenemos registros',
+    super.key,
+  });
+
+  final String message;
 
   @override
   Widget build(BuildContext context) => Center(
@@ -23,11 +28,11 @@ class EmptyState extends StatelessWidget {
                   width: 100,
                   fit: BoxFit.fill,
                 ),
-                const Center(
+                Center(
                   child: Text(
-                    'Lo sentimos, aun no tenemos registros',
+                    message,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ),
               ],

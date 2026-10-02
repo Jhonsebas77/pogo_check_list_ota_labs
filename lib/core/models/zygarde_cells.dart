@@ -3,17 +3,22 @@ part of com.pogo_check_list_ota_labs.app.models;
 class ZygardeCells {
   const ZygardeCells({
     required this.actualForm,
-    required this.forms,
+    required this.alternativeForms,
     required this.limit,
     required this.quantity,
   });
 
   factory ZygardeCells.fromJson(Map<String, dynamic> json) {
-    List<dynamic> rawList = (json['forms'] as List<dynamic>?) ?? <dynamic>[];
+    // Se unifica con el resto de formas alternativas bajo 'alternative_forms'.
+    // Se mantiene el fallback a 'forms' por compatibilidad con datos previos.
+    List<dynamic> rawList =
+        (json['alternative_forms'] as List<dynamic>?) ??
+        (json['forms'] as List<dynamic>?) ??
+        <dynamic>[];
     return ZygardeCells(
       actualForm:
           json['actual_form'] != null ? json['actual_form'] as String : '',
-      forms:
+      alternativeForms:
           rawList
               .whereType<Map<dynamic, dynamic>>()
               .map(
@@ -28,15 +33,17 @@ class ZygardeCells {
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     'actual_form': actualForm,
-    'forms':
-        forms?.map((PokemonModel pokemonForm) => pokemonForm.toJson()).toList(),
+    'alternative_forms':
+        alternativeForms
+            ?.map((PokemonModel pokemonForm) => pokemonForm.toJson())
+            .toList(),
     'limit': limit,
     'quantity': quantity,
   };
 
   final int quantity;
   final int limit;
-  final List<PokemonModel>? forms;
+  final List<PokemonModel>? alternativeForms;
   final String actualForm;
 
   @override
@@ -47,7 +54,8 @@ class ZygardeCells {
           hashCode == other.hashCode;
 
   @override
-  int get hashCode => Object.hash(quantity, actualForm, forms, limit);
+  int get hashCode =>
+      Object.hash(quantity, actualForm, alternativeForms, limit);
 
   @override
   String toString() => '''ZygardeCells(

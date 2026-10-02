@@ -45,7 +45,7 @@ class _ZygardeCellsModalState extends ConsumerState<ZygardeCellsModal> {
           onPressed: () async {
             ZygardeCells _updateData = ZygardeCells(
               actualForm: widget.zygardeCells.actualForm,
-              forms: widget.zygardeCells.forms,
+              alternativeForms: widget.zygardeCells.alternativeForms,
               limit: widget.zygardeCells.limit,
               quantity: _zygardeCellsQuantity,
             );

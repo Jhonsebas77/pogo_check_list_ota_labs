@@ -17,19 +17,22 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
     onTap:
         selectPokemon.available
             ? () async {
-              PokemonModel _pokemon = PokemonModel(
+              PokemonModel _pokemon = selectPokemon.copyWith(
                 alreadyCatch: !selectPokemon.alreadyCatch,
-                alreadyCatchShinyVersion:
-                    selectPokemon.alreadyCatchShinyVersion,
-                available: selectPokemon.available,
-                id: selectPokemon.id,
-                name: selectPokemon.name,
-                shinyAvailable: selectPokemon.shinyAvailable,
-                tradable: selectPokemon.tradable,
               );
-              await ref
-                  .read(firebasePokemonProvider.notifier)
-                  .updateGigantamaxPokemon(index, _pokemon, context);
+              if (selectPokemon.isAlternativeForm) {
+                await ref
+                    .read(firebasePokemonProvider.notifier)
+                    .updateGigantamaxPokemonForm(
+                      _pokemon.id,
+                      _pokemon,
+                      context,
+                    );
+              } else {
+                await ref
+                    .read(firebasePokemonProvider.notifier)
+                    .updateGigantamaxPokemon(index, _pokemon, context);
+              }
               if (context.mounted) {
                 showSuccessSnackBar(
                   context,
@@ -78,10 +81,22 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
                 ),
               if (selectPokemon.available)
                 Image.asset(
-                  'assets/pokedex_gigantamax/${selectPokemon.id}.png',
+                  'assets/pokedex_gigantamax/'
+                  '${selectPokemon.id}${selectPokemon.formSuffix}.png',
                   height: 80,
                   width: 80,
                   fit: BoxFit.fill,
+                  errorBuilder:
+                      (
+                        BuildContext context,
+                        Object error,
+                        StackTrace? stackTrace,
+                      ) => Image.asset(
+                        'assets/pokedex_gigantamax/${selectPokemon.id}.png',
+                        height: 80,
+                        width: 80,
+                        fit: BoxFit.fill,
+                      ),
                 )
               else
                 Shimmer.fromColors(
@@ -90,10 +105,22 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
                       Theme.of(context).colorScheme.onSurfaceVariant,
                   enabled: false,
                   child: Image.asset(
-                    'assets/pokedex_gigantamax/${selectPokemon.id}.png',
+                    'assets/pokedex_gigantamax/'
+                    '${selectPokemon.id}${selectPokemon.formSuffix}.png',
                     height: 80,
                     width: 80,
                     fit: BoxFit.fill,
+                    errorBuilder:
+                        (
+                          BuildContext context,
+                          Object error,
+                          StackTrace? stackTrace,
+                        ) => Image.asset(
+                          'assets/pokedex_gigantamax/${selectPokemon.id}.png',
+                          height: 80,
+                          width: 80,
+                          fit: BoxFit.fill,
+                        ),
                   ),
                 ),
             ],
@@ -104,7 +131,10 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
               FittedBox(
                 child: Text(
                   textAlign: TextAlign.center,
-                  selectPokemon.name,
+                  selectPokemon.isAlternativeForm
+                      ? '${selectPokemon.name} '
+                          '(${selectPokemon.formTag!.name})'
+                      : selectPokemon.name,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

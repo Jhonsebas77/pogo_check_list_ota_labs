@@ -43,18 +43,24 @@ class _GigantamaxPokemonViewState extends ConsumerState<GigantamaxPokemonView> {
                 if (state.allGigantamaxPokemon.isEmpty) {
                   return const EmptyState();
                 }
+                List<PokemonModel> expandedPokemon = <PokemonModel>[
+                  for (final PokemonModel pokemon in state.allGigantamaxPokemon)
+                    ...pokemon.withForms,
+                ];
                 List<PokemonModel> sortedPokemon =
-                    state.allGigantamaxPokemon.where((PokemonModel pokemon) {
+                    expandedPokemon.where((PokemonModel pokemon) {
                         if (displayOnlyMissingPokemon) {
                           return !pokemon.alreadyCatch;
                         } else {
                           return pokemon.id != 0;
                         }
                       }).toList()
-                      ..sort(
-                        (PokemonModel a, PokemonModel b) =>
-                            a.id.compareTo(b.id),
-                      );
+                      ..sort((PokemonModel a, PokemonModel b) {
+                        int byId = a.id.compareTo(b.id);
+                        return byId != 0
+                            ? byId
+                            : a.formOrder.compareTo(b.formOrder);
+                      });
                 return SingleChildScrollView(
                   child: Wrap(
                     spacing: 10,
