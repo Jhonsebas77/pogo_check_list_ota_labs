@@ -8,7 +8,6 @@ class LuckyFriendsView extends ConsumerWidget {
     AsyncValue<PokemonFirebaseState> firebasePokemonState = ref.watch(
       firebasePokemonProvider,
     );
-    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     ScreenshotController screenshotController = ScreenshotController();
     void openEditor({LuckyFriend? friend, int? index}) {
       CustomNavigator().push(
@@ -24,8 +23,6 @@ class LuckyFriendsView extends ConsumerWidget {
           title: 'Amistades con suerte',
           isTransparent: true,
         ),
-        backgroundColor:
-            isDarkMode ? null : Theme.of(context).colorScheme.primary,
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
@@ -76,29 +73,32 @@ class LuckyFriendsView extends ConsumerWidget {
             ),
           ],
         ),
-        body: SafeArea(
-          top: false,
-          child: firebasePokemonState.when(
-            data: (PokemonFirebaseState state) {
-              List<LuckyFriend> _friendsInfo = state.allLuckyFriends;
-              return SingleChildScrollView(
-                child: Screenshot(
-                  controller: screenshotController,
-                  child: LuckyFriendsList(
-                    friends: _friendsInfo,
-                    onLongPressEdit:
-                        (int index, LuckyFriend friend) =>
-                            openEditor(friend: friend, index: index),
+        body: WebContent(
+          child: SafeArea(
+            top: false,
+            child: firebasePokemonState.when(
+              data: (PokemonFirebaseState state) {
+                List<LuckyFriend> _friendsInfo = state.allLuckyFriends;
+                return SingleChildScrollView(
+                  child: Screenshot(
+                    controller: screenshotController,
+                    child: LuckyFriendsList(
+                      friends: _friendsInfo,
+                      onLongPressEdit:
+                          (int index, LuckyFriend friend) =>
+                              openEditor(friend: friend, index: index),
+                    ),
                   ),
-                ),
-              );
-            },
-            error:
-                (Object error, StackTrace stackTrace) => const SimpleErrorChip(
-                  iconData: Icons.people,
-                  text: 'Con la información de tus amigos con suerte',
-                ),
-            loading: () => const Center(child: SimpleTextShimmer()),
+                );
+              },
+              error:
+                  (Object error, StackTrace stackTrace) =>
+                      const SimpleErrorChip(
+                        iconData: Icons.people,
+                        text: 'Con la información de tus amigos con suerte',
+                      ),
+              loading: () => const Center(child: SimpleTextShimmer()),
+            ),
           ),
         ),
       ),

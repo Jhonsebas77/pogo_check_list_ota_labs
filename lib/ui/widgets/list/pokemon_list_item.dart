@@ -220,7 +220,7 @@ class PokemonListItem extends ConsumerWidget {
                             backgroundColor: Color(0xFFA0E1FF),
                             child: Icon(
                               Icons.wifi_protected_setup_sharp,
-                              color: Colors.white,
+                              color: onLightAccent,
                             ),
                           ),
                           Icon(Icons.block, color: Colors.red, size: 40),

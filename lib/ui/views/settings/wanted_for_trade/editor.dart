@@ -179,71 +179,72 @@ class _PokemonTradeItemEditorViewState
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     String title =
         widget.isEditing
             ? widget.category.editTitle
             : widget.category.createTitle;
     return Scaffold(
       appBar: CustomAppBar(title: title, isTransparent: true),
-      backgroundColor:
-          isDarkMode ? null : Theme.of(context).colorScheme.primary,
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Form(
-                key: _formKey,
-                child: PokemonTradeItemEditor(
-                  title: widget.category.singularLabel,
-                  data: _formData,
+      body: WebContent(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Form(
+                  key: _formKey,
+                  child: PokemonTradeItemEditor(
+                    title: widget.category.singularLabel,
+                    data: _formData,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: SafeArea(
         minimum: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            if (widget.isEditing)
-              OutlinedButton.icon(
-                onPressed: _isSaving ? null : _delete,
-                icon: const Icon(Icons.delete_forever),
-                label: Text(
-                  _isSaving
-                      ? 'Eliminando...'
-                      : '''Eliminar ${widget.category.singularLabel.toLowerCase()}''',
+        child: MaxWidthInput(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              if (widget.isEditing)
+                OutlinedButton.icon(
+                  onPressed: _isSaving ? null : _delete,
+                  icon: const Icon(Icons.delete_forever),
+                  label: Text(
+                    _isSaving
+                        ? 'Eliminando...'
+                        : '''Eliminar ${widget.category.singularLabel.toLowerCase()}''',
+                  ),
+                ),
+              if (widget.isEditing) const SizedBox(height: 8),
+              ElevatedButton.icon(
+                onPressed: _isSaving ? null : _submit,
+                icon:
+                    _isSaving
+                        ? const SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                        : const Icon(Icons.save),
+                label: Text(_isSaving ? 'Guardando...' : 'Guardar cambios'),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  foregroundColor: Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
-            if (widget.isEditing) const SizedBox(height: 8),
-            ElevatedButton.icon(
-              onPressed: _isSaving ? null : _submit,
-              icon:
-                  _isSaving
-                      ? const SizedBox(
-                        width: 16,
-                        height: 16,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                      : const Icon(Icons.save),
-              label: Text(_isSaving ? 'Guardando...' : 'Guardar cambios'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                backgroundColor: Theme.of(context).colorScheme.secondary,
-                foregroundColor: Theme.of(context).colorScheme.onSecondary,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

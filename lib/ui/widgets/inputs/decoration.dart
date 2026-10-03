@@ -8,7 +8,7 @@ InputDecoration inputDecoration(
   labelText: label,
   filled: true,
   fillColor: Colors.black12,
-  labelStyle: const TextStyle(color: Colors.white70),
+  labelStyle: const TextStyle(color: onPrimaryMuted),
   prefixIcon: Icon(icon, color: Colors.white70),
   enabledBorder: OutlineInputBorder(
     borderRadius: BorderRadius.circular(32),
@@ -26,5 +26,4 @@ InputDecoration inputDecoration(
     borderRadius: BorderRadius.circular(32),
     borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
   ),
-  
 );

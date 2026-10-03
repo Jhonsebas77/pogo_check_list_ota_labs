@@ -89,7 +89,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
       const SizedBox(height: 4),
       Text(
         'By Ota_Labs $_version($_buildNumber)',
-        style: Paragraphs.disclaimer.copyWith(color: Colors.white70),
+        style: Paragraphs.disclaimer.copyWith(color: Colors.white),
       ),
     ],
   );
@@ -153,7 +153,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
             children: <Widget>[
               Text(
                 'Entrenador',
-                style: Paragraphs.disclaimer.copyWith(color: Colors.white70),
+                style: Paragraphs.disclaimer.copyWith(color: onPrimaryMuted),
               ),
               Text(
                 hardcodedEmail.split('@').first,

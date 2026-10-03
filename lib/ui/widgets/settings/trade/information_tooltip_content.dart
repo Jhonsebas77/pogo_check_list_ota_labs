@@ -86,10 +86,10 @@ class InformationTradeCard extends StatelessWidget {
               const Row(
                 children: <Widget>[
                   CircleAvatar(
-                    backgroundColor: Color.fromRGBO(52, 177, 198, 1),
+                    backgroundColor: secondaryColor,
                     child: Icon(
                       Icons.safety_divider_sharp,
-                      color: Colors.white,
+                      color: onLightAccent,
                     ),
                   ),
                   SizedBox(width: 4),
@@ -192,8 +192,8 @@ class InformationListTradeCard extends StatelessWidget {
           const Row(
             children: <Widget>[
               CircleAvatar(
-                backgroundColor: Color.fromRGBO(52, 177, 198, 1),
-                child: Icon(Icons.safety_divider_sharp, color: Colors.white),
+                backgroundColor: secondaryColor,
+                child: Icon(Icons.safety_divider_sharp, color: onLightAccent),
               ),
               SizedBox(width: 4),
               Text('Espejo', style: TextStyle(color: Colors.white)),

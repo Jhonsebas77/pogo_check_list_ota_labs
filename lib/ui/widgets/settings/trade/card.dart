@@ -120,10 +120,10 @@ class PokemonTradeCard extends StatelessWidget {
                           ),
                         if (wantMirrorChange ?? false)
                           const CircleAvatar(
-                            backgroundColor: Color.fromRGBO(52, 177, 198, 1),
+                            backgroundColor: secondaryColor,
                             child: Icon(
                               Icons.safety_divider_sharp,
-                              color: Colors.white,
+                              color: onLightAccent,
                             ),
                           ),
                       ],

@@ -29,12 +29,11 @@ void showSuccessSnackBar(BuildContext context, String message) {
   );
 }
 
-Color backgroundColorType(BuildContext context, SnackbarType type) =>
-    switch (type) {
-      SnackbarType.information => Colors.blueGrey,
-      SnackbarType.success => Colors.green,
-      SnackbarType.error => Colors.red,
-    };
+Color backgroundColorType(SnackbarType type) => switch (type) {
+  SnackbarType.information => Colors.blueGrey.shade700,
+  SnackbarType.success => Colors.green.shade800,
+  SnackbarType.error => Colors.red.shade700,
+};
 
 IconData defaultIcon(SnackbarType type) => switch (type) {
   SnackbarType.error => Icons.error_outline_outlined,
@@ -57,7 +56,7 @@ class CustomSnackBar extends SnackBar {
          behavior: SnackBarBehavior.floating,
          margin: kIsWeb ? null : const EdgeInsetsGeometry.all(16),
          width: kIsWeb ? 556 : null,
-         backgroundColor: backgroundColorType(context, type),
+         backgroundColor: backgroundColorType(type),
          content: Theme(
            data: themeData ?? Theme.of(context),
            child: SnackBarContent(

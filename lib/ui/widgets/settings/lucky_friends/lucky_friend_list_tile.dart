@@ -26,10 +26,10 @@ class LuckyFriendListTile extends StatelessWidget {
                   Expanded(
                     child: Text(
                       friend.name,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFFDA7B28),
+                        color: luckyAccent(context),
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -97,8 +97,8 @@ class LuckyFriendListTile extends StatelessWidget {
           size: 32,
           color:
               (friend.pokemonOffer != null || friend.pokemonWanted != null)
-                  ? Colors.orange
-                  : Colors.grey,
+                  ? luckyAccent(context)
+                  : Theme.of(context).colorScheme.onSurfaceVariant,
         ),
         Stack(
           alignment: AlignmentDirectional.center,

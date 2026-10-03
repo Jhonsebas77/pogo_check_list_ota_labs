@@ -126,114 +126,116 @@ class _LuckyFriendEditorViewState extends ConsumerState<LuckyFriendEditorView> {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     String title =
         widget.isEditing
             ? 'Editar amigo con suerte'
             : 'Agregar amigo con suerte';
     return Scaffold(
       appBar: CustomAppBar(title: title, isTransparent: true),
-      backgroundColor:
-          isDarkMode
-              ? Theme.of(context).scaffoldBackgroundColor
-              : Theme.of(context).colorScheme.primary,
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
-            children: <Widget>[
-              Card(
-                color: Colors.black26,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                margin: const EdgeInsets.symmetric(vertical: 8),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const Text(
-                        'Información del amigo',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+      body: WebContent(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
+              children: <Widget>[
+                Card(
+                  color: Colors.black26,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const Text(
+                          'Información del amigo',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 12),
-                      TextFormField(
-                        controller: _formData.nameController,
-                        decoration: inputDecoration(
-                          context,
-                          label: 'Nombre del amigo',
-                          icon: Icons.person,
+                        const SizedBox(height: 12),
+                        MaxWidthInput(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: TextFormField(
+                            controller: _formData.nameController,
+                            decoration: inputDecoration(
+                              context,
+                              label: 'Nombre del amigo',
+                              icon: Icons.person,
+                            ),
+                            validator: (String? value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return 'Ingresa el nombre del amigo';
+                              }
+                              return null;
+                            },
+                          ),
                         ),
-                        validator: (String? value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Ingresa el nombre del amigo';
-                          }
-                          return null;
-                        },
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: PokemonTradeItemEditor(
-                  title: 'Pokémon que ofrece',
-                  data: _formData.offerData,
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: PokemonTradeItemEditor(
+                    title: 'Pokémon que ofrece',
+                    data: _formData.offerData,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: PokemonTradeItemEditor(
-                  title: 'Pokémon que busca',
-                  data: _formData.wantedData,
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: PokemonTradeItemEditor(
+                    title: 'Pokémon que busca',
+                    data: _formData.wantedData,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
       bottomNavigationBar: SafeArea(
         minimum: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            if (widget.isEditing)
-              OutlinedButton.icon(
-                onPressed: _isSaving ? null : _delete,
-                icon: const Icon(Icons.delete_forever),
-                label: Text(_isSaving ? 'Eliminando...' : 'Eliminar amistad'),
-              ),
-            if (widget.isEditing) const SizedBox(height: 8),
-            ElevatedButton.icon(
-              onPressed: _isSaving ? null : _submit,
-              icon:
-                  _isSaving
-                      ? const SizedBox(
-                        width: 16,
-                        height: 16,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                      : const Icon(Icons.save),
-              label: Text(_isSaving ? 'Guardando...' : 'Guardar cambios'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+        child: MaxWidthInput(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              if (widget.isEditing)
+                OutlinedButton.icon(
+                  onPressed: _isSaving ? null : _delete,
+                  icon: const Icon(Icons.delete_forever),
+                  label: Text(_isSaving ? 'Eliminando...' : 'Eliminar amistad'),
                 ),
-                backgroundColor: Theme.of(context).colorScheme.secondary,
-                foregroundColor: Theme.of(context).colorScheme.onSecondary,
+              if (widget.isEditing) const SizedBox(height: 8),
+              ElevatedButton.icon(
+                onPressed: _isSaving ? null : _submit,
+                icon:
+                    _isSaving
+                        ? const SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                        : const Icon(Icons.save),
+                label: Text(_isSaving ? 'Guardando...' : 'Guardar cambios'),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -57,11 +57,8 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView>
     AsyncValue<PokemonFirebaseState> firebasePokemonState = ref.watch(
       firebasePokemonProvider,
     );
-    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       key: const Key('wanted_for_trade_scaffold'),
-      backgroundColor:
-          isDarkMode ? null : Theme.of(context).colorScheme.primary,
       body: NestedScrollView(
         key: const Key('wanted_for_trade_nested_scroll'),
         headerSliverBuilder:
@@ -107,114 +104,118 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView>
                 expandedHeight: 150,
               ),
             ],
-        body: Screenshot(
-          key: const Key('wanted_for_trade_screenshot'),
-          controller: _screenshotController,
-          child: firebasePokemonState.when(
-            data: (PokemonFirebaseState state) {
-              PokemonTrade? tradeData = state.pokemonForTrade;
-              if (tradeData == null) {
-                return const Center(
-                  key: Key('wanted_for_trade_empty'),
-                  child: EmptyState(),
+        body: WebContent(
+          child: Screenshot(
+            key: const Key('wanted_for_trade_screenshot'),
+            controller: _screenshotController,
+            child: firebasePokemonState.when(
+              data: (PokemonFirebaseState state) {
+                PokemonTrade? tradeData = state.pokemonForTrade;
+                if (tradeData == null) {
+                  return const Center(
+                    key: Key('wanted_for_trade_empty'),
+                    child: EmptyState(),
+                  );
+                }
+                List<PokemonTradeItem> allWantedPokemon =
+                    List<PokemonTradeItem>.from(tradeData.wantedPokemon);
+                List<PokemonTradeItem> allOfferPokemon =
+                    List<PokemonTradeItem>.from(tradeData.offerPokemon);
+                List<int> wantedOrder = List<int>.generate(
+                  allWantedPokemon.length,
+                  (int index) => index,
+                )..sort(
+                  (int a, int b) => (allWantedPokemon[a].id ?? 0).compareTo(
+                    allWantedPokemon[b].id ?? 0,
+                  ),
                 );
-              }
-              List<PokemonTradeItem> allWantedPokemon =
-                  List<PokemonTradeItem>.from(tradeData.wantedPokemon);
-              List<PokemonTradeItem> allOfferPokemon =
-                  List<PokemonTradeItem>.from(tradeData.offerPokemon);
-              List<int> wantedOrder = List<int>.generate(
-                allWantedPokemon.length,
-                (int index) => index,
-              )..sort(
-                (int a, int b) => (allWantedPokemon[a].id ?? 0).compareTo(
-                  allWantedPokemon[b].id ?? 0,
-                ),
-              );
-              List<int> offerOrder = List<int>.generate(
-                allOfferPokemon.length,
-                (int index) => index,
-              )..sort(
-                (int a, int b) => (allOfferPokemon[a].id ?? 0).compareTo(
-                  allOfferPokemon[b].id ?? 0,
-                ),
-              );
-              if (_showOnlyLegendary) {
-                wantedOrder =
+                List<int> offerOrder = List<int>.generate(
+                  allOfferPokemon.length,
+                  (int index) => index,
+                )..sort(
+                  (int a, int b) => (allOfferPokemon[a].id ?? 0).compareTo(
+                    allOfferPokemon[b].id ?? 0,
+                  ),
+                );
+                if (_showOnlyLegendary) {
+                  wantedOrder =
+                      wantedOrder
+                          .where(
+                            (int index) => _legendaryIds.contains(
+                              allWantedPokemon[index].id,
+                            ),
+                          )
+                          .toList();
+                  offerOrder =
+                      offerOrder
+                          .where(
+                            (int index) => _legendaryIds.contains(
+                              allOfferPokemon[index].id,
+                            ),
+                          )
+                          .toList();
+                }
+                List<PokemonTradeItem> wantedPokemon =
                     wantedOrder
-                        .where(
-                          (int index) => _legendaryIds.contains(
-                            allWantedPokemon[index].id,
-                          ),
-                        )
+                        .map((int index) => allWantedPokemon[index])
                         .toList();
-                offerOrder =
+                List<PokemonTradeItem> offerPokemon =
                     offerOrder
-                        .where(
-                          (int index) => _legendaryIds.contains(
-                            allOfferPokemon[index].id,
-                          ),
-                        )
+                        .map((int index) => allOfferPokemon[index])
                         .toList();
-              }
-              List<PokemonTradeItem> wantedPokemon =
-                  wantedOrder
-                      .map((int index) => allWantedPokemon[index])
-                      .toList();
-              List<PokemonTradeItem> offerPokemon =
-                  offerOrder
-                      .map((int index) => allOfferPokemon[index])
-                      .toList();
-              return TabBarView(
-                key: const Key('wanted_for_trade_tab_view'),
-                controller: _tabController,
-                children: <Widget>[
-                  PokemonTradeList(
-                    key: const Key('trade_list_buscando'),
-                    pokemonList: wantedPokemon,
-                    type: 'Buscando',
-                    originalIndices: wantedOrder,
-                    onLongPressEdit:
-                        (int index, PokemonTradeItem item) =>
-                            _openTradeItemEditor(
-                              context,
-                              category: PokemonTradeCategory.wanted,
-                              item: item,
-                              index: index,
-                            ),
+                return TabBarView(
+                  key: const Key('wanted_for_trade_tab_view'),
+                  controller: _tabController,
+                  children: <Widget>[
+                    PokemonTradeList(
+                      key: const Key('trade_list_buscando'),
+                      pokemonList: wantedPokemon,
+                      type: 'Buscando',
+                      originalIndices: wantedOrder,
+                      onLongPressEdit:
+                          (int index, PokemonTradeItem item) =>
+                              _openTradeItemEditor(
+                                context,
+                                category: PokemonTradeCategory.wanted,
+                                item: item,
+                                index: index,
+                              ),
+                    ),
+                    PokemonTradeList(
+                      key: const Key('trade_list_ofreciendo'),
+                      pokemonList: offerPokemon,
+                      type: 'Ofreciendo',
+                      originalIndices: offerOrder,
+                      onLongPressEdit:
+                          (int index, PokemonTradeItem item) =>
+                              _openTradeItemEditor(
+                                context,
+                                category: PokemonTradeCategory.offer,
+                                item: item,
+                                index: index,
+                              ),
+                    ),
+                  ],
+                );
+              },
+              error:
+                  (Object error, StackTrace stackTrace) =>
+                      const SimpleErrorChip(
+                        key: Key('wanted_for_trade_error'),
+                        iconData: Icons.catching_pokemon,
+                        text:
+                            'Con la información de los Pokemon a intercambiar',
+                      ),
+              loading:
+                  () => const Center(
+                    key: Key('wanted_for_trade_loading'),
+                    child: Icon(
+                      Icons.catching_pokemon_outlined,
+                      color: Colors.grey,
+                      size: 50,
+                    ),
                   ),
-                  PokemonTradeList(
-                    key: const Key('trade_list_ofreciendo'),
-                    pokemonList: offerPokemon,
-                    type: 'Ofreciendo',
-                    originalIndices: offerOrder,
-                    onLongPressEdit:
-                        (int index, PokemonTradeItem item) =>
-                            _openTradeItemEditor(
-                              context,
-                              category: PokemonTradeCategory.offer,
-                              item: item,
-                              index: index,
-                            ),
-                  ),
-                ],
-              );
-            },
-            error:
-                (Object error, StackTrace stackTrace) => const SimpleErrorChip(
-                  key: Key('wanted_for_trade_error'),
-                  iconData: Icons.catching_pokemon,
-                  text: 'Con la información de los Pokemon a intercambiar',
-                ),
-            loading:
-                () => const Center(
-                  key: Key('wanted_for_trade_loading'),
-                  child: Icon(
-                    Icons.catching_pokemon_outlined,
-                    color: Colors.grey,
-                    size: 50,
-                  ),
-                ),
+            ),
           ),
         ),
       ),

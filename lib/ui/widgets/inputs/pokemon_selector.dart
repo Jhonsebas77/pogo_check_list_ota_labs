@@ -76,145 +76,153 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
           });
         }
 
-        return LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) =>
-              Autocomplete<PokemonModel>(
-              initialValue: TextEditingValue(text: _controller.text),
-              displayStringForOption:
-                  (PokemonModel option) => '${option.id} - ${option.name}',
-              optionsBuilder: (TextEditingValue textEditingValue) {
-                if (textEditingValue.text == '') {
-                  return const Iterable<PokemonModel>.empty();
-                }
-                return allPokemon.where((PokemonModel option) {
-                  String query = textEditingValue.text.toLowerCase();
-                  return option.name.toLowerCase().contains(query) ||
-                      option.id.toString().contains(query);
-                });
-              },
-              onSelected: (PokemonModel selection) {
-                setState(() {
-                  _selectedPokemon = selection;
-                  _controller.text = '${selection.id} - ${selection.name}';
-                });
-                widget.onChanged(selection.id);
-              },
-              fieldViewBuilder: (
-                BuildContext context,
-                TextEditingController fieldTextEditingController,
-                FocusNode fieldFocusNode,
-                VoidCallback onFieldSubmitted,
-              ) {
-                if (_controller.text != fieldTextEditingController.text) {
-                  fieldTextEditingController.text = _controller.text;
-                }
+        return MaxWidthInput(
+          child: LayoutBuilder(
+            builder:
+                (
+                  BuildContext context,
+                  BoxConstraints constraints,
+                ) => Autocomplete<PokemonModel>(
+                  initialValue: TextEditingValue(text: _controller.text),
+                  displayStringForOption:
+                      (PokemonModel option) => '${option.id} - ${option.name}',
+                  optionsBuilder: (TextEditingValue textEditingValue) {
+                    if (textEditingValue.text == '') {
+                      return const Iterable<PokemonModel>.empty();
+                    }
+                    return allPokemon.where((PokemonModel option) {
+                      String query = textEditingValue.text.toLowerCase();
+                      return option.name.toLowerCase().contains(query) ||
+                          option.id.toString().contains(query);
+                    });
+                  },
+                  onSelected: (PokemonModel selection) {
+                    setState(() {
+                      _selectedPokemon = selection;
+                      _controller.text = '${selection.id} - ${selection.name}';
+                    });
+                    widget.onChanged(selection.id);
+                  },
+                  fieldViewBuilder: (
+                    BuildContext context,
+                    TextEditingController fieldTextEditingController,
+                    FocusNode fieldFocusNode,
+                    VoidCallback onFieldSubmitted,
+                  ) {
+                    if (_controller.text != fieldTextEditingController.text) {
+                      fieldTextEditingController.text = _controller.text;
+                    }
 
-                return TextField(
-                  controller: fieldTextEditingController,
-                  focusNode: fieldFocusNode,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: inputDecoration(
-                    context,
-                    label: widget.label ?? 'Seleccionar Pokémon',
-                    icon: Icons.search,
-                  ).copyWith(
-                    suffixIcon:
-                        _selectedPokemon != null
-                            ? Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Image.asset(
-                                'assets/pokedex_sprites/${_selectedPokemon!.id}.png',
-                                width: 24,
-                                height: 24,
-                                errorBuilder:
-                                    (
-                                      BuildContext context,
-                                      Object error,
-                                      StackTrace? stackTrace,
-                                    ) => const Icon(
-                                      Icons.catching_pokemon,
-                                      color: Colors.white70,
-                                    ),
-                              ),
-                            )
-                            : null,
-                  ),
-                );
-              },
-              optionsViewBuilder: (
-                BuildContext context,
-                AutocompleteOnSelected<PokemonModel> onSelected,
-                Iterable<PokemonModel> options,
-              ) => Align(
-                  alignment: Alignment.topLeft,
-                  child: Material(
-                    elevation: 4,
-                    color:
-                        Theme.of(context).colorScheme.surfaceContainerHighest,
-                    borderRadius: const BorderRadius.vertical(
-                      bottom: Radius.circular(16),
-                    ),
-                    child: SizedBox(
-                      width: constraints.maxWidth,
-                      height: 200,
-                      child: ListView.builder(
-                        padding: const EdgeInsets.all(8),
-                        itemCount: options.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          PokemonModel option = options.elementAt(index);
-                          return ListTile(
-                            leading: Image.asset(
-                              'assets/pokedex_sprites/${option.id}.png',
-                              width: 30,
-                              height: 30,
-                               errorBuilder:
-                                    (
-                                      BuildContext context,
-                                      Object error,
-                                      StackTrace? stackTrace,
-                                    ) => const Icon(
-                                      Icons.catching_pokemon,
-                                      color: Colors.white70,
-                                    ),
-                            ),
-                            title: Text(
-                              option.name,
-                              style: TextStyle(
-                                color:
-                                    Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                              ),
-                            ),
-                            subtitle: Text(
-                              '#${option.id}',
-                              style: TextStyle(
-                                color:
-                                    Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant
-                                        .withValues(alpha: 0.7),
-                              ),
-                            ),
-                            onTap: () {
-                              onSelected(option);
-                            },
-                          );
-                        },
+                    return TextField(
+                      controller: fieldTextEditingController,
+                      focusNode: fieldFocusNode,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: inputDecoration(
+                        context,
+                        label: widget.label ?? 'Seleccionar Pokémon',
+                        icon: Icons.search,
+                      ).copyWith(
+                        suffixIcon:
+                            _selectedPokemon != null
+                                ? Padding(
+                                  padding: const EdgeInsets.all(8),
+                                  child: Image.asset(
+                                    'assets/pokedex_sprites/${_selectedPokemon!.id}.png',
+                                    width: 24,
+                                    height: 24,
+                                    errorBuilder:
+                                        (
+                                          BuildContext context,
+                                          Object error,
+                                          StackTrace? stackTrace,
+                                        ) => const Icon(
+                                          Icons.catching_pokemon,
+                                          color: Colors.white70,
+                                        ),
+                                  ),
+                                )
+                                : null,
                       ),
-                    ),
-                  ),
+                    );
+                  },
+                  optionsViewBuilder:
+                      (
+                        BuildContext context,
+                        AutocompleteOnSelected<PokemonModel> onSelected,
+                        Iterable<PokemonModel> options,
+                      ) => Align(
+                        alignment: Alignment.topLeft,
+                        child: Material(
+                          elevation: 4,
+                          color:
+                              Theme.of(
+                                context,
+                              ).colorScheme.surfaceContainerHighest,
+                          borderRadius: const BorderRadius.vertical(
+                            bottom: Radius.circular(16),
+                          ),
+                          child: SizedBox(
+                            width: constraints.maxWidth,
+                            height: 200,
+                            child: ListView.builder(
+                              padding: const EdgeInsets.all(8),
+                              itemCount: options.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                PokemonModel option = options.elementAt(index);
+                                return ListTile(
+                                  leading: Image.asset(
+                                    'assets/pokedex_sprites/${option.id}.png',
+                                    width: 30,
+                                    height: 30,
+                                    errorBuilder:
+                                        (
+                                          BuildContext context,
+                                          Object error,
+                                          StackTrace? stackTrace,
+                                        ) => const Icon(
+                                          Icons.catching_pokemon,
+                                          color: Colors.white70,
+                                        ),
+                                  ),
+                                  title: Text(
+                                    option.name,
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(
+                                            context,
+                                          ).colorScheme.onSurfaceVariant,
+                                    ),
+                                  ),
+                                  subtitle: Text(
+                                    '#${option.id}',
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(
+                                            context,
+                                          ).colorScheme.onSurfaceVariant,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    onSelected(option);
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
                 ),
-            ),
+          ),
         );
       },
       loading:
-          () => const Center(
-            child: CircularProgressIndicator(),
-          ), // Or a shimmer
+          () =>
+              const Center(child: CircularProgressIndicator()), // Or a shimmer
       error:
-          (Object error, StackTrace stack) =>
-              Text('Error: $error', style: const TextStyle(color: Colors.red)),
+          (Object error, StackTrace stack) => Text(
+            'Error: $error',
+            style: const TextStyle(color: Colors.white),
+          ),
     );
   }
 }

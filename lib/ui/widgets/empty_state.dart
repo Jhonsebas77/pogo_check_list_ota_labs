@@ -32,7 +32,7 @@ class EmptyState extends StatelessWidget {
                   child: Text(
                     message,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
               ],

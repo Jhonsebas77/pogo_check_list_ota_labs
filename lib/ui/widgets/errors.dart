@@ -23,6 +23,7 @@ class SimpleErrorChip extends StatelessWidget {
     debugPrint('\x1B[31m[error]: $error\x1B[0m');
     debugPrint('\x1B[31m[stackTrace]: $stackTrace\x1B[0m');
     debugPrint('\x1B[33m=================\x1B[0m');
+    Color foreground = Theme.of(context).colorScheme.onError;
     return Center(
       child: Padding(
         padding: (isSmall ?? false) ? EdgeInsets.zero : const EdgeInsets.all(8),
@@ -37,19 +38,19 @@ class SimpleErrorChip extends StatelessWidget {
                     ),
                     child: Row(
                       children: <Widget>[
-                        Icon(iconData, color: Colors.black87, size: 14),
-                        const Text('Error'),
+                        Icon(iconData, color: foreground, size: 14),
+                        Text('Error', style: TextStyle(color: foreground)),
                       ],
                     ),
                   )
                   : ListTile(
                     style: ListTileStyle.list,
-                    leading: Icon(iconData, color: Colors.black87, size: 14),
-                    title: const Text(
+                    leading: Icon(iconData, color: foreground, size: 14),
+                    title: Text(
                       'Lo sentimos, algo salio mal',
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.black87,
+                        color: foreground,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -57,9 +58,9 @@ class SimpleErrorChip extends StatelessWidget {
                         text != null
                             ? Text(
                               text!,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 10,
-                                color: Colors.grey,
+                                color: foreground.withValues(alpha: 0.85),
                                 fontWeight: FontWeight.normal,
                               ),
                             )

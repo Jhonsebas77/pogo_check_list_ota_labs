@@ -36,56 +36,58 @@ class _ZygardeDetailsState extends ConsumerState<ZygardeDetails> {
       child: Scaffold(
         appBar: const CustomAppBar(title: 'Células Zygarde'),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        body: Center(
-          child: SingleChildScrollView(
-            child: SizedBox(
-              width: 271,
-              child: Column(
-                children: <Widget>[
-                  firebasePokemonState.when(
-                    data:
-                        (PokemonFirebaseState state) => Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Flexible(
-                                  child: _ZygardeProgressCard(
-                                    zygardeCells: state.zygardeCells!,
-                                    formId: getZygardeActualForm(
-                                      state.zygardeCells!,
+        body: WebContent(
+          child: Center(
+            child: SingleChildScrollView(
+              child: SizedBox(
+                width: 271,
+                child: Column(
+                  children: <Widget>[
+                    firebasePokemonState.when(
+                      data:
+                          (PokemonFirebaseState state) => Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Flexible(
+                                    child: _ZygardeProgressCard(
+                                      zygardeCells: state.zygardeCells!,
+                                      formId: getZygardeActualForm(
+                                        state.zygardeCells!,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(width: 16),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Image.asset(
-                                      'assets/zygarde_cell.png',
-                                      height: 50,
-                                      width: 50,
-                                      fit: BoxFit.fill,
-                                    ),
-                                    Text('${state.zygardeCells!.quantity}'),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            ZygardeForms(zygardeCells: state.zygardeCells!),
-                          ],
-                        ),
-                    error:
-                        (Object error, StackTrace stackTrace) =>
-                            SimpleErrorChip(
-                              iconData: Icons.dashboard,
-                              error: error.toString(),
-                              stackTrace: stackTrace,
-                              text: 'Con la información de Zygarde',
-                            ),
-                    loading: DashboardOverviewShimmer.new,
-                  ),
-                ],
+                                  const SizedBox(width: 16),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Image.asset(
+                                        'assets/zygarde_cell.png',
+                                        height: 50,
+                                        width: 50,
+                                        fit: BoxFit.fill,
+                                      ),
+                                      Text('${state.zygardeCells!.quantity}'),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              ZygardeForms(zygardeCells: state.zygardeCells!),
+                            ],
+                          ),
+                      error:
+                          (Object error, StackTrace stackTrace) =>
+                              SimpleErrorChip(
+                                iconData: Icons.dashboard,
+                                error: error.toString(),
+                                stackTrace: stackTrace,
+                                text: 'Con la información de Zygarde',
+                              ),
+                      loading: DashboardOverviewShimmer.new,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

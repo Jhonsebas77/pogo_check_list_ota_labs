@@ -8,7 +8,6 @@ class CustomTextField extends StatelessWidget {
     required this.validator,
     this.inputType,
     this.maxLines = 1,
-    this.fieldWidth,
     super.key,
   });
 
@@ -18,11 +17,9 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?) validator;
   final TextInputType? inputType;
   final int? maxLines;
-  final double? fieldWidth;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-    width: fieldWidth ?? MediaQuery.sizeOf(context).width,
+  Widget build(BuildContext context) => MaxWidthInput(
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextFormField(

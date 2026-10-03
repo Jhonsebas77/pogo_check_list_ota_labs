@@ -9,12 +9,12 @@ class ColorSchemeView extends ConsumerWidget {
     return SafeArea(
       child: Scaffold(
         appBar: const CustomAppBar(title: 'Esquema de colores'),
-        body: const Center(child: ColorSchemeWidget()),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        body: const WebContent(child: Center(child: ColorSchemeWidget())),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            ref
-                .read(themeModeProvider.notifier)
-                .themeMode = isDarkMode ? ThemeMode.light : ThemeMode.dark;
+            ref.read(themeModeProvider.notifier).themeMode =
+                isDarkMode ? ThemeMode.light : ThemeMode.dark;
             showInformationSnackBar(
               context,
               '''[Tema actualizado] ->  ${isDarkMode ? 'Tema claro' : 'Tema oscuro'}''',

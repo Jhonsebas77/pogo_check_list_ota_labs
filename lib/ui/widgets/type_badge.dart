@@ -13,15 +13,18 @@ class TypeBadge extends StatelessWidget {
   final IconData icon;
 
   @override
-  Widget build(BuildContext context) => Chip(
-    backgroundColor: color.withValues(alpha: 0.9),
-    avatar: CircleAvatar(
-      backgroundColor: Colors.white.withValues(alpha: 0.25),
-      child: Icon(icon, color: Colors.white, size: 15,),
-    ),
-    label: Text(
-      type.toUpperCase(),
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    ),
-  );
+  Widget build(BuildContext context) {
+    Color foreground = readableOn(color);
+    return Chip(
+      backgroundColor: color.withValues(alpha: 0.9),
+      avatar: CircleAvatar(
+        backgroundColor: foreground.withValues(alpha: 0.2),
+        child: Icon(icon, color: foreground, size: 15),
+      ),
+      label: Text(
+        type.toUpperCase(),
+        style: TextStyle(color: foreground, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
 }

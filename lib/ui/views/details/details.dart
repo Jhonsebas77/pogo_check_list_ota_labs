@@ -29,64 +29,66 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
 
           data: (PokemonDetail pokemon) => CustomAppBar(title: pokemon.name),
         ),
-        body: pokemonAsyncValue.when(
-          // State 1: The Future is loading
-          loading: () => const Center(child: CircularProgressIndicator()),
+        body: WebContent(
+          child: pokemonAsyncValue.when(
+            // State 1: The Future is loading
+            loading: () => const Center(child: CircularProgressIndicator()),
 
-          // State 2: The Future completed with an error
-          error:
-              (Object error, StackTrace stackTrace) => SimpleErrorChip(
-                iconData: Icons.catching_pokemon,
-                error: error.toString(),
-                stackTrace: stackTrace,
-                text: 'Con el detalle del Pokémon ${widget.pokemonId}',
-              ),
+            // State 2: The Future completed with an error
+            error:
+                (Object error, StackTrace stackTrace) => SimpleErrorChip(
+                  iconData: Icons.catching_pokemon,
+                  error: error.toString(),
+                  stackTrace: stackTrace,
+                  text: 'Con el detalle del Pokémon ${widget.pokemonId}',
+                ),
 
-          // State 3: The Future completed successfully with data
-          data:
-              (PokemonDetail pokemon) => Center(
-                child: Column(
-                  children: <Widget>[
-                    const SizedBox(height: 16),
-                    Stack(
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/bg_holder_pokemon.png',
-                          height: 120,
-                          width: 120,
-                          fit: BoxFit.fill,
-                        ),
-                        Hero(
-                          tag: pokemon.id,
-                          child: Image.network(
-                            pokemon.imageUrl,
+            // State 3: The Future completed successfully with data
+            data:
+                (PokemonDetail pokemon) => Center(
+                  child: Column(
+                    children: <Widget>[
+                      const SizedBox(height: 16),
+                      Stack(
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/bg_holder_pokemon.png',
                             height: 120,
                             width: 120,
                             fit: BoxFit.fill,
                           ),
-                        ),
-                      ],
-                    ),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 4,
-                      children:
-                          pokemon.types.map((String type) {
-                            String? _translatedType =
-                                kPokemonTypesTranslated[type];
-                            return TypeBadge(
-                              type: _translatedType!,
-                              color:
-                                  kTypeColors[_translatedType] ?? Colors.grey,
-                              icon:
-                                  kTypeIcons[_translatedType] ??
-                                  Icons.help_outline,
-                            );
-                          }).toList(),
-                    ),
-                  ],
+                          Hero(
+                            tag: pokemon.id,
+                            child: Image.network(
+                              pokemon.imageUrl,
+                              height: 120,
+                              width: 120,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 4,
+                        children:
+                            pokemon.types.map((String type) {
+                              String? _translatedType =
+                                  kPokemonTypesTranslated[type];
+                              return TypeBadge(
+                                type: _translatedType!,
+                                color:
+                                    kTypeColors[_translatedType] ?? Colors.grey,
+                                icon:
+                                    kTypeIcons[_translatedType] ??
+                                    Icons.help_outline,
+                              );
+                            }).toList(),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+          ),
         ),
       ),
     );

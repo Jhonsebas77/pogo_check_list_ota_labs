@@ -9,19 +9,17 @@ class TypeMatchupChip extends StatelessWidget {
   Widget build(BuildContext context) {
     Color baseColor = kTypeColors[matchup.type] ?? Colors.grey;
     IconData icon = kTypeIcons[matchup.type] ?? Icons.help_outline;
+    Color foreground = readableOn(baseColor);
 
     return Chip(
       backgroundColor: baseColor.withValues(alpha: 0.9),
       avatar: CircleAvatar(
-        backgroundColor: Colors.white.withValues(alpha: 0.25),
-        child: Icon(icon, color: Colors.white, size: 15),
+        backgroundColor: foreground.withValues(alpha: 0.2),
+        child: Icon(icon, color: foreground, size: 15),
       ),
       label: Text(
         '''${matchup.type.toUpperCase()} · ${_formatMultiplier(matchup.multiplier)}x''',
-        style: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
+        style: TextStyle(color: foreground, fontWeight: FontWeight.bold),
       ),
     );
   }

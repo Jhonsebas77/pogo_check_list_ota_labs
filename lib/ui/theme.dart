@@ -10,15 +10,47 @@ const Color tertiaryDarkColor = Color.fromRGBO(255, 203, 80, 1);
 const Color lightErrorColor = Color.fromRGBO(184, 52, 90, 1);
 const Color darkErrorColor = Color.fromRGBO(239, 107, 129, 1);
 
+// Foreground for light accents (secondary, tertiary, dark error, light type
+// colors). Plain white fails WCAG AA on them.
+const Color onLightAccent = Color(0xFF1B1B1B);
+// Muted white for secondary text inside black12 containers over the primary
+// background (>= 4.5:1). Never use it directly on the primary color.
+const Color onPrimaryMuted = Color(0xE6FFFFFF);
+// Lucky friends accent: the bright orange only reads on dark surfaces.
+const Color luckyAccentColor = Color(0xFFF0913F);
+const Color luckyAccentLightColor = Color(0xFF9C4A0E);
+
+Color luckyAccent(BuildContext context) =>
+    Theme.of(context).brightness == Brightness.dark
+        ? luckyAccentColor
+        : luckyAccentLightColor;
+
+/// WCAG 2.x contrast ratio between two opaque colors (1 to 21).
+double contrastRatio(Color a, Color b) {
+  double la = a.computeLuminance();
+  double lb = b.computeLuminance();
+  return (la > lb ? la + 0.05 : lb + 0.05) / (la > lb ? lb + 0.05 : la + 0.05);
+}
+
+/// White when it reaches AA (4.5:1) over [background], otherwise dark.
+Color readableOn(Color background) =>
+    contrastRatio(Colors.white, background) >= 4.5
+        ? Colors.white
+        : onLightAccent;
+
 // --- LIGHT THEME ---
 final ThemeData appTheme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
     seedColor: primaryColor,
     primary: primaryColor,
+    onPrimary: Colors.white,
     secondary: secondaryColor,
+    onSecondary: onLightAccent,
     tertiary: tertiaryColor,
+    onTertiary: onLightAccent,
     error: lightErrorColor,
+    onError: Colors.white,
     brightness: Brightness.light,
   ),
   textTheme: const TextTheme(
@@ -64,6 +96,18 @@ final ThemeData appTheme = ThemeData(
     ),
     labelStyle: const TextStyle(color: primaryColor),
   ),
+  // Every screen but the color scheme one sits on the primary color, in both
+  // themes, so these components default to white instead of primary.
+  scaffoldBackgroundColor: primaryColor,
+  progressIndicatorTheme: const ProgressIndicatorThemeData(color: Colors.white),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      foregroundColor: Colors.white,
+      side: const BorderSide(color: Colors.white),
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+    ),
+  ),
   cardTheme: CardThemeData(
     elevation: 1,
     shape: RoundedRectangleBorder(
@@ -79,9 +123,13 @@ final ThemeData appDarkTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
     seedColor: primaryColor,
     primary: primaryDarkColor,
+    onPrimary: Colors.white,
     secondary: secondaryDarkColor,
+    onSecondary: onLightAccent,
     tertiary: tertiaryDarkColor,
+    onTertiary: onLightAccent,
     error: darkErrorColor,
+    onError: onLightAccent,
     brightness: Brightness.dark,
   ),
   textTheme: const TextTheme(
@@ -91,11 +139,11 @@ final ThemeData appDarkTheme = ThemeData(
     bodyLarge: TextStyle(fontSize: 16, height: 1.5),
     bodyMedium: TextStyle(fontSize: 14, height: 1.4),
   ),
-  appBarTheme: AppBarTheme(
-    backgroundColor: Colors.grey[900],
+  appBarTheme: const AppBarTheme(
+    backgroundColor: primaryColor,
     foregroundColor: Colors.white,
     centerTitle: true,
-    titleTextStyle: const TextStyle(
+    titleTextStyle: TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: Colors.white,
@@ -112,7 +160,7 @@ final ThemeData appDarkTheme = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
-      foregroundColor: secondaryColor,
+      foregroundColor: secondaryDarkColor,
       textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
     ),
   ),
@@ -123,9 +171,21 @@ final ThemeData appDarkTheme = ThemeData(
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: secondaryColor, width: 2),
+      borderSide: const BorderSide(color: secondaryDarkColor, width: 2),
     ),
     labelStyle: TextStyle(color: Colors.grey.shade300),
+  ),
+  // Every screen but the color scheme one sits on the primary color, in both
+  // themes, so these components default to white instead of primary.
+  scaffoldBackgroundColor: primaryColor,
+  progressIndicatorTheme: const ProgressIndicatorThemeData(color: Colors.white),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      foregroundColor: Colors.white,
+      side: const BorderSide(color: Colors.white),
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+    ),
   ),
   cardTheme: CardThemeData(
     elevation: 1,

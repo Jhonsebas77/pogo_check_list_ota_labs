@@ -34,6 +34,7 @@ part 'home/trainer_information.dart';
 part 'inputs/decoration.dart';
 part 'inputs/text_field.dart';
 part 'inputs/pokemon_selector.dart';
+part 'layout/web_layout.dart';
 part 'list/pokemon_list_gigantamax_item.dart';
 part 'list/pokemon_list_item.dart';
 part 'list/pokemon_list_megaevolution_item.dart';

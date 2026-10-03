@@ -11,6 +11,8 @@ class PokemonSearchField extends StatelessWidget {
     required this.onChanged,
     required this.onClear,
     this.hintText = 'Buscar por nombre',
+    this.padding = const EdgeInsets.fromLTRB(24, 0, 24, 8),
+    this.fillHeight = false,
     super.key,
   });
 
@@ -18,48 +20,143 @@ class PokemonSearchField extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final VoidCallback onClear;
   final String hintText;
+  final EdgeInsetsGeometry padding;
+
+  /// Si es `true`, el campo ocupa todo el alto disponible con el texto
+  /// centrado verticalmente (p. ej. para igualar el alto de otro control en
+  /// la misma fila, ver [SearchHeaderRow]).
+  final bool fillHeight;
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
-    child: TextField(
-      controller: controller,
-      onChanged: onChanged,
-      textInputAction: TextInputAction.search,
-      style: const TextStyle(color: Colors.white),
-      decoration: InputDecoration(
-        isDense: true,
-        hintText: hintText,
-        hintStyle: const TextStyle(color: Colors.white54),
-        filled: true,
-        fillColor: Colors.black12,
-        prefixIcon: const Icon(Icons.search, color: Colors.white70),
-        // Solo se reconstruye el sufijo cuando cambia el texto, evitando
-        // rebuilds de toda la vista para mostrar/ocultar el botón de limpiar.
-        suffixIcon: ValueListenableBuilder<TextEditingValue>(
-          valueListenable: controller,
-          builder:
-              (BuildContext context, TextEditingValue value, Widget? child) =>
-                  value.text.isEmpty
-                      ? const SizedBox.shrink()
-                      : IconButton(
-                        icon: const Icon(Icons.close, color: Colors.white70),
-                        tooltip: 'Limpiar búsqueda',
-                        onPressed: onClear,
+    padding: padding,
+    child:
+        fillHeight
+            // El Focus no toma el foco; solo expone si el TextField interno lo
+            // tiene, para pintar el mismo borde de foco que el resto de inputs.
+            ? Focus(
+              canRequestFocus: false,
+              skipTraversal: true,
+              child: Builder(
+                builder:
+                    (BuildContext context) => DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(
+                          color:
+                              Focus.of(context).hasFocus
+                                  ? Theme.of(context).colorScheme.secondary
+                                  : Colors.transparent,
+                        ),
                       ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(32),
-          borderSide: const BorderSide(color: Colors.transparent),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(32),
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.secondary,
-          ),
-        ),
+                      child: Center(child: _buildTextField(context)),
+                    ),
+              ),
+            )
+            : MaxWidthInput(child: _buildTextField(context)),
+  );
+
+  Widget _buildTextField(BuildContext context) => TextField(
+    controller: controller,
+    textAlignVertical: TextAlignVertical.center,
+    onChanged: onChanged,
+    textInputAction: TextInputAction.search,
+    style: const TextStyle(color: Colors.white),
+    decoration: InputDecoration(
+      isDense: true,
+      hintText: hintText,
+      hintStyle: const TextStyle(color: onPrimaryMuted),
+      // Con fillHeight el fondo lo pinta el contenedor que ocupa todo el alto.
+      filled: !fillHeight,
+      fillColor: Colors.black12,
+      prefixIcon: const Icon(Icons.search, color: Colors.white70),
+      // Solo se reconstruye el sufijo cuando cambia el texto, evitando
+      // rebuilds de toda la vista para mostrar/ocultar el botón de limpiar.
+      suffixIcon: ValueListenableBuilder<TextEditingValue>(
+        valueListenable: controller,
+        builder:
+            (BuildContext context, TextEditingValue value, Widget? child) =>
+                value.text.isEmpty
+                    ? const SizedBox.shrink()
+                    : IconButton(
+                      icon: const Icon(Icons.close, color: Colors.white70),
+                      tooltip: 'Limpiar búsqueda',
+                      onPressed: onClear,
+                    ),
       ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(32),
+        borderSide: const BorderSide(color: Colors.transparent),
+      ),
+      focusedBorder:
+          fillHeight
+              ? InputBorder.none
+              : OutlineInputBorder(
+                borderRadius: BorderRadius.circular(32),
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
     ),
+  );
+}
+
+/// Fila del header de las listas de Pokémon: [trailing] (switch y filtro)
+/// queda pegado a la derecha y [search] centrado en x y en y, con el mismo
+/// alto que [trailing].
+///
+/// Si no hay espacio para centrar el buscador sin que se monte sobre
+/// [trailing] (pantallas angostas), el buscador ocupa el espacio libre a su
+/// izquierda.
+class SearchHeaderRow extends StatelessWidget {
+  const SearchHeaderRow({
+    required this.search,
+    required this.trailing,
+    super.key,
+  });
+
+  final Widget search;
+  final Widget trailing;
+
+  static const double _gap = 12;
+
+  /// Ancho reservado a cada lado del buscador centrado para [trailing].
+  static const double _trailingReserve = 160;
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (BuildContext context, BoxConstraints constraints) {
+      bool canCenter =
+          constraints.maxWidth >=
+          kMaxInputWidth + 2 * (_trailingReserve + _gap);
+      if (!canCenter) {
+        return IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(child: search),
+              const SizedBox(width: _gap),
+              trailing,
+            ],
+          ),
+        );
+      }
+      return Stack(
+        children: <Widget>[
+          Align(
+            alignment: AlignmentDirectional.centerEnd,
+            heightFactor: 1,
+            child: trailing,
+          ),
+          Positioned.fill(
+            child: Center(
+              child: SizedBox(width: kMaxInputWidth, child: search),
+            ),
+          ),
+        ],
+      );
+    },
   );
 }
 
@@ -128,9 +225,14 @@ mixin PokemonSearchMixin<T extends ConsumerStatefulWidget> on ConsumerState<T> {
   }
 
   /// Construye el campo de búsqueda enlazado a este mixin.
-  Widget buildSearchField() => PokemonSearchField(
+  Widget buildSearchField({
+    EdgeInsetsGeometry padding = const EdgeInsets.fromLTRB(24, 0, 24, 8),
+    bool fillHeight = false,
+  }) => PokemonSearchField(
     controller: searchController,
     onChanged: onSearchChanged,
     onClear: clearSearch,
+    padding: padding,
+    fillHeight: fillHeight,
   );
 }

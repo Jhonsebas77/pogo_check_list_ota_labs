@@ -107,24 +107,26 @@ class _PokemonTradeItemEditorState
             ),
             const SizedBox(height: 8),
             if (widget.title == 'Pokémon ofrecido')
-              TextFormField(
-                controller: widget.data.quantityController,
-                keyboardType: TextInputType.number,
-                decoration: inputDecoration(
-                  context,
-                  label: 'Cantidad',
-                  icon: Icons.numbers,
+              MaxWidthInput(
+                child: TextFormField(
+                  controller: widget.data.quantityController,
+                  keyboardType: TextInputType.number,
+                  decoration: inputDecoration(
+                    context,
+                    label: 'Cantidad',
+                    icon: Icons.numbers,
+                  ),
+                  validator: (String? value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Ingresa la cantidad';
+                    }
+                    int? parsed = int.tryParse(value.trim());
+                    if (parsed == null || parsed <= 0) {
+                      return 'Cantidad no válida';
+                    }
+                    return null;
+                  },
                 ),
-                validator: (String? value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Ingresa la cantidad';
-                  }
-                  int? parsed = int.tryParse(value.trim());
-                  if (parsed == null || parsed <= 0) {
-                    return 'Cantidad no válida';
-                  }
-                  return null;
-                },
               ),
             const SizedBox(height: 8),
             Wrap(
@@ -237,8 +239,8 @@ class _PokemonTradeItemEditorState
         );
       case BadgePokemonCriteria.mirrorChange:
         return const CircleAvatar(
-          backgroundColor: Color.fromRGBO(52, 177, 198, 1),
-          child: Icon(Icons.safety_divider_sharp, color: Colors.white),
+          backgroundColor: secondaryColor,
+          child: Icon(Icons.safety_divider_sharp, color: onLightAccent),
         );
       case BadgePokemonCriteria.specialBackground:
         return Image.asset(

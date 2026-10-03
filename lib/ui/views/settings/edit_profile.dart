@@ -157,38 +157,34 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
     }
   }
 
-  Widget _buildDropdown({double? fieldWidth}) => SizedBox(
-    width: fieldWidth ?? MediaQuery.sizeOf(context).width,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: DropdownButtonFormField<String>(
-        initialValue:
-            (_selectedTeam?.isNotEmpty ?? false) ? _selectedTeam : null,
-        onChanged:
-            _isSaving
-                ? null
-                : (String? value) {
-                  setState(() {
-                    _selectedTeam = value;
-                  });
-                },
-        items:
-            teamsOptions
-                .map<DropdownMenuItem<String>>(
-                  (String value) => DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(getSelectedTeamFromString(value)),
-                  ),
-                )
-                .toList(),
-        decoration: inputDecoration(context, icon: Icons.flag),
-        validator: (String? value) {
-          if (value == null || value.isEmpty) {
-            return 'Selecciona un equipo';
-          }
-          return null;
-        },
-      ),
+  Widget _buildDropdown() => Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8),
+    child: DropdownButtonFormField<String>(
+      initialValue: (_selectedTeam?.isNotEmpty ?? false) ? _selectedTeam : null,
+      onChanged:
+          _isSaving
+              ? null
+              : (String? value) {
+                setState(() {
+                  _selectedTeam = value;
+                });
+              },
+      items:
+          teamsOptions
+              .map<DropdownMenuItem<String>>(
+                (String value) => DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(getSelectedTeamFromString(value)),
+                ),
+              )
+              .toList(),
+      decoration: inputDecoration(context, icon: Icons.flag),
+      validator: (String? value) {
+        if (value == null || value.isEmpty) {
+          return 'Selecciona un equipo';
+        }
+        return null;
+      },
     ),
   );
 
@@ -201,100 +197,105 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
       child: Scaffold(
         appBar: const CustomAppBar(title: 'Editar entrenador'),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        body: firebaseState.when(
-          data: (PokemonFirebaseState data) {
-            TrainerModel? trainer = data.trainerInformation;
-            _syncFormWithTrainer(trainer);
-            return GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      const SettingsTitleSection(title: 'Entrenador'),
-                      CustomTextField(
-                        label: 'Apodo',
-                        icon: Icons.person,
-                        controller: _nickNameController,
-                        validator: (String? value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Ingresa el apodo del entrenador';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: WebContent(
+          child: firebaseState.when(
+            data: (PokemonFirebaseState data) {
+              TrainerModel? trainer = data.trainerInformation;
+              _syncFormWithTrainer(trainer);
+              return GestureDetector(
+                onTap: () => FocusScope.of(context).unfocus(),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(16),
+                  child: MaxWidthInput(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
+                          const SettingsTitleSection(title: 'Entrenador'),
                           CustomTextField(
-                            label: 'Trainer ID',
-                            fieldWidth: MediaQuery.sizeOf(context).width / 2.3,
-                            icon: Icons.badge,
-                            controller: _trainerIdController,
+                            label: 'Apodo',
+                            icon: Icons.person,
+                            controller: _nickNameController,
                             validator: (String? value) {
                               if (value == null || value.trim().isEmpty) {
-                                return 'Ingresa el Trainer ID';
-                              }
-                              if (value.trim().length < 12) {
-                                return '''El Trainer ID debe contener al menos 12 dígitos''';
+                                return 'Ingresa el apodo del entrenador';
                               }
                               return null;
                             },
                           ),
-                          CustomTextField(
-                            label: 'Nivel',
-                            fieldWidth: MediaQuery.sizeOf(context).width / 2.3,
-                            icon: Icons.leaderboard,
-                            controller: _levelController,
-                            inputType: TextInputType.number,
-                            validator: (String? value) {
-                              int maxLevel = 80;
-                              if (value == null || value.trim().isEmpty) {
-                                return 'Ingresa el nivel actual';
-                              }
-                              int? parsed = int.tryParse(value.trim());
-                              if (parsed == null ||
-                                  parsed <= 0 ||
-                                  parsed > maxLevel) {
-                                return 'Ingresa un nivel válido (1 - 80)';
-                              }
-                              return null;
-                            },
+                          const SizedBox(height: 8),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                child: CustomTextField(
+                                  label: 'Trainer ID',
+                                  icon: Icons.badge,
+                                  controller: _trainerIdController,
+                                  validator: (String? value) {
+                                    if (value == null || value.trim().isEmpty) {
+                                      return 'Ingresa el Trainer ID';
+                                    }
+                                    if (value.trim().length < 12) {
+                                      return '''El Trainer ID debe contener al menos 12 dígitos''';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: CustomTextField(
+                                  label: 'Nivel',
+                                  icon: Icons.leaderboard,
+                                  controller: _levelController,
+                                  inputType: TextInputType.number,
+                                  validator: (String? value) {
+                                    int maxLevel = 80;
+                                    if (value == null || value.trim().isEmpty) {
+                                      return 'Ingresa el nivel actual';
+                                    }
+                                    int? parsed = int.tryParse(value.trim());
+                                    if (parsed == null ||
+                                        parsed <= 0 ||
+                                        parsed > maxLevel) {
+                                      return 'Ingresa un nivel válido (1 - 80)';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SettingsTitleSection(title: 'Equipo'),
+                          Row(
+                            children: <Widget>[
+                              Expanded(child: _buildDropdown()),
+                              const SizedBox(width: 16),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 14),
+                                child: _buildTrainerPreview(context),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      const SettingsTitleSection(title: 'Equipo'),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          _buildDropdown(
-                            fieldWidth: MediaQuery.sizeOf(context).width / 1.5,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 30),
-                            child: _buildTrainerPreview(context),
-                          ),
-                        ],
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
-          error:
-              (Object error, StackTrace stackTrace) => const Center(
-                child: SimpleErrorChip(
-                  iconData: Icons.person,
-                  text: 'Con la información del entrenador',
+              );
+            },
+            error:
+                (Object error, StackTrace stackTrace) => const Center(
+                  child: SimpleErrorChip(
+                    iconData: Icons.person,
+                    text: 'Con la información del entrenador',
+                  ),
                 ),
-              ),
-          loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CircularProgressIndicator()),
+          ),
         ),
         bottomNavigationBar: firebaseState.when(
           data: (PokemonFirebaseState data) {
@@ -308,27 +309,30 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
                   bottom: 16,
                   top: 8,
                 ),
-                child: SizedBox(
-                  width: 200,
-                  child: ElevatedButton(
-                    onPressed:
-                        !_isSaving && _hasChanges(trainer)
-                            ? () => _submit(trainer)
-                            : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.secondary,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                child: MaxWidthInput(
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed:
+                          !_isSaving && _hasChanges(trainer)
+                              ? () => _submit(trainer)
+                              : null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 0,
                       ),
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      _isSaving ? 'Guardando...' : 'Guardar cambios',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.onSecondary,
+                      child: Text(
+                        _isSaving ? 'Guardando...' : 'Guardar cambios',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onSecondary,
+                        ),
                       ),
                     ),
                   ),
@@ -373,7 +377,7 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
             Text(
               'Selecciona un equipo para previsualizar',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white70),
+              style: TextStyle(color: onPrimaryMuted),
             ),
           ],
         ),
