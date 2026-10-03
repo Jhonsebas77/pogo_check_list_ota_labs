@@ -49,67 +49,11 @@ class _ZygardeDetailsState extends ConsumerState<ZygardeDetails> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Card(
-                                  color: Colors.black.withValues(alpha: 0.35),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(16),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Column(
-                                          children: <Widget>[
-                                            Image.asset(
-                                              'assets/pokedex_sprites/718_${getZygardeActualForm(state.zygardeCells!)}.png',
-                                              height: 50,
-                                              width: 50,
-                                              fit: BoxFit.fill,
-                                            ),
-                                            Text(
-                                              state.zygardeCells!.actualForm,
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8),
-                                          child: Column(
-                                            children: <Widget>[
-                                              SizedBox(
-                                                width: 80,
-                                                child: LinearProgressIndicator(
-                                                  value:
-                                                      state
-                                                          .zygardeCells!
-                                                          .quantity /
-                                                      state.zygardeCells!.limit,
-                                                  borderRadius:
-                                                      BorderRadius.circular(50),
-                                                  backgroundColor:
-                                                      Theme.of(context)
-                                                          .colorScheme
-                                                          .secondaryContainer,
-                                                  color:
-                                                      Theme.of(
-                                                        context,
-                                                      ).colorScheme.secondary,
-                                                ),
-                                              ),
-                                              Text(
-                                                '${state.zygardeCells!.quantity} / ${state.zygardeCells!.limit} ',
-                                                style: const TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                textAlign: TextAlign.start,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
+                                Flexible(
+                                  child: _ZygardeProgressCard(
+                                    zygardeCells: state.zygardeCells!,
+                                    formId: getZygardeActualForm(
+                                      state.zygardeCells!,
                                     ),
                                   ),
                                 ),
@@ -145,6 +89,74 @@ class _ZygardeDetailsState extends ConsumerState<ZygardeDetails> {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ZygardeProgressCard extends StatelessWidget {
+  const _ZygardeProgressCard({
+    required this.zygardeCells,
+    required this.formId,
+  });
+
+  final ZygardeCells zygardeCells;
+  final String formId;
+
+  @override
+  Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    return Card(
+      color: Colors.black.withValues(alpha: 0.35),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Image.asset(
+                  'assets/pokedex_sprites/718_$formId.png',
+                  height: 50,
+                  width: 50,
+                  fit: BoxFit.fill,
+                ),
+                Text(zygardeCells.actualForm),
+              ],
+            ),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      width: 80,
+                      child: LinearProgressIndicator(
+                        value: zygardeCells.quantity / zygardeCells.limit,
+                        borderRadius: BorderRadius.circular(50),
+                        backgroundColor: colorScheme.secondaryContainer,
+                        color: colorScheme.secondary,
+                      ),
+                    ),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        '${zygardeCells.quantity} / ${zygardeCells.limit}',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

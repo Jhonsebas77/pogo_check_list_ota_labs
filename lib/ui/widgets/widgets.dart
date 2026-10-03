@@ -46,6 +46,7 @@ part 'modals/zygarde_cells.dart';
 part 'settings/lucky_friends/list_friends.dart';
 part 'settings/lucky_friends/lucky_friend_list_tile.dart';
 part 'settings/menu_item.dart';
+part 'settings/sign_out.dart';
 part 'settings/title_section.dart';
 part 'settings/trade/card.dart';
 part 'settings/trade/card_editor.dart';

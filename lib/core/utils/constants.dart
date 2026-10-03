@@ -2,8 +2,13 @@ library com.pogo_check_list_ota_labs.app.constants;
 
 import 'package:flutter/material.dart';
 
-const String databaseURL =
-    'https://flutter-tools-jsob-default-rtdb.firebaseio.com/po_go_check_list';
+const String supabaseUrl = String.fromEnvironment('SUPABASE_URL');
+const String supabasePublishableKey = String.fromEnvironment(
+  'SUPABASE_PUBLISHABLE_KEY',
+);
+const String hardcodedEmail = String.fromEnvironment('AUTH_EMAIL');
+
+const String databaseURL = String.fromEnvironment('FIREBASE_DATABASE_URL');
 const String pokemonDetailPath = 'https://pokeapi.co/api/v2/pokemon/';
 const String placeHolderImage = 'https://i.ibb.co/KcX8h982/download-16.png';
 

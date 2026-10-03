@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/providers/providers.dart';
 import 'core/utils/constants.dart';
@@ -16,6 +17,23 @@ import 'ui/widgets/widgets.dart';
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  if (supabaseUrl.isEmpty ||
+      supabasePublishableKey.isEmpty ||
+      hardcodedEmail.isEmpty ||
+      databaseURL.isEmpty) {
+    throw StateError(
+      'Faltan las credenciales. Corre la app con '
+      '--dart-define=SUPABASE_URL=... '
+      '--dart-define=SUPABASE_PUBLISHABLE_KEY=... '
+      '--dart-define=AUTH_EMAIL=... '
+      '--dart-define=FIREBASE_DATABASE_URL=... '
+      '(o --dart-define-from-file=config/dart_defines.local.json).',
+    );
+  }
+  await Supabase.initialize(
+    url: supabaseUrl,
+    publishableKey: supabasePublishableKey,
+  );
   await initializeDateFormatting();
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
@@ -30,12 +48,18 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ThemeMode themeMode = ref.watch(themeModeProvider);
+    bool isAuthenticated = ref.watch(
+      authProvider.select((AuthStatus auth) => auth.isAuthenticated),
+    );
     return MaterialApp(
       title: 'Pogo Checks',
       theme: appTheme,
       darkTheme: appDarkTheme,
       themeMode: themeMode,
-      home: const MyHomePage(title: 'Pogo Checks'),
+      home:
+          isAuthenticated
+              ? const MyHomePage(title: 'Pogo Checks')
+              : const LoginView(),
     );
   }
 }

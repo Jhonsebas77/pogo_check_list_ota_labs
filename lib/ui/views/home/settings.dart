@@ -42,6 +42,7 @@ class SettingsView extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 4,
             children: <Widget>[
               SettingsTitleSection(title: 'Aplicación'),
               SettingsMenuItem(
@@ -49,6 +50,7 @@ class SettingsView extends StatelessWidget {
                 leadingIcon: Icons.palette,
                 viewToNavigate: ColorSchemeView(),
               ),
+              SignOutMenuItem(),
             ],
           ),
           Column(children: <Widget>[Divider(), VersionWidget()]),

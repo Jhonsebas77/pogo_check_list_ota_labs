@@ -27,6 +27,7 @@ El uso principal es **móvil en orientación vertical** (`portraitUp` fijado en
 
 - **Flutter / Dart** (SDK `^3.7.2`).
 - **Riverpod** (`flutter_riverpod`) — gestión de estado.
+- **Supabase Auth** (`supabase_flutter`) — login con contraseña.
 - **Firebase** (`firebase_core`, `firebase_database`) — Realtime Database como
   backend de datos.
 - **PokeAPI** (`https://pokeapi.co`) vía `http` — detalle de cada Pokémon.
@@ -167,11 +168,47 @@ Si falta el PNG de una forma, la UI cae automáticamente al sprite base
 Requisitos: Flutter SDK compatible con Dart `^3.7.2` y las credenciales de
 Firebase del proyecto (`lib/firebase_options.dart` ya incluido).
 
+### Configuración (`--dart-define`)
+
+Las credenciales se pasan en tiempo de compilación con `--dart-define` y nunca
+se suben al repo.
+
 ```bash
-flutter pub get          # instalar dependencias
-flutter run              # ejecutar en el dispositivo/emulador conectado
+cp config/dart_defines.example.json config/dart_defines.local.json
+# luego edita config/dart_defines.local.json
+```
+
+| Clave | Descripción |
+|-------|-------------|
+| `SUPABASE_URL` | URL del proyecto (`https://<ref>.supabase.co`) |
+| `SUPABASE_PUBLISHABLE_KEY` | Publishable (anon) key |
+| `AUTH_EMAIL` | Correo del usuario con el que se inicia sesión |
+| `FIREBASE_DATABASE_URL` | URL de la Realtime Database (`https://<project>-default-rtdb.firebaseio.com/po_go_check_list`) |
+
+`config/dart_defines.local.json` está en `.gitignore`. La app lanza un
+`StateError` al arrancar si falta alguna clave.
+
+### Login
+
+Al abrir la app se muestra una pantalla de login que solo pide la
+**contraseña**: el correo es fijo (`AUTH_EMAIL`) y la autenticación se hace con
+Supabase Auth (`signInWithPassword`). La sesión persiste entre aperturas y se
+puede cerrar desde **Ajustes → Cerrar sesión**.
+
+### Ejecutar
+
+```bash
+flutter pub get
+flutter run --dart-define-from-file=config/dart_defines.local.json
 flutter analyze          # análisis estático (lint)
 flutter test             # tests
+```
+
+En VS Code, `.vscode/launch.json` ya incluye el `--dart-define-from-file`.
+
+```bash
+flutter build apk --dart-define-from-file=config/dart_defines.local.json
+flutter build ipa --dart-define-from-file=config/dart_defines.local.json
 ```
 
 Regenerar el splash tras cambiar su imagen:

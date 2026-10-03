@@ -140,3 +140,4 @@ packages/apps/tyba-app/config.json
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
 lib/firebase_options.dart
+config/dart_defines.local.json
