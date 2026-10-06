@@ -1,5 +1,6 @@
 library com.pogo_check_list_ota_labs.app.views;
 
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -13,6 +13,7 @@ const String hardcodedEmail = String.fromEnvironment('AUTH_EMAIL');
 
 const String databaseURL = String.fromEnvironment('FIREBASE_DATABASE_URL');
 const String pokemonDetailPath = 'https://pokeapi.co/api/v2/pokemon/';
+const String pokemonSpeciesPath = 'https://pokeapi.co/api/v2/pokemon-species/';
 const String placeHolderImage = 'https://i.ibb.co/KcX8h982/download-16.png';
 
 // [Firebase Path]

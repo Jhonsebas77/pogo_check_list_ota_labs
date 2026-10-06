@@ -53,11 +53,15 @@ class TypeMatchupGroup extends StatelessWidget {
   const TypeMatchupGroup({
     required this.multiplier,
     required this.types,
+    this.small = false,
     super.key,
   });
 
   final double multiplier;
   final List<String> types;
+
+  /// Muestra cada tipo con su icono cuadrado `_small` en lugar del banner.
+  final bool small;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -74,7 +78,13 @@ class TypeMatchupGroup extends StatelessWidget {
           runSpacing: 8,
           children:
               types
-                  .map((String type) => TypeImageBadge(type: type, height: 30))
+                  .map(
+                    (String type) => TypeImageBadge(
+                      type: type,
+                      height: small ? 32 : 30,
+                      small: small,
+                    ),
+                  )
                   .toList(),
         ),
       ),

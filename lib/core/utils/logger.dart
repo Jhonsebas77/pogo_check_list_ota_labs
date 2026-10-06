@@ -28,4 +28,11 @@ class Logger {
     if (kReleaseMode) return;
     debugPrint('\x1B[33m$formattedDate [$formattedName]: $msg\x1B[0m');
   }
+
+  /// Solo se emite en modo debug (ni en profile ni en release). Pensado para
+  /// trazas ruidosas como las llamadas a URLs externas.
+  void debug(String msg) {
+    if (!kDebugMode) return;
+    debugPrint('\x1B[36m$formattedDate [$formattedName]: $msg\x1B[0m');
+  }
 }
