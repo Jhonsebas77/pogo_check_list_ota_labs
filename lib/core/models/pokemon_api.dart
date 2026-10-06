@@ -250,9 +250,22 @@ class EvolutionNode {
     ];
   }
 
+  /// Formas que la API nombra pero que en la app son la forma normal de la
+  /// especie (sin `alternative_form`): Lycanroc Diurno, Toxtricity Aguda,
+  /// Maushold familia de cuatro, Dudunsparce binodular. También las
+  /// variantes de sexo (Basculegion), que comparten sprite.
+  static const Set<String> _defaultForms = <String>{
+    'male',
+    'female',
+    'midday',
+    'amped',
+    'family_of_four',
+    'two_segment',
+  };
+
   /// Sufijo de la forma en el formato de la app: `meowth-galar` → `galar`,
   /// `basculin-white-striped` → `white_striped`. Vacío para la forma normal
-  /// y para las variantes de sexo, que comparten sprite.
+  /// (ver [_defaultForms]).
   static String _formSuffix(dynamic form, String speciesName) {
     if (form == null) return '';
     String name = form['name'] as String;
@@ -262,8 +275,8 @@ class EvolutionNode {
             : name == speciesName
             ? ''
             : name;
-    if (suffix == 'male' || suffix == 'female') return '';
-    return suffix.replaceAll('-', '_');
+    suffix = suffix.replaceAll('-', '_');
+    return _defaultForms.contains(suffix) ? '' : suffix;
   }
 
   /// `mr-mime` → `Mr Mime`. Respaldo cuando la especie no está en Firebase.

@@ -172,7 +172,7 @@ class _EvolutionMember extends StatelessWidget {
                 ? null
                 : () => CustomNavigator().push(
                   context,
-                  DetailsScreen(pokemonId: node.id),
+                  DetailsScreen(pokemonId: node.id, title: fullName),
                   routeName: '${DetailsScreen.route}/${node.id}',
                   animation: CustomNavigationAnimation.fade,
                 ),

@@ -24,6 +24,12 @@ class PokemonListItem extends ConsumerWidget {
           ? '${selectPokemon.id}${selectPokemon.formSuffix}'
           : selectPokemon.id;
 
+  /// Nombre con la forma, si la tiene: `Meowth (Galar)`.
+  String get _displayName =>
+      selectPokemon.isAlternativeForm
+          ? '${selectPokemon.name} (${selectPokemon.formTag!.name})'
+          : selectPokemon.name;
+
   /// `errorBuilder` que cae al sprite [fallbackAsset] de la especie base cuando
   /// falta el PNG de la forma alternativa.
   ImageErrorWidgetBuilder _spriteFallback(String fallbackAsset) =>
@@ -42,7 +48,7 @@ class PokemonListItem extends ConsumerWidget {
     onTap: () {
       CustomNavigator().push(
         context,
-        DetailsScreen(pokemonId: index),
+        DetailsScreen(pokemonId: index, title: _displayName),
         routeName: '${DetailsScreen.route}/$index',
         animation: CustomNavigationAnimation.fade,
       );
@@ -58,110 +64,115 @@ class PokemonListItem extends ConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/bg_holder_pokemon.png',
-                      height: 50,
-                      width: 50,
-                      fit: BoxFit.fill,
-                    ),
-                    if (isGigantamax)
+            Expanded(
+              child: Row(
+                children: <Widget>[
+                  Stack(
+                    children: <Widget>[
                       Image.asset(
-                        'assets/pokedex_gigantamax/${selectPokemon.id}.png',
+                        'assets/bg_holder_pokemon.png',
                         height: 50,
                         width: 50,
-                        cacheHeight: 100,
-                        cacheWidth: 100,
                         fit: BoxFit.fill,
-                      )
-                    else if (isShiny)
-                      if (selectPokemon.shinyAvailable == false)
+                      ),
+                      if (isGigantamax)
                         Image.asset(
-                          'assets/pokedex_sprites_shiny/0.png',
+                          'assets/pokedex_gigantamax/${selectPokemon.id}.png',
                           height: 50,
                           width: 50,
                           cacheHeight: 100,
                           cacheWidth: 100,
                           fit: BoxFit.fill,
                         )
-                      else
-                        Hero(
-                          tag: _heroTag,
-                          child: Image.asset(
-                            'assets/pokedex_sprites_shiny/${selectPokemon.id}${selectPokemon.formSuffix}.png',
+                      else if (isShiny)
+                        if (selectPokemon.shinyAvailable == false)
+                          Image.asset(
+                            'assets/pokedex_sprites_shiny/0.png',
                             height: 50,
                             width: 50,
                             cacheHeight: 100,
                             cacheWidth: 100,
                             fit: BoxFit.fill,
-                            errorBuilder: _spriteFallback(
-                              'assets/pokedex_sprites_shiny/${selectPokemon.id}.png',
+                          )
+                        else
+                          Hero(
+                            tag: _heroTag,
+                            child: Image.asset(
+                              'assets/pokedex_sprites_shiny/${selectPokemon.id}${selectPokemon.formSuffix}.png',
+                              height: 50,
+                              width: 50,
+                              cacheHeight: 100,
+                              cacheWidth: 100,
+                              fit: BoxFit.fill,
+                              errorBuilder: _spriteFallback(
+                                'assets/pokedex_sprites_shiny/${selectPokemon.id}.png',
+                              ),
+                            ),
+                          )
+                      else if (!isShiny)
+                        if (selectPokemon.available == false)
+                          Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Image.asset(
+                              'assets/pokedex_sprites/${selectPokemon.id}${selectPokemon.formSuffix}.png',
+                              height: 50,
+                              width: 50,
+                              cacheHeight: 100,
+                              cacheWidth: 100,
+                              fit: BoxFit.fill,
+                              errorBuilder: _spriteFallback(
+                                'assets/pokedex_sprites/${selectPokemon.id}.png',
+                              ),
+                            ),
+                          )
+                        else
+                          Hero(
+                            tag: _heroTag,
+                            child: Image.asset(
+                              'assets/pokedex_sprites/${selectPokemon.id}${selectPokemon.formSuffix}.png',
+                              height: 50,
+                              width: 50,
+                              cacheHeight: 100,
+                              cacheWidth: 100,
+                              fit: BoxFit.fill,
+                              errorBuilder: _spriteFallback(
+                                'assets/pokedex_sprites/${selectPokemon.id}.png',
+                              ),
                             ),
                           ),
-                        )
-                    else if (!isShiny)
-                      if (selectPokemon.available == false)
-                        Shimmer.fromColors(
-                          baseColor: Colors.grey[300]!,
-                          highlightColor: Colors.grey[100]!,
-                          child: Image.asset(
-                            'assets/pokedex_sprites/${selectPokemon.id}${selectPokemon.formSuffix}.png',
-                            height: 50,
-                            width: 50,
-                            cacheHeight: 100,
-                            cacheWidth: 100,
-                            fit: BoxFit.fill,
-                            errorBuilder: _spriteFallback(
-                              'assets/pokedex_sprites/${selectPokemon.id}.png',
-                            ),
-                          ),
-                        )
-                      else
-                        Hero(
-                          tag: _heroTag,
-                          child: Image.asset(
-                            'assets/pokedex_sprites/${selectPokemon.id}${selectPokemon.formSuffix}.png',
-                            height: 50,
-                            width: 50,
-                            cacheHeight: 100,
-                            cacheWidth: 100,
-                            fit: BoxFit.fill,
-                            errorBuilder: _spriteFallback(
-                              'assets/pokedex_sprites/${selectPokemon.id}.png',
-                            ),
+                    ],
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          paddingDexNumber(dexNumber: selectPokemon.id),
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
                         ),
-                  ],
-                ),
-                const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      paddingDexNumber(dexNumber: selectPokemon.id),
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
+                        Text(
+                          _displayName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      selectPokemon.isAlternativeForm
-                          ? '${selectPokemon.name} '
-                              '(${selectPokemon.formTag!.name})'
-                          : selectPokemon.name,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
             if (selectPokemon.available)
               GestureDetector(

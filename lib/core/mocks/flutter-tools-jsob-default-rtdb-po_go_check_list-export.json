@@ -5462,22 +5462,6 @@
     {
       "already_catch": true,
       "already_catch_shiny_version": false,
-      "alternative_forms": [
-        {
-          "already_catch": false,
-          "already_catch_shiny_version": false,
-          "alternative_form": {
-            "id": "z",
-            "name": "Z",
-            "order": 1
-          },
-          "available": false,
-          "id": 359,
-          "name": "Absol",
-          "shiny_available": false,
-          "tradable": true
-        }
-      ],
       "available": true,
       "id": 359,
       "name": "Absol",
@@ -8583,6 +8567,36 @@
     {
       "already_catch": true,
       "already_catch_shiny_version": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "black",
+            "name": "Kyurem Negro",
+            "order": 1
+          },
+          "available": true,
+          "id": 646,
+          "name": "Kyurem",
+          "shiny_available": true,
+          "tradable": false
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "white",
+            "name": "Kyurem Blanco",
+            "order": 2
+          },
+          "available": true,
+          "id": 646,
+          "name": "Kyurem",
+          "shiny_available": true,
+          "tradable": false
+        }
+      ],
       "available": true,
       "id": 646,
       "name": "Kyurem",
@@ -8592,6 +8606,22 @@
     {
       "already_catch": true,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "brio",
+            "name": "Forma Brío",
+            "order": 1
+          },
+          "available": false,
+          "id": 647,
+          "name": "Keldeo",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": true,
       "id": 647,
       "name": "Keldeo",
@@ -9683,6 +9713,22 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "school",
+            "name": "Forma Banco",
+            "order": 1
+          },
+          "available": false,
+          "id": 746,
+          "name": "Wishiwashi",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": false,
       "id": 746,
       "name": "Wishiwashi",
@@ -9935,6 +9981,106 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "open-rose",
+            "name": "Núcleo Rojo",
+            "order": 1
+          },
+          "available": false,
+          "id": 774,
+          "name": "Minior",
+          "shiny_available": false,
+          "tradable": false
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "open-orange",
+            "name": "Núcleo Naranja",
+            "order": 2
+          },
+          "available": false,
+          "id": 774,
+          "name": "Minior",
+          "shiny_available": false,
+          "tradable": false
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "open-yellow",
+            "name": "Núcleo Amarillo",
+            "order": 3
+          },
+          "available": false,
+          "id": 774,
+          "name": "Minior",
+          "shiny_available": false,
+          "tradable": false
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "open-green",
+            "name": "Núcleo Verde",
+            "order": 4
+          },
+          "available": false,
+          "id": 774,
+          "name": "Minior",
+          "shiny_available": false,
+          "tradable": false
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "open-cyan",
+            "name": "Núcleo Azul",
+            "order": 5
+          },
+          "available": false,
+          "id": 774,
+          "name": "Minior",
+          "shiny_available": false,
+          "tradable": false
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "open-blue",
+            "name": "Núcleo Añil",
+            "order": 6
+          },
+          "available": false,
+          "id": 774,
+          "name": "Minior",
+          "shiny_available": false,
+          "tradable": false
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "open-violet",
+            "name": "Núcleo Violeta",
+            "order": 7
+          },
+          "available": false,
+          "id": 774,
+          "name": "Minior",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": false,
       "id": 774,
       "name": "Minior",
@@ -10197,6 +10343,20 @@
           "name": "Necrozma",
           "shiny_available": true,
           "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "ultra",
+            "name": "Ultra Necrozma",
+            "order": 3
+          },
+          "available": false,
+          "id": 800,
+          "name": "Necrozma",
+          "shiny_available": false,
+          "tradable": false
         }
       ],
       "available": true,
@@ -10208,6 +10368,22 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "vetusto",
+            "name": "Color Original",
+            "order": 1
+          },
+          "available": false,
+          "id": 801,
+          "name": "Magearna",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": false,
       "id": 801,
       "name": "Magearna",
@@ -11057,6 +11233,22 @@
     {
       "already_catch": true,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "eternamax",
+            "name": "Eternamax",
+            "order": 1
+          },
+          "available": false,
+          "id": 890,
+          "name": "Eternatus",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": true,
       "id": 890,
       "name": "Eternatus",
@@ -11202,6 +11394,22 @@
     {
       "already_catch": true,
       "already_catch_shiny_version": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "carmesi",
+            "name": "Luna Carmesí",
+            "order": 1
+          },
+          "available": true,
+          "id": 901,
+          "name": "Ursaluna",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": true,
       "id": 901,
       "name": "Ursaluna",
@@ -11434,6 +11642,22 @@
     {
       "already_catch": true,
       "already_catch_shiny_version": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "family_of_three",
+            "name": "Familia de Tres",
+            "order": 1
+          },
+          "available": true,
+          "id": 925,
+          "name": "Maushold",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ],
       "available": true,
       "id": 925,
       "name": "Maushold",
@@ -11488,6 +11712,50 @@
     {
       "already_catch": true,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "blue",
+            "name": "Plumaje Azul",
+            "order": 1
+          },
+          "available": true,
+          "id": 931,
+          "name": "Squawkabilly",
+          "shiny_available": false,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "yellow",
+            "name": "Plumaje Amarillo",
+            "order": 2
+          },
+          "available": true,
+          "id": 931,
+          "name": "Squawkabilly",
+          "shiny_available": false,
+          "tradable": true
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "white",
+            "name": "Plumaje Blanco",
+            "order": 3
+          },
+          "available": true,
+          "id": 931,
+          "name": "Squawkabilly",
+          "shiny_available": false,
+          "tradable": true
+        }
+      ],
       "available": true,
       "id": 931,
       "name": "Squawkabilly",
@@ -11785,6 +12053,22 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "hero",
+            "name": "Forma Heroica",
+            "order": 1
+          },
+          "available": false,
+          "id": 964,
+          "name": "Palafin",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": false,
       "id": 964,
       "name": "Palafin",
@@ -11911,6 +12195,36 @@
     {
       "already_catch": true,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "one",
+            "name": "Forma Lánguida",
+            "order": 1
+          },
+          "available": true,
+          "id": 978,
+          "name": "Tatsugiri",
+          "shiny_available": false,
+          "tradable": false
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "two",
+            "name": "Forma Recta",
+            "order": 2
+          },
+          "available": true,
+          "id": 978,
+          "name": "Tatsugiri",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": true,
       "id": 978,
       "name": "Tatsugiri",
@@ -11947,6 +12261,22 @@
     {
       "already_catch": true,
       "already_catch_shiny_version": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "three_segment",
+            "name": "Forma Trinodular",
+            "order": 1
+          },
+          "available": true,
+          "id": 982,
+          "name": "Dudunsparce",
+          "shiny_available": true,
+          "tradable": true
+        }
+      ],
       "available": true,
       "id": 982,
       "name": "Dudunsparce",
@@ -12100,6 +12430,22 @@
     {
       "already_catch": true,
       "already_catch_shiny_version": true,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "roaming",
+            "name": "Forma Andante",
+            "order": 1
+          },
+          "available": true,
+          "id": 999,
+          "name": "Gimmighoul",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": true,
       "id": 999,
       "name": "Gimmighoul",
@@ -12262,6 +12608,50 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "water",
+            "name": "Máscara Fuente",
+            "order": 1
+          },
+          "available": false,
+          "id": 1017,
+          "name": "Ogerpon",
+          "shiny_available": false,
+          "tradable": false
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "fire",
+            "name": "Máscara Horno",
+            "order": 2
+          },
+          "available": false,
+          "id": 1017,
+          "name": "Ogerpon",
+          "shiny_available": false,
+          "tradable": false
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "rock",
+            "name": "Máscara Cimiento",
+            "order": 3
+          },
+          "available": false,
+          "id": 1017,
+          "name": "Ogerpon",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": false,
       "id": 1017,
       "name": "Ogerpon",
@@ -12325,6 +12715,36 @@
     {
       "already_catch": false,
       "already_catch_shiny_version": false,
+      "alternative_forms": [
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "terastal",
+            "name": "Forma Teracristal",
+            "order": 1
+          },
+          "available": false,
+          "id": 1024,
+          "name": "Terapagos",
+          "shiny_available": false,
+          "tradable": false
+        },
+        {
+          "already_catch": false,
+          "already_catch_shiny_version": false,
+          "alternative_form": {
+            "id": "stellar",
+            "name": "Forma Astral",
+            "order": 2
+          },
+          "available": false,
+          "id": 1024,
+          "name": "Terapagos",
+          "shiny_available": false,
+          "tradable": false
+        }
+      ],
       "available": false,
       "id": 1024,
       "name": "Terapagos",

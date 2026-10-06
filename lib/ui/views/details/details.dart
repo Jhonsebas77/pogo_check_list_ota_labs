@@ -1,9 +1,13 @@
 part of com.pogo_check_list_ota_labs.app.views;
 
 class DetailsScreen extends ConsumerWidget {
-  const DetailsScreen({required this.pokemonId, super.key});
+  const DetailsScreen({required this.pokemonId, this.title, super.key});
   static const String route = '/pokemon/details';
   final int pokemonId;
+
+  /// Nombre a mostrar, con la forma si aplica (`Meowth (Galar)`). Si es
+  /// `null` se usa el nombre de la colección o, en su defecto, el de la API.
+  final String? title;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,9 +20,11 @@ class DetailsScreen extends ConsumerWidget {
           loading: () => const CustomAppBar(isLoading: true),
           error:
               (Object error, StackTrace stackTrace) =>
-                  CustomAppBar(title: '$pokemonId'),
-
-          data: (PokemonDetail pokemon) => CustomAppBar(title: pokemon.name),
+                  CustomAppBar(title: title ?? '$pokemonId'),
+          data:
+              (PokemonDetail pokemon) => CustomAppBar(
+                title: title ?? _collectionName(ref) ?? pokemon.name,
+              ),
         ),
         body: WebContent(
           child: pokemonAsyncValue.when(
@@ -36,6 +42,16 @@ class DetailsScreen extends ConsumerWidget {
       ),
     );
   }
+
+  /// Nombre de la especie en Firebase (`Mr. Mime`, `Farfetch'd`), más fiel
+  /// que el de la API (`Mr-mime`).
+  String? _collectionName(WidgetRef ref) =>
+      ref
+          .watch(firebasePokemonProvider)
+          .valueOrNull
+          ?.allPokemon
+          .firstWhereOrNull((PokemonModel p) => p.id == pokemonId)
+          ?.name;
 }
 
 class _DetailsContent extends ConsumerWidget {

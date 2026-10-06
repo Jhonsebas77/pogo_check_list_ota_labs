@@ -23,7 +23,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     title:
         (isLoading ?? false)
             ? const SimpleTextShimmer(widthShimmer: 200, heightShimmer: 24)
-            : Text(
+            : MarqueeText(
               title ?? '',
               style: const TextStyle(
                 fontSize: 24,
