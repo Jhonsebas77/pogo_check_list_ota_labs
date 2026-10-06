@@ -5,11 +5,13 @@ class HomeMenuItem extends StatelessWidget {
     required this.label,
     required this.image,
     required this.viewToNavigate,
+    required this.routeName,
     super.key,
   });
   final String label;
   final String image;
   final Widget viewToNavigate;
+  final String routeName;
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -19,6 +21,7 @@ class HomeMenuItem extends StatelessWidget {
         CustomNavigator().push(
           context,
           viewToNavigate,
+          routeName: routeName,
           animation: CustomNavigationAnimation.slideBottom,
         );
       },

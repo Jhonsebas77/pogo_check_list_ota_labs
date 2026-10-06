@@ -41,6 +41,11 @@ IconData defaultIcon(SnackbarType type) => switch (type) {
   _ => Icons.check_circle_outline_outlined,
 };
 
+const double _kMaxSnackBarWidth = 556;
+
+bool _useFixedWidth(BuildContext context) =>
+    MediaQuery.sizeOf(context).width >= _kMaxSnackBarWidth + 32;
+
 class CustomSnackBar extends SnackBar {
   CustomSnackBar({
     required BuildContext context,
@@ -54,8 +59,11 @@ class CustomSnackBar extends SnackBar {
          elevation: 2,
          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
          behavior: SnackBarBehavior.floating,
-         margin: kIsWeb ? null : const EdgeInsetsGeometry.all(16),
-         width: kIsWeb ? 556 : null,
+         // `width` y `margin` son excluyentes: el ancho fijo solo aplica si
+         // cabe con 16px a cada lado; si no, se usa el margen lateral.
+         margin:
+             _useFixedWidth(context) ? null : const EdgeInsetsGeometry.all(16),
+         width: _useFixedWidth(context) ? _kMaxSnackBarWidth : null,
          backgroundColor: backgroundColorType(type),
          content: Theme(
            data: themeData ?? Theme.of(context),

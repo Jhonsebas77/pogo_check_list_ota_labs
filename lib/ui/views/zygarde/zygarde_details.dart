@@ -2,6 +2,7 @@ part of com.pogo_check_list_ota_labs.app.views;
 
 class ZygardeDetails extends ConsumerStatefulWidget {
   const ZygardeDetails({super.key});
+  static const String route = '/zygarde';
 
   @override
   ConsumerState<ZygardeDetails> createState() => _ZygardeDetailsState();

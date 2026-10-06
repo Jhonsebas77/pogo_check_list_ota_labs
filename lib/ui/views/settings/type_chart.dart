@@ -2,6 +2,7 @@ part of com.pogo_check_list_ota_labs.app.views;
 
 class TypeChartView extends StatefulWidget {
   const TypeChartView({super.key});
+  static const String route = '/settings/type-chart';
 
   @override
   State<TypeChartView> createState() => _TypeChartViewState();
@@ -53,6 +54,7 @@ class _TypeChartViewState extends State<TypeChartView> {
                                     style: const TextStyle(color: Colors.white),
                                     items:
                                         kPokemonTypes
+                                            .where((String t) => t != _type2)
                                             .map(
                                               (String t) =>
                                                   DropdownMenuItem<String>(
@@ -87,6 +89,7 @@ class _TypeChartViewState extends State<TypeChartView> {
                                     ),
                                     items:
                                         <String?>[null, ...kPokemonTypes]
+                                            .where((String? t) => t != _type1)
                                             .map(
                                               (String? t) =>
                                                   DropdownMenuItem<String?>(
@@ -112,19 +115,14 @@ class _TypeChartViewState extends State<TypeChartView> {
                           const SizedBox(height: 16),
                           Center(
                             child: Wrap(
+                              alignment: WrapAlignment.center,
                               spacing: 12,
                               runSpacing: 12,
                               children:
                                   selectedTypes
                                       .map(
-                                        (String type) => TypeBadge(
-                                          type: type,
-                                          color:
-                                              kTypeColors[type] ?? Colors.grey,
-                                          icon:
-                                              kTypeIcons[type] ??
-                                              Icons.help_outline,
-                                        ),
+                                        (String type) =>
+                                            TypeImageBadge(type: type),
                                       )
                                       .toList(),
                             ),
@@ -155,18 +153,21 @@ class _TypeChartViewState extends State<TypeChartView> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 TypeSection(
-                                  title: 'Inmunidades',
-                                  matchup: effectiveness.immunities,
-                                ),
-                                const SizedBox(height: 8),
-                                TypeSection(
                                   title: 'Debilidades',
+                                  subtitle: 'Recibe más daño de estos tipos',
                                   matchup: effectiveness.weaknesses,
                                 ),
                                 const SizedBox(height: 8),
                                 TypeSection(
                                   title: 'Fortalezas',
+                                  subtitle: 'Recibe menos daño de estos tipos',
                                   matchup: effectiveness.resistances,
+                                ),
+                                const SizedBox(height: 8),
+                                TypeSection(
+                                  title: 'Inmunidades',
+                                  subtitle: 'No recibe daño de estos tipos',
+                                  matchup: effectiveness.immunities,
                                 ),
                               ],
                             ),

@@ -1,30 +1,40 @@
 part of com.pogo_check_list_ota_labs.app.widgets;
 
-class TypeMatchupChip extends StatelessWidget {
-  const TypeMatchupChip(this.matchup, {super.key});
+/// Etiqueta con el multiplicador de daño (ej. `×2`, `×0.5`), coloreada según
+/// si el daño recibido aumenta, disminuye o es nulo.
+class TypeMultiplierPill extends StatelessWidget {
+  const TypeMultiplierPill(this.multiplier, {super.key});
 
-  final TypeMatchup matchup;
+  final double multiplier;
 
   @override
   Widget build(BuildContext context) {
-    Color baseColor = kTypeColors[matchup.type] ?? Colors.grey;
-    IconData icon = kTypeIcons[matchup.type] ?? Icons.help_outline;
-    Color foreground = readableOn(baseColor);
-
-    return Chip(
-      backgroundColor: baseColor.withValues(alpha: 0.9),
-      avatar: CircleAvatar(
-        backgroundColor: foreground.withValues(alpha: 0.2),
-        child: Icon(icon, color: foreground, size: 15),
+    Color color = switch (multiplier) {
+      0 => Colors.blueGrey.shade700,
+      >= 4 => Colors.red.shade900,
+      > 1 => Colors.red.shade600,
+      <= 0.25 => Colors.green.shade900,
+      _ => Colors.green.shade600,
+    };
+    return Container(
+      constraints: const BoxConstraints(minWidth: 56),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(12),
       ),
-      label: Text(
-        '''${matchup.type.toUpperCase()} · ${_formatMultiplier(matchup.multiplier)}x''',
-        style: TextStyle(color: foreground, fontWeight: FontWeight.bold),
+      child: Text(
+        '×${formatMultiplier(multiplier)}',
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
 
-  String _formatMultiplier(double multiplier) {
+  static String formatMultiplier(double multiplier) {
     if (multiplier == multiplier.roundToDouble()) {
       return multiplier.toStringAsFixed(0);
     }
@@ -36,4 +46,38 @@ class TypeMatchupChip extends StatelessWidget {
     }
     return multiplier.toStringAsFixed(1);
   }
+}
+
+/// Grupo de tipos que comparten el mismo multiplicador de daño.
+class TypeMatchupGroup extends StatelessWidget {
+  const TypeMatchupGroup({
+    required this.multiplier,
+    required this.types,
+    super.key,
+  });
+
+  final double multiplier;
+  final List<String> types;
+
+  @override
+  Widget build(BuildContext context) => Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(top: 2),
+        child: TypeMultiplierPill(multiplier),
+      ),
+      const SizedBox(width: 12),
+      Expanded(
+        child: Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children:
+              types
+                  .map((String type) => TypeImageBadge(type: type, height: 30))
+                  .toList(),
+        ),
+      ),
+    ],
+  );
 }

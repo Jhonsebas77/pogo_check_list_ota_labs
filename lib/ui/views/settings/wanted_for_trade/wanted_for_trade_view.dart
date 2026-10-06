@@ -2,6 +2,7 @@ part of com.pogo_check_list_ota_labs.app.views;
 
 class WantedForTradeView extends ConsumerStatefulWidget {
   const WantedForTradeView({super.key});
+  static const String route = '/settings/wanted-for-trade';
   @override
   ConsumerState<WantedForTradeView> createState() => _WantedForTradeViewState();
 }
@@ -42,6 +43,8 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView>
         initialItem: item,
         initialIndex: index,
       ),
+      routeName:
+          '${PokemonTradeItemEditorView.route}/${category.name}/${index ?? 'new'}',
       animation: CustomNavigationAnimation.slideBottom,
     );
   }

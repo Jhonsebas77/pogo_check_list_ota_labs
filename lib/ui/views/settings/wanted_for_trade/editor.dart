@@ -24,6 +24,7 @@ class PokemonTradeItemEditorView extends ConsumerStatefulWidget {
     this.initialIndex,
     super.key,
   });
+  static const String route = '/settings/wanted-for-trade/editor';
 
   final PokemonTradeCategory category;
   final PokemonTradeItem? initialItem;

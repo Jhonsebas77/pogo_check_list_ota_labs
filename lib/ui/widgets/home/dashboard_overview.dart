@@ -158,7 +158,11 @@ class DashboardOverview extends ConsumerWidget {
                       );
                     },
                     onLongPress: () {
-                      CustomNavigator().push(context, const ZygardeDetails());
+                      CustomNavigator().push(
+                        context,
+                        const ZygardeDetails(),
+                        routeName: ZygardeDetails.route,
+                      );
                     },
                     child: HomeLinearProgressWidget(
                       allItemLength: state.zygardeCells!.limit,

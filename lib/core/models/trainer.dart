@@ -4,11 +4,11 @@ class TrainerModel {
   const TrainerModel({this.level, this.nickName, this.team, this.trainerId});
 
   factory TrainerModel.fromJson(Map<dynamic, dynamic> json) => TrainerModel(
-      level: json['level'] != null ? json['level'] as String : '',
-      nickName: json['nick_name'] != null ? json['nick_name'] as String : '',
-      team: json['team'] != null ? json['team'] as String : '',
-      trainerId: json['trainer_id'] != null ? json['trainer_id'] as String : '',
-    );
+    level: json['level'] != null ? json['level'] as String : '',
+    nickName: json['nick_name'] != null ? json['nick_name'] as String : '',
+    team: json['team'] != null ? json['team'] as String : '',
+    trainerId: json['trainer_id'] != null ? json['trainer_id'] as String : '',
+  );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     'level': level,

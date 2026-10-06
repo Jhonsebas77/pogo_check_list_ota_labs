@@ -10,9 +10,9 @@ import 'package:riverpod/riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../ui/widgets/widgets.dart';
+import '../constants/constants.dart';
 import '../models/models.dart';
 import '../services/services.dart';
-import '../utils/constants.dart';
 
 part 'auth.dart';
 part 'firebase.dart';

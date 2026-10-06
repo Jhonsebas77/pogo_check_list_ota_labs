@@ -19,6 +19,14 @@ const Color onPrimaryMuted = Color(0xE6FFFFFF);
 // Lucky friends accent: the bright orange only reads on dark surfaces.
 const Color luckyAccentColor = Color(0xFFF0913F);
 const Color luckyAccentLightColor = Color(0xFF9C4A0E);
+// Disabled filled buttons: an opaque, darker shade of the primary color so
+// they read as "off" on the primary background and on any surface, while
+// keeping the label legible (~7.5:1 with onPrimaryMuted).
+const Color disabledButtonBackground = Color(0xFF7A2E22);
+const Color disabledButtonForeground = onPrimaryMuted;
+// Disabled outlined buttons over the primary background (~3:1).
+const Color disabledOutlinedForeground = Colors.white70;
+const Color disabledOutlinedBorder = Colors.white38;
 
 Color luckyAccent(BuildContext context) =>
     Theme.of(context).brightness == Brightness.dark
@@ -37,6 +45,16 @@ Color readableOn(Color background) =>
     contrastRatio(Colors.white, background) >= 4.5
         ? Colors.white
         : onLightAccent;
+
+final WidgetStateProperty<BorderSide> _outlinedButtonSide =
+    WidgetStateProperty.resolveWith<BorderSide>(
+      (Set<WidgetState> states) => BorderSide(
+        color:
+            states.contains(WidgetState.disabled)
+                ? disabledOutlinedBorder
+                : Colors.white,
+      ),
+    );
 
 // --- LIGHT THEME ---
 final ThemeData appTheme = ThemeData(
@@ -74,6 +92,8 @@ final ThemeData appTheme = ThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: primaryColor,
       foregroundColor: Colors.white,
+      disabledBackgroundColor: disabledButtonBackground,
+      disabledForegroundColor: disabledButtonForeground,
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -103,9 +123,15 @@ final ThemeData appTheme = ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       foregroundColor: Colors.white,
-      side: const BorderSide(color: Colors.white),
+      disabledForegroundColor: disabledOutlinedForeground,
       padding: const EdgeInsets.symmetric(vertical: 16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+    ).copyWith(side: _outlinedButtonSide),
+  ),
+  filledButtonTheme: FilledButtonThemeData(
+    style: FilledButton.styleFrom(
+      disabledBackgroundColor: disabledButtonBackground,
+      disabledForegroundColor: disabledButtonForeground,
     ),
   ),
   cardTheme: CardThemeData(
@@ -153,6 +179,8 @@ final ThemeData appDarkTheme = ThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: primaryColor,
       foregroundColor: Colors.white,
+      disabledBackgroundColor: disabledButtonBackground,
+      disabledForegroundColor: disabledButtonForeground,
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -182,9 +210,15 @@ final ThemeData appDarkTheme = ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       foregroundColor: Colors.white,
-      side: const BorderSide(color: Colors.white),
+      disabledForegroundColor: disabledOutlinedForeground,
       padding: const EdgeInsets.symmetric(vertical: 16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+    ).copyWith(side: _outlinedButtonSide),
+  ),
+  filledButtonTheme: FilledButtonThemeData(
+    style: FilledButton.styleFrom(
+      disabledBackgroundColor: disabledButtonBackground,
+      disabledForegroundColor: disabledButtonForeground,
     ),
   ),
   cardTheme: CardThemeData(

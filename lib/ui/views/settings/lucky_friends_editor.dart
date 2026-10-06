@@ -6,6 +6,7 @@ class LuckyFriendEditorView extends ConsumerStatefulWidget {
     this.initialIndex,
     super.key,
   });
+  static const String route = '/settings/lucky-friends/editor';
 
   final LuckyFriend? initialFriend;
   final int? initialIndex;

@@ -5,11 +5,13 @@ class SettingsMenuItem extends StatelessWidget {
     required this.title,
     required this.leadingIcon,
     required this.viewToNavigate,
+    required this.routeName,
     super.key,
   });
   final String title;
   final IconData leadingIcon;
   final Widget viewToNavigate;
+  final String routeName;
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
@@ -28,6 +30,7 @@ class SettingsMenuItem extends StatelessWidget {
         CustomNavigator().push(
           context,
           viewToNavigate,
+          routeName: routeName,
           animation: CustomNavigationAnimation.fade,
         );
       },

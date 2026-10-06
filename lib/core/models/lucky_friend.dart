@@ -16,14 +16,14 @@ class LuckyFriend {
       pokemonWanted:
           rawPokemonWanted is Map
               ? PokemonTradeItem.fromJson(
-                  Map<String, dynamic>.from(rawPokemonWanted),
-                )
+                Map<String, dynamic>.from(rawPokemonWanted),
+              )
               : null,
       pokemonOffer:
           rawPokemonOffer is Map
               ? PokemonTradeItem.fromJson(
-                  Map<String, dynamic>.from(rawPokemonOffer),
-                )
+                Map<String, dynamic>.from(rawPokemonOffer),
+              )
               : null,
       contacted: json['contacted'] != null && json['contacted'] as bool,
     );

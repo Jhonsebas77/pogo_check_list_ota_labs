@@ -1,6 +1,4 @@
-library com.pogo_check_list_ota_labs.app.type_chart;
-
-import 'constants.dart';
+part of com.pogo_check_list_ota_labs.app.utils;
 
 class TypeMatchup {
   const TypeMatchup({required this.type, required this.multiplier});
@@ -38,7 +36,7 @@ const Map<String, Map<String, double>> kTypeChart =
         'fuego': 2,
         'agua': 0.5,
         'planta': 0.5,
-        'ground': 2,
+        'tierra': 2,
         'roca': 2,
         'dragon': 0.5,
       },
@@ -46,7 +44,7 @@ const Map<String, Map<String, double>> kTypeChart =
         'agua': 2,
         'eléctrico': 0.5,
         'planta': 0.5,
-        'ground': 0,
+        'tierra': 0,
         'volador': 2,
         'dragon': 0.5,
       },
@@ -55,7 +53,7 @@ const Map<String, Map<String, double>> kTypeChart =
         'agua': 2,
         'planta': 0.5,
         'veneno': 0.5,
-        'ground': 2,
+        'tierra': 2,
         'volador': 0.5,
         'insecto': 0.5,
         'roca': 2,
@@ -67,7 +65,7 @@ const Map<String, Map<String, double>> kTypeChart =
         'agua': 0.5,
         'planta': 2,
         'hielo': 0.5,
-        'ground': 2,
+        'tierra': 2,
         'volador': 2,
         'dragon': 2,
         'acero': 0.5,
@@ -88,13 +86,13 @@ const Map<String, Map<String, double>> kTypeChart =
       'veneno': <String, double>{
         'planta': 2,
         'veneno': 0.5,
-        'ground': 0.5,
+        'tierra': 0.5,
         'roca': 0.5,
         'fantasma': 0.5,
         'acero': 0,
         'hada': 2,
       },
-      'ground': <String, double>{
+      'tierra': <String, double>{
         'fuego': 2,
         'eléctrico': 2,
         'planta': 0.5,
@@ -135,7 +133,7 @@ const Map<String, Map<String, double>> kTypeChart =
         'fuego': 2,
         'hielo': 2,
         'pelea': 0.5,
-        'ground': 0.5,
+        'tierra': 0.5,
         'volador': 2,
         'insecto': 2,
         'acero': 0.5,

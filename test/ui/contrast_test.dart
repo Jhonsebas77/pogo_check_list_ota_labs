@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pogo_check_list_ota_labs/core/constants/constants.dart';
 import 'package:pogo_check_list_ota_labs/core/enums/enums.dart';
-import 'package:pogo_check_list_ota_labs/core/utils/constants.dart';
 import 'package:pogo_check_list_ota_labs/ui/theme.dart';
 import 'package:pogo_check_list_ota_labs/ui/widgets/widgets.dart';
 

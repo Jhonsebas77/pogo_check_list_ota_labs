@@ -2,6 +2,7 @@ part of com.pogo_check_list_ota_labs.app.views;
 
 class ColorSchemeView extends ConsumerWidget {
   const ColorSchemeView({super.key});
+  static const String route = '/settings/color-scheme';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

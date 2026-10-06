@@ -2,6 +2,7 @@ part of com.pogo_check_list_ota_labs.app.views;
 
 class TrainerEditorView extends ConsumerStatefulWidget {
   const TrainerEditorView({super.key});
+  static const String route = '/settings/trainer-editor';
 
   @override
   ConsumerState<TrainerEditorView> createState() => _TrainerEditorViewState();
@@ -320,6 +321,12 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
                             Theme.of(context).colorScheme.secondary,
+                        foregroundColor:
+                            Theme.of(context).colorScheme.onSecondary,
+                        textStyle: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -328,11 +335,6 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
                       ),
                       child: Text(
                         _isSaving ? 'Guardando...' : 'Guardar cambios',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.onSecondary,
-                        ),
                       ),
                     ),
                   ),

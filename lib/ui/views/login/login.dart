@@ -2,6 +2,7 @@ part of com.pogo_check_list_ota_labs.app.views;
 
 class LoginView extends ConsumerStatefulWidget {
   const LoginView({super.key});
+  static const String route = '/login';
 
   @override
   ConsumerState<LoginView> createState() => _LoginViewState();
@@ -17,6 +18,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
   @override
   void initState() {
     super.initState();
+    RootRouteObserver.instance.setRootRoute(LoginView.route);
     _initPackageInfo();
   }
 
@@ -197,13 +199,10 @@ class _LoginViewState extends ConsumerState<LoginView> {
     onPressed: auth.isLoading ? null : _handleSignIn,
     icon:
         auth.isLoading
-            ? SizedBox(
+            ? const SizedBox(
               width: 16,
               height: 16,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
+              child: CircularProgressIndicator(strokeWidth: 2),
             )
             : const Icon(Icons.catching_pokemon_rounded),
     label: Text(auth.isLoading ? 'Ingresando...' : 'Ingresar'),
@@ -213,9 +212,6 @@ class _LoginViewState extends ConsumerState<LoginView> {
       elevation: 0,
       backgroundColor: Theme.of(context).colorScheme.secondary,
       foregroundColor: Theme.of(context).colorScheme.onSecondary,
-      disabledBackgroundColor: Theme.of(
-        context,
-      ).colorScheme.secondary.withAlpha(120),
       textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
     ),
   );

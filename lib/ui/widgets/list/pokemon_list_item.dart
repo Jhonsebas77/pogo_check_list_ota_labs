@@ -43,6 +43,7 @@ class PokemonListItem extends ConsumerWidget {
       CustomNavigator().push(
         context,
         DetailsScreen(pokemonId: index),
+        routeName: '${DetailsScreen.route}/$index',
         animation: CustomNavigationAnimation.fade,
       );
     },

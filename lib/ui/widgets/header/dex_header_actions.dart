@@ -2,7 +2,7 @@ part of com.pogo_check_list_ota_labs.app.widgets;
 
 class DexHeaderActions extends StatelessWidget {
   const DexHeaderActions({super.key});
-  
+
   Widget _buildSmallCircle(Color color) => Container(
     width: 22,
     height: 22,

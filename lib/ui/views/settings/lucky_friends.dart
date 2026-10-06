@@ -2,6 +2,7 @@ part of com.pogo_check_list_ota_labs.app.views;
 
 class LuckyFriendsView extends ConsumerWidget {
   const LuckyFriendsView({super.key});
+  static const String route = '/settings/lucky-friends';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -13,6 +14,7 @@ class LuckyFriendsView extends ConsumerWidget {
       CustomNavigator().push(
         context,
         LuckyFriendEditorView(initialFriend: friend, initialIndex: index),
+        routeName: '${LuckyFriendEditorView.route}/${index ?? 'new'}',
         animation: CustomNavigationAnimation.fade,
       );
     }

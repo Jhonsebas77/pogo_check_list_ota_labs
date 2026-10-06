@@ -2,6 +2,7 @@ part of com.pogo_check_list_ota_labs.app.views;
 
 class DetailsScreen extends ConsumerStatefulWidget {
   const DetailsScreen({required this.pokemonId, super.key});
+  static const String route = '/pokemon/details';
   final int pokemonId;
 
   @override
@@ -45,45 +46,53 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
 
             // State 3: The Future completed successfully with data
             data:
-                (PokemonDetail pokemon) => Center(
+                (PokemonDetail pokemon) => SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 24,
+                  ),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      const SizedBox(height: 16),
-                      Stack(
-                        children: <Widget>[
-                          Image.asset(
-                            'assets/bg_holder_pokemon.png',
-                            height: 120,
-                            width: 120,
-                            fit: BoxFit.fill,
-                          ),
-                          Hero(
-                            tag: pokemon.id,
-                            child: Image.network(
-                              pokemon.imageUrl,
-                              height: 120,
-                              width: 120,
+                      Center(
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: <Widget>[
+                            Image.asset(
+                              'assets/bg_holder_pokemon.png',
+                              height: 180,
+                              width: 180,
                               fit: BoxFit.fill,
                             ),
-                          ),
-                        ],
+                            Hero(
+                              tag: pokemon.id,
+                              child: Image.network(
+                                pokemon.imageUrl,
+                                height: 180,
+                                width: 180,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
+                      const SizedBox(height: 12),
+                      Text(
+                        '#${pokemon.id.toString().padLeft(3, '0')}',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 16),
                       Wrap(
-                        spacing: 8,
-                        runSpacing: 4,
+                        alignment: WrapAlignment.center,
+                        spacing: 12,
+                        runSpacing: 12,
                         children:
-                            pokemon.types.map((String type) {
-                              String? _translatedType =
-                                  kPokemonTypesTranslated[type];
-                              return TypeBadge(
-                                type: _translatedType!,
-                                color:
-                                    kTypeColors[_translatedType] ?? Colors.grey,
-                                icon:
-                                    kTypeIcons[_translatedType] ??
-                                    Icons.help_outline,
-                              );
-                            }).toList(),
+                            pokemon.types
+                                .map(
+                                  (String type) => TypeImageBadge(type: type),
+                                )
+                                .toList(),
                       ),
                     ],
                   ),

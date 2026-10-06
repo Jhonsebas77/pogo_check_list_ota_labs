@@ -100,9 +100,7 @@ mixin PokemonListScrollMixin<T extends ConsumerStatefulWidget>
   /// Sincroniza la visibilidad inicial de los botones tras el primer frame
   /// (p. ej. ocultar "bajar" si la lista cabe entera en pantalla).
   void scheduleScrollButtonsSync() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => _updateScrollButtons(),
-    );
+    WidgetsBinding.instance.addPostFrameCallback((_) => _updateScrollButtons());
   }
 
   /// Desplaza la lista [delta] px sin salirse de sus límites.

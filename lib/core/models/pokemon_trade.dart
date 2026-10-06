@@ -9,21 +9,23 @@ class PokemonTrade {
     List<dynamic> wantedList =
         (json['wanted_pokemon'] as List<dynamic>?) ?? <dynamic>[];
 
-    List<PokemonTradeItem> wanted = wantedList
-        .whereType<Map<dynamic, dynamic>>()
-        .map<PokemonTradeItem>(
-          (Map<dynamic, dynamic> item) =>
-              PokemonTradeItem.fromJson(Map<String, dynamic>.from(item)),
-        )
-        .toList();
+    List<PokemonTradeItem> wanted =
+        wantedList
+            .whereType<Map<dynamic, dynamic>>()
+            .map<PokemonTradeItem>(
+              (Map<dynamic, dynamic> item) =>
+                  PokemonTradeItem.fromJson(Map<String, dynamic>.from(item)),
+            )
+            .toList();
 
-    List<PokemonTradeItem> offer = offerList
-        .whereType<Map<dynamic, dynamic>>()
-        .map<PokemonTradeItem>(
-          (Map<dynamic, dynamic> item) =>
-              PokemonTradeItem.fromJson(Map<String, dynamic>.from(item)),
-        )
-        .toList();
+    List<PokemonTradeItem> offer =
+        offerList
+            .whereType<Map<dynamic, dynamic>>()
+            .map<PokemonTradeItem>(
+              (Map<dynamic, dynamic> item) =>
+                  PokemonTradeItem.fromJson(Map<String, dynamic>.from(item)),
+            )
+            .toList();
 
     return PokemonTrade(wantedPokemon: wanted, offerPokemon: offer);
   }

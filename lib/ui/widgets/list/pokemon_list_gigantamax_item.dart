@@ -45,6 +45,7 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
       CustomNavigator().push(
         context,
         DetailsScreen(pokemonId: selectPokemon.id),
+        routeName: '${DetailsScreen.route}/${selectPokemon.id}',
         animation: CustomNavigationAnimation.fade,
       );
     },

@@ -31,17 +31,16 @@ class PokemonModel {
       formTag:
           rawFormTag is Map
               ? PokemonAlternativeForm.fromJson(
-                  Map<String, dynamic>.from(rawFormTag),
-                )
+                Map<String, dynamic>.from(rawFormTag),
+              )
               : const PokemonAlternativeForm(),
       alternativeForms:
           rawAlternativeForms is List
               ? rawAlternativeForms
                   .whereType<Map<dynamic, dynamic>>()
                   .map(
-                    (Map<dynamic, dynamic> form) => PokemonModel.fromJson(
-                      Map<String, dynamic>.from(form),
-                    ),
+                    (Map<dynamic, dynamic> form) =>
+                        PokemonModel.fromJson(Map<String, dynamic>.from(form)),
                   )
                   .toList()
               : null,
@@ -59,9 +58,7 @@ class PokemonModel {
     if (formTag != null) 'alternative_form': formTag!.toJson(),
     if (alternativeForms != null && alternativeForms!.isNotEmpty)
       'alternative_forms':
-          alternativeForms!
-              .map((PokemonModel form) => form.toJson())
-              .toList(),
+          alternativeForms!.map((PokemonModel form) => form.toJson()).toList(),
   };
 
   final bool alreadyCatch;
@@ -71,6 +68,7 @@ class PokemonModel {
   final bool tradable;
   final int id;
   final String name;
+
   /// Descriptor que identifica *qué* forma es esta entrada (p. ej. Alola):
   /// `{ id, name, order }`. Vacío en la entrada base de la especie.
   final PokemonAlternativeForm? formTag;
