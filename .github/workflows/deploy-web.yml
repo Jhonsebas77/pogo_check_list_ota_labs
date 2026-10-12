@@ -29,6 +29,17 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      # lib/firebase_options.dart está en .gitignore; se genera desde un secret
+      - name: Write Firebase options
+        env:
+          FIREBASE_OPTIONS_DART: ${{ secrets.FIREBASE_OPTIONS_DART }}
+        run: |
+          if [ -z "$FIREBASE_OPTIONS_DART" ]; then
+            echo "::error::Falta el secret FIREBASE_OPTIONS_DART"
+            exit 1
+          fi
+          printf '%s\n' "$FIREBASE_OPTIONS_DART" > lib/firebase_options.dart
+
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
