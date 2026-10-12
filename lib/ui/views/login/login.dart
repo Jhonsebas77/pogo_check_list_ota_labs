@@ -75,68 +75,78 @@ class _LoginViewState extends ConsumerState<LoginView> {
       Container(
         width: 128,
         height: 128,
-        padding: const EdgeInsets.all(16),
-        decoration: const BoxDecoration(
-          color: Colors.black12,
-          shape: BoxShape.circle,
+        decoration: BoxDecoration(
+          color: primaryColor,
+          border: Border.all(color: primaryColor.withAlpha(60), width: 1),
         ),
-        child: Image.asset('assets/splash.png', fit: BoxFit.contain),
+        child: ColorFiltered(
+          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.modulate),
+          child: Image.asset('assets/ota_bg.png', fit: BoxFit.contain),
+        ),
       ),
       const SizedBox(height: 24),
       Text(
-        _appName,
+        'POGO_CHECK_LIST',
         textAlign: TextAlign.center,
         style: Headings.mH1.copyWith(color: Colors.white),
       ),
       const SizedBox(height: 4),
       Text(
-        'By Ota_Labs $_version($_buildNumber)',
+        'v$_version($_buildNumber)',
         style: Paragraphs.disclaimer.copyWith(color: Colors.white),
       ),
     ],
   );
 
-  Widget _buildForm(AuthStatus auth) => Container(
-    padding: const EdgeInsets.all(20),
-    decoration: BoxDecoration(
-      color: Colors.black12,
-      borderRadius: BorderRadius.circular(24),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        Text(
-          'Iniciar sesión',
-          style: Headings.mH3.copyWith(color: Colors.white),
-        ),
-        const SizedBox(height: 16),
-        _buildUserDisplay(),
-        const SizedBox(height: 16),
-        _buildPasswordInput(auth),
-        if (auth.errorMessage != null) ...<Widget>[
-          const SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: <Widget>[
-                const Icon(Icons.error_outline, color: Colors.white, size: 16),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    auth.errorMessage!,
-                    style: Paragraphs.smallSemiBold.copyWith(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
+  Widget _buildForm(AuthStatus auth) => Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: <Widget>[
+      const Row(
+        children: <Widget>[
+          Icon(Icons.lock_outline, color: Colors.white, size: 14),
+          SizedBox(width: 8),
+          Text(
+            'AUTHENTICATION_PROTOCOL',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 10,
+              letterSpacing: 2,
+              fontWeight: FontWeight.w500,
+              height: 1.2,
+            ),
+          ),
+          Spacer(),
+          Text(
+            'ENCRYPTED_AES_256',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 8,
+              letterSpacing: 0.5,
+              fontWeight: FontWeight.w500,
+              height: 1.2,
             ),
           ),
         ],
-        const SizedBox(height: 24),
-        _buildActionButton(auth),
-      ],
-    ),
+      ),
+      const SizedBox(height: 16),
+      _buildUserDisplay(),
+      const SizedBox(height: 16),
+      const Text(
+        'SECURE_CREDENTIAL',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 9,
+          letterSpacing: 1.5,
+          fontWeight: FontWeight.w500,
+          height: 1.2,
+        ),
+      ),
+      const SizedBox(height: 16),
+      _buildPasswordInput(auth),
+      const SizedBox(height: 20),
+      _buildActionButton(auth),
+      const SizedBox(height: 16),
+    ],
   );
 
   Widget _buildUserDisplay() => Container(
