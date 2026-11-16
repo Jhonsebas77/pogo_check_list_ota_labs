@@ -5,6 +5,8 @@ language: en,es
 dictionaryDefinitions: []
 dictionaries: []
 words:
+  - combinators
+  - correctitud
   - cupertino
   - dinamax
   - dynamax
@@ -14,7 +16,11 @@ words:
   - Gigamax
   - gigantamax
   - Gigantamax
+  - initializers
+  - interps
   - JSOB
+  - linux
+  - material_ui
   - megaevolution
   - nullable
   - Pkmn
@@ -30,6 +36,7 @@ words:
   - recase
   - riverpod
   - supabase
+  - unawaited
   - Unown
   - uuid
   - Vivillon

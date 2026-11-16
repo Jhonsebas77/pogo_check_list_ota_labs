@@ -1,4 +1,4 @@
-library com.pogo_check_list_ota_labs.app.models;
+library;
 
 part 'forms.dart';
 part 'lucky_friend.dart';

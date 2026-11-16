@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 /// Estado del Pokémon en la colección del entrenador (solo lectura).
 class CollectionStatusRow extends StatelessWidget {
@@ -74,12 +74,11 @@ class _StatusTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String status =
-        unavailable
-            ? 'No disp.'
-            : active
-            ? 'Sí'
-            : 'No';
+    String status = unavailable
+        ? 'No disp.'
+        : active
+        ? 'Sí'
+        : 'No';
     return Semantics(
       label: '$label: $status',
       excludeSemantics: true,
@@ -104,8 +103,9 @@ class _StatusTile extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
               decoration: BoxDecoration(
-                color:
-                    active && !unavailable ? Colors.lightGreen : Colors.black26,
+                color: active && !unavailable
+                    ? Colors.lightGreen
+                    : Colors.black26,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Row(
@@ -118,10 +118,9 @@ class _StatusTile extends StatelessWidget {
                   Text(
                     status,
                     style: Paragraphs.disclaimerSemiBold.copyWith(
-                      color:
-                          active && !unavailable
-                              ? onLightAccent
-                              : onPrimaryMuted,
+                      color: active && !unavailable
+                          ? onLightAccent
+                          : onPrimaryMuted,
                     ),
                   ),
                 ],

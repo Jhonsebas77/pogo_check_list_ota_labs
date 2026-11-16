@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 /// Estadísticas base de la serie principal con su barra de progreso.
 class BaseStatsCard extends StatelessWidget {

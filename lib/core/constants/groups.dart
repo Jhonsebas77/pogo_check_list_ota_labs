@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.constants;
+part of 'constants.dart';
 
 List<List<int>> getEvolutionGroups() => <List<int>>[
   <int>[1, 2, 3],

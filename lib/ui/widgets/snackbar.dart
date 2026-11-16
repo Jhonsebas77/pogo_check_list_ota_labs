@@ -1,14 +1,9 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of 'widgets.dart';
 
 void showInformationSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).hideCurrentSnackBar();
-  ScaffoldMessenger.of(context).showSnackBar(
-    CustomSnackBar(
-      context: context,
-      label: message,
-      type: SnackbarType.information,
-    ),
-  );
+  ScaffoldMessenger.of(context)
+      .showSnackBar(CustomSnackBar(context: context, label: message));
 }
 
 void showErrorSnackBar(BuildContext context, String message) {
@@ -53,16 +48,16 @@ class CustomSnackBar extends SnackBar {
     SnackbarType type = SnackbarType.information,
     IconData? prefixIcon,
     ThemeData? themeData,
-    Key? key,
+    super.key,
   }) : super(
-         key: key,
          elevation: 2,
          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
          behavior: SnackBarBehavior.floating,
          // `width` y `margin` son excluyentes: el ancho fijo solo aplica si
          // cabe con 16px a cada lado; si no, se usa el margen lateral.
-         margin:
-             _useFixedWidth(context) ? null : const EdgeInsetsGeometry.all(16),
+         margin: _useFixedWidth(context)
+             ? null
+             : const EdgeInsetsGeometry.all(16),
          width: _useFixedWidth(context) ? _kMaxSnackBarWidth : null,
          backgroundColor: backgroundColorType(type),
          content: Theme(

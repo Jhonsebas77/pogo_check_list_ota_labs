@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 /// Encabezado del detalle: arte oficial (normal o shiny), número, nombre,
 /// categoría y tipos.
@@ -18,10 +18,9 @@ class _DetailHeroState extends State<DetailHero> {
   @override
   Widget build(BuildContext context) {
     PokemonDetail pokemon = widget.pokemon;
-    String imageUrl =
-        _showShiny && pokemon.shinyImageUrl != null
-            ? pokemon.shinyImageUrl!
-            : pokemon.imageUrl;
+    String imageUrl = _showShiny && pokemon.shinyImageUrl != null
+        ? pokemon.shinyImageUrl!
+        : pokemon.imageUrl;
     return Column(
       children: <Widget>[
         Stack(
@@ -43,8 +42,9 @@ class _DetailHeroState extends State<DetailHero> {
                   height: 180,
                   width: 180,
                   fit: BoxFit.fill,
-                  semanticLabel:
-                      _showShiny ? '${pokemon.name} shiny' : pokemon.name,
+                  semanticLabel: _showShiny
+                      ? '${pokemon.name} shiny'
+                      : pokemon.name,
                 ),
               ),
             ),
@@ -72,10 +72,9 @@ class _DetailHeroState extends State<DetailHero> {
           alignment: WrapAlignment.center,
           spacing: 12,
           runSpacing: 12,
-          children:
-              pokemon.types
-                  .map((String type) => TypeImageBadge(type: type))
-                  .toList(),
+          children: pokemon.types
+              .map((String type) => TypeImageBadge(type: type))
+              .toList(),
         ),
       ],
     );

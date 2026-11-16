@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of 'widgets.dart';
 
 class EmptyState extends StatelessWidget {
   const EmptyState({
@@ -19,7 +19,6 @@ class EmptyState extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.asset(

@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.constants;
+part of 'constants.dart';
 
 const List<String> kPokemonTypes = <String>[
   'acero',

@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 class TrainerInformation extends ConsumerWidget {
   const TrainerInformation({super.key});
@@ -12,7 +12,7 @@ class TrainerInformation extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: firebasePokemonState.when(
         data: (PokemonFirebaseState state) {
-          TrainerModel? _trainerInfo = state.trainerInformation;
+          TrainerModel? trainerInfo = state.trainerInformation;
           return Container(
             width: 400,
             padding: const EdgeInsets.only(
@@ -42,7 +42,7 @@ class TrainerInformation extends ConsumerWidget {
                             fit: BoxFit.fill,
                           ),
                           Image.asset(
-                            'assets/team_${_trainerInfo?.team ?? ''}.png',
+                            'assets/team_${trainerInfo?.team ?? ''}.png',
                             height: 50,
                             width: 50,
                             fit: BoxFit.fill,
@@ -55,7 +55,7 @@ class TrainerInformation extends ConsumerWidget {
                       children: <Widget>[
                         FittedBox(
                           child: Text(
-                            _trainerInfo?.nickName ?? '',
+                            trainerInfo?.nickName ?? '',
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -64,7 +64,7 @@ class TrainerInformation extends ConsumerWidget {
                           ),
                         ),
                         Text(
-                          'Lv. ${_trainerInfo?.level}',
+                          'Lv. ${trainerInfo?.level}',
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.white,
@@ -77,12 +77,12 @@ class TrainerInformation extends ConsumerWidget {
                 GestureDetector(
                   onTap: () {
                     Clipboard.setData(
-                      ClipboardData(text: _trainerInfo?.trainerId ?? ''),
+                      ClipboardData(text: trainerInfo?.trainerId ?? ''),
                     );
                     if (context.mounted) {
                       showSuccessSnackBar(
                         context,
-                        '''[Trainer ID copiado]\n${_trainerInfo?.trainerId ?? ''}''',
+                        '''[Trainer ID copiado]\n${trainerInfo?.trainerId ?? ''}''',
                       );
                     }
                   },
@@ -107,13 +107,12 @@ class TrainerInformation extends ConsumerWidget {
             ),
           );
         },
-        error:
-            (Object error, StackTrace stackTrace) => SimpleErrorChip(
-              iconData: Icons.person,
-              error: error.toString(),
-              stackTrace: stackTrace,
-              text: 'Con la información del entrenador',
-            ),
+        error: (Object error, StackTrace stackTrace) => SimpleErrorChip(
+          iconData: Icons.person,
+          error: error.toString(),
+          stackTrace: stackTrace,
+          text: 'Con la información del entrenador',
+        ),
         loading: TrainerInfoShimmer.new,
       ),
     );

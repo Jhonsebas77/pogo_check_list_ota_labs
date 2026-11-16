@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 class DexHeaderLeading extends StatelessWidget {
   const DexHeaderLeading({super.key});
@@ -20,13 +20,12 @@ class DexHeaderLeading extends StatelessWidget {
           shape: BoxShape.circle,
           border: Border.all(color: Colors.white, width: 4),
         ),
-        child:
-            CustomNavigator().canPop(context)
-                ? const Padding(
-                  padding: EdgeInsets.only(left: 8),
-                  child: Icon(Icons.arrow_back_ios, color: Colors.white),
-                )
-                : null,
+        child: CustomNavigator().canPop(context)
+            ? const Padding(
+                padding: EdgeInsets.only(left: 8),
+                child: Icon(Icons.arrow_back_ios, color: Colors.white),
+              )
+            : null,
       ),
     ),
   );

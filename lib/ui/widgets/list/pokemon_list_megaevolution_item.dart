@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 class PokemonListMegaEvolutionItem extends ConsumerWidget {
   const PokemonListMegaEvolutionItem({
@@ -14,33 +14,28 @@ class PokemonListMegaEvolutionItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => GestureDetector(
-    onTap:
-        selectPokemon.available
-            ? () async {
-              PokemonModel _pokemon = selectPokemon.copyWith(
-                alreadyCatch: !selectPokemon.alreadyCatch,
-              );
-              if (selectPokemon.isAlternativeForm) {
-                await ref
-                    .read(firebasePokemonProvider.notifier)
-                    .updateMegaEvolutionPokemonForm(
-                      _pokemon.id,
-                      _pokemon,
-                      context,
-                    );
-              } else {
-                await ref
-                    .read(firebasePokemonProvider.notifier)
-                    .updateMegaEvolutionPokemon(index, _pokemon, context);
-              }
-              if (context.mounted) {
-                showSuccessSnackBar(
-                  context,
-                  '''[Registro actualizado]\n${paddingDexNumber(dexNumber: selectPokemon.id)} ${selectPokemon.name}''',
-                );
-              }
+    onTap: selectPokemon.available
+        ? () async {
+            PokemonModel pokemon = selectPokemon.copyWith(
+              alreadyCatch: !selectPokemon.alreadyCatch,
+            );
+            if (selectPokemon.isAlternativeForm) {
+              await ref
+                  .read(firebasePokemonProvider.notifier)
+                  .updateMegaEvolutionPokemonForm(pokemon.id, pokemon, context);
+            } else {
+              await ref
+                  .read(firebasePokemonProvider.notifier)
+                  .updateMegaEvolutionPokemon(index, pokemon, context);
             }
-            : null,
+            if (context.mounted) {
+              showSuccessSnackBar(
+                context,
+                '''[Registro actualizado]\n${paddingDexNumber(dexNumber: selectPokemon.id)} ${selectPokemon.name}''',
+              );
+            }
+          }
+        : null,
     onLongPress: () {
       CustomNavigator().push(
         context,
@@ -51,12 +46,10 @@ class PokemonListMegaEvolutionItem extends ConsumerWidget {
     },
     child: DecoratedBox(
       decoration: BoxDecoration(
-        color:
-            selectPokemon.alreadyCatch
-                ? Theme.of(context).colorScheme.onSurface.withAlpha(100)
-                : Theme.of(
-                  context,
-                ).colorScheme.surfaceContainerHighest.withAlpha(100),
+        color: selectPokemon.alreadyCatch
+            ? Theme.of(context).colorScheme.onSurface.withAlpha(100)
+            : Theme.of(context).colorScheme.surfaceContainerHighest
+                  .withAlpha(100),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Stack(
@@ -99,8 +92,9 @@ class PokemonListMegaEvolutionItem extends ConsumerWidget {
                   else
                     Shimmer.fromColors(
                       baseColor: Theme.of(context).colorScheme.onSurfaceVariant,
-                      highlightColor:
-                          Theme.of(context).colorScheme.onSurfaceVariant,
+                      highlightColor: Theme.of(context)
+                          .colorScheme
+                          .onSurfaceVariant,
                       enabled: false,
                       child: Image.asset(
                         'assets/pokedex_mega_evolutions/'
@@ -126,24 +120,20 @@ class PokemonListMegaEvolutionItem extends ConsumerWidget {
               ),
               const SizedBox(width: 16),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   FittedBox(
                     child: Text(
                       textAlign: TextAlign.center,
                       selectPokemon.isAlternativeForm
                           ? '${selectPokemon.name} '
-                              '(${selectPokemon.formTag!.name})'
+                                '(${selectPokemon.formTag!.name})'
                           : selectPokemon.name,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color:
-                            selectPokemon.alreadyCatch
-                                ? Theme.of(context).colorScheme.surface
-                                : Theme.of(
-                                  context,
-                                ).colorScheme.onSurfaceVariant,
+                        color: selectPokemon.alreadyCatch
+                            ? Theme.of(context).colorScheme.surface
+                            : Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ),
@@ -152,10 +142,9 @@ class PokemonListMegaEvolutionItem extends ConsumerWidget {
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
-                      color:
-                          selectPokemon.alreadyCatch
-                              ? Theme.of(context).colorScheme.surface
-                              : Theme.of(context).colorScheme.onSurfaceVariant,
+                      color: selectPokemon.alreadyCatch
+                          ? Theme.of(context).colorScheme.surface
+                          : Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],

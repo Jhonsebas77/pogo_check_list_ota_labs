@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 class PokemonListGigantamaxItem extends ConsumerWidget {
   const PokemonListGigantamaxItem({
@@ -14,33 +14,28 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => GestureDetector(
-    onTap:
-        selectPokemon.available
-            ? () async {
-              PokemonModel _pokemon = selectPokemon.copyWith(
-                alreadyCatch: !selectPokemon.alreadyCatch,
-              );
-              if (selectPokemon.isAlternativeForm) {
-                await ref
-                    .read(firebasePokemonProvider.notifier)
-                    .updateGigantamaxPokemonForm(
-                      _pokemon.id,
-                      _pokemon,
-                      context,
-                    );
-              } else {
-                await ref
-                    .read(firebasePokemonProvider.notifier)
-                    .updateGigantamaxPokemon(index, _pokemon, context);
-              }
-              if (context.mounted) {
-                showSuccessSnackBar(
-                  context,
-                  '''[Registro actualizado]\n${paddingDexNumber(dexNumber: selectPokemon.id)} ${selectPokemon.name}''',
-                );
-              }
+    onTap: selectPokemon.available
+        ? () async {
+            PokemonModel pokemon = selectPokemon.copyWith(
+              alreadyCatch: !selectPokemon.alreadyCatch,
+            );
+            if (selectPokemon.isAlternativeForm) {
+              await ref
+                  .read(firebasePokemonProvider.notifier)
+                  .updateGigantamaxPokemonForm(pokemon.id, pokemon, context);
+            } else {
+              await ref
+                  .read(firebasePokemonProvider.notifier)
+                  .updateGigantamaxPokemon(index, pokemon, context);
             }
-            : null,
+            if (context.mounted) {
+              showSuccessSnackBar(
+                context,
+                '''[Registro actualizado]\n${paddingDexNumber(dexNumber: selectPokemon.id)} ${selectPokemon.name}''',
+              );
+            }
+          }
+        : null,
     onLongPress: () {
       CustomNavigator().push(
         context,
@@ -51,117 +46,13 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
     },
     child: DecoratedBox(
       decoration: BoxDecoration(
-        color:
-            selectPokemon.alreadyCatch
-                ? Theme.of(context).colorScheme.onSurface.withAlpha(100)
-                : Theme.of(
-                  context,
-                ).colorScheme.surfaceContainerHighest.withAlpha(100),
+        color: selectPokemon.alreadyCatch
+            ? Theme.of(context).colorScheme.onSurface.withAlpha(100)
+            : Theme.of(context).colorScheme.surfaceContainerHighest
+                  .withAlpha(100),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const SizedBox(height: 16),
-          Stack(
-            children: <Widget>[
-              if (selectPokemon.alreadyCatch)
-                Image.asset(
-                  'assets/gigamax.png',
-                  height: 80,
-                  width: 80,
-                  fit: BoxFit.fill,
-                )
-              else
-                Image.asset(
-                  'assets/bg_holder_pokemon.png',
-                  height: 80,
-                  width: 80,
-                  fit: BoxFit.fill,
-                ),
-              if (selectPokemon.available)
-                Image.asset(
-                  'assets/pokedex_gigantamax/'
-                  '${selectPokemon.id}${selectPokemon.formSuffix}.png',
-                  height: 80,
-                  width: 80,
-                  fit: BoxFit.fill,
-                  errorBuilder:
-                      (
-                        BuildContext context,
-                        Object error,
-                        StackTrace? stackTrace,
-                      ) => Image.asset(
-                        'assets/pokedex_gigantamax/${selectPokemon.id}.png',
-                        height: 80,
-                        width: 80,
-                        fit: BoxFit.fill,
-                      ),
-                )
-              else
-                Shimmer.fromColors(
-                  baseColor: Theme.of(context).colorScheme.onSurfaceVariant,
-                  highlightColor:
-                      Theme.of(context).colorScheme.onSurfaceVariant,
-                  enabled: false,
-                  child: Image.asset(
-                    'assets/pokedex_gigantamax/'
-                    '${selectPokemon.id}${selectPokemon.formSuffix}.png',
-                    height: 80,
-                    width: 80,
-                    fit: BoxFit.fill,
-                    errorBuilder:
-                        (
-                          BuildContext context,
-                          Object error,
-                          StackTrace? stackTrace,
-                        ) => Image.asset(
-                          'assets/pokedex_gigantamax/${selectPokemon.id}.png',
-                          height: 80,
-                          width: 80,
-                          fit: BoxFit.fill,
-                        ),
-                  ),
-                ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              FittedBox(
-                child: Text(
-                  textAlign: TextAlign.center,
-                  selectPokemon.isAlternativeForm
-                      ? '${selectPokemon.name} '
-                          '(${selectPokemon.formTag!.name})'
-                      : selectPokemon.name,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color:
-                        selectPokemon.alreadyCatch
-                            ? Theme.of(context).colorScheme.surface
-                            : Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
-                ),
-              ),
-              Text(
-                paddingDexNumber(dexNumber: selectPokemon.id),
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                  color:
-                      selectPokemon.alreadyCatch
-                          ? Theme.of(context).colorScheme.surface
-                          : Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-        ],
-      ),
+      child: const Column(mainAxisAlignment: MainAxisAlignment.center),
     ),
   );
 }

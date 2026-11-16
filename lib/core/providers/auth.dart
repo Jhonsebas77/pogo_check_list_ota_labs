@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.providers;
+part of 'providers.dart';
 
 class AuthStatus {
   const AuthStatus({

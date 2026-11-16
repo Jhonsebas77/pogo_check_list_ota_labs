@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 class PokemonGigantamaxListShimmer extends StatelessWidget {
   const PokemonGigantamaxListShimmer({super.key});
@@ -29,7 +29,6 @@ class TileShimmerGigantamax extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(

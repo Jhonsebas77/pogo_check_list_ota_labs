@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.models;
+part of 'models.dart';
 
 class PokemonAlternativeForm {
   const PokemonAlternativeForm({this.id, this.name, this.order});
@@ -31,7 +31,8 @@ class PokemonAlternativeForm {
   int get hashCode => Object.hash(id, name, order);
 
   @override
-  String toString() => '''PokemonAlternativeForm(
+  String toString() =>
+      '''PokemonAlternativeForm(
     'id': $id,
     'name': $name,
     'order':  $order,

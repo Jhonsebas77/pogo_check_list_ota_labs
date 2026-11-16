@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 class ModalBase extends StatelessWidget {
   const ModalBase({
@@ -66,13 +66,12 @@ class ModalBase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-    onTap:
-        isDismissible
-            ? () {
-              Navigator.of(context).pop();
-              onTapDismissible?.call();
-            }
-            : null,
+    onTap: isDismissible
+        ? () {
+            Navigator.of(context).pop();
+            onTapDismissible?.call();
+          }
+        : null,
     child: Material(
       color: Colors.transparent,
       child: Center(
@@ -141,8 +140,9 @@ class ModalBase extends StatelessWidget {
                             thumbColor: Colors.black26,
                             trackColor: Colors.transparent,
                             thickness: showScrollbar ? 4 : 0,
-                            radius:
-                                showScrollbar ? const Radius.circular(2) : null,
+                            radius: showScrollbar
+                                ? const Radius.circular(2)
+                                : null,
                             child: ListView(
                               shrinkWrap: true,
                               primary: true,
@@ -153,10 +153,9 @@ class ModalBase extends StatelessWidget {
                                   Text(
                                     title!,
                                     style: titleStyle,
-                                    textAlign:
-                                        centerTitle
-                                            ? TextAlign.center
-                                            : TextAlign.start,
+                                    textAlign: centerTitle
+                                        ? TextAlign.center
+                                        : TextAlign.start,
                                   ),
                                 if (children != null)
                                   ...children!.mapIndexed(
@@ -170,7 +169,7 @@ class ModalBase extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (button != null) button!,
+                      ?button,
                     ],
                   ),
                 ],

@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 /// Ancho máximo del contenido de la app en pantallas anchas (web/desktop).
 ///

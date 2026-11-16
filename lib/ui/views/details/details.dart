@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../views.dart';
 
 class DetailsScreen extends ConsumerWidget {
   const DetailsScreen({required this.pokemonId, this.title, super.key});
@@ -18,24 +18,21 @@ class DetailsScreen extends ConsumerWidget {
       child: Scaffold(
         appBar: pokemonAsyncValue.when(
           loading: () => const CustomAppBar(isLoading: true),
-          error:
-              (Object error, StackTrace stackTrace) =>
-                  CustomAppBar(title: title ?? '$pokemonId'),
-          data:
-              (PokemonDetail pokemon) => CustomAppBar(
-                title: title ?? _collectionName(ref) ?? pokemon.name,
-              ),
+          error: (Object error, StackTrace stackTrace) =>
+              CustomAppBar(title: title ?? '$pokemonId'),
+          data: (PokemonDetail pokemon) => CustomAppBar(
+            title: title ?? _collectionName(ref) ?? pokemon.name,
+          ),
         ),
         body: WebContent(
           child: pokemonAsyncValue.when(
             loading: () => const PokemonDetailShimmer(),
-            error:
-                (Object error, StackTrace stackTrace) => SimpleErrorChip(
-                  iconData: Icons.catching_pokemon,
-                  error: error.toString(),
-                  stackTrace: stackTrace,
-                  text: 'Con el detalle del Pokémon $pokemonId',
-                ),
+            error: (Object error, StackTrace stackTrace) => SimpleErrorChip(
+              iconData: Icons.catching_pokemon,
+              error: error.toString(),
+              stackTrace: stackTrace,
+              text: 'Con el detalle del Pokémon $pokemonId',
+            ),
             data: (PokemonDetail pokemon) => _DetailsContent(pokemon: pokemon),
           ),
         ),
@@ -45,13 +42,12 @@ class DetailsScreen extends ConsumerWidget {
 
   /// Nombre de la especie en Firebase (`Mr. Mime`, `Farfetch'd`), más fiel
   /// que el de la API (`Mr-mime`).
-  String? _collectionName(WidgetRef ref) =>
-      ref
-          .watch(firebasePokemonProvider)
-          .valueOrNull
-          ?.allPokemon
-          .firstWhereOrNull((PokemonModel p) => p.id == pokemonId)
-          ?.name;
+  String? _collectionName(WidgetRef ref) => ref
+      .watch(firebasePokemonProvider)
+      .valueOrNull
+      ?.allPokemon
+      .firstWhereOrNull((PokemonModel p) => p.id == pokemonId)
+      ?.name;
 }
 
 class _DetailsContent extends ConsumerWidget {
@@ -63,19 +59,21 @@ class _DetailsContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // La especie solo aporta categoría y descripción: si falla o aún carga,
     // el resto del detalle se muestra igual.
-    PokemonSpecies? species =
-        ref.watch(pokemonSpeciesProvider('${pokemon.id}')).valueOrNull;
-    EvolutionNode? evolutionChain =
-        ref.watch(evolutionChainProvider('${pokemon.id}')).valueOrNull;
-    PokemonFirebaseState? firebaseState =
-        ref.watch(firebasePokemonProvider).valueOrNull;
+    PokemonSpecies? species = ref
+        .watch(pokemonSpeciesProvider('${pokemon.id}'))
+        .valueOrNull;
+    EvolutionNode? evolutionChain = ref
+        .watch(evolutionChainProvider('${pokemon.id}'))
+        .valueOrNull;
+    PokemonFirebaseState? firebaseState = ref
+        .watch(firebasePokemonProvider)
+        .valueOrNull;
     PokemonModel? collectionEntry = firebaseState?.allPokemon.firstWhereOrNull(
       (PokemonModel p) => p.id == pokemon.id,
     );
-    List<PokemonFormEntry> forms =
-        firebaseState == null
-            ? const <PokemonFormEntry>[]
-            : PokemonFormEntry.fromState(firebaseState, pokemon.id);
+    List<PokemonFormEntry> forms = firebaseState == null
+        ? const <PokemonFormEntry>[]
+        : PokemonFormEntry.fromState(firebaseState, pokemon.id);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),

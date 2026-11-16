@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.state;
+part of '../state.dart';
 
 class ScreenShotViewModel extends Notifier<ScreenShotState> {
   ScreenShotViewModel();

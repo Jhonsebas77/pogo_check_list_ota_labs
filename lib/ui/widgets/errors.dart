@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of 'widgets.dart';
 
 class SimpleErrorChip extends StatelessWidget {
   const SimpleErrorChip({
@@ -29,43 +29,41 @@ class SimpleErrorChip extends StatelessWidget {
         padding: (isSmall ?? false) ? EdgeInsets.zero : const EdgeInsets.all(8),
         child: Card(
           color: Theme.of(context).colorScheme.error,
-          child:
-              (isSmall ?? false)
-                  ? Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 2,
-                      horizontal: 8,
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        Icon(iconData, color: foreground, size: 14),
-                        Text('Error', style: TextStyle(color: foreground)),
-                      ],
-                    ),
-                  )
-                  : ListTile(
-                    style: ListTileStyle.list,
-                    leading: Icon(iconData, color: foreground, size: 14),
-                    title: Text(
-                      'Lo sentimos, algo salio mal',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: foreground,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    subtitle:
-                        text != null
-                            ? Text(
-                              text!,
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: foreground.withValues(alpha: 0.85),
-                                fontWeight: FontWeight.normal,
-                              ),
-                            )
-                            : null,
+          child: (isSmall ?? false)
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 2,
+                    horizontal: 8,
                   ),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(iconData, color: foreground, size: 14),
+                      Text('Error', style: TextStyle(color: foreground)),
+                    ],
+                  ),
+                )
+              : ListTile(
+                  style: ListTileStyle.list,
+                  leading: Icon(iconData, color: foreground, size: 14),
+                  title: Text(
+                    'Lo sentimos, algo salio mal',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: foreground,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  subtitle: text != null
+                      ? Text(
+                          text!,
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: foreground.withValues(alpha: 0.85),
+                            fontWeight: FontWeight.normal,
+                          ),
+                        )
+                      : null,
+                ),
         ),
       ),
     );

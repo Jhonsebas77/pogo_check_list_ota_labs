@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 class PokemonSelector extends ConsumerStatefulWidget {
   const PokemonSelector({
@@ -78,14 +78,11 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
 
         return MaxWidthInput(
           child: LayoutBuilder(
-            builder:
-                (
-                  BuildContext context,
-                  BoxConstraints constraints,
-                ) => Autocomplete<PokemonModel>(
+            builder: (BuildContext context, BoxConstraints constraints) =>
+                Autocomplete<PokemonModel>(
                   initialValue: TextEditingValue(text: _controller.text),
-                  displayStringForOption:
-                      (PokemonModel option) => '${option.id} - ${option.name}',
+                  displayStringForOption: (PokemonModel option) =>
+                      '${option.id} - ${option.name}',
                   optionsBuilder: (TextEditingValue textEditingValue) {
                     if (textEditingValue.text == '') {
                       return const Iterable<PokemonModel>.empty();
@@ -103,48 +100,50 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
                     });
                     widget.onChanged(selection.id);
                   },
-                  fieldViewBuilder: (
-                    BuildContext context,
-                    TextEditingController fieldTextEditingController,
-                    FocusNode fieldFocusNode,
-                    VoidCallback onFieldSubmitted,
-                  ) {
-                    if (_controller.text != fieldTextEditingController.text) {
-                      fieldTextEditingController.text = _controller.text;
-                    }
+                  fieldViewBuilder:
+                      (
+                        BuildContext context,
+                        TextEditingController fieldTextEditingController,
+                        FocusNode fieldFocusNode,
+                        VoidCallback onFieldSubmitted,
+                      ) {
+                        if (_controller.text !=
+                            fieldTextEditingController.text) {
+                          fieldTextEditingController.text = _controller.text;
+                        }
 
-                    return TextField(
-                      controller: fieldTextEditingController,
-                      focusNode: fieldFocusNode,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: inputDecoration(
-                        context,
-                        label: widget.label ?? 'Seleccionar Pokémon',
-                        icon: Icons.search,
-                      ).copyWith(
-                        suffixIcon:
-                            _selectedPokemon != null
-                                ? Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Image.asset(
-                                    'assets/pokedex_sprites/${_selectedPokemon!.id}.png',
-                                    width: 24,
-                                    height: 24,
-                                    errorBuilder:
-                                        (
-                                          BuildContext context,
-                                          Object error,
-                                          StackTrace? stackTrace,
-                                        ) => const Icon(
-                                          Icons.catching_pokemon,
-                                          color: Colors.white70,
+                        return TextField(
+                          controller: fieldTextEditingController,
+                          focusNode: fieldFocusNode,
+                          style: const TextStyle(color: Colors.white),
+                          decoration:
+                              inputDecoration(
+                                context,
+                                label: widget.label ?? 'Seleccionar Pokémon',
+                                icon: Icons.search,
+                              ).copyWith(
+                                suffixIcon: _selectedPokemon != null
+                                    ? Padding(
+                                        padding: const EdgeInsets.all(8),
+                                        child: Image.asset(
+                                          'assets/pokedex_sprites/${_selectedPokemon!.id}.png',
+                                          width: 24,
+                                          height: 24,
+                                          errorBuilder:
+                                              (
+                                                BuildContext context,
+                                                Object error,
+                                                StackTrace? stackTrace,
+                                              ) => const Icon(
+                                                Icons.catching_pokemon,
+                                                color: Colors.white70,
+                                              ),
                                         ),
-                                  ),
-                                )
-                                : null,
-                      ),
-                    );
-                  },
+                                      )
+                                    : null,
+                              ),
+                        );
+                      },
                   optionsViewBuilder:
                       (
                         BuildContext context,
@@ -154,10 +153,9 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
                         alignment: Alignment.topLeft,
                         child: Material(
                           elevation: 4,
-                          color:
-                              Theme.of(
-                                context,
-                              ).colorScheme.surfaceContainerHighest,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .surfaceContainerHighest,
                           borderRadius: const BorderRadius.vertical(
                             bottom: Radius.circular(16),
                           ),
@@ -187,19 +185,17 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
                                   title: Text(
                                     option.name,
                                     style: TextStyle(
-                                      color:
-                                          Theme.of(
-                                            context,
-                                          ).colorScheme.onSurfaceVariant,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSurfaceVariant,
                                     ),
                                   ),
                                   subtitle: Text(
                                     '#${option.id}',
                                     style: TextStyle(
-                                      color:
-                                          Theme.of(
-                                            context,
-                                          ).colorScheme.onSurfaceVariant,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSurfaceVariant,
                                     ),
                                   ),
                                   onTap: () {
@@ -215,14 +211,10 @@ class _PokemonSelectorState extends ConsumerState<PokemonSelector> {
           ),
         );
       },
-      loading:
-          () =>
-              const Center(child: CircularProgressIndicator()), // Or a shimmer
-      error:
-          (Object error, StackTrace stack) => Text(
-            'Error: $error',
-            style: const TextStyle(color: Colors.white),
-          ),
+      loading: () =>
+          const Center(child: CircularProgressIndicator()), // Or a shimmer
+      error: (Object error, StackTrace stack) =>
+          Text('Error: $error', style: const TextStyle(color: Colors.white)),
     );
   }
 }

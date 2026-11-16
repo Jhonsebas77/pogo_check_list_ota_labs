@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../views.dart';
 
 class TrainerEditorView extends ConsumerStatefulWidget {
   const TrainerEditorView({super.key});
@@ -21,12 +21,12 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
   @override
   void initState() {
     super.initState();
-    _trainerIdController =
-        TextEditingController()..addListener(_onFormFieldChanged);
-    _nickNameController =
-        TextEditingController()..addListener(_onFormFieldChanged);
-    _levelController =
-        TextEditingController()..addListener(_onFormFieldChanged);
+    _trainerIdController = TextEditingController()
+      ..addListener(_onFormFieldChanged);
+    _nickNameController = TextEditingController()
+      ..addListener(_onFormFieldChanged);
+    _levelController = TextEditingController()
+      ..addListener(_onFormFieldChanged);
   }
 
   @override
@@ -162,23 +162,21 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
     padding: const EdgeInsets.symmetric(vertical: 8),
     child: DropdownButtonFormField<String>(
       initialValue: (_selectedTeam?.isNotEmpty ?? false) ? _selectedTeam : null,
-      onChanged:
-          _isSaving
-              ? null
-              : (String? value) {
-                setState(() {
-                  _selectedTeam = value;
-                });
-              },
-      items:
-          teamsOptions
-              .map<DropdownMenuItem<String>>(
-                (String value) => DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(getSelectedTeamFromString(value)),
-                ),
-              )
-              .toList(),
+      onChanged: _isSaving
+          ? null
+          : (String? value) {
+              setState(() {
+                _selectedTeam = value;
+              });
+            },
+      items: teamsOptions
+          .map<DropdownMenuItem<String>>(
+            (String value) => DropdownMenuItem<String>(
+              value: value,
+              child: Text(getSelectedTeamFromString(value)),
+            ),
+          )
+          .toList(),
       decoration: inputDecoration(context, icon: Icons.flag),
       validator: (String? value) {
         if (value == null || value.isEmpty) {
@@ -212,7 +210,6 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
                       key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           const SettingsTitleSection(title: 'Entrenador'),
                           CustomTextField(
@@ -288,13 +285,12 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
                 ),
               );
             },
-            error:
-                (Object error, StackTrace stackTrace) => const Center(
-                  child: SimpleErrorChip(
-                    iconData: Icons.person,
-                    text: 'Con la información del entrenador',
-                  ),
-                ),
+            error: (Object error, StackTrace stackTrace) => const Center(
+              child: SimpleErrorChip(
+                iconData: Icons.person,
+                text: 'Con la información del entrenador',
+              ),
+            ),
             loading: () => const Center(child: CircularProgressIndicator()),
           ),
         ),
@@ -314,15 +310,16 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
                   child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed:
-                          !_isSaving && _hasChanges(trainer)
-                              ? () => _submit(trainer)
-                              : null,
+                      onPressed: !_isSaving && _hasChanges(trainer)
+                          ? () => _submit(trainer)
+                          : null,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondary,
-                        foregroundColor:
-                            Theme.of(context).colorScheme.onSecondary,
+                        backgroundColor: Theme.of(context)
+                            .colorScheme
+                            .secondary,
+                        foregroundColor: Theme.of(context)
+                            .colorScheme
+                            .onSecondary,
                         textStyle: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -342,21 +339,20 @@ class _TrainerEditorViewState extends ConsumerState<TrainerEditorView> {
               ),
             );
           },
-          error:
-              (Object error, StackTrace stackTrace) => const SizedBox.shrink(),
-          loading:
-              () => SafeArea(
-                minimum: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                child: FilledButton.icon(
-                  onPressed: null,
-                  icon: const SizedBox(
-                    height: 16,
-                    width: 16,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  ),
-                  label: const Text('Cargando...'),
-                ),
+          error: (Object error, StackTrace stackTrace) =>
+              const SizedBox.shrink(),
+          loading: () => SafeArea(
+            minimum: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+            child: FilledButton.icon(
+              onPressed: null,
+              icon: const SizedBox(
+                height: 16,
+                width: 16,
+                child: CircularProgressIndicator(strokeWidth: 2),
               ),
+              label: const Text('Cargando...'),
+            ),
+          ),
         ),
       ),
     );

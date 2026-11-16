@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.utils;
+part of 'utils.dart';
 
 class TypeMatchup {
   const TypeMatchup({required this.type, required this.multiplier});

@@ -1,6 +1,6 @@
-library com.pogo_check_list_ota_labs.app.constants;
+library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 part 'groups.dart';
 part 'pokemon_types.dart';

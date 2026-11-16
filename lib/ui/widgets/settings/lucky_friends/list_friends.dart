@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../../widgets.dart';
 
 class LuckyFriendsList extends StatelessWidget {
   const LuckyFriendsList({
@@ -24,10 +24,9 @@ class LuckyFriendsList extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 6),
           child: GestureDetector(
-            onLongPress:
-                onLongPressEdit == null
-                    ? null
-                    : () => onLongPressEdit!(index, friend),
+            onLongPress: onLongPressEdit == null
+                ? null
+                : () => onLongPressEdit!(index, friend),
             child: LuckyFriendListTile(friend: friend),
           ),
         );

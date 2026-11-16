@@ -1,9 +1,9 @@
-library com.pogo_check_list_ota_labs.app.navigator;
+library;
 
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../core/enums/enums.dart';
 import '../core/utils/utils.dart';
@@ -82,12 +82,11 @@ class AnimationRoute extends PageRouteBuilder<Widget> {
     super.settings,
   }) : super(
          transitionDuration: const Duration(milliseconds: 300),
-         pageBuilder:
-             (
-               BuildContext context,
-               Animation<double> animation,
-               Animation<double> secondaryAnimation,
-             ) => page,
+         pageBuilder: (
+           BuildContext context,
+           Animation<double> animation,
+           Animation<double> secondaryAnimation,
+         ) => page,
          transitionsBuilder:
              (
                BuildContext context,

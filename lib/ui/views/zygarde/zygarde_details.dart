@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../views.dart';
 
 class ZygardeDetails extends ConsumerStatefulWidget {
   const ZygardeDetails({super.key});
@@ -45,46 +45,44 @@ class _ZygardeDetailsState extends ConsumerState<ZygardeDetails> {
                 child: Column(
                   children: <Widget>[
                     firebasePokemonState.when(
-                      data:
-                          (PokemonFirebaseState state) => Column(
+                      data: (PokemonFirebaseState state) => Column(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
+                              Flexible(
+                                child: _ZygardeProgressCard(
+                                  zygardeCells: state.zygardeCells!,
+                                  formId: getZygardeActualForm(
+                                    state.zygardeCells!,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 16),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Flexible(
-                                    child: _ZygardeProgressCard(
-                                      zygardeCells: state.zygardeCells!,
-                                      formId: getZygardeActualForm(
-                                        state.zygardeCells!,
-                                      ),
-                                    ),
+                                  Image.asset(
+                                    'assets/zygarde_cell.png',
+                                    height: 50,
+                                    width: 50,
+                                    fit: BoxFit.fill,
                                   ),
-                                  const SizedBox(width: 16),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Image.asset(
-                                        'assets/zygarde_cell.png',
-                                        height: 50,
-                                        width: 50,
-                                        fit: BoxFit.fill,
-                                      ),
-                                      Text('${state.zygardeCells!.quantity}'),
-                                    ],
-                                  ),
+                                  Text('${state.zygardeCells!.quantity}'),
                                 ],
                               ),
-                              ZygardeForms(zygardeCells: state.zygardeCells!),
                             ],
                           ),
-                      error:
-                          (Object error, StackTrace stackTrace) =>
-                              SimpleErrorChip(
-                                iconData: Icons.dashboard,
-                                error: error.toString(),
-                                stackTrace: stackTrace,
-                                text: 'Con la información de Zygarde',
-                              ),
+                          ZygardeForms(zygardeCells: state.zygardeCells!),
+                        ],
+                      ),
+                      error: (Object error, StackTrace stackTrace) =>
+                          SimpleErrorChip(
+                            iconData: Icons.dashboard,
+                            error: error.toString(),
+                            stackTrace: stackTrace,
+                            text: 'Con la información de Zygarde',
+                          ),
                       loading: DashboardOverviewShimmer.new,
                     ),
                   ],

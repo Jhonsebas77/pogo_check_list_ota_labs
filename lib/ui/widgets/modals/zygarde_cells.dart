@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 class ZygardeCellsModal extends ConsumerStatefulWidget {
   const ZygardeCellsModal({required this.zygardeCells, super.key});
@@ -43,7 +43,7 @@ class _ZygardeCellsModalState extends ConsumerState<ZygardeCellsModal> {
         width: 200,
         child: ElevatedButton(
           onPressed: () async {
-            ZygardeCells _updateData = ZygardeCells(
+            ZygardeCells updateData = ZygardeCells(
               actualForm: widget.zygardeCells.actualForm,
               alternativeForms: widget.zygardeCells.alternativeForms,
               limit: widget.zygardeCells.limit,
@@ -51,7 +51,7 @@ class _ZygardeCellsModalState extends ConsumerState<ZygardeCellsModal> {
             );
             await ref
                 .read(firebasePokemonProvider.notifier)
-                .updateZygardeInformation(_updateData, context);
+                .updateZygardeInformation(updateData, context);
             if (context.mounted) {
               Navigator.of(context).pop();
             }
@@ -66,7 +66,6 @@ class _ZygardeCellsModalState extends ConsumerState<ZygardeCellsModal> {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(
                 'Actualizar ',

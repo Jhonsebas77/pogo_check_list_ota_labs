@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../views.dart';
 
 class ColorSchemeView extends ConsumerWidget {
   const ColorSchemeView({super.key});
@@ -14,16 +14,18 @@ class ColorSchemeView extends ConsumerWidget {
         body: const WebContent(child: Center(child: ColorSchemeWidget())),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            ref.read(themeModeProvider.notifier).themeMode =
-                isDarkMode ? ThemeMode.light : ThemeMode.dark;
+            ref.read(themeModeProvider.notifier).themeMode = isDarkMode
+                ? ThemeMode.light
+                : ThemeMode.dark;
             showInformationSnackBar(
               context,
               '''[Tema actualizado] ->  ${isDarkMode ? 'Tema claro' : 'Tema oscuro'}''',
             );
           },
           backgroundColor: Theme.of(context).colorScheme.secondary,
-          tooltip:
-              isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro',
+          tooltip: isDarkMode
+              ? 'Cambiar a modo claro'
+              : 'Cambiar a modo oscuro',
           child: Icon(
             isDarkMode ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
           ),
@@ -175,7 +177,6 @@ class ColorSchemeWidget extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Wrap(

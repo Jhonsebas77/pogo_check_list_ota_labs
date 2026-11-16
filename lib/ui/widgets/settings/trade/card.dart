@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../../widgets.dart';
 
 class PokemonTradeCard extends StatelessWidget {
   const PokemonTradeCard({
@@ -46,12 +46,10 @@ class PokemonTradeCard extends StatelessWidget {
         ),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Stack(
                   children: <Widget>[
@@ -155,16 +153,18 @@ class PokemonTradeCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
-                      color:
-                          Theme.of(context).colorScheme.surfaceContainerHighest,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .surfaceContainerHighest,
                     ),
                   ),
                 ),
                 if (alreadyCaught ?? false)
                   Icon(
                     Icons.catching_pokemon,
-                    color:
-                        Theme.of(context).colorScheme.surfaceContainerHighest,
+                    color: Theme.of(context)
+                        .colorScheme
+                        .surfaceContainerHighest,
                     size: 18,
                   ),
                 if ((alreadyCaught ?? false) && quantity != 0) ...<Widget>[
@@ -172,8 +172,9 @@ class PokemonTradeCard extends StatelessWidget {
                   Text(
                     '$quantity',
                     style: TextStyle(
-                      color:
-                          Theme.of(context).colorScheme.surfaceContainerHighest,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .surfaceContainerHighest,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../../views.dart';
 
 class WantedForTradeView extends ConsumerStatefulWidget {
   const WantedForTradeView({super.key});
@@ -9,8 +9,9 @@ class WantedForTradeView extends ConsumerStatefulWidget {
 
 class _WantedForTradeViewState extends ConsumerState<WantedForTradeView>
     with TickerProviderStateMixin {
-  final Set<int> _legendaryIds =
-      getLegendaryGroups().expand((List<int> group) => group).toSet();
+  final Set<int> _legendaryIds = getLegendaryGroups()
+      .expand((List<int> group) => group)
+      .toSet();
 
   bool _showOnlyLegendary = false;
   late TabController _tabController;
@@ -64,8 +65,8 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView>
       key: const Key('wanted_for_trade_scaffold'),
       body: NestedScrollView(
         key: const Key('wanted_for_trade_nested_scroll'),
-        headerSliverBuilder:
-            (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
+            <Widget>[
               SliverAppBar(
                 key: const Key('wanted_for_trade_sliver_app_bar'),
                 pinned: true,
@@ -124,48 +125,44 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView>
                     List<PokemonTradeItem>.from(tradeData.wantedPokemon);
                 List<PokemonTradeItem> allOfferPokemon =
                     List<PokemonTradeItem>.from(tradeData.offerPokemon);
-                List<int> wantedOrder = List<int>.generate(
-                  allWantedPokemon.length,
-                  (int index) => index,
-                )..sort(
-                  (int a, int b) => (allWantedPokemon[a].id ?? 0).compareTo(
-                    allWantedPokemon[b].id ?? 0,
-                  ),
-                );
-                List<int> offerOrder = List<int>.generate(
-                  allOfferPokemon.length,
-                  (int index) => index,
-                )..sort(
-                  (int a, int b) => (allOfferPokemon[a].id ?? 0).compareTo(
-                    allOfferPokemon[b].id ?? 0,
-                  ),
-                );
+                List<int> wantedOrder =
+                    List<int>.generate(
+                      allWantedPokemon.length,
+                      (int index) => index,
+                    )..sort(
+                      (int a, int b) => (allWantedPokemon[a].id ?? 0).compareTo(
+                        allWantedPokemon[b].id ?? 0,
+                      ),
+                    );
+                List<int> offerOrder =
+                    List<int>.generate(
+                      allOfferPokemon.length,
+                      (int index) => index,
+                    )..sort(
+                      (int a, int b) => (allOfferPokemon[a].id ?? 0).compareTo(
+                        allOfferPokemon[b].id ?? 0,
+                      ),
+                    );
                 if (_showOnlyLegendary) {
-                  wantedOrder =
-                      wantedOrder
-                          .where(
-                            (int index) => _legendaryIds.contains(
-                              allWantedPokemon[index].id,
-                            ),
-                          )
-                          .toList();
-                  offerOrder =
-                      offerOrder
-                          .where(
-                            (int index) => _legendaryIds.contains(
-                              allOfferPokemon[index].id,
-                            ),
-                          )
-                          .toList();
+                  wantedOrder = wantedOrder
+                      .where(
+                        (int index) =>
+                            _legendaryIds.contains(allWantedPokemon[index].id),
+                      )
+                      .toList();
+                  offerOrder = offerOrder
+                      .where(
+                        (int index) =>
+                            _legendaryIds.contains(allOfferPokemon[index].id),
+                      )
+                      .toList();
                 }
-                List<PokemonTradeItem> wantedPokemon =
-                    wantedOrder
-                        .map((int index) => allWantedPokemon[index])
-                        .toList();
-                List<PokemonTradeItem> offerPokemon =
-                    offerOrder
-                        .map((int index) => allOfferPokemon[index])
-                        .toList();
+                List<PokemonTradeItem> wantedPokemon = wantedOrder
+                    .map((int index) => allWantedPokemon[index])
+                    .toList();
+                List<PokemonTradeItem> offerPokemon = offerOrder
+                    .map((int index) => allOfferPokemon[index])
+                    .toList();
                 return TabBarView(
                   key: const Key('wanted_for_trade_tab_view'),
                   controller: _tabController,
@@ -175,49 +172,44 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView>
                       pokemonList: wantedPokemon,
                       type: 'Buscando',
                       originalIndices: wantedOrder,
-                      onLongPressEdit:
-                          (int index, PokemonTradeItem item) =>
-                              _openTradeItemEditor(
-                                context,
-                                category: PokemonTradeCategory.wanted,
-                                item: item,
-                                index: index,
-                              ),
+                      onLongPressEdit: (int index, PokemonTradeItem item) =>
+                          _openTradeItemEditor(
+                            context,
+                            category: PokemonTradeCategory.wanted,
+                            item: item,
+                            index: index,
+                          ),
                     ),
                     PokemonTradeList(
                       key: const Key('trade_list_ofreciendo'),
                       pokemonList: offerPokemon,
                       type: 'Ofreciendo',
                       originalIndices: offerOrder,
-                      onLongPressEdit:
-                          (int index, PokemonTradeItem item) =>
-                              _openTradeItemEditor(
-                                context,
-                                category: PokemonTradeCategory.offer,
-                                item: item,
-                                index: index,
-                              ),
+                      onLongPressEdit: (int index, PokemonTradeItem item) =>
+                          _openTradeItemEditor(
+                            context,
+                            category: PokemonTradeCategory.offer,
+                            item: item,
+                            index: index,
+                          ),
                     ),
                   ],
                 );
               },
-              error:
-                  (Object error, StackTrace stackTrace) =>
-                      const SimpleErrorChip(
-                        key: Key('wanted_for_trade_error'),
-                        iconData: Icons.catching_pokemon,
-                        text:
-                            'Con la información de los Pokemon a intercambiar',
-                      ),
-              loading:
-                  () => const Center(
-                    key: Key('wanted_for_trade_loading'),
-                    child: Icon(
-                      Icons.catching_pokemon_outlined,
-                      color: Colors.grey,
-                      size: 50,
-                    ),
+              error: (Object error, StackTrace stackTrace) =>
+                  const SimpleErrorChip(
+                    key: Key('wanted_for_trade_error'),
+                    iconData: Icons.catching_pokemon,
+                    text: 'Con la información de los Pokemon a intercambiar',
                   ),
+              loading: () => const Center(
+                key: Key('wanted_for_trade_loading'),
+                child: Icon(
+                  Icons.catching_pokemon_outlined,
+                  color: Colors.grey,
+                  size: 50,
+                ),
+              ),
             ),
           ),
         ),
@@ -259,10 +251,9 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView>
                 color: Theme.of(context).colorScheme.onSecondary,
               ),
               onPressed: () {
-                PokemonTradeCategory category =
-                    (_tabController.index == 0)
-                        ? PokemonTradeCategory.wanted
-                        : PokemonTradeCategory.offer;
+                PokemonTradeCategory category = (_tabController.index == 0)
+                    ? PokemonTradeCategory.wanted
+                    : PokemonTradeCategory.offer;
 
                 _openTradeItemEditor(context, category: category);
               },
@@ -280,10 +271,9 @@ class _WantedForTradeViewState extends ConsumerState<WantedForTradeView>
                 size: 16,
                 color: Theme.of(context).colorScheme.onSecondary,
               ),
-              tooltip:
-                  _showOnlyLegendary
-                      ? 'Mostrar todos los Pokémon'
-                      : 'Mostrar solo legendarios',
+              tooltip: _showOnlyLegendary
+                  ? 'Mostrar todos los Pokémon'
+                  : 'Mostrar solo legendarios',
               onPressed: _toggleLegendaryFilter,
             ),
           ),

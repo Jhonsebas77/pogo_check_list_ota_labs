@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 /// Línea evolutiva por etapas, con una fila por cada forma de origen cuando
 /// las formas regionales evolucionan distinto (p. ej. Meowth normal, de Alola
@@ -45,13 +45,12 @@ class EvolutionChainCard extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: _EvolutionBranch(
                   node: lines[i],
-                  memberBuilder:
-                      (EvolutionForm node) => _EvolutionMember(
-                        node: node,
-                        isCurrent: node.id == currentId,
-                        name: _entry(node.id)?.name ?? node.name,
-                        formLabel: _formLabel(node),
-                      ),
+                  memberBuilder: (EvolutionForm node) => _EvolutionMember(
+                    node: node,
+                    isCurrent: node.id == currentId,
+                    name: _entry(node.id)?.name ?? node.name,
+                    formLabel: _formLabel(node),
+                  ),
                 ),
               ),
             ),
@@ -167,15 +166,14 @@ class _EvolutionMember extends StatelessWidget {
       label: fullName,
       excludeSemantics: true,
       child: GestureDetector(
-        onTap:
-            isCurrent
-                ? null
-                : () => CustomNavigator().push(
-                  context,
-                  DetailsScreen(pokemonId: node.id, title: fullName),
-                  routeName: '${DetailsScreen.route}/${node.id}',
-                  animation: CustomNavigationAnimation.fade,
-                ),
+        onTap: isCurrent
+            ? null
+            : () => CustomNavigator().push(
+                context,
+                DetailsScreen(pokemonId: node.id, title: fullName),
+                routeName: '${DetailsScreen.route}/${node.id}',
+                animation: CustomNavigationAnimation.fade,
+              ),
         child: SizedBox(
           width: width,
           child: Column(
@@ -185,10 +183,9 @@ class _EvolutionMember extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: isCurrent ? Colors.white24 : Colors.black12,
-                  border:
-                      isCurrent
-                          ? Border.all(color: Colors.white, width: 2)
-                          : null,
+                  border: isCurrent
+                      ? Border.all(color: Colors.white, width: 2)
+                      : null,
                 ),
                 child: _sprite(
                   node.form.isEmpty ? '${node.id}' : '${node.id}-${node.form}',
@@ -201,10 +198,11 @@ class _EvolutionMember extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: (isCurrent
-                        ? Paragraphs.disclaimerSemiBold
-                        : Paragraphs.disclaimer)
-                    .copyWith(color: Colors.white),
+                style:
+                    (isCurrent
+                            ? Paragraphs.disclaimerSemiBold
+                            : Paragraphs.disclaimer)
+                        .copyWith(color: Colors.white),
               ),
               Text(
                 formLabel ?? paddingDexNumber(dexNumber: node.id),
@@ -227,10 +225,9 @@ class _EvolutionMember extends StatelessWidget {
     cacheHeight: 104,
     cacheWidth: 104,
     fit: BoxFit.contain,
-    errorBuilder:
-        fallback == null
-            ? null
-            : (BuildContext context, Object error, StackTrace? stackTrace) =>
-                fallback,
+    errorBuilder: fallback == null
+        ? null
+        : (BuildContext context, Object error, StackTrace? stackTrace) =>
+              fallback,
   );
 }

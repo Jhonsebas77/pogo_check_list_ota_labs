@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of 'widgets.dart';
 
 /// Muestra el banner del tipo usando `assets/types/<type>.png` (200x44), o el
 /// icono `assets/types/<type>_small.png` (60x60) cuando [small] es `true`.
@@ -24,13 +24,12 @@ class TypeImageBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String key = type.toLowerCase();
-    String? englishType =
-        kPokemonTypesTranslated.containsKey(key)
-            ? key
-            : kPokemonTypesTranslated.entries
-                .where((MapEntry<String, String> e) => e.value == key)
-                .map((MapEntry<String, String> e) => e.key)
-                .firstOrNull;
+    String? englishType = kPokemonTypesTranslated.containsKey(key)
+        ? key
+        : kPokemonTypesTranslated.entries
+              .where((MapEntry<String, String> e) => e.value == key)
+              .map((MapEntry<String, String> e) => e.key)
+              .firstOrNull;
     String translatedType = kPokemonTypesTranslated[englishType] ?? key;
     return Semantics(
       label: translatedType,

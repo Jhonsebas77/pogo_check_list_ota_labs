@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../views.dart';
 
 class TypeChartView extends StatefulWidget {
   const TypeChartView({super.key});
@@ -28,7 +28,6 @@ class _TypeChartViewState extends State<TypeChartView> {
         body: WebContent(
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(16),
@@ -52,22 +51,21 @@ class _TypeChartViewState extends State<TypeChartView> {
                                     iconEnabledColor: Colors.white,
                                     iconDisabledColor: Colors.white54,
                                     style: const TextStyle(color: Colors.white),
-                                    items:
-                                        kPokemonTypes
-                                            .where((String t) => t != _type2)
-                                            .map(
-                                              (String t) =>
-                                                  DropdownMenuItem<String>(
-                                                    value: t,
-                                                    child: Text(
-                                                      t.toUpperCase(),
-                                                      style: const TextStyle(
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
+                                    items: kPokemonTypes
+                                        .where((String t) => t != _type2)
+                                        .map(
+                                          (String t) =>
+                                              DropdownMenuItem<String>(
+                                                value: t,
+                                                child: Text(
+                                                  t.toUpperCase(),
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
                                                   ),
-                                            )
-                                            .toList(),
+                                                ),
+                                              ),
+                                        )
+                                        .toList(),
                                     onChanged: (String? value) {
                                       if (value != null) {
                                         setState(() => _type1 = value);
@@ -87,26 +85,23 @@ class _TypeChartViewState extends State<TypeChartView> {
                                       'Tipo 2',
                                       style: TextStyle(color: onPrimaryMuted),
                                     ),
-                                    items:
-                                        <String?>[null, ...kPokemonTypes]
-                                            .where((String? t) => t != _type1)
-                                            .map(
-                                              (String? t) =>
-                                                  DropdownMenuItem<String?>(
-                                                    value: t,
-                                                    child: Text(
-                                                      t?.toUpperCase() ??
-                                                          'Ninguno',
-                                                      style: const TextStyle(
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
+                                    items: <String?>[null, ...kPokemonTypes]
+                                        .where((String? t) => t != _type1)
+                                        .map(
+                                          (String? t) =>
+                                              DropdownMenuItem<String?>(
+                                                value: t,
+                                                child: Text(
+                                                  t?.toUpperCase() ?? 'Ninguno',
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
                                                   ),
-                                            )
-                                            .toList(),
-                                    onChanged:
-                                        (String? value) =>
-                                            setState(() => _type2 = value),
+                                                ),
+                                              ),
+                                        )
+                                        .toList(),
+                                    onChanged: (String? value) =>
+                                        setState(() => _type2 = value),
                                   ),
                                 ),
                               ],
@@ -118,13 +113,11 @@ class _TypeChartViewState extends State<TypeChartView> {
                               alignment: WrapAlignment.center,
                               spacing: 12,
                               runSpacing: 12,
-                              children:
-                                  selectedTypes
-                                      .map(
-                                        (String type) =>
-                                            TypeImageBadge(type: type),
-                                      )
-                                      .toList(),
+                              children: selectedTypes
+                                  .map(
+                                    (String type) => TypeImageBadge(type: type),
+                                  )
+                                  .toList(),
                             ),
                           ),
                         ],
@@ -149,7 +142,6 @@ class _TypeChartViewState extends State<TypeChartView> {
                           ),
                           child: Center(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 TypeSection(

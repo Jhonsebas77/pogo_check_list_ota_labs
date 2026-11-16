@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 /// Campo de búsqueda reutilizable para las vistas de listas de Pokémon.
 ///
@@ -30,31 +30,28 @@ class PokemonSearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
     padding: padding,
-    child:
-        fillHeight
-            // El Focus no toma el foco; solo expone si el TextField interno lo
-            // tiene, para pintar el mismo borde de foco que el resto de inputs.
-            ? Focus(
-              canRequestFocus: false,
-              skipTraversal: true,
-              child: Builder(
-                builder:
-                    (BuildContext context) => DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: Colors.black12,
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border.all(
-                          color:
-                              Focus.of(context).hasFocus
-                                  ? Theme.of(context).colorScheme.secondary
-                                  : Colors.transparent,
-                        ),
-                      ),
-                      child: Center(child: _buildTextField(context)),
-                    ),
+    child: fillHeight
+        // El Focus no toma el foco; solo expone si el TextField interno lo
+        // tiene, para pintar el mismo borde de foco que el resto de inputs.
+        ? Focus(
+            canRequestFocus: false,
+            skipTraversal: true,
+            child: Builder(
+              builder: (BuildContext context) => DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(
+                    color: Focus.of(context).hasFocus
+                        ? Theme.of(context).colorScheme.secondary
+                        : Colors.transparent,
+                  ),
+                ),
+                child: Center(child: _buildTextField(context)),
               ),
-            )
-            : MaxWidthInput(child: _buildTextField(context)),
+            ),
+          )
+        : MaxWidthInput(child: _buildTextField(context)),
   );
 
   Widget _buildTextField(BuildContext context) => TextField(
@@ -78,26 +75,25 @@ class PokemonSearchField extends StatelessWidget {
         builder:
             (BuildContext context, TextEditingValue value, Widget? child) =>
                 value.text.isEmpty
-                    ? const SizedBox.shrink()
-                    : IconButton(
-                      icon: const Icon(Icons.close, color: Colors.white70),
-                      tooltip: 'Limpiar búsqueda',
-                      onPressed: onClear,
-                    ),
+                ? const SizedBox.shrink()
+                : IconButton(
+                    icon: const Icon(Icons.close, color: Colors.white70),
+                    tooltip: 'Limpiar búsqueda',
+                    onPressed: onClear,
+                  ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(32),
         borderSide: const BorderSide(color: Colors.transparent),
       ),
-      focusedBorder:
-          fillHeight
-              ? InputBorder.none
-              : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32),
-                borderSide: BorderSide(
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
+      focusedBorder: fillHeight
+          ? InputBorder.none
+          : OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32),
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.secondary,
               ),
+            ),
     ),
   );
 }

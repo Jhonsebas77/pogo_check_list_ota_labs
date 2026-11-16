@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class Headings {
   static TextStyle mH1 = _base.copyWith(fontSize: 28, height: 32 / 28);

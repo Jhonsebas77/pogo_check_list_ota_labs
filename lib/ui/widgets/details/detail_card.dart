@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 /// Panel translúcido sobre el fondo primario usado por las secciones del
 /// detalle del Pokémon.

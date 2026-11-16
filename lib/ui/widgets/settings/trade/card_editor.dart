@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../../widgets.dart';
 
 class PokemonTradeItemEditor extends ConsumerStatefulWidget {
   const PokemonTradeItemEditor({
@@ -21,7 +21,7 @@ class _PokemonTradeItemEditorState
     extends ConsumerState<PokemonTradeItemEditor> {
   @override
   Widget build(BuildContext context) {
-    int _pokemonId = int.tryParse(widget.data.idController.text) ?? 0;
+    int pokemonId = int.tryParse(widget.data.idController.text) ?? 0;
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -30,7 +30,6 @@ class _PokemonTradeItemEditorState
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
               widget.title,
@@ -52,34 +51,32 @@ class _PokemonTradeItemEditorState
                     ),
                     if (widget.data.isShiny)
                       Image.asset(
-                        'assets/pokedex_sprites_shiny/$_pokemonId.png',
+                        'assets/pokedex_sprites_shiny/$pokemonId.png',
                         height: 80,
                         width: 80,
-                        errorBuilder:
-                            (
-                              BuildContext context,
-                              Object error,
-                              StackTrace? stackTrace,
-                            ) => const SizedBox(height: 80, width: 80),
+                        errorBuilder: (
+                          BuildContext context,
+                          Object error,
+                          StackTrace? stackTrace,
+                        ) => const SizedBox(height: 80, width: 80),
                       )
                     else
                       Image.asset(
-                        'assets/pokedex_sprites/$_pokemonId.png',
+                        'assets/pokedex_sprites/$pokemonId.png',
                         height: 80,
                         width: 80,
-                        errorBuilder:
-                            (
-                              BuildContext context,
-                              Object error,
-                              StackTrace? stackTrace,
-                            ) => const SizedBox(height: 80, width: 80),
+                        errorBuilder: (
+                          BuildContext context,
+                          Object error,
+                          StackTrace? stackTrace,
+                        ) => const SizedBox(height: 80, width: 80),
                       ),
                   ],
                 ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: PokemonSelector(
-                    selectedPokemonId: _pokemonId == 0 ? null : _pokemonId,
+                    selectedPokemonId: pokemonId == 0 ? null : pokemonId,
                     label: 'Seleccionar Pokémon',
                     onChanged: (int? newId) {
                       if (newId != null) {
@@ -138,74 +135,64 @@ class _PokemonTradeItemEditorState
                   label: 'Shiny',
                   value: widget.data.isShiny,
                   pokemonCriteria: BadgePokemonCriteria.shiny,
-                  onChanged:
-                      (bool value) =>
-                          setState(() => widget.data.isShiny = value),
+                  onChanged: (bool value) =>
+                      setState(() => widget.data.isShiny = value),
                 ),
                 _buildToggleChip(
                   context,
                   label: 'Lucky',
                   value: widget.data.isLucky,
                   pokemonCriteria: BadgePokemonCriteria.lucky,
-                  onChanged:
-                      (bool value) =>
-                          setState(() => widget.data.isLucky = value),
+                  onChanged: (bool value) =>
+                      setState(() => widget.data.isLucky = value),
                 ),
                 _buildToggleChip(
                   context,
                   label: 'Fondo especial',
                   value: widget.data.haveSpecialBackground,
                   pokemonCriteria: BadgePokemonCriteria.specialBackground,
-                  onChanged:
-                      (bool value) => setState(
-                        () => widget.data.haveSpecialBackground = value,
-                      ),
+                  onChanged: (bool value) =>
+                      setState(() => widget.data.haveSpecialBackground = value),
                 ),
                 _buildToggleChip(
                   context,
                   label: 'Adventure effect',
                   value: widget.data.haveAdventureEffect,
                   pokemonCriteria: BadgePokemonCriteria.adventureEffect,
-                  onChanged:
-                      (bool value) => setState(
-                        () => widget.data.haveAdventureEffect = value,
-                      ),
+                  onChanged: (bool value) =>
+                      setState(() => widget.data.haveAdventureEffect = value),
                 ),
                 _buildToggleChip(
                   context,
                   label: 'Ya atrapado',
                   value: widget.data.alreadyCaught,
                   pokemonCriteria: BadgePokemonCriteria.alreadyCaught,
-                  onChanged:
-                      (bool value) =>
-                          setState(() => widget.data.alreadyCaught = value),
+                  onChanged: (bool value) =>
+                      setState(() => widget.data.alreadyCaught = value),
                 ),
                 _buildToggleChip(
                   context,
                   label: 'Dinamax',
                   value: widget.data.isDynamax,
                   pokemonCriteria: BadgePokemonCriteria.dynamax,
-                  onChanged:
-                      (bool value) =>
-                          setState(() => widget.data.isDynamax = value),
+                  onChanged: (bool value) =>
+                      setState(() => widget.data.isDynamax = value),
                 ),
                 _buildToggleChip(
                   context,
                   label: 'Gigamax',
                   value: widget.data.isGigantamax,
                   pokemonCriteria: BadgePokemonCriteria.gigantamax,
-                  onChanged:
-                      (bool value) =>
-                          setState(() => widget.data.isGigantamax = value),
+                  onChanged: (bool value) =>
+                      setState(() => widget.data.isGigantamax = value),
                 ),
                 _buildToggleChip(
                   context,
                   label: 'Cambio espejo',
                   value: widget.data.isMirrorChange,
                   pokemonCriteria: BadgePokemonCriteria.mirrorChange,
-                  onChanged:
-                      (bool value) =>
-                          setState(() => widget.data.isMirrorChange = value),
+                  onChanged: (bool value) =>
+                      setState(() => widget.data.isMirrorChange = value),
                 ),
               ],
             ),

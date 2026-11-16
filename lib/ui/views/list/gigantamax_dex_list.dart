@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../views.dart';
 
 class GigantamaxPokemonView extends ConsumerStatefulWidget {
   const GigantamaxPokemonView({super.key});
@@ -51,18 +51,17 @@ class _GigantamaxPokemonViewState extends ConsumerState<GigantamaxPokemonView> {
                   ];
                   List<PokemonModel> sortedPokemon =
                       expandedPokemon.where((PokemonModel pokemon) {
-                          if (displayOnlyMissingPokemon) {
-                            return !pokemon.alreadyCatch;
-                          } else {
-                            return pokemon.id != 0;
-                          }
-                        }).toList()
-                        ..sort((PokemonModel a, PokemonModel b) {
-                          int byId = a.id.compareTo(b.id);
-                          return byId != 0
-                              ? byId
-                              : a.formOrder.compareTo(b.formOrder);
-                        });
+                        if (displayOnlyMissingPokemon) {
+                          return !pokemon.alreadyCatch;
+                        } else {
+                          return pokemon.id != 0;
+                        }
+                      }).toList()..sort((PokemonModel a, PokemonModel b) {
+                        int byId = a.id.compareTo(b.id);
+                        return byId != 0
+                            ? byId
+                            : a.formOrder.compareTo(b.formOrder);
+                      });
                   return SingleChildScrollView(
                     child: Wrap(
                       spacing: 10,
@@ -80,13 +79,12 @@ class _GigantamaxPokemonViewState extends ConsumerState<GigantamaxPokemonView> {
                     ),
                   );
                 },
-                error:
-                    (Object error, StackTrace stackTrace) => SimpleErrorChip(
-                      iconData: Icons.catching_pokemon,
-                      error: error.toString(),
-                      stackTrace: stackTrace,
-                      text: 'Con la información de los Pokemon Gigantamax',
-                    ),
+                error: (Object error, StackTrace stackTrace) => SimpleErrorChip(
+                  iconData: Icons.catching_pokemon,
+                  error: error.toString(),
+                  stackTrace: stackTrace,
+                  text: 'Con la información de los Pokemon Gigantamax',
+                ),
                 loading: PokemonGigantamaxListShimmer.new,
               ),
             ),

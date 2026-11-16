@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../../widgets.dart';
 
 class PokemonTradeList extends StatelessWidget {
   const PokemonTradeList({
@@ -39,16 +39,13 @@ class PokemonTradeList extends StatelessWidget {
               children: List<Widget>.generate(pokemonList.length, (int index) {
                 int originalIndex =
                     originalIndices != null && index < originalIndices!.length
-                        ? originalIndices![index]
-                        : index;
+                    ? originalIndices![index]
+                    : index;
                 return GestureDetector(
-                  onLongPress:
-                      onLongPressEdit == null
-                          ? null
-                          : () => onLongPressEdit!(
-                            originalIndex,
-                            pokemonList[index],
-                          ),
+                  onLongPress: onLongPressEdit == null
+                      ? null
+                      : () =>
+                            onLongPressEdit!(originalIndex, pokemonList[index]),
                   child: PokemonTradeCard(
                     pokemonId: pokemonList[index].id ?? 0,
                     pokemonName: pokemonList[index].name ?? '',

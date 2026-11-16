@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../../widgets.dart';
 
 class LuckyFriendListTile extends StatelessWidget {
   const LuckyFriendListTile({required this.friend, super.key});
@@ -13,7 +13,6 @@ class LuckyFriendListTile extends StatelessWidget {
     ),
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
     child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         const SizedBox(width: 16),
         Expanded(
@@ -95,10 +94,9 @@ class LuckyFriendListTile extends StatelessWidget {
         Icon(
           Icons.compare_arrows,
           size: 32,
-          color:
-              (friend.pokemonOffer != null || friend.pokemonWanted != null)
-                  ? luckyAccent(context)
-                  : Theme.of(context).colorScheme.onSurfaceVariant,
+          color: (friend.pokemonOffer != null || friend.pokemonWanted != null)
+              ? luckyAccent(context)
+              : Theme.of(context).colorScheme.onSurfaceVariant,
         ),
         Stack(
           alignment: AlignmentDirectional.center,

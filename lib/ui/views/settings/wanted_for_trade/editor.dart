@@ -1,20 +1,17 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../../views.dart';
 
 extension PokemonTradeCategoryX on PokemonTradeCategory {
-  String get singularLabel =>
-      this == PokemonTradeCategory.wanted
-          ? 'Pokémon buscado'
-          : 'Pokémon ofrecido';
+  String get singularLabel => this == PokemonTradeCategory.wanted
+      ? 'Pokémon buscado'
+      : 'Pokémon ofrecido';
 
-  String get editTitle =>
-      this == PokemonTradeCategory.wanted
-          ? 'Editar Pokémon buscado'
-          : 'Editar Pokémon ofrecido';
+  String get editTitle => this == PokemonTradeCategory.wanted
+      ? 'Editar Pokémon buscado'
+      : 'Editar Pokémon ofrecido';
 
-  String get createTitle =>
-      this == PokemonTradeCategory.wanted
-          ? 'Agregar Pokémon buscado'
-          : 'Agregar Pokémon ofrecido';
+  String get createTitle => this == PokemonTradeCategory.wanted
+      ? 'Agregar Pokémon buscado'
+      : 'Agregar Pokémon ofrecido';
 }
 
 class PokemonTradeItemEditorView extends ConsumerStatefulWidget {
@@ -46,10 +43,9 @@ class _PokemonTradeItemEditorViewState
   @override
   void initState() {
     super.initState();
-    _formData =
-        widget.initialItem != null
-            ? PokemonTradeItemFormData.fromTradeItem(widget.initialItem!)
-            : PokemonTradeItemFormData();
+    _formData = widget.initialItem != null
+        ? PokemonTradeItemFormData.fromTradeItem(widget.initialItem!)
+        : PokemonTradeItemFormData();
   }
 
   @override
@@ -180,10 +176,9 @@ class _PokemonTradeItemEditorViewState
 
   @override
   Widget build(BuildContext context) {
-    String title =
-        widget.isEditing
-            ? widget.category.editTitle
-            : widget.category.createTitle;
+    String title = widget.isEditing
+        ? widget.category.editTitle
+        : widget.category.createTitle;
     return Scaffold(
       appBar: CustomAppBar(title: title, isTransparent: true),
       body: WebContent(
@@ -226,14 +221,13 @@ class _PokemonTradeItemEditorViewState
               if (widget.isEditing) const SizedBox(height: 8),
               ElevatedButton.icon(
                 onPressed: _isSaving ? null : _submit,
-                icon:
-                    _isSaving
-                        ? const SizedBox(
-                          width: 16,
-                          height: 16,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                        : const Icon(Icons.save),
+                icon: _isSaving
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.save),
                 label: Text(_isSaving ? 'Guardando...' : 'Guardar cambios'),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),

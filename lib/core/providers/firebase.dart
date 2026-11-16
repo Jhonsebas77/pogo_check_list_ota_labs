@@ -1,6 +1,6 @@
 // ignore_for_file: always_specify_types
 
-part of com.pogo_check_list_ota_labs.app.providers;
+part of 'providers.dart';
 
 class FirebaseProvider extends ChangeNotifier {
   void initializeFirebase() {
@@ -57,30 +57,26 @@ class PokemonFirebaseState {
   int getShinyAvailablePokemonLength() =>
       allPokemon.where((PokemonModel pokemon) => pokemon.shinyAvailable).length;
 
-  int getAlreadyCatchPokemonShinyLength() =>
-      allPokemon
-          .where((PokemonModel pokemon) => pokemon.alreadyCatchShinyVersion)
-          .length;
+  int getAlreadyCatchPokemonShinyLength() => allPokemon
+      .where((PokemonModel pokemon) => pokemon.alreadyCatchShinyVersion)
+      .length;
 
   int getAlreadyCatchPokemonLength() =>
       allPokemon.where((PokemonModel pokemon) => pokemon.alreadyCatch).length;
 
   int getAllGigantamaxPokemonLength() => allGigantamaxPokemon.length;
 
-  int getAlreadyCatchGigantamaxPokemonLength() =>
-      allGigantamaxPokemon
-          .where((PokemonModel pokemon) => pokemon.alreadyCatch)
-          .length;
+  int getAlreadyCatchGigantamaxPokemonLength() => allGigantamaxPokemon
+      .where((PokemonModel pokemon) => pokemon.alreadyCatch)
+      .length;
 
-  int getAllMegaEvolutionsPokemonLength() =>
-      allMegaEvolutionPokemon
-          .where((PokemonModel pokemon) => pokemon.available)
-          .length;
+  int getAllMegaEvolutionsPokemonLength() => allMegaEvolutionPokemon
+      .where((PokemonModel pokemon) => pokemon.available)
+      .length;
 
-  int getAlreadyCatchMegaEvolutionsPokemonLength() =>
-      allMegaEvolutionPokemon
-          .where((PokemonModel pokemon) => pokemon.alreadyCatch)
-          .length;
+  int getAlreadyCatchMegaEvolutionsPokemonLength() => allMegaEvolutionPokemon
+      .where((PokemonModel pokemon) => pokemon.alreadyCatch)
+      .length;
 
   int getLuckyFriendsLength() => allLuckyFriends.length;
 }
@@ -95,8 +91,9 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
   final DatabaseReference _firebaseRef = FirebaseDatabase.instance.ref();
 
   Future<List<PokemonModel>> _fetchGigamaxPokemonList() async {
-    DataSnapshot snapshot =
-        await _firebaseRef.child(firebasePokemonGigantamaxPath).get();
+    DataSnapshot snapshot = await _firebaseRef
+        .child(firebasePokemonGigantamaxPath)
+        .get();
     List<PokemonModel> allGigantamaxPokemon = <PokemonModel>[];
 
     if (snapshot.exists && snapshot.value != null) {
@@ -107,19 +104,16 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
             snapshot.value as Map,
           ).forEach((String id, dynamic pokemonGigantamax) {
             if (pokemonGigantamax is Map) {
-              Map<String, dynamic> _pokemonGigantamax =
-                  Map<String, dynamic>.from(pokemonGigantamax);
-              PokemonModel _pokemonModel = PokemonModel.fromJson(
-                _pokemonGigantamax,
+              Map<String, dynamic> pokemonMap = Map<String, dynamic>.from(
+                pokemonGigantamax,
               );
-              allGigantamaxPokemon.add(_pokemonModel);
+              PokemonModel pokemonModel = PokemonModel.fromJson(pokemonMap);
+              allGigantamaxPokemon.add(pokemonModel);
             }
           });
           return allGigantamaxPokemon;
         } catch (e) {
-          throw Exception(
-            '[A] Could not fetch Gigamax Pokémon data. | ${e.toString()}',
-          );
+          throw Exception('[A] Could not fetch Gigamax Pokémon data. | $e');
         }
       } else {
         throw Exception('[B] Could not fetch Gigamax Pokémon data.');
@@ -130,8 +124,9 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
   }
 
   Future<List<PokemonModel>> _fetchMegaEvolutionPokemonList() async {
-    DataSnapshot snapshot =
-        await _firebaseRef.child(firebasePokemonMegaEvolutionPath).get();
+    DataSnapshot snapshot = await _firebaseRef
+        .child(firebasePokemonMegaEvolutionPath)
+        .get();
     List<PokemonModel> allMegaEvolutionPokemon = <PokemonModel>[];
 
     if (snapshot.exists && snapshot.value != null) {
@@ -142,18 +137,17 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
             snapshot.value as Map,
           ).forEach((String id, dynamic pokemonGigantamax) {
             if (pokemonGigantamax is Map) {
-              Map<String, dynamic> _pokemonGigantamax =
-                  Map<String, dynamic>.from(pokemonGigantamax);
-              PokemonModel _pokemonModel = PokemonModel.fromJson(
-                _pokemonGigantamax,
+              Map<String, dynamic> pokemonMap = Map<String, dynamic>.from(
+                pokemonGigantamax,
               );
-              allMegaEvolutionPokemon.add(_pokemonModel);
+              PokemonModel pokemonModel = PokemonModel.fromJson(pokemonMap);
+              allMegaEvolutionPokemon.add(pokemonModel);
             }
           });
           return allMegaEvolutionPokemon;
         } catch (e) {
           throw Exception(
-            '[A] Could not fetch Megaevolution Pokémon data. | ${e.toString()}',
+            '[A] Could not fetch Megaevolution Pokémon data. | $e',
           );
         }
       } else {
@@ -169,7 +163,9 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
     List<PokemonModel> allPokemon = <PokemonModel>[];
 
     if (snapshot.exists && snapshot.value != null && snapshot.value is List) {
-      List pokemonList = List<dynamic>.from(snapshot.value! as List<dynamic>);
+      List<dynamic> pokemonList = List<dynamic>.from(
+        snapshot.value! as List<dynamic>,
+      );
       for (var pokemon in pokemonList) {
         Map<String, dynamic> mapPokemon = Map<String, dynamic>.from(
           pokemon as Map,
@@ -205,13 +201,14 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
   }
 
   Future<List<LuckyFriend>> _fetchLuckyFriendsList() async {
-    DataSnapshot snapshot =
-        await _firebaseRef.child(firebaseLuckyFriendsPath).get();
+    DataSnapshot snapshot = await _firebaseRef
+        .child(firebaseLuckyFriendsPath)
+        .get();
     List<LuckyFriend> allLuckyFriends = <LuckyFriend>[];
     if (snapshot.exists && snapshot.value != null) {
       if (snapshot.value is List) {
         try {
-          List pokemonList = List<dynamic>.from(
+          List<dynamic> pokemonList = List<dynamic>.from(
             snapshot.value! as List<dynamic>,
           );
           for (var pokemon in pokemonList) {
@@ -226,9 +223,7 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
           );
           return allLuckyFriends;
         } catch (e) {
-          throw Exception(
-            '[A] Could not fetch LuckyFriends data. | ${e.toString()}',
-          );
+          throw Exception('[A] Could not fetch LuckyFriends data. | $e');
         }
       } else {
         throw Exception('[B] Could not fetch LuckyFriends data.');
@@ -239,8 +234,9 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
   }
 
   Future<PokemonTrade?> _fetchPokemonForTrade() async {
-    DataSnapshot snapshot =
-        await _firebaseRef.child(firebasePokemonForTradePath).get();
+    DataSnapshot snapshot = await _firebaseRef
+        .child(firebasePokemonForTradePath)
+        .get();
     if (snapshot.exists && snapshot.value != null && snapshot.value is Map) {
       Map<String, dynamic> dataMap = Map<String, dynamic>.from(
         snapshot.value! as Map,
@@ -350,8 +346,8 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
               .map(
                 (PokemonModel form) =>
                     form.formTag?.id == updatedForm.formTag?.id
-                        ? updatedForm
-                        : form,
+                    ? updatedForm
+                    : form,
               )
               .toList();
       PokemonModel newBase = base.copyWith(alternativeForms: updatedForms);
@@ -443,8 +439,8 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
               .map(
                 (PokemonModel form) =>
                     form.formTag?.id == updatedForm.formTag?.id
-                        ? updatedForm
-                        : form,
+                    ? updatedForm
+                    : form,
               )
               .toList();
       PokemonModel newBase = base.copyWith(alternativeForms: updatedForms);
@@ -536,8 +532,8 @@ class FirebasePokemon extends AsyncNotifier<PokemonFirebaseState> {
               .map(
                 (PokemonModel form) =>
                     form.formTag?.id == updatedForm.formTag?.id
-                        ? updatedForm
-                        : form,
+                    ? updatedForm
+                    : form,
               )
               .toList();
       PokemonModel newBase = base.copyWith(alternativeForms: updatedForms);

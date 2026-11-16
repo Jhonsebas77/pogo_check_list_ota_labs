@@ -1,13 +1,13 @@
-library com.pogo_check_list_ota_labs.app.widgets;
+library;
 
 import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shimmer/shimmer.dart';
@@ -44,13 +44,13 @@ part 'inputs/decoration.dart';
 part 'inputs/pokemon_selector.dart';
 part 'inputs/text_field.dart';
 part 'layout/web_layout.dart';
-part 'marquee_text.dart';
 part 'list/pokemon_list_gigantamax_item.dart';
 part 'list/pokemon_list_item.dart';
 part 'list/pokemon_list_megaevolution_item.dart';
 part 'list/pokemon_search.dart';
 part 'list/scroll_list_buttons.dart';
 part 'list/simple_chip_with_icon.dart';
+part 'marquee_text.dart';
 part 'modals/base.dart';
 part 'modals/count_overview.dart';
 part 'modals/zygarde_cells.dart';

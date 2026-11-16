@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of 'widgets.dart';
 
 /// Texto de una línea que, si no cabe, se desliza de derecha a izquierda para
 /// mostrarse completo, con una pausa en cada extremo.
@@ -84,10 +84,9 @@ class _MarqueeTextState extends State<MarqueeText>
           textDirection: Directionality.of(context),
           textScaler: MediaQuery.textScalerOf(context),
         )..layout();
-        double distance =
-            reduceMotion || !constraints.hasBoundedWidth
-                ? 0
-                : painter.width - constraints.maxWidth;
+        double distance = reduceMotion || !constraints.hasBoundedWidth
+            ? 0
+            : painter.width - constraints.maxWidth;
         Size textSize = painter.size;
         painter.dispose();
         // Solo cuando cambia el desborde (nuevo texto, ancho o escala), para
@@ -121,12 +120,11 @@ class _MarqueeTextState extends State<MarqueeText>
                   maxWidth: double.infinity,
                   child: AnimatedBuilder(
                     animation: _offset,
-                    builder:
-                        (BuildContext context, Widget? child) =>
-                            Transform.translate(
-                              offset: Offset(-_offset.value, 0),
-                              child: child,
-                            ),
+                    builder: (BuildContext context, Widget? child) =>
+                        Transform.translate(
+                          offset: Offset(-_offset.value, 0),
+                          child: child,
+                        ),
                     child: Text(
                       widget.text,
                       style: style,

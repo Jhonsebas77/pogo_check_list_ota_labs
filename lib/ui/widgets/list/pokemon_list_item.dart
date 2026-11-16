@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 class PokemonListItem extends ConsumerWidget {
   const PokemonListItem({
@@ -19,16 +19,14 @@ class PokemonListItem extends ConsumerWidget {
   /// Etiqueta Hero única. Las formas base conservan el `id` (int) para mantener
   /// la animación hacia el detalle; las formas alternativas usan una etiqueta
   /// distinta para evitar colisiones cuando base y forma comparten `id`.
-  Object get _heroTag =>
-      selectPokemon.isAlternativeForm
-          ? '${selectPokemon.id}${selectPokemon.formSuffix}'
-          : selectPokemon.id;
+  Object get _heroTag => selectPokemon.isAlternativeForm
+      ? '${selectPokemon.id}${selectPokemon.formSuffix}'
+      : selectPokemon.id;
 
   /// Nombre con la forma, si la tiene: `Meowth (Galar)`.
-  String get _displayName =>
-      selectPokemon.isAlternativeForm
-          ? '${selectPokemon.name} (${selectPokemon.formTag!.name})'
-          : selectPokemon.name;
+  String get _displayName => selectPokemon.isAlternativeForm
+      ? '${selectPokemon.name} (${selectPokemon.formTag!.name})'
+      : selectPokemon.name;
 
   /// `errorBuilder` que cae al sprite [fallbackAsset] de la especie base cuando
   /// falta el PNG de la forma alternativa.
@@ -85,7 +83,7 @@ class PokemonListItem extends ConsumerWidget {
                           fit: BoxFit.fill,
                         )
                       else if (isShiny)
-                        if (selectPokemon.shinyAvailable == false)
+                        if (!selectPokemon.shinyAvailable)
                           Image.asset(
                             'assets/pokedex_sprites_shiny/0.png',
                             height: 50,
@@ -110,7 +108,7 @@ class PokemonListItem extends ConsumerWidget {
                             ),
                           )
                       else if (!isShiny)
-                        if (selectPokemon.available == false)
+                        if (!selectPokemon.available)
                           Shimmer.fromColors(
                             baseColor: Colors.grey[300]!,
                             highlightColor: Colors.grey[100]!,
@@ -153,8 +151,9 @@ class PokemonListItem extends ConsumerWidget {
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.bold,
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurfaceVariant,
                           ),
                         ),
                         Text(
@@ -164,8 +163,9 @@ class PokemonListItem extends ConsumerWidget {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurfaceVariant,
                           ),
                         ),
                       ],
@@ -176,53 +176,46 @@ class PokemonListItem extends ConsumerWidget {
             ),
             if (selectPokemon.available)
               GestureDetector(
-                onTap:
-                    selectPokemon.available
-                        ? () async {
-                          if (index == selectPokemon.id) {
-                            // copyWith preserva alternativeForm/alternativeForms
-                            // (evita la pérdida de datos del toggle anterior).
-                            PokemonModel _pokemon = selectPokemon.copyWith(
-                              alreadyCatch:
-                                  isShiny
-                                      ? selectPokemon.alreadyCatch
-                                      : !selectPokemon.alreadyCatch,
-                              alreadyCatchShinyVersion:
-                                  isShiny
-                                      ? !selectPokemon.alreadyCatchShinyVersion
-                                      : selectPokemon.alreadyCatchShinyVersion,
-                            );
-                            if (selectPokemon.isAlternativeForm) {
-                              await ref
-                                  .read(firebasePokemonProvider.notifier)
-                                  .updatePokemonForm(
-                                    _pokemon.id,
-                                    _pokemon,
-                                    context,
-                                  );
-                            } else {
-                              await ref
-                                  .read(firebasePokemonProvider.notifier)
-                                  .updatePokemon(
-                                    _pokemon.id,
-                                    _pokemon,
-                                    context,
-                                  );
-                            }
-                            if (context.mounted) {
-                              showSuccessSnackBar(
-                                context,
-                                '''[Registro actualizado]\n${paddingDexNumber(dexNumber: selectPokemon.id)} ${selectPokemon.name}''',
-                              );
-                            }
+                onTap: selectPokemon.available
+                    ? () async {
+                        if (index == selectPokemon.id) {
+                          // copyWith preserva alternativeForm/alternativeForms
+                          // (evita la pérdida de datos del toggle anterior).
+                          PokemonModel pokemon = selectPokemon.copyWith(
+                            alreadyCatch: isShiny
+                                ? selectPokemon.alreadyCatch
+                                : !selectPokemon.alreadyCatch,
+                            alreadyCatchShinyVersion: isShiny
+                                ? !selectPokemon.alreadyCatchShinyVersion
+                                : selectPokemon.alreadyCatchShinyVersion,
+                          );
+                          if (selectPokemon.isAlternativeForm) {
+                            await ref
+                                .read(firebasePokemonProvider.notifier)
+                                .updatePokemonForm(
+                                  pokemon.id,
+                                  pokemon,
+                                  context,
+                                );
                           } else {
-                            showErrorSnackBar(
+                            await ref
+                                .read(firebasePokemonProvider.notifier)
+                                .updatePokemon(pokemon.id, pokemon, context);
+                          }
+                          if (context.mounted) {
+                            showSuccessSnackBar(
                               context,
-                              '''[Error actualizando el registro] -> $index != ${selectPokemon.id}''',
+                              '''[Registro actualizado]\n${paddingDexNumber(dexNumber: selectPokemon.id)} ${selectPokemon.name}''',
                             );
                           }
+                        } else {
+                          showErrorSnackBar(
+                            context,
+                            '''[Error actualizando el registro] -> $index != ${selectPokemon.id}''',
+                          );
                         }
-                        : null,
+                      }
+                    : null,
                 child: Row(
                   children: <Widget>[
                     if (!selectPokemon.tradable)

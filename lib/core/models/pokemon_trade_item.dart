@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.models;
+part of 'models.dart';
 
 class PokemonTradeItem {
   PokemonTradeItem({
@@ -64,7 +64,8 @@ class PokemonTradeItem {
   };
 
   @override
-  String toString() => '''PokemonTradeItem(
+  String toString() =>
+      '''PokemonTradeItem(
     'name': $name,
     'id':  $id,
     'quantity':  $quantity,

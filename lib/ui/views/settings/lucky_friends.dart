@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../views.dart';
 
 class LuckyFriendsView extends ConsumerWidget {
   const LuckyFriendsView({super.key});
@@ -80,25 +80,23 @@ class LuckyFriendsView extends ConsumerWidget {
             top: false,
             child: firebasePokemonState.when(
               data: (PokemonFirebaseState state) {
-                List<LuckyFriend> _friendsInfo = state.allLuckyFriends;
+                List<LuckyFriend> friendsInfo = state.allLuckyFriends;
                 return SingleChildScrollView(
                   child: Screenshot(
                     controller: screenshotController,
                     child: LuckyFriendsList(
-                      friends: _friendsInfo,
-                      onLongPressEdit:
-                          (int index, LuckyFriend friend) =>
-                              openEditor(friend: friend, index: index),
+                      friends: friendsInfo,
+                      onLongPressEdit: (int index, LuckyFriend friend) =>
+                          openEditor(friend: friend, index: index),
                     ),
                   ),
                 );
               },
-              error:
-                  (Object error, StackTrace stackTrace) =>
-                      const SimpleErrorChip(
-                        iconData: Icons.people,
-                        text: 'Con la información de tus amigos con suerte',
-                      ),
+              error: (Object error, StackTrace stackTrace) =>
+                  const SimpleErrorChip(
+                    iconData: Icons.people,
+                    text: 'Con la información de tus amigos con suerte',
+                  ),
               loading: () => const Center(child: SimpleTextShimmer()),
             ),
           ),

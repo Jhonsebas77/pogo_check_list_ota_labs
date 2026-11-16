@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../views.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -12,7 +12,6 @@ class SettingsView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 4,
             children: <Widget>[
@@ -45,7 +44,6 @@ class SettingsView extends StatelessWidget {
           ),
           SizedBox(height: 16),
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 4,
             children: <Widget>[

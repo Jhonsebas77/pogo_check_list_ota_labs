@@ -1,4 +1,4 @@
-library com.pogo_check_list_ota_labs.app.utils;
+library;
 
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';

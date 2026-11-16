@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.services;
+part of 'services.dart';
 
 class PokemonAPIService {
   static const Logger _log = Logger('PokemonApiService');

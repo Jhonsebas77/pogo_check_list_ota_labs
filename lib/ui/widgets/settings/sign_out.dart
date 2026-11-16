@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 class SignOutMenuItem extends ConsumerWidget {
   const SignOutMenuItem({super.key});
@@ -6,21 +6,20 @@ class SignOutMenuItem extends ConsumerWidget {
   Future<void> _confirmSignOut(BuildContext context, WidgetRef ref) async {
     bool? confirmed = await showDialog<bool>(
       context: context,
-      builder:
-          (BuildContext context) => AlertDialog(
-            title: const Text('Cerrar sesión'),
-            content: const Text('¿Estás seguro de que quieres cerrar sesión?'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: const Text('Cancelar'),
-              ),
-              ElevatedButton(
-                onPressed: () => Navigator.of(context).pop(true),
-                child: const Text('Salir'),
-              ),
-            ],
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Cerrar sesión'),
+        content: const Text('¿Estás seguro de que quieres cerrar sesión?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancelar'),
           ),
+          ElevatedButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Salir'),
+          ),
+        ],
+      ),
     );
     if (confirmed != true || !context.mounted) return;
     await ref.read(authProvider.notifier).signOut();
@@ -38,8 +37,9 @@ class SignOutMenuItem extends ConsumerWidget {
     child: ListTile(
       title: const Text('Cerrar sesión', style: TextStyle(color: Colors.white)),
       leading: const Icon(Icons.logout_rounded, color: Colors.white),
-      enabled:
-          !ref.watch(authProvider.select((AuthStatus auth) => auth.isLoading)),
+      enabled: !ref.watch(
+        authProvider.select((AuthStatus auth) => auth.isLoading),
+      ),
       onTap: () => _confirmSignOut(context, ref),
     ),
   );

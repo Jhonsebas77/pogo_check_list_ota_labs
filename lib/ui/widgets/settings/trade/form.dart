@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../../widgets.dart';
 
 class PokemonTradeItemFormData {
   PokemonTradeItemFormData({
@@ -83,7 +83,8 @@ class PokemonTradeItemFormData {
   }
 
   @override
-  String toString() => '''PokemonTradeItemFormData -> 
+  String toString() =>
+      '''PokemonTradeItemFormData -> 
   $alreadyCaught;
   $haveAdventureEffect;
   $haveSpecialBackground;

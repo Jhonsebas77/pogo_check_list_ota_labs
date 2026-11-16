@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart';
 
 const Color primaryColor = Color.fromRGBO(198, 73, 52, 1);
 const Color primaryDarkColor = Color.fromRGBO(198, 73, 52, 1);
@@ -30,8 +30,8 @@ const Color disabledOutlinedBorder = Colors.white38;
 
 Color luckyAccent(BuildContext context) =>
     Theme.of(context).brightness == Brightness.dark
-        ? luckyAccentColor
-        : luckyAccentLightColor;
+    ? luckyAccentColor
+    : luckyAccentLightColor;
 
 /// WCAG 2.x contrast ratio between two opaque colors (1 to 21).
 double contrastRatio(Color a, Color b) {
@@ -43,16 +43,15 @@ double contrastRatio(Color a, Color b) {
 /// White when it reaches AA (4.5:1) over [background], otherwise dark.
 Color readableOn(Color background) =>
     contrastRatio(Colors.white, background) >= 4.5
-        ? Colors.white
-        : onLightAccent;
+    ? Colors.white
+    : onLightAccent;
 
 final WidgetStateProperty<BorderSide> _outlinedButtonSide =
     WidgetStateProperty.resolveWith<BorderSide>(
       (Set<WidgetState> states) => BorderSide(
-        color:
-            states.contains(WidgetState.disabled)
-                ? disabledOutlinedBorder
-                : Colors.white,
+        color: states.contains(WidgetState.disabled)
+            ? disabledOutlinedBorder
+            : Colors.white,
       ),
     );
 
@@ -69,7 +68,6 @@ final ThemeData appTheme = ThemeData(
     onTertiary: onLightAccent,
     error: lightErrorColor,
     onError: Colors.white,
-    brightness: Brightness.light,
   ),
   textTheme: const TextTheme(
     displayLarge: TextStyle(fontSize: 57, fontWeight: FontWeight.bold),
@@ -241,5 +239,5 @@ final WidgetStateProperty<Icon?> thumbIcon =
 
 SystemUiOverlayStyle getSystemOverlayStyle(BuildContext context) =>
     Theme.of(context).brightness == Brightness.dark
-        ? SystemUiOverlayStyle.light
-        : SystemUiOverlayStyle.dark;
+    ? SystemUiOverlayStyle.light
+    : SystemUiOverlayStyle.dark;

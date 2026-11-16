@@ -1,4 +1,4 @@
-library com.pogo_check_list_ota_labs.app.services;
+library;
 
 import 'dart:convert';
 

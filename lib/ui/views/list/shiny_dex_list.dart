@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../views.dart';
 
 class ShinyPokemonView extends ConsumerStatefulWidget {
   const ShinyPokemonView({super.key});
@@ -61,24 +61,21 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView>
                   ),
                   child: Center(
                     child: firebasePokemonState.when(
-                      data:
-                          (PokemonFirebaseState state) => Text(
-                            '${state.getAlreadyCatchPokemonShinyLength()}/${state.getShinyAvailablePokemonLength()} (${(state.getAlreadyCatchPokemonShinyLength() / state.getShinyAvailablePokemonLength() * 100).toStringAsFixed(2)}%)',
-                            style: const TextStyle(color: Colors.white),
+                      data: (PokemonFirebaseState state) => Text(
+                        '${state.getAlreadyCatchPokemonShinyLength()}/${state.getShinyAvailablePokemonLength()} (${(state.getAlreadyCatchPokemonShinyLength() / state.getShinyAvailablePokemonLength() * 100).toStringAsFixed(2)}%)',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      error: (Object error, StackTrace stackTrace) =>
+                          SimpleErrorChip(
+                            iconData: Icons.catching_pokemon,
+                            error: error.toString(),
+                            stackTrace: stackTrace,
+                            isSmall: true,
                           ),
-                      error:
-                          (Object error, StackTrace stackTrace) =>
-                              SimpleErrorChip(
-                                iconData: Icons.catching_pokemon,
-                                error: error.toString(),
-                                stackTrace: stackTrace,
-                                isSmall: true,
-                              ),
-                      loading:
-                          () => const SimpleTextShimmer(
-                            widthShimmer: 100,
-                            heightShimmer: 10,
-                          ),
+                      loading: () => const SimpleTextShimmer(
+                        widthShimmer: 100,
+                        heightShimmer: 10,
+                      ),
                     ),
                   ),
                 ),
@@ -106,8 +103,9 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView>
                           Switch(
                             value: displayOnlyMissingPokemon,
                             thumbIcon: thumbIcon,
-                            activeThumbColor:
-                                Theme.of(context).colorScheme.secondary,
+                            activeThumbColor: Theme.of(context)
+                                .colorScheme
+                                .secondary,
                             onChanged: (_) async {
                               setState(() {
                                 displayOnlyMissingPokemon =
@@ -120,21 +118,20 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView>
                           ),
                           const SizedBox(width: 16),
                           PopupMenuButton<PokemonSortCriteria>(
-                            icon:
-                                isFilterApply
-                                    ? Row(
-                                      children: <Widget>[
-                                        Icon(
-                                          getFilterIcon(),
-                                          color: Colors.white,
-                                        ),
-                                        const Icon(
-                                          Icons.filter_list_rounded,
-                                          color: Colors.white,
-                                        ),
-                                      ],
-                                    )
-                                    : const Icon(Icons.filter_list_rounded),
+                            icon: isFilterApply
+                                ? Row(
+                                    children: <Widget>[
+                                      Icon(
+                                        getFilterIcon(),
+                                        color: Colors.white,
+                                      ),
+                                      const Icon(
+                                        Icons.filter_list_rounded,
+                                        color: Colors.white,
+                                      ),
+                                    ],
+                                  )
+                                : const Icon(Icons.filter_list_rounded),
                             tooltip: 'Ordenar Pokémones',
                             color: Theme.of(context).colorScheme.primary,
                             offset: const Offset(0, 60),
@@ -144,24 +141,23 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView>
                                 isFilterApply = true;
                               });
                             },
-                            itemBuilder:
-                                (BuildContext context) =>
-                                    <PopupMenuEntry<PokemonSortCriteria>>[
-                                      const PopupMenuItem<PokemonSortCriteria>(
-                                        value: PokemonSortCriteria.byName,
-                                        child: SimpleChipWithIcon(
-                                          iconData: Icons.sort_by_alpha,
-                                          text: 'Nombre',
-                                        ),
-                                      ),
-                                      const PopupMenuItem<PokemonSortCriteria>(
-                                        value: PokemonSortCriteria.byDex,
-                                        child: SimpleChipWithIcon(
-                                          iconData: Icons.numbers,
-                                          text: 'Déx',
-                                        ),
-                                      ),
-                                    ],
+                            itemBuilder: (BuildContext context) =>
+                                <PopupMenuEntry<PokemonSortCriteria>>[
+                                  const PopupMenuItem<PokemonSortCriteria>(
+                                    value: PokemonSortCriteria.byName,
+                                    child: SimpleChipWithIcon(
+                                      iconData: Icons.sort_by_alpha,
+                                      text: 'Nombre',
+                                    ),
+                                  ),
+                                  const PopupMenuItem<PokemonSortCriteria>(
+                                    value: PokemonSortCriteria.byDex,
+                                    child: SimpleChipWithIcon(
+                                      iconData: Icons.numbers,
+                                      text: 'Déx',
+                                    ),
+                                  ),
+                                ],
                           ),
                         ],
                       ),
@@ -188,16 +184,15 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView>
               ];
               // Se copia la lista (List.of) para no mutar el estado del
               // provider al ordenar in-place con sort().
-              List<PokemonModel> sortedPokemon =
-                  displayOnlyMissingPokemon
-                      ? expandedPokemon
-                          .where(
-                            (PokemonModel pokemon) =>
-                                pokemon.shinyAvailable &&
-                                !pokemon.alreadyCatchShinyVersion,
-                          )
-                          .toList()
-                      : List<PokemonModel>.of(expandedPokemon);
+              List<PokemonModel> sortedPokemon = displayOnlyMissingPokemon
+                  ? expandedPokemon
+                        .where(
+                          (PokemonModel pokemon) =>
+                              pokemon.shinyAvailable &&
+                              !pokemon.alreadyCatchShinyVersion,
+                        )
+                        .toList()
+                  : List<PokemonModel>.of(expandedPokemon);
               // Se filtra por nombre antes de ordenar para ordenar menos ítems.
               sortedPokemon = applySearchFilter(sortedPokemon);
               switch (_currentSortCriteria) {
@@ -206,7 +201,6 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView>
                     (PokemonModel a, PokemonModel b) =>
                         a.name.toLowerCase().compareTo(b.name.toLowerCase()),
                   );
-                  break;
                 case PokemonSortCriteria.byDex:
                   sortedPokemon.sort((PokemonModel a, PokemonModel b) {
                     int byId = a.id.compareTo(b.id);
@@ -215,30 +209,25 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView>
                         ? byId
                         : a.formOrder.compareTo(b.formOrder);
                   });
-                  break;
                 case PokemonSortCriteria.byEvolution:
                   sortedPokemon.sort(
                     (PokemonModel a, PokemonModel b) =>
                         a.name.compareTo(b.name),
                   );
-                  break;
               }
               if (sortedPokemon.isEmpty) {
                 return EmptyState(
-                  message:
-                      hasSearchQuery
-                          ? 'No hay Pokémon que coincidan con "$searchQuery"'
-                          : 'Lo sentimos, aun no tenemos registros',
+                  message: hasSearchQuery
+                      ? 'No hay Pokémon que coincidan con "$searchQuery"'
+                      : 'Lo sentimos, aun no tenemos registros',
                 );
               }
               // Sincroniza la visibilidad inicial de los botones tras el primer
               // frame (p. ej. ocultar "bajar" si la lista cabe en pantalla).
               scheduleScrollButtonsSync();
               return ListView.separated(
-                separatorBuilder:
-                    (BuildContext _, int __) => const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 4),
-                    ),
+                separatorBuilder: (BuildContext _, int _) =>
+                    const Padding(padding: EdgeInsets.symmetric(vertical: 4)),
                 controller: scrollController,
                 itemCount: sortedPokemon.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -255,13 +244,12 @@ class _ShinyPokemonViewState extends ConsumerState<ShinyPokemonView>
                 },
               );
             },
-            error:
-                (Object error, StackTrace stackTrace) => SimpleErrorChip(
-                  iconData: Icons.catching_pokemon,
-                  error: error.toString(),
-                  stackTrace: stackTrace,
-                  text: 'Con la información de los Pokemon Shiny',
-                ),
+            error: (Object error, StackTrace stackTrace) => SimpleErrorChip(
+              iconData: Icons.catching_pokemon,
+              error: error.toString(),
+              stackTrace: stackTrace,
+              text: 'Con la información de los Pokemon Shiny',
+            ),
             loading: PokemonListShimmer.new,
           ),
         ),

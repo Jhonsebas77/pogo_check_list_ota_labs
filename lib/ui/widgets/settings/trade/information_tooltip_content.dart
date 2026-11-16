@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../../widgets.dart';
 
 class InformationTradeCard extends StatelessWidget {
   const InformationTradeCard({super.key});
@@ -17,7 +17,6 @@ class InformationTradeCard extends StatelessWidget {
         children: <Widget>[
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
             spacing: 8,
             children: <Widget>[
               Row(
@@ -66,7 +65,6 @@ class InformationTradeCard extends StatelessWidget {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
             spacing: 8,
             children: <Widget>[
               Row(

@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../../widgets.dart';
 
 /// Etiqueta con el multiplicador de daño (ej. `×2`, `×0.5`), coloreada según
 /// si el daño recibido aumenta, disminuye o es nulo.
@@ -76,16 +76,15 @@ class TypeMatchupGroup extends StatelessWidget {
         child: Wrap(
           spacing: 8,
           runSpacing: 8,
-          children:
-              types
-                  .map(
-                    (String type) => TypeImageBadge(
-                      type: type,
-                      height: small ? 32 : 30,
-                      small: small,
-                    ),
-                  )
-                  .toList(),
+          children: types
+              .map(
+                (String type) => TypeImageBadge(
+                  type: type,
+                  height: small ? 32 : 30,
+                  small: small,
+                ),
+              )
+              .toList(),
         ),
       ),
     ],

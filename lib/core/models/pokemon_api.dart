@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.models;
+part of 'models.dart';
 
 class PokemonDetail {
   PokemonDetail({
@@ -18,12 +18,18 @@ class PokemonDetail {
     String capitalizedName = name[0].toUpperCase() + name.substring(1);
 
     Map<String, dynamic> artwork =
-        json['sprites']['other']['official-artwork'] as Map<String, dynamic>;
+        ((json['sprites'] as Map<String, dynamic>)['other']
+                as Map<String, dynamic>)['official-artwork']
+            as Map<String, dynamic>;
 
-    List<String> typesList =
-        (json['types'] as List<dynamic>)
-            .map((dynamic typeInfo) => typeInfo['type']['name'] as String)
-            .toList();
+    List<String> typesList = (json['types'] as List<dynamic>)
+        .map(
+          (dynamic typeInfo) =>
+              ((typeInfo as Map<String, dynamic>)['type']
+                      as Map<String, dynamic>)['name']
+                  as String,
+        )
+        .toList();
 
     return PokemonDetail(
       name: capitalizedName,
@@ -33,20 +39,18 @@ class PokemonDetail {
       types: typesList,
       height: json['height'] as int? ?? 0,
       weight: json['weight'] as int? ?? 0,
-      abilities:
-          (json['abilities'] as List<dynamic>? ?? <dynamic>[])
-              .map(
-                (dynamic ability) =>
-                    PokemonAbility.fromJson(ability as Map<String, dynamic>),
-              )
-              .toList(),
-      stats:
-          (json['stats'] as List<dynamic>? ?? <dynamic>[])
-              .map(
-                (dynamic stat) =>
-                    PokemonStat.fromJson(stat as Map<String, dynamic>),
-              )
-              .toList(),
+      abilities: (json['abilities'] as List<dynamic>? ?? <dynamic>[])
+          .map(
+            (dynamic ability) =>
+                PokemonAbility.fromJson(ability as Map<String, dynamic>),
+          )
+          .toList(),
+      stats: (json['stats'] as List<dynamic>? ?? <dynamic>[])
+          .map(
+            (dynamic stat) =>
+                PokemonStat.fromJson(stat as Map<String, dynamic>),
+          )
+          .toList(),
     );
   }
   final String name;
@@ -73,7 +77,7 @@ class PokemonAbility {
   const PokemonAbility({required this.name, this.isHidden = false});
 
   factory PokemonAbility.fromJson(Map<String, dynamic> json) => PokemonAbility(
-    name: json['ability']['name'] as String,
+    name: (json['ability'] as Map<String, dynamic>)['name'] as String,
     isHidden: json['is_hidden'] as bool? ?? false,
   );
 
@@ -93,7 +97,7 @@ class PokemonStat {
   const PokemonStat({required this.name, required this.baseStat});
 
   factory PokemonStat.fromJson(Map<String, dynamic> json) => PokemonStat(
-    name: json['stat']['name'] as String,
+    name: (json['stat'] as Map<String, dynamic>)['name'] as String,
     baseStat: json['base_stat'] as int? ?? 0,
   );
 
@@ -131,7 +135,8 @@ class PokemonSpecies {
       genus: genus,
       // La API trae saltos de línea y form feeds de los juegos originales.
       flavorText: flavorText?.replaceAll(RegExp(r'[\n\f\r]+'), ' ').trim(),
-      evolutionChainUrl: json['evolution_chain']?['url'] as String?,
+      evolutionChainUrl:
+          (json['evolution_chain'] as Map<String, dynamic>?)?['url'] as String?,
     );
   }
 
@@ -142,8 +147,10 @@ class PokemonSpecies {
   /// Primer valor de [field] en español, o en inglés si no existe.
   static String? _localized(List<dynamic> entries, String field) {
     String? english;
-    for (dynamic entry in entries) {
-      String language = entry['language']['name'] as String;
+    for (dynamic item in entries) {
+      Map<String, dynamic> entry = item as Map<String, dynamic>;
+      String language =
+          (entry['language'] as Map<String, dynamic>)['name'] as String;
       if (language == 'es') return entry[field] as String;
       if (language == 'en') english ??= entry[field] as String;
     }
@@ -168,14 +175,18 @@ class EvolutionNode {
     Map<String, dynamic> json, {
     String? parentName,
   }) {
-    String url = json['species']['url'] as String;
-    String name = json['species']['name'] as String;
+    Map<String, dynamic> species = json['species'] as Map<String, dynamic>;
+    String url = species['url'] as String;
+    String name = species['name'] as String;
     Set<EvolutionFormLink> links = <EvolutionFormLink>{
       if (parentName != null)
         for (dynamic detail
             in json['evolution_details'] as List<dynamic>? ?? <dynamic>[])
           EvolutionFormLink(
-            from: _formSuffix(detail['required_pokemon_form'], parentName),
+            from: _formSuffix(
+              (detail as Map<String, dynamic>)['required_pokemon_form'],
+              parentName,
+            ),
             to: _formSuffix(detail['evolved_pokemon_form'], name),
           ),
     };
@@ -183,19 +194,17 @@ class EvolutionNode {
       // `.../pokemon-species/133/` → 133
       id: int.parse(url.split('/').where((String s) => s.isNotEmpty).last),
       name: _capitalize(name),
-      evolvesTo:
-          (json['evolves_to'] as List<dynamic>? ?? <dynamic>[])
-              .map(
-                (dynamic node) => EvolutionNode.fromJson(
-                  node as Map<String, dynamic>,
-                  parentName: name,
-                ),
-              )
-              .toList(),
-      links:
-          links.isEmpty && parentName != null
-              ? const <EvolutionFormLink>[EvolutionFormLink()]
-              : links.toList(),
+      evolvesTo: (json['evolves_to'] as List<dynamic>? ?? <dynamic>[])
+          .map(
+            (dynamic node) => EvolutionNode.fromJson(
+              node as Map<String, dynamic>,
+              parentName: name,
+            ),
+          )
+          .toList(),
+      links: links.isEmpty && parentName != null
+          ? const <EvolutionFormLink>[EvolutionFormLink()]
+          : links.toList(),
     );
   }
 
@@ -235,14 +244,12 @@ class EvolutionNode {
     // Si solo evoluciona una forma regional (Farfetch'd de Galar), la forma
     // normal se agrega sola para dejar claro que esa no evoluciona.
     nodeFor(this, '');
-    List<EvolutionForm> roots =
-        nodes.entries
-            .where(
-              (MapEntry<String, EvolutionForm> e) =>
-                  !withParent.contains(e.key),
-            )
-            .map((MapEntry<String, EvolutionForm> e) => e.value)
-            .toList();
+    List<EvolutionForm> roots = nodes.entries
+        .where(
+          (MapEntry<String, EvolutionForm> e) => !withParent.contains(e.key),
+        )
+        .map((MapEntry<String, EvolutionForm> e) => e.value)
+        .toList();
     // Normal primero; las regionales conservan el orden de la API.
     return <EvolutionForm>[
       ...roots.where((EvolutionForm root) => root.form.isEmpty),
@@ -268,13 +275,12 @@ class EvolutionNode {
   /// (ver [_defaultForms]).
   static String _formSuffix(dynamic form, String speciesName) {
     if (form == null) return '';
-    String name = form['name'] as String;
-    String suffix =
-        name.startsWith('$speciesName-')
-            ? name.substring(speciesName.length + 1)
-            : name == speciesName
-            ? ''
-            : name;
+    String name = (form as Map<String, dynamic>)['name'] as String;
+    String suffix = name.startsWith('$speciesName-')
+        ? name.substring(speciesName.length + 1)
+        : name == speciesName
+        ? ''
+        : name;
     suffix = suffix.replaceAll('-', '_');
     return _defaultForms.contains(suffix) ? '' : suffix;
   }

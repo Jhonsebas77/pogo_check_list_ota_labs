@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.models;
+part of 'models.dart';
 
 class PokemonModel {
   const PokemonModel({
@@ -28,22 +28,20 @@ class PokemonModel {
       shinyAvailable:
           json['shiny_available'] != null && json['shiny_available'] as bool,
       tradable: json['tradable'] != null && json['tradable'] as bool,
-      formTag:
-          rawFormTag is Map
-              ? PokemonAlternativeForm.fromJson(
-                Map<String, dynamic>.from(rawFormTag),
-              )
-              : const PokemonAlternativeForm(),
-      alternativeForms:
-          rawAlternativeForms is List
-              ? rawAlternativeForms
-                  .whereType<Map<dynamic, dynamic>>()
-                  .map(
-                    (Map<dynamic, dynamic> form) =>
-                        PokemonModel.fromJson(Map<String, dynamic>.from(form)),
-                  )
-                  .toList()
-              : null,
+      formTag: rawFormTag is Map
+          ? PokemonAlternativeForm.fromJson(
+              Map<String, dynamic>.from(rawFormTag),
+            )
+          : const PokemonAlternativeForm(),
+      alternativeForms: rawAlternativeForms is List
+          ? rawAlternativeForms
+                .whereType<Map<dynamic, dynamic>>()
+                .map(
+                  (Map<dynamic, dynamic> form) =>
+                      PokemonModel.fromJson(Map<String, dynamic>.from(form)),
+                )
+                .toList()
+          : null,
     );
   }
 
@@ -57,8 +55,9 @@ class PokemonModel {
     'tradable': tradable,
     if (formTag != null) 'alternative_form': formTag!.toJson(),
     if (alternativeForms != null && alternativeForms!.isNotEmpty)
-      'alternative_forms':
-          alternativeForms!.map((PokemonModel form) => form.toJson()).toList(),
+      'alternative_forms': alternativeForms!
+          .map((PokemonModel form) => form.toJson())
+          .toList(),
   };
 
   final bool alreadyCatch;
@@ -139,7 +138,8 @@ class PokemonModel {
   );
 
   @override
-  String toString() => '''PokemonModel(
+  String toString() =>
+      '''PokemonModel(
     'already_catch_shiny_version': $alreadyCatchShinyVersion,
     'already_catch':  $alreadyCatch,
     'available':  $available,

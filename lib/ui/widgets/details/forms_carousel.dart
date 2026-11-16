@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 /// Una forma del Pokémon registrada en Firebase (regional, Mega o Gigamax).
 class PokemonFormEntry {
@@ -15,10 +15,9 @@ class PokemonFormEntry {
   /// `pokedex_gigantamax`…).
   final String spriteFolder;
 
-  String get label =>
-      pokemon.isAlternativeForm
-          ? '${pokemon.name} (${pokemon.formTag!.name})'
-          : pokemon.name;
+  String get label => pokemon.isAlternativeForm
+      ? '${pokemon.name} (${pokemon.formTag!.name})'
+      : pokemon.name;
 
   String get sprite =>
       'assets/$spriteFolder/${pokemon.id}${pokemon.formSuffix}.png';
@@ -70,8 +69,8 @@ class FormsCarousel extends StatelessWidget {
     child: ListView.separated(
       scrollDirection: Axis.horizontal,
       itemCount: forms.length,
-      separatorBuilder:
-          (BuildContext context, int index) => const SizedBox(width: 12),
+      separatorBuilder: (BuildContext context, int index) =>
+          const SizedBox(width: 12),
       itemBuilder: (BuildContext context, int index) {
         PokemonFormEntry form = forms[index];
         return Semantics(

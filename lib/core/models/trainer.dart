@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.models;
+part of 'models.dart';
 
 class TrainerModel {
   const TrainerModel({this.level, this.nickName, this.team, this.trainerId});
@@ -33,7 +33,8 @@ class TrainerModel {
   int get hashCode => Object.hash(level, trainerId, nickName, team);
 
   @override
-  String toString() => '''TrainerModel(
+  String toString() =>
+      '''TrainerModel(
     'level': $level,
     'nick_name': $nickName,
     'team': $team,

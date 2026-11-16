@@ -5,7 +5,8 @@ publish_to: "none"
 version: 1.0.0+38
 
 environment:
-  sdk: ^3.7.2
+  sdk: ^3.14.0
+  flutter: ">=3.50.0"
 
 dependencies:
   collection: ^1.19.1
@@ -19,6 +20,7 @@ dependencies:
   http: ^1.4.0
   image_gallery_saver_plus: ^4.0.1
   intl: ^0.20.2
+  material_ui: ^1.11.0
   nested: ^1.0.0
   package_info_plus: ^9.0.0
   path_provider: ^2.1.5

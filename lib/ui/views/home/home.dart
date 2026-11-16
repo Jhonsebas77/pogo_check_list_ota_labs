@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../views.dart';
 
 class HomePoGoView extends StatelessWidget {
   const HomePoGoView({super.key});

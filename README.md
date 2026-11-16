@@ -1,5 +1,14 @@
 # PoGo Check List
 
+![Flutter](https://img.shields.io/badge/Flutter-3.50.0-02569B?logo=flutter)
+![Dart](https://img.shields.io/badge/Dart-3.14.0-0175C2?logo=dart)
+![Android](https://img.shields.io/badge/Android-API%2024%2B-3DDC84?logo=android)
+![iOS](https://img.shields.io/badge/iOS-15.0%2B-000000?logo=apple)
+![macOS](https://img.shields.io/badge/macOS-10.14%2B-000000?logo=apple)
+![Windows](https://img.shields.io/badge/Windows-10%2B-0078D6?logo=windows)
+![Linux](https://img.shields.io/badge/Linux-supported-FCC624?logo=linux&logoColor=black)
+![Web](https://img.shields.io/badge/Web-supported-4285F4?logo=googlechrome&logoColor=white)
+
 Aplicación **Flutter** para llevar el seguimiento personal de progreso en
 **Pokémon GO**: qué Pokémon has capturado, cuáles te faltan, versiones *shiny*,
 mega evoluciones, gigantamax, células de Zygarde, amigos de la suerte,
@@ -25,7 +34,8 @@ El uso principal es **móvil en orientación vertical** (`portraitUp` fijado en
 
 ## Stack tecnológico
 
-- **Flutter / Dart** (SDK `^3.7.2`).
+- **Flutter 3.50.0 / Dart 3.14.0** (SDK `^3.14.0`). Material se importa desde
+  `package:material_ui/material_ui.dart` (Flutter 3.47+ deprecó `package:flutter/material.dart`).
 - **Riverpod** (`flutter_riverpod`) — gestión de estado.
 - **Supabase Auth** (`supabase_flutter`) — login con contraseña.
 - **Firebase** (`firebase_core`, `firebase_database`) — Realtime Database como
@@ -165,7 +175,7 @@ Si falta el PNG de una forma, la UI cae automáticamente al sprite base
 
 ## Puesta en marcha
 
-Requisitos: Flutter SDK compatible con Dart `^3.7.2` y las credenciales de
+Requisitos: Flutter `>=3.50.0` (Dart `^3.14.0`) y las credenciales de
 Firebase del proyecto (`lib/firebase_options.dart` ya incluido).
 
 ### Configuración (`--dart-define`)

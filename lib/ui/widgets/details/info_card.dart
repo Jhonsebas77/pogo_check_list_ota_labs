@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 /// Altura, peso y habilidades del Pokémon.
 class PokemonInfoCard extends StatelessWidget {

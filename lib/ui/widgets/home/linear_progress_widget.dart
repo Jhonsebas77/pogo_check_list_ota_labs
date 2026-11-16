@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.widgets;
+part of '../widgets.dart';
 
 class HomeLinearProgressWidget extends StatelessWidget {
   const HomeLinearProgressWidget({
@@ -22,7 +22,6 @@ class HomeLinearProgressWidget extends StatelessWidget {
       width: 100,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           centerWidget,
           LinearProgressIndicator(

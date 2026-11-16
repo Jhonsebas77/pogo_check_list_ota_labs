@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.models;
+part of 'models.dart';
 
 class LuckyFriend {
   const LuckyFriend({
@@ -13,18 +13,16 @@ class LuckyFriend {
     dynamic rawPokemonWanted = json['pokemon_want'];
     return LuckyFriend(
       name: json['name'] != null ? json['name'] as String : '',
-      pokemonWanted:
-          rawPokemonWanted is Map
-              ? PokemonTradeItem.fromJson(
-                Map<String, dynamic>.from(rawPokemonWanted),
-              )
-              : null,
-      pokemonOffer:
-          rawPokemonOffer is Map
-              ? PokemonTradeItem.fromJson(
-                Map<String, dynamic>.from(rawPokemonOffer),
-              )
-              : null,
+      pokemonWanted: rawPokemonWanted is Map
+          ? PokemonTradeItem.fromJson(
+              Map<String, dynamic>.from(rawPokemonWanted),
+            )
+          : null,
+      pokemonOffer: rawPokemonOffer is Map
+          ? PokemonTradeItem.fromJson(
+              Map<String, dynamic>.from(rawPokemonOffer),
+            )
+          : null,
       contacted: json['contacted'] != null && json['contacted'] as bool,
     );
   }
@@ -41,10 +39,11 @@ class LuckyFriend {
   final PokemonTradeItem? pokemonWanted;
   final PokemonTradeItem? pokemonOffer;
 
-  bool get isContacted => contacted == true;
+  bool get isContacted => contacted ?? false;
 
   @override
-  String toString() => '''LuckyFriend(
+  String toString() =>
+      '''LuckyFriend(
     'name': $name,
     'contacted':  $contacted,
     'pokemonWanted':  $pokemonWanted,

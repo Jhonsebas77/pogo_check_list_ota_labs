@@ -1,4 +1,4 @@
-part of com.pogo_check_list_ota_labs.app.views;
+part of '../views.dart';
 
 class LoginView extends ConsumerStatefulWidget {
   const LoginView({super.key});
@@ -11,7 +11,6 @@ class LoginView extends ConsumerStatefulWidget {
 class _LoginViewState extends ConsumerState<LoginView> {
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
-  String _appName = '...';
   String _version = '...';
   String _buildNumber = '...';
 
@@ -32,7 +31,6 @@ class _LoginViewState extends ConsumerState<LoginView> {
     PackageInfo info = await PackageInfo.fromPlatform();
     if (!mounted) return;
     setState(() {
-      _appName = info.appName;
       _version = info.version;
       _buildNumber = info.buildNumber;
     });
@@ -186,35 +184,35 @@ class _LoginViewState extends ConsumerState<LoginView> {
     style: const TextStyle(color: Colors.white),
     cursorColor: Colors.white,
     textInputAction: TextInputAction.go,
-    decoration: inputDecoration(
-      context,
-      label: 'Contraseña',
-      icon: Icons.lock_rounded,
-    ).copyWith(
-      suffixIcon: IconButton(
-        icon: Icon(
-          _obscureText
-              ? Icons.visibility_off_rounded
-              : Icons.visibility_rounded,
-          color: Colors.white70,
+    decoration:
+        inputDecoration(
+          context,
+          label: 'Contraseña',
+          icon: Icons.lock_rounded,
+        ).copyWith(
+          suffixIcon: IconButton(
+            icon: Icon(
+              _obscureText
+                  ? Icons.visibility_off_rounded
+                  : Icons.visibility_rounded,
+              color: Colors.white70,
+            ),
+            onPressed: () => setState(() => _obscureText = !_obscureText),
+          ),
         ),
-        onPressed: () => setState(() => _obscureText = !_obscureText),
-      ),
-    ),
     onChanged: (_) => ref.read(authProvider.notifier).clearError(),
     onSubmitted: (_) => _handleSignIn(),
   );
 
   Widget _buildActionButton(AuthStatus auth) => ElevatedButton.icon(
     onPressed: auth.isLoading ? null : _handleSignIn,
-    icon:
-        auth.isLoading
-            ? const SizedBox(
-              width: 16,
-              height: 16,
-              child: CircularProgressIndicator(strokeWidth: 2),
-            )
-            : const Icon(Icons.catching_pokemon_rounded),
+    icon: auth.isLoading
+        ? const SizedBox(
+            width: 16,
+            height: 16,
+            child: CircularProgressIndicator(strokeWidth: 2),
+          )
+        : const Icon(Icons.catching_pokemon_rounded),
     label: Text(auth.isLoading ? 'Ingresando...' : 'Ingresar'),
     style: ElevatedButton.styleFrom(
       padding: const EdgeInsets.symmetric(vertical: 16),
