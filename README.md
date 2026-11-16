@@ -4,9 +4,6 @@
 ![Dart](https://img.shields.io/badge/Dart-3.14.0-0175C2?logo=dart)
 ![Android](https://img.shields.io/badge/Android-API%2024%2B-3DDC84?logo=android)
 ![iOS](https://img.shields.io/badge/iOS-15.0%2B-000000?logo=apple)
-![macOS](https://img.shields.io/badge/macOS-10.14%2B-000000?logo=apple)
-![Windows](https://img.shields.io/badge/Windows-10%2B-0078D6?logo=windows)
-![Linux](https://img.shields.io/badge/Linux-supported-FCC624?logo=linux&logoColor=black)
 ![Web](https://img.shields.io/badge/Web-supported-4285F4?logo=googlechrome&logoColor=white)
 
 Aplicación **Flutter** para llevar el seguimiento personal de progreso en
@@ -23,9 +20,9 @@ Pokémon para intercambio y más.
 
 Proyecto Flutter multiplataforma. Hay configuración para:
 
-| Móvil | Escritorio | Web |
-|-------|------------|-----|
-| Android, iOS | macOS, Windows, Linux | Web |
+| Móvil | Web |
+|-------|-----|
+| Android, iOS | Web |
 
 El uso principal es **móvil en orientación vertical** (`portraitUp` fijado en
 `main.dart`).
@@ -42,8 +39,8 @@ El uso principal es **móvil en orientación vertical** (`portraitUp` fijado en
   backend de datos.
 - **PokeAPI** (`https://pokeapi.co`) vía `http` — detalle de cada Pokémon.
 - Utilidades de UI/UX: `shimmer` (placeholders), `percent_indicator`,
-  `flutter_native_splash`, `screenshot` + `image_gallery_saver_plus` /
-  `file_saver` (exportar capturas), `package_info_plus`, `intl`, `path_provider`.
+  `flutter_native_splash`, `screenshot` + `file_saver` (exportar capturas:
+  descarga en web, galería en Android/iOS), `package_info_plus`, `intl`.
 
 ---
 
@@ -59,7 +56,8 @@ El uso principal es **móvil en orientación vertical** (`portraitUp` fijado en
 - **Amigos de la suerte**, **Pokémon para intercambio**, **tabla de tipos**,
   edición de **perfil de entrenador** y **tema de color**.
 - Ordenar por nombre / número de Pokédex y filtrar "solo faltantes".
-- Exportar capturas de pantalla de las vistas.
+- Exportar capturas de pantalla de las vistas (en web se descargan como PNG;
+  en Android/iOS se guardan en la galería, álbum *PoGo Check List*).
 
 ---
 
@@ -226,6 +224,29 @@ Regenerar el splash tras cambiar su imagen:
 ```bash
 dart run flutter_native_splash:create
 ```
+
+### Despliegue web (GitHub Pages)
+
+`.github/workflows/deploy-web.yml` compila y publica la web en GitHub Pages en
+cada push a `main` (o a mano con *Run workflow*). Las claves de `--dart-define`
+salen de los *secrets* del repo con los mismos nombres de la tabla de arriba, y
+`lib/firebase_options.dart` se genera desde el secret `FIREBASE_OPTIONS_DART`.
+
+El build usa **WebAssembly** (`--wasm`): los navegadores con WasmGC (Chrome/Edge
+119+, Firefox 120+) cargan la versión Wasm y el resto cae automáticamente a
+JavaScript. GitHub Pages no permite las cabeceras COOP/COEP, así que el
+renderer corre en un solo hilo.
+
+Probar el build localmente antes de hacer push:
+
+```bash
+flutter build web --release --wasm \
+  --dart-define-from-file=config/dart_defines.local.json
+```
+
+> En Wasm `int` y `double` son tipos distintos y Firebase web entrega los
+> números como `double`: al leer JSON usar `(json['x'] as num?)?.toInt()`,
+> nunca `json['x'] as int`.
 
 ---
 

@@ -26,8 +26,8 @@ class ZygardeCells {
                 PokemonModel.fromJson(Map<String, dynamic>.from(item)),
           )
           .toList(),
-      limit: json['limit'] != null ? json['limit'] as int : 0,
-      quantity: json['quantity'] != null ? json['quantity'] as int : 0,
+      limit: (json['limit'] as num?)?.toInt() ?? 0,
+      quantity: (json['quantity'] as num?)?.toInt() ?? 0,
     );
   }
 

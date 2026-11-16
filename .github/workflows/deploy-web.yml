@@ -58,7 +58,7 @@ jobs:
               exit 1
             fi
           done
-          flutter build web --release \
+          flutter build web --release --wasm \
             --base-href "${{ steps.pages.outputs.base_path }}/" \
             --dart-define=SUPABASE_URL="$SUPABASE_URL" \
             --dart-define=SUPABASE_PUBLISHABLE_KEY="$SUPABASE_PUBLISHABLE_KEY" \

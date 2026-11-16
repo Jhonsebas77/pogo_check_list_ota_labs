@@ -25,8 +25,8 @@ class PokemonTradeItem {
         haveSpecialBackground:
             json['want_special_background'] != null &&
             json['want_special_background'] as bool,
-        id: json['id'] != null ? json['id'] as int : 0,
-        quantity: json['quantity'] != null ? json['quantity'] as int : 0,
+        id: (json['id'] as num?)?.toInt() ?? 0,
+        quantity: (json['quantity'] as num?)?.toInt() ?? 0,
         isDynamax: json['want_dynamax'] != null && json['want_dynamax'] as bool,
         isGigantamax:
             json['want_gigantamax'] != null && json['want_gigantamax'] as bool,

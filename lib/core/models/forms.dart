@@ -5,7 +5,7 @@ class PokemonAlternativeForm {
 
   factory PokemonAlternativeForm.fromJson(Map<String, dynamic> json) =>
       PokemonAlternativeForm(
-        order: json['order'] != null ? json['order'] as int : 0,
+        order: (json['order'] as num?)?.toInt() ?? 0,
         id: json['id'] != null ? json['id'] as String : '',
         name: json['name'] != null ? json['name'] as String : '',
       );

@@ -23,7 +23,7 @@ class PokemonModel {
           json['already_catch_shiny_version'] != null &&
           json['already_catch_shiny_version'] as bool,
       available: json['available'] != null && json['available'] as bool,
-      id: json['id'] != null ? json['id'] as int : 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       name: json['name'] != null ? json['name'] as String : '',
       shinyAvailable:
           json['shiny_available'] != null && json['shiny_available'] as bool,

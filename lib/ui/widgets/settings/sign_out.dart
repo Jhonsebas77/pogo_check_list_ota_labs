@@ -29,18 +29,14 @@ class SignOutMenuItem extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) => DecoratedBox(
-    decoration: BoxDecoration(
-      color: Colors.black12,
-      borderRadius: BorderRadius.circular(32),
+  Widget build(BuildContext context, WidgetRef ref) => ListTile(
+    tileColor: Colors.black12,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+    title: const Text('Cerrar sesión', style: TextStyle(color: Colors.white)),
+    leading: const Icon(Icons.logout_rounded, color: Colors.white),
+    enabled: !ref.watch(
+      authProvider.select((AuthStatus auth) => auth.isLoading),
     ),
-    child: ListTile(
-      title: const Text('Cerrar sesión', style: TextStyle(color: Colors.white)),
-      leading: const Icon(Icons.logout_rounded, color: Colors.white),
-      enabled: !ref.watch(
-        authProvider.select((AuthStatus auth) => auth.isLoading),
-      ),
-      onTap: () => _confirmSignOut(context, ref),
-    ),
+    onTap: () => _confirmSignOut(context, ref),
   );
 }

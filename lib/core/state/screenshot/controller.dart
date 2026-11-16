@@ -3,50 +3,59 @@ part of '../state.dart';
 class ScreenShotViewModel extends Notifier<ScreenShotState> {
   ScreenShotViewModel();
 
+  /// Álbum donde se guardan las capturas en la galería (Android / iOS).
+  static const String _album = 'PoGo Check List';
+
   Future<void> captureAndSaveInGallery(
     ScreenshotController screenshotController,
     String fileName,
     BuildContext context,
   ) async {
     Uint8List? imageBytes = await screenshotController.capture();
-    if (imageBytes == null && context.mounted) {
-      showErrorSnackBar(context, '[Error guardando la imagen]');
+    if (imageBytes == null) {
+      if (context.mounted) {
+        showErrorSnackBar(context, '[Error guardando la imagen]');
+      }
       return;
     }
-    if (kIsWeb) {
-      await FileSaver.instance.saveFile(
-        name: fileName,
-        bytes: imageBytes,
-        mimeType: MimeType.png,
-      );
+    try {
+      if (kIsWeb) {
+        // En web se descarga como archivo desde el navegador.
+        await FileSaver.instance.saveFile(
+          name: fileName,
+          bytes: imageBytes,
+          fileExtension: 'png',
+          mimeType: MimeType.png,
+        );
+      } else {
+        // Android: MediaStore (Pictures/<album>, sin permisos en Android 10+).
+        // iOS: Fotos (requiere NSPhotoLibraryAddUsageDescription).
+        await FileSaver.instance.saveToGallery(
+          name: fileName,
+          bytes: imageBytes,
+          fileExtension: 'png',
+          mimeType: MimeType.png,
+          album: _album,
+        );
+      }
+    } on PlatformException catch (error) {
       if (context.mounted) {
-        showSuccessSnackBar(context, '[Imagen guardada]');
+        showErrorSnackBar(
+          context,
+          error.code == 'PermissionDenied'
+              ? '[Sin permiso para guardar en la galería]'
+              : '[Error guardando la imagen]',
+        );
       }
-    } else {
-      Directory? storageDir = await getExternalStorageDirectory();
-      StringBuffer newPath = StringBuffer();
-      if (storageDir != null) {
-        List<String> paths = storageDir.path.split('/');
-        for (int i = 1; i < paths.length; i++) {
-          String pathSection = paths[i];
-          if (pathSection == 'Android') {
-            break;
-          }
-          newPath.write('/$pathSection');
-        }
-      }
-      newPath.write('/Download');
-      File tempFile = await File('$newPath/screenshot.png').create();
-      await tempFile.writeAsBytes(imageBytes! as List<int>);
-      await ImageGallerySaverPlus.saveImage(
-        imageBytes,
-        quality: 60,
-        name: fileName,
-      );
-      await tempFile.delete();
+      return;
+    } on UnsupportedError {
       if (context.mounted) {
-        showSuccessSnackBar(context, '[Imagen guardada]\nDestino: $newPath');
+        showErrorSnackBar(context, '[Plataforma no soportada]');
       }
+      return;
+    }
+    if (context.mounted) {
+      showSuccessSnackBar(context, '[Imagen guardada]');
     }
   }
 

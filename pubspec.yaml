@@ -10,25 +10,23 @@ environment:
 
 dependencies:
   collection: ^1.19.1
-  file_saver: ^0.3.1
-  firebase_core: ^4.0.0
-  firebase_database: ^12.0.0
+  file_saver: ^0.7.0
+  firebase_core: ^5.1.0
+  firebase_database: ^13.0.1
   flutter:
     sdk: flutter
   flutter_native_splash: ^2.4.6
   flutter_riverpod: ^2.6.1
   http: ^1.4.0
-  image_gallery_saver_plus: ^4.0.1
   intl: ^0.20.2
   material_ui: ^1.11.0
   nested: ^1.0.0
-  package_info_plus: ^9.0.0
-  path_provider: ^2.1.5
+  package_info_plus: ^10.2.2
   percent_indicator: ^4.2.5
   recase: ^4.1.0
   riverpod: ^2.6.1
   screenshot: ^3.0.0
-  shimmer: ^3.0.0
+  shimmer: ^4.0.0
   supabase_flutter: ^2.18.0
 
 dev_dependencies:

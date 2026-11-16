@@ -52,7 +52,106 @@ class PokemonListGigantamaxItem extends ConsumerWidget {
                   .withAlpha(100),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: const Column(mainAxisAlignment: MainAxisAlignment.center),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const SizedBox(height: 16),
+          Stack(
+            children: <Widget>[
+              if (selectPokemon.alreadyCatch)
+                Image.asset(
+                  'assets/gigamax.png',
+                  height: 80,
+                  width: 80,
+                  fit: BoxFit.fill,
+                )
+              else
+                Image.asset(
+                  'assets/bg_holder_pokemon.png',
+                  height: 80,
+                  width: 80,
+                  fit: BoxFit.fill,
+                ),
+              if (selectPokemon.available)
+                Image.asset(
+                  'assets/pokedex_gigantamax/'
+                  '${selectPokemon.id}${selectPokemon.formSuffix}.png',
+                  height: 80,
+                  width: 80,
+                  fit: BoxFit.fill,
+                  errorBuilder:
+                      (
+                        BuildContext context,
+                        Object error,
+                        StackTrace? stackTrace,
+                      ) => Image.asset(
+                        'assets/pokedex_gigantamax/${selectPokemon.id}.png',
+                        height: 80,
+                        width: 80,
+                        fit: BoxFit.fill,
+                      ),
+                )
+              else
+                Shimmer.fromColors(
+                  baseColor: Theme.of(context).colorScheme.onSurfaceVariant,
+                  highlightColor: Theme.of(context)
+                      .colorScheme
+                      .onSurfaceVariant,
+                  enabled: false,
+                  child: Image.asset(
+                    'assets/pokedex_gigantamax/'
+                    '${selectPokemon.id}${selectPokemon.formSuffix}.png',
+                    height: 80,
+                    width: 80,
+                    fit: BoxFit.fill,
+                    errorBuilder:
+                        (
+                          BuildContext context,
+                          Object error,
+                          StackTrace? stackTrace,
+                        ) => Image.asset(
+                          'assets/pokedex_gigantamax/${selectPokemon.id}.png',
+                          height: 80,
+                          width: 80,
+                          fit: BoxFit.fill,
+                        ),
+                  ),
+                ),
+            ],
+          ),
+          Column(
+            children: <Widget>[
+              FittedBox(
+                child: Text(
+                  textAlign: TextAlign.center,
+                  selectPokemon.isAlternativeForm
+                      ? '${selectPokemon.name} '
+                            '(${selectPokemon.formTag!.name})'
+                      : selectPokemon.name,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: selectPokemon.alreadyCatch
+                        ? Theme.of(context).colorScheme.surface
+                        : Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
+              Text(
+                paddingDexNumber(dexNumber: selectPokemon.id),
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: selectPokemon.alreadyCatch
+                      ? Theme.of(context).colorScheme.surface
+                      : Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+        ],
+      ),
     ),
   );
 }

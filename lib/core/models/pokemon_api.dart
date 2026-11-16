@@ -33,12 +33,12 @@ class PokemonDetail {
 
     return PokemonDetail(
       name: capitalizedName,
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       imageUrl: artwork['front_default'] as String,
       shinyImageUrl: artwork['front_shiny'] as String?,
       types: typesList,
-      height: json['height'] as int? ?? 0,
-      weight: json['weight'] as int? ?? 0,
+      height: (json['height'] as num?)?.toInt() ?? 0,
+      weight: (json['weight'] as num?)?.toInt() ?? 0,
       abilities: (json['abilities'] as List<dynamic>? ?? <dynamic>[])
           .map(
             (dynamic ability) =>
@@ -98,7 +98,7 @@ class PokemonStat {
 
   factory PokemonStat.fromJson(Map<String, dynamic> json) => PokemonStat(
     name: (json['stat'] as Map<String, dynamic>)['name'] as String,
-    baseStat: json['base_stat'] as int? ?? 0,
+    baseStat: (json['base_stat'] as num?)?.toInt() ?? 0,
   );
 
   /// Nombre en inglés tal como lo entrega la API (`special-attack`).
